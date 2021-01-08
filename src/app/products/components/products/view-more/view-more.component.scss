@@ -113,11 +113,13 @@ $color-ppal:#fff;
                         img{
                             width: 100%;
                             height: 100%;
+                            margin-top: 40px;
                         }
                     }
                     
                 }
                 #img-ppal{
+                    margin-top: 40px;
                     width:45vw;
                     height: 470px;
                     margin-left: 40px;
@@ -148,7 +150,6 @@ $color-ppal:#fff;
                         color: $color-sec;
                         width: 100%;
                     }
-                
                 }
                 #caja-precio{
                     display: flex;    
@@ -206,8 +207,43 @@ $color-ppal:#fff;
                    
                     
                 }
+                #caja-props{
+                    font-family: $fte-sec;
+                    p{
+                        color:$color-sec;
+                        font-weight: bold;
+                        font-size: 14px;
+                        font-style: italic;
+                        line-height: 13px;
+                        span{
+                            color: rgb(102, 99, 99);
+                            font-size: 13px;
+                            font-weight: normal;
+                            
+                        }
+                    }
+                    
+                    
+                }
+                #descripcion-producto{
+                    align-self: center;
+                    padding-top: 20px;
+                    padding-bottom: 10px;
+                    h3{
+                        font-family: $fte-ppal;
+                        font-size:21px ;
+                        margin-bottom: 7px;
+                        color: $color-sec;
+                    }
+                    p{
+                        font-size: 15px;
+                        font-family: $fte-sec;
+                        line-height: 19px; 
+                        color: grey;
+                    }
+                }
                 #caja-carrito{
-                    margin-top: 25px;
+                    margin-top: 5px;
                     display: flex;
                     flex-direction: column;
                     .color-quantity{
@@ -263,22 +299,7 @@ $color-ppal:#fff;
                             }
                         }
                     }
-                    .talles{
-                        display: flex;
-                        justify-content: space-around;
-                        width: 90%;
-                        margin-top: 25px;
-                        align-items: center;
-                        div{
-                            input{
-                                margin-right: 5px;
-                            }
-                            label{
-                                font-family: $fte-sec;
-                            }
-                        }
-                        
-                    }
+                    
                     p{
                         font-family: $fte-sec;
                         font-style: italic;
@@ -311,23 +332,6 @@ $color-ppal:#fff;
                         margin-bottom: 15px;
                     }
                 }
-                .caja-actualizar{
-                    width: 100%;
-                    margin-top: 10px;
-                    display: flex;
-                    justify-content: center;
-                    align-self: baseline;
-                    &:hover{
-                        cursor: pointer;
-                    }
-                    .actualizar{
-                      font-family: $fte-sec;
-                    }
-                    .fa-redo{
-                        margin-right: 3px;
-                        color:$color-wf2;
-                    }
-                }
             }
         }
         .contenedor-dos{
@@ -341,7 +345,7 @@ $color-ppal:#fff;
                 justify-content: space-around;
                 border-bottom: 1px solid $color-ter;
                 padding-bottom: 8px;
-            
+                margin-top: 10px;
                 p{
                     font-size: 16px;
                     font-family: $fte-sec;
@@ -350,25 +354,64 @@ $color-ppal:#fff;
                     
                 }
             }
-            #descripcion-producto{
-            
-                width: 68vw;
-                align-self: center;
-                padding-top: 35px;
-                padding-bottom: 80px;
+            #ficha-tecnica{
+                width: 82%;
+                margin-left: auto;
+                margin-right: auto;
+                padding-top: 45px;
+                padding-bottom: 50px;
                 h3{
-                    font-family: $fte-ppal;
-                    font-size:21px ;
-                    margin-bottom: 15px;
+                    font-size:22px ;
+                    margin-bottom: 25px;
                     color: $color-sec;
+                    font-style: italic;
                 }
                 p{
                     font-size: 15px;
                     font-family: $fte-sec;
                     line-height: 25px; 
-                    color: $color-ter;
+                    color: $color-sec;
+                    text-transform: uppercase;
+                    span{
+                        color: $color-ter;
+                        text-transform: capitalize;
+                    }
+                }
+                h4{
+                    font-family: $fte-sec;
+                    color: $color-sec;
+                    font-size: 16px;
+                    margin-top: 20px;
+                }
+                .datos-analiticos{
+                    margin-left: 40px;
+                    margin-top: 20px;
+                    
+                    p{
+                        font-size: 15px;
+                        font-family: $fte-sec;
+                        line-height: 25px; 
+                        color: $color-sec;
+                        text-transform: uppercase;
+                        span{
+                            color: $color-ter;
+                            text-transform: capitalize;
+                        }
+                    }
+                }
+                .profesionales{
+                    margin-top: 40px;
+                    p{
+                        font-size: 15px;
+                        font-family: $fte-sec;
+                        line-height: 25px; 
+                        text-transform: initial;
+                        color: $color-sec;
+                        
+                    }
                 }
             }
+            
 
         }
         .contenedor-tres{
