@@ -20,6 +20,11 @@ import { EnviarInfoCompraService } from 'src/app/user-options/user-profile/servi
 })
 export class NormalHeaderComponent implements OnInit {
 
+  varietal = ["Malbec", "Ancellota", "Blend", "Cabernet Sauvignon", "Syrah"
+              , "Merlot", "Chardonnay"];
+
+  dulzor = ["Brut", "Extra Brut", "Brut Nature"]
+
   categorias:Categoria[];
   subcategorias: Subcategoria[];
   subscripcionInfoCompra : Subscription;
@@ -56,7 +61,7 @@ export class NormalHeaderComponent implements OnInit {
  
     // get category list 
     this.getListaCategorias();
-
+    this.getSubcategorias();
     //cart counter
     //this.carritoService.getCarrito().subscribe(response => {
     //  this.totalQuantity = response.carrito.items.length;
@@ -110,8 +115,8 @@ showsubcategories(index:number){
   categories.style.borderRadius=" 0px 0px 0px 10px"
  let container = document.getElementById("container-sub");
  container.style.display="initial";
- let categoriaActual=this.categorias[index]; 
- let subcatActuales=categoriaActual.subcategorias;
+ let categoriaActual=this.subcategorias[index]; 
+ let subcatActuales=this.varietal;
 
  for (let x = 0; x < subcatActuales.length ; x++) {
   let itemSubcategoria= document.createElement("p")
@@ -119,7 +124,14 @@ showsubcategories(index:number){
   itemSubcategoria.style.fontFamily="'Open Sans'";
   itemSubcategoria.style.color="rgb(87, 83, 83)";
   itemSubcategoria.style.cursor="pointer";
-  itemSubcategoria.innerText=subcatActuales[x].nombre;
+  if (index <=2) {
+    itemSubcategoria.innerText=this.varietal[x];
+  }else{
+    if (x < 3) {
+      itemSubcategoria.innerText=this.dulzor[x];
+    }
+  }
+  
   document.getElementById("container-sub").appendChild(itemSubcategoria);
  }
 }
@@ -250,4 +262,13 @@ hiddeMenu(){
       });
     });
   }
+
+  getSubcategorias(){
+    this.catalogoservice.getSubcategorias().subscribe(resp => {
+      this.subcategorias = resp
+      console.log(this.subcategorias);
+      
+    })
+  }
+
 }

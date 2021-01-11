@@ -107,7 +107,7 @@
 <div class="bg-menu" id="bg-menu"></div>
 <div class="contenedor-categorias" (mouseover)="showCategories()" (mouseout)="hiddeSubAndCategories()" id="container-subcategories">
     <div class="submenu " id="categoriesList">
-        <li class="items-categories" *ngFor="let categoria of categorias; let i=index" (mouseover)="showsubcategories(i)" (mouseout)="hiddesubcategories()">{{categoria.nombre}}<i class="fas fa-angle-down"></i>
+        <li class="items-categories" *ngFor="let subcategoria of subcategorias; let i=index" (mouseover)="showsubcategories(i)" (mouseout)="hiddesubcategories()">{{subcategoria.nombre}}<i class="fas fa-angle-down"></i>
 
         </li>
     </div>
