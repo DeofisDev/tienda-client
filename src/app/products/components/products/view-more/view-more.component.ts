@@ -32,7 +32,6 @@ export class ViewMoreComponent implements OnInit {
   skusDelProducto:Sku [];
   valoresSkus:ValorPropiedadProducto[]=[];
   propiedadesFiltradas: PropiedadProducto[]=[];
-  mostrarActualizar:boolean=false;
   elegido:boolean=false;
   totalItemsCarrito:number;
   pcioNormal:boolean
@@ -124,7 +123,6 @@ export class ViewMoreComponent implements OnInit {
       });
        console.log(valorCombobox);
        
-      this.mostrarActualizar=true;
 
      
         setTimeout(() => {
@@ -132,14 +130,7 @@ export class ViewMoreComponent implements OnInit {
         }, 800);
   }
 
-  resetSeleccion(){
-    this.mostrarActualizar=false;
-
-      //para refrescar el componente y q se actualizen los nuevos valores
-      this.Router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.Router.navigate(['/viewmore' ,this.infoProducto.id]); 
-        }); 
-  }
+ 
 
   obtenerValoresSkus(){
     let skus = this.infoProducto.skus;

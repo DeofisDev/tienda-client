@@ -17,7 +17,8 @@
             <div id="izquierda" class="izquierda">
                 <div id="img-sec" class="img-sec">
                     <div id="img-uno">
-                        <img src="{{infoProducto?.foto.imageUrl}}" alt="">
+                        <!-- <img src="{{infoProducto?.foto.imageUrl}}" alt=""> -->
+                        <img src="../../../../../assets/imagenes/privado-chardonnay.jpg" alt="">
                     </div>
                     <!-- <div id="img-dos">
 
@@ -28,40 +29,46 @@
                     <div id="img-seis"></div> -->
                 </div>
                 <div id="img-ppal" class="img-ppal">
-                    <img src="{{infoProducto?.foto.imageUrl}}" alt="">
+                    <!-- <img src="{{infoProducto?.foto.imageUrl}}" alt=""> -->
+                    <img src="../../../../../assets/imagenes/privado-chardonnay.jpg" alt="">
                 </div>
             </div>
             <div id="derecha">
                 <div id="caja-titulo">
-                    <h2>{{infoProducto?.nombre}}</h2>
-
-
+                    <!-- <h2>{{infoProducto?.nombre}}</h2> -->
+                    <h2>Chardonnay Reserva</h2>
                 </div>
 
                 <div id="caja-precio">
                     <div >
                         <!-- contenedor del precio sku -->
-                        <div class="precio" *ngIf="!mostrarPrecioProducto()">
+                        <!-- <div class="precio" *ngIf="!mostrarPrecioProducto()">
                             <!-- <h3 *ngIf="!ofertaSku" class="pcio-sin-oferta">€50</h3>
                             <h3 *ngIf="ofertaSku"  class="pcio-oferta">€42</h3> -->
-                            <h3 *ngIf="!ofertaSku" class="pcio-sin-oferta">€{{skuAEnviar?.precio | number: '.2'}}</h3>
+                            <!-- <h3 *ngIf="!ofertaSku" class="pcio-sin-oferta">€{{skuAEnviar?.precio | number: '.2'}}</h3>
                             <h3 *ngIf="ofertaSku" class="pcio-sin-oferta">€{{skuAEnviar?.promocion.precioOferta | number: '.2'}}</h3>
                             <div *ngIf="ofertaSku" class="row-oferta">
                                 <span>€{{skuAEnviar?.precio | number: '.2'}} </span>
                                 <p class="off ">{{skuAEnviar.promocion?.porcentaje * 100 | number: '2.0-0'}}% 0FF</p>
-                            </div>
-                        </div>
+                            </div> 
+                        </div> -->
                         <!-- Fin del contenedor precio Sku  -->
                         <!-- Contenedor precio producto -->
                         <div class="precio" *ngIf="mostrarPrecioProducto()">
                             <h3 *ngIf="!infoProducto?.promocion" class="pcio-sin-oferta">€{{infoProducto?.precio | number: '.2'}}
                             </h3>
-                            <h3 *ngIf="infoProducto?.promocion" class="pcio-oferta">€{{infoProducto.promocion?.precioOferta | number:
-                                '.2'}}</h3>
-                            <div *ngIf="infoProducto?.promocion" class="row-oferta">
+
+                            <!-- <h3 *ngIf="infoProducto?.promocion" class="pcio-oferta">€{{infoProducto.promocion?.precioOferta | number:
+                                '.2'}}</h3> -->
+                                <h3 *ngIf="infoProducto?.promocion" class="pcio-oferta">$950.00</h3>
+                                <div *ngIf="infoProducto?.promocion" class="row-oferta">
+                                    <span>$1060.00 </span>
+                                    <p class="off ">10% 0FF</p>
+                                </div>
+                            <!-- <div *ngIf="infoProducto?.promocion" class="row-oferta">
                                 <span>€{{infoProducto?.precio | number: '.2'}} </span>
                                 <p class="off ">{{infoProducto.promocion?.porcentaje * 100 | number: '2.0-0'}}% 0FF</p>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- Fin del contenedor precio producto -->
                     </div>
@@ -69,24 +76,29 @@
                 </div>
 
                 <br>
-                <div class="text-center" id="cont-props">
+                <div id="caja-props">
 
-                    <select id="color" *ngFor="let propiedad of propiedadesFiltradas;let i=index " class="select"
+                    <!-- <select id="color" *ngFor="let propiedad of propiedadesFiltradas;let i=index " class="select"
                         (change)="valoresSiguienteCombobox(i)">
                         <option hidden selected value="">{{propiedad.nombre}}</option>
                         <option [value]="valor.valor" *ngFor="let valor of propiedad.valores">{{valor.valor}}</option>
-                    </select>
+                    </select> -->
+                    <p>Bodega: <span>Jorge Mayo</span> </p>
+                    <p>Cosecha: <span>2014</span> </p>
+                    <p>Varietales: <span>Chardonnay, Viognier</span> </p>
+                    <p>Estuche: <span>No</span> </p>
+                    <p>Temperatura ideal: <span>10-12 °C</span> </p>
+                </div>
+                <div id="descripcion-producto">
+                    <h3>Descripción </h3>
+                    <!-- <p>{{infoProducto.descripcion}}</p> -->
+                    <p> Se perciben aromas y sabores cítricos, florales y tropicales; delicada burbuja con acidez sutilmente marcada.</p>
+                </div>    
 
-                </div>
-                <div *ngIf="mostrarActualizar" class="caja-actualizar" (click)=" resetSeleccion()">
-                    <p class="actulizar"> <i class="fas fa-redo"></i> Reiniciar selección</p>
-                </div>
+            
                 <div id="caja-carrito">
                     <div class="color-quantity">
                         <div class="modify-quantity">
-                            <!-- <i class="fas fa-minus-circle" (click)="removeOne(items.cantidad"></i>
-                            <span class="item-quantity">  {{items.cantidad}}</span>
-                            <i class="fas fa-plus-circle" (click)="addOne(item.cantidad)"></i> -->
                             <i class="fas fa-minus-circle"></i>
                             <span class="item-quantity"> 1</span>
                             <i class="fas fa-plus-circle"></i>
@@ -94,9 +106,9 @@
                     </div>
                     <hr>
                     <p>Costo de envío se informará al realizar la operación.</p>
-                    <button mat-button (click)="agregarCarrito(skuAEnviar)" class="btn" disabled id="btn-carrito">Agregar al
+                    <button mat-button (click)="agregarCarrito(skuAEnviar)" class="btn"  id="btn-carrito">Agregar al
                         Carrito</button>
-                    <button mat-button (click)="agregarCarrito(skuAEnviar)" class="btn" disabled id="btn-comprar">Comprar
+                    <button mat-button (click)="agregarCarrito(skuAEnviar)" class="btn"  id="btn-comprar">Comprar
                         ahora</button>
 
                 </div>
@@ -105,17 +117,40 @@
         </article>
         <article class="contenedor-dos">
             <div id="datos">
-                <p>Marca: {{infoProducto.marca?.nombre}}</p>
-                <p>Modelo:</p>
+                <p>Volumen: 750 mL </p>
+                <p>Alcohol: 12,30% v/v</p>
+              
 
                 <p>Disponible: <span *ngIf="stock">Si</span> <span *ngIf="!stock">No</span> </p>
 
             </div>
-            <div id="descripcion-producto">
-                <h3>Descripción </h3>
-                <p>{{infoProducto.descripcion}}</p>
-
-            </div>
+            <div id="ficha-tecnica">
+                <h3>Chardonnay Reserva </h3>
+                <!-- <p>{{infoProducto.descripcion}}</p> -->
+                <p>Cosecha: <Span>2016</Span></p>
+                <p>Variedades: <span>95% Chardonnay, 5% Viognier</span></p>
+                <p>Viñedos: <span>Chardonnay: 30% Finca Potrero de Garay-(Alt. 850 msnm-Valle de Calamuchita), 65% Finca de Colonia Caroya (Alt. 550 msnm)</span></p>
+                <p>Viognier: <span>5% Finca Las Corzuelas-Quilino (Alt. 370 msnm-Norte de Córdoba). Conducción espaldero alto, Producción: 6 Ton/ha.</span></p>
+                <p>Metodo de cosecha: <span>Manual en cajones de 18/20 Kgs.</span></p>
+                <p>Vinificación: <span>Selección de racimos, despalillado, prensado neumático, enfriado y desborre previo. Fermentación en tanque de acero inoxidable con levaduras seleccionadas, temperatura fermentación entre 14-15ºC durante 25 días. Descube a barricas de roble francés y americano.</span></p>
+                <p>Crianza: <span>Durante 8 meses en barricas de 225 Lts de primer uso.</span></p>
+                <p>Notas de cata: <span>Color amarillo verdoso intenso con reflejos dorados. Aromas a frutos tropicales maduros acomplejadas con las notas aportadas por su crianza en roble. En boca es fresco, frutado, untuoso y de gran persistencia.</span></p>
+                <h4>Datos analíticos:</h4>
+                <div class="datos-analiticos">
+                    
+                    <p>Alcohol: <span>12.30%</span></p>
+                    <p>Azucar Residual: 3.5 g/L</p>
+                    <p>PH: <span>3.4</span></p>
+                    <p>Ac.Total: <span>6.00 g/L</span> </p>
+                    <p>Producción: <span>2000 botellas</span></p>
+                    <p>Servicio: <span>Recomendamos servir entre 10-12°C de temperatura</span></p>
+                </div>
+                <div class="profesionales">
+                    <p>ENÓLOGO: Gabriel Campana</p>
+                    <p>  ING. AGR.: Daniela Mansilla</p>
+                </div>
+                
+            </div>  
         </article>
         <article class="contenedor-tres" id="contenedor-tres">
             <p id="titulo-a">¿Tenés alguna pregunta?</p>
