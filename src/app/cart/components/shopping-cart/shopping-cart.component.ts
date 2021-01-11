@@ -31,6 +31,9 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCarrito();
+    setTimeout(() => {
+      this.getCarrito();
+    }, 100);
     console.log(this.carrito);
        
     

@@ -12,5 +12,7 @@ export class EnviarInfoCompraService {
   enviarMostrarCheckout$ =new EventEmitter();
   enviarMostrarConfirmacion$ =new EventEmitter();
   enviarCantidadProductosCarrito$ = new EventEmitter();
+  // para avisar q llego el carrito al resumen  y asi se muestre el boton continuar en el checkout 
+  llegoCarrito$ = new EventEmitter()
   constructor() { }
 }

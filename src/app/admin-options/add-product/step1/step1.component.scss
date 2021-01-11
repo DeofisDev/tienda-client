@@ -187,6 +187,9 @@ $color-ppal:#fff;
                             &:focus{
                                 border-bottom: 2px solid $color-wf3;
                             }
+                            &.is-invalid{
+                                border-bottom: 1px solid red;
+                              }
                         } 
                        }
                        .destacado{

@@ -6,7 +6,7 @@
                     <h2>Forma de entrega y pago </h2>
                 </div>
             </div>
-            <form [formGroup]="formEntrega" class="row">
+            <form [formGroup]="formEntrega" class="row" autocomplete="off">
                 <div class="col">
                     <div class=" row deliveryMethod">
                         <div class="col">
@@ -99,7 +99,7 @@
                                     formControlName="formaDeEntrega">
 
                                 <i class="fas fa-store"></i>
-                                <label for="entrega" class="options">Retirá en nuestro local</label>
+                                <label for="entrega" class="options">Retire en nuestra tienda</label>
                             </div>
                             <div class="adress1 row" *ngIf="!envioADomicilio">
                                 <span>Av. Calle 4678, Barcelona,Cataluña.</span>
@@ -114,7 +114,7 @@
                                 <span class="leyenda">El pago en efectivo solo se encuentra disponible para la opción de entrega en tienda.</span>
                             </div>
                             <div class="row pago" *ngFor="let medioPago of mediosDePago, let i=index ">
-                                <input type="radio" value="{{medioPago?.id}}" id="{{medioPago?.id}}"
+                                <input type="radio" value="{{medioPago?.id}}" id="{{medioPago?.id}}" 
                                 formControlName="formaDePago">
                                 <label for="{{medioPago?.nombre}}">
                                     <img class="cash" *ngIf="imgEfvo(i)&& mostrarEfvo" src="../../../../../assets/imagenes/cash.png" alt="">
@@ -144,13 +144,11 @@
         </div>
     </div>
     <div class=" botones row">
-        <!-- <div>
-            <span *ngIf="msjCamposIncompletos">Porfavor completes los campos de dirección de envio</span>
-        </div> -->
+      
         <div class="cont-botones">
             <button mat-button matStepperPrevious class="btn" (click)="cerrarComponente()">Atrás</button>
             <button mat-button  matStepperNext (click)="guardarDatos()"
-                class="btn" id="btn-continuar" >Continuar</button>
+                class="btn" id="btn-continuar" *ngIf="llegoCarrito">Continuar</button>
         </div>
     </div>
 </div>

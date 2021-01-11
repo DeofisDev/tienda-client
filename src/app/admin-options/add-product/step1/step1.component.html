@@ -27,7 +27,7 @@
                             <div class="modal-header">
                                 <h4 class="modalTitle">
                                     Agregar nueva marca</h4>
-                                <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                                <button mat-button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -97,7 +97,7 @@
                         </div>
                         <div class="row">
                             <div *ngFor="let propiedad of propiedadesProducto; let i = index" class="propiedad-check">
-                                <input formControlName="propiedad" (change)="guardarPropiedades(propiedad)" type="checkbox" id="{{propiedad.nombre}}">
+                                <input formControlName="propiedad" (change)="guardarPropiedades(propiedad)" type="checkbox" id="{{propiedad.nombre}}" style="margin-right: 7px;">
                                 <label for="{{propiedad.nombre}}">{{propiedad.nombre}}</label>
                             </div>
 
@@ -115,12 +115,13 @@
 
                     </div>
                     <div class="availability-container">
+                        <span *ngIf="disponibilidadGeneralInvalida" class="text-rojo"><strong>(*)</strong></span>
                         <label for="availability"> Disponibilidad General:</label>
-                        <input type="number" min="0" pattern="^[0-9]+" id="availability" (input)="changeUnit()" formControlName="disponibilidadGeneral">
+                        <input type="number" min="0" pattern="^[0-9]+" id="availability" (input)="changeUnit()" [class.is-invalid]="disponibilidadGeneralInvalida" formControlName="disponibilidadGeneral">
                         <span id="unidadElegida"></span>
                     </div>
                     <div class="destacado">
-                        <input type="checkbox" id="destacado" formControlName="destacado">
+                        <input type="checkbox" id="destacado" style="margin-right: 7px;" formControlName="destacado">
                         <label for="destacado"> Producto destacado</label>
                     </div>
                 </div>
@@ -134,7 +135,7 @@
 
 
                     <div class="check-oferta">
-                        <input type="checkbox" id="checkbox-oferta" (input)="changeButtons()">
+                        <input type="checkbox" style="margin-right: 7px;" id="checkbox-oferta" (input)="changeButtons()">
                         <label for="checkbox-oferta"> Este producto está en oferta</label>
                     </div>
                 </div>
@@ -144,14 +145,14 @@
                 </div>
                 <div class="row">
                     <div class="check-sku col-10 offset-1">
-                        <input type="checkbox" id="combinations" (input)="changeButtons()">
+                        <input type="checkbox" disabled id="combinations" style="margin-right: 7px;" >
                         <label for="combinations"> Mi producto posee diversas propiedades que pueden ser combinables
                             entre ellas.</label>
                     </div>
                 </div>
-                <span *ngIf="precioInvalido || categoriaInvalida || subcategoriaInvalida || unidadInvalida || nombreInvalido" class="text-rojo"><strong>(*)Los campos señalados son obligatorios.</strong></span>
+                <span *ngIf="precioInvalido || categoriaInvalida || subcategoriaInvalida || unidadInvalida || nombreInvalido || disponibilidadGeneralInvalida" class="text-rojo"><strong>(*)Los campos señalados son obligatorios.</strong></span>
             </div>
-            <button class="btn" id="btn-end1"> Guardar y Finalizar </button>
+            <button class="btn" id="btn-end1" (click)="mensajeProductoCreado()"> Guardar y Finalizar </button>
             <button class="btn" id="btn-end2" (click)="enviarProducto();mostrarSiguiente()"> Guardar y Continuar </button>
         </form>
         <form class="form-promo" *ngIf="formPromo" id="form-promo">
@@ -161,13 +162,13 @@
                 </div>
             </div>
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="botones-contenedor check-sku col-10 offset-1">
-                    <!-- <button class="btn" id="btn-cancel"> Cancelar</button>
-                    <button class="btn" id="btn-promo1"> Guardar  </button> -->
+                   <button class="btn" id="btn-cancel"> Cancelar</button>
+                    <button class="btn" id="btn-promo1"> Guardar  </button> 
                     <button class="btn" *ngIf="showForm2" id="btn-promo2" (click)="showStep2()"> Guardar y Continuar </button>
                 </div>
-            </div>
+            </div> -->
         </form>
 
     </div>

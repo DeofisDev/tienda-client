@@ -134,6 +134,22 @@ export class Step1Component implements OnInit, OnDestroy {
   // },300);
   // }
 /// *** ***  Formulario 1
+mensajeProductoCreado(){
+  if (this.form.invalid){
+    return this.form.markAllAsTouched();
+  }else{
+    this.crearProducto();
+    Swal.fire({
+      icon: 'success',
+      title: 'El producto ha sido creado con éxito',
+    });
+     //para refrescar el form 
+     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+     this.router.navigate(['/add-product']); 
+  }); 
+  }
+ 
+}
 crearProducto(){
 
   if (this.form.invalid){
@@ -199,6 +215,9 @@ crearForm(){
     get marcaInvalida() {
       return this.form.get('marca').invalid && this.form.get('marca').touched;
     }
+    get disponibilidadGeneralInvalida() {
+      return this.form.get('disponibilidadGeneral').invalid && this.form.get('disponibilidadGeneral').touched;
+    }
     get subcategoriaInvalida() {
       return this.form.get('subcategoria').touched  && (this.form.controls.subcategoria.value == this.subcategoria);
     }
@@ -245,7 +264,7 @@ crearForm(){
       inputFoto.disabled=true
     }
   } 
-  // cambiar botones al cambiar el estado del checkbox de promocion
+  // cambiar botones al cambiar el estado del checkbox de promocion y de combinaciones ... si tiene alguna de estas dos opciones el boton cambia su texto a "guardar y CONTINUAR" en vez de finalizar 
   changeButtons(){
     let btn= document.getElementById("btn-end1");
     let btn2= document.getElementById("btn-end2");
@@ -267,7 +286,6 @@ crearForm(){
           this.showFormPromo=true
         }
     }else{
-      alert("no combinacion")
       btn.style.display="block";
       btn2.style.display="none"
     }
@@ -355,9 +373,29 @@ crearForm(){
 
       if (checked) {
         this.propiedadesSeleccionadas.push(propiedad);
+
+        // si tiene una propiedad si o si tienen que estar tildado el checkbox de q tiene combinacione
+        let checkBoxCombiations = document.getElementById("combinations") as HTMLInputElement;
+        checkBoxCombiations.checked=true;
+        setTimeout(() => {
+          checkBoxCombiations.disabled=true
+        }, 50);
+        this.changeButtons()
       } else {
         this.propiedadesSeleccionadas = this.propiedadesSeleccionadas.filter(item => item !== propiedad);
+        
       }
+      if(this.propiedadesSeleccionadas.length == 0){
+         // si no tiene ninguna propiedad destildo el checkbox de q tiene combinaciones
+         let checkBoxCombiations = document.getElementById("combinations") as HTMLInputElement;
+         checkBoxCombiations.checked=false;
+         setTimeout(() => {
+           checkBoxCombiations.disabled=true;
+         }, 50);
+         this.changeButtons()
+      }
+
+    
     }
 
     showUnit(){

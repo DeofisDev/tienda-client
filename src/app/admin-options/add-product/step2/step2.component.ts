@@ -8,6 +8,7 @@ import { ProductoService } from '../../producto.service';
 import { ActivatedRoute } from '@angular/router';
 import { Sku } from 'src/app/products/clases/sku';
 import {FormControl} from '@angular/forms';
+import Swal from "sweetalert2";
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { Producto } from 'src/app/products/clases/producto';
 import { Input } from '@angular/core';
@@ -37,10 +38,11 @@ export class Step2Component implements OnInit, OnDestroy {
   idSkuSeleccionado:number;
   skuEditado:Sku;
   cerrarModalPromo:Subscription;
-  cerrarModalPropiedad:Subscription
+  cerrarModalPropiedad:Subscription;
+  mostrarBoton:boolean=false;
   constructor(private productoService:ProductoService,
               private fb:FormBuilder,
-              private router:Router,
+              private Router:Router,
                private authService: AuthService,
               private activatedroute:ActivatedRoute,
               public modal: NgbModal,
@@ -114,7 +116,7 @@ export class Step2Component implements OnInit, OnDestroy {
   logout(): void {
     this.authService.logout();
     
-    this.router.navigate(['/home']);
+    this.Router.navigate(['/home']);
   }
   generateAutomaticsSkus(){
     this.productoService.generateSkus(this.newProduct.id).subscribe( response => {
@@ -122,9 +124,45 @@ export class Step2Component implements OnInit, OnDestroy {
       this.productoService.getAllTheSkus(this.newProduct.id).subscribe( response => 
         this.skus=response)})
     setTimeout(() => {
-      document.getElementById("advertencia").style.display="block"
+      document.getElementById("advertencia").style.display="block";
+    
     }, 1000);
+    this.mostrarBoton=true
+  }
+  eliminarTodosLosSkus(){
+    let idsSkus=[];
+    //lleno mi array de ids de skus
+    for (let i = 0; i < this.skus.length; i++) {
+      idsSkus.push(this.skus[i].id)      
+    }
+    
+    Swal.fire({
+      icon: 'warning',
+      showCancelButton: true,
+      showCloseButton: true,
+      confirmButtonText: 'Eliminar y Continuar',
+      cancelButtonText: 'Cancelar',
+      title: 'Si decide continuar, las combinaciones de su producto serán eliminadas. ',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        /// si aprieta confirmar , elimino los skus
+        for (let x = 0; x < idsSkus.length; x++) {
+          this.deleteSku(idsSkus[x])
+        }
+        // alerto que se han eliminado
+        Swal.fire({
+          icon: 'info',
+          title: 'Las combinaciones de su producto han sido eliminadas, si desea crearlas nuevamente dirígase al panel de Administración de Productos ',
+        })
+         //me envio al inicio 
+        this.Router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+         this.Router.navigate(['/home']);  })
+        }
+        })
+
    
+
+
   }
   deleteSku(skuId:number){
     this.productoService.deleteSku(skuId).subscribe( response => { console.log(response);
@@ -140,17 +178,13 @@ export class Step2Component implements OnInit, OnDestroy {
    
     let disponibilidad=document.getElementById("disponibilidad-editar") as HTMLInputElement;
     let precio= document.getElementById("precio-editar") as HTMLInputElement;
+ 
     let disponibilidadEditar=parseInt(disponibilidad.value);
     let precioEditar=parseInt(precio.value);
+   
 
-    // this.skuEditado.precio=precioEditar;
-    // this.skuEditado.disponibilidad=disponibilidadEditar;
-    // this.skuEditado.id=this.idSkuSeleccionado
-    // this.productoService.editarSku(this.skuEditado).subscribe( response => { console.log(response);
-    //   this.productoService.getAllTheSkus(this.newProduct.id).subscribe( response => 
-    //     this.skus=response)
-    // })
-
+    console.log(precioEditar);
+    console.log(disponibilidadEditar)
     this.productoService.editarPrecioSku(this.idSkuSeleccionado, precioEditar).subscribe( response => { console.log(response);
       this.productoService.editarDisponibilidadSku(this.idSkuSeleccionado, disponibilidadEditar).subscribe( response => { console.log(response);
         this.productoService.getAllTheSkus(this.newProduct.id).subscribe( response => 
@@ -162,19 +196,24 @@ export class Step2Component implements OnInit, OnDestroy {
  
   }
   crearSku(){
-    this.newSku.precio=this.formSkus.controls.precio.value;
-   //this.newSku.precioOferta=this.formSkus.controls.precioOferta.value;
-    this.newSku.disponibilidad=this.formSkus.controls.disponibilidad.value;
-    this.newSku.producto= this.newProduct;
-    this.newSku.valores=this.seleccionados;
-    console.log(this.newSku);
-    // crear nuevo sku
-    this.productoService.createNewSku(this.newSku,this.newProduct.id).subscribe( response => {
-      console.log(response);
-      this.productoService.getAllTheSkus(this.newProduct.id).subscribe( response => 
-      this.skus=response);
-    })
-    this.seleccionados=[]
+    if (this.formSkus.invalid){
+      return this.formSkus.markAllAsTouched();
+    }
+      this.newSku.precio=this.formSkus.controls.precio.value;
+      //this.newSku.precioOferta=this.formSkus.controls.precioOferta.value;
+       this.newSku.disponibilidad=this.formSkus.controls.disponibilidad.value;
+       this.newSku.producto= this.newProduct;
+        this.newSku.valores=this.seleccionados;
+
+       // crear nuevo sku
+       this.productoService.createNewSku(this.newSku,this.newProduct.id).subscribe( response => {
+         console.log(response);
+         this.productoService.getAllTheSkus(this.newProduct.id).subscribe( response => 
+         this.skus=response);
+       })
+       this.seleccionados=[]
+    
+  
     ;}
   promoSku(sku:Sku){
     setTimeout(() => {
@@ -187,9 +226,8 @@ export class Step2Component implements OnInit, OnDestroy {
        id:[""],
        nombre:[""],
        descripcion:[""],
-       precio:[null, Validators.required],
-       precioOferta:[""],
-       disponibilidad:[null, Validators.required],
+       precio:[this.newProduct.precio, Validators.required],
+       disponibilidad:["", Validators.required],
        valoresData:[""],
       //  valores:this.fb.array([]),
        defaultProducto:[""],
@@ -201,38 +239,36 @@ export class Step2Component implements OnInit, OnDestroy {
   //   return this.formSkus.get('valores') as FormArray
   // }
   
-  get precio(){
-    return this.formSkus.get('precio')
+  get precioInvalido(){
+    return this.formSkus.get('precio').invalid && this.formSkus.get('precio').touched;
   }
-  get pcioOferta(){
-    return this.formSkus.get('precioOferta')
+  get disponibilidadInvalida(){
+    return this.formSkus.get('disponibilidad').invalid && this.formSkus.get('disponibilidad').touched;
   }
-  get disponibilidad(){
-    return this.formSkus.get('disponibilidad')
-  }
-  precioOferta(){
-    let ofertaInput= document.getElementById("inputOfertaSku");
  
-    if(this.oferta == false){
-      ofertaInput.style.display="flex"
-      this.oferta=true;
-    }else {
-      ofertaInput.style.display="none"
-      this.oferta=false;
-    }
-  }
   addProperty(newProduct:Producto){
     setTimeout(() => {
       this.dataPropiedad.prodSelect$.emit(newProduct)
     }, 100);
   }
   getPropertiesOfNewProduct(){
-   
     this.productoService.getPropertiesOfAProduct(this.newProduct?.id).subscribe((response: any) => {
       this.properties=response;
     })
   }
 
+ 
+
+  ///// MODAL ////
+  openCentrado(contenido){
+    this.modal.open(contenido,{size: 'lg', centered:true})
+  }
+
+  //// BOTONES
+  /** Boton guardar sku  */
+  mostrarBotonGuardar(){
+    this.mostrarBoton=true;
+  }
   guardarValores(){   
     /// formo un array de valores 
     let valores:ValorPropiedadProducto[] = [];
@@ -250,15 +286,54 @@ export class Step2Component implements OnInit, OnDestroy {
         let valorCombobox= select[z].value;
         let   valorSeleccionado= valores.filter(valor=> valor.valor ==valorCombobox);
         let objetoValorSeleccionado = valorSeleccionado[0]
-        this.seleccionados.push(objetoValorSeleccionado)      
+        this.seleccionados.push(objetoValorSeleccionado)  
+       
       }
     }
 
-
-  ///// MODAL ////
-  openCentrado(contenido){
-    this.modal.open(contenido,{size: 'lg', centered:true})
+  /**Botones finales  */
+ 
+  VerificarCantidades(){
+    console.log(this.newProduct)
+    if(this.skus !== null && this.skus !== undefined){
+      // recorro los skus y me fijo si la disponibilidad es 0 
+      for (let i = 0; i < this.skus.length; i++) {
+       
+        if ( this.skus[i].disponibilidad !== 0 ) {
+          Swal.fire({
+            icon: 'success',
+            title: 'El producto y sus combinaciones han sido creadas con éxito',
+          });
+           //para refrescar el form 
+           this.Router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+           this.Router.navigate(['/add-product']); 
+        }); 
+         
+        }else{
+          Swal.fire({
+            icon: 'warning',
+            title: 'Atención',
+            text:  'La disponibilidad de algunas combinaciones de su producto es 0 unidades. ¿Desea Continuar?',
+            showCancelButton: true,
+            cancelButtonText: `Cancelar`,
+            confirmButtonText: `Continuar`,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                icon: 'success',
+                title: 'El producto y sus combinaciones han sido creadas con éxito',
+              });
+               //para refrescar el form 
+               this.Router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+               this.Router.navigate(['/add-product']); 
+            }); 
+            }
+          });
+        
+        }
+        
+      }
+    }
   }
-
 
 }

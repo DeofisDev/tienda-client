@@ -1,3 +1,4 @@
+import { Step2Component } from './admin-options/add-product/step2/step2.component';
 import { PaypalCancelComponent } from './cart/components/final-message/paypal-cancel/paypal-cancel.component';
 import { FmEfectivoComponent } from './cart/components/final-message/efectivo/fm-efectivo.component';
 import { NgModule } from '@angular/core';

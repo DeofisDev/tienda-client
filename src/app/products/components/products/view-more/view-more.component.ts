@@ -105,7 +105,6 @@ export class ViewMoreComponent implements OnInit {
           }
          };
         
-        console.log(this.valoresSkuSleccionado);
       
       ///filtro los skus del producto para qeudarme solo con los que tienen el valor elegido
       this.propiedadesFiltradas = this.propiedadesProducto;
@@ -119,9 +118,7 @@ export class ViewMoreComponent implements OnInit {
             }
           }
         }
-        console.log(valoresPropiedad)
       });
-       console.log(valorCombobox);
        
 
      
@@ -276,8 +273,6 @@ export class ViewMoreComponent implements OnInit {
         }
       }
     }
-    console.log(this.skusDelProducto)
-    
     // recommo mi array de skus del producto y si algun sku tiene los mismos valores seleccionados, obtengo su id
     for (let x = 0; x < this.skusDelProducto.length; x++) {
       let a = this.skusDelProducto[x].valores;

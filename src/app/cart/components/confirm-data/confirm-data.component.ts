@@ -50,15 +50,14 @@ export class ConfirmDataComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
       this.getPerfilCliente(); 
       this.getCarrito();  
-      this.carritoService.refreshNeeded$
-      .subscribe(()=>{
-        this.getCarrito();
-      })
+      // this.carritoService.refreshNeeded$
+      // .subscribe(()=>{
+      //   this.getCarrito();
+      // })
      }
 
      
   ngOnDestroy():void{
-   console.log("cerrando compo 3")
   }
   
   /// traigo la info del cliente loggeado (nombre,mail,telefono,direccion...)
@@ -73,7 +72,6 @@ getCarrito(): void {
   if (this.authService.isLoggedIn()) {
     this.carritoService.getCarrito().subscribe((response: any) => {
       this.carrito = response.carrito;
-    
     });
   }
 }

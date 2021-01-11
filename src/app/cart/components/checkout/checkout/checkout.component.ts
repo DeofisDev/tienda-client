@@ -8,7 +8,6 @@ import { DetalleCarrito } from '../../../clases/detalle-carrito';
 import { AuthService } from '../../../../log-in/services/auth.service';
 import { Router } from '@angular/router';
 import { Carrito } from 'src/app/cart/clases/carrito';
-import {FormControl} from '@angular/forms';
 import { CatalogoService } from 'src/app/products/services/catalogo.service';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { Pais } from 'src/app/log-in/clases/cliente/pais';
@@ -17,6 +16,7 @@ import { Ciudad } from 'src/app/log-in/clases/cliente/ciudad';
 import { EnviarInfoCompraService } from 'src/app/user-options/user-profile/services/enviar-info-compra.service';
 import { Input } from '@angular/core';
 import { PerfilClienteService } from 'src/app/user-options/user-profile/services/perfil-cliente.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -51,6 +51,9 @@ export class CheckoutComponent implements OnInit, OnDestroy{
   mostrarCheckout:boolean
   mostrarConfirmacion:boolean
 
+  /// para saber si llego el carrito al resumen y mostrar el boton continuar 
+  llegoCarrito:boolean
+  subscripcionInfoCompra : Subscription;
   constructor(private carritoService: CarritoService,
               private fb:FormBuilder,
               private perfilClienteService:PerfilClienteService,
@@ -69,22 +72,26 @@ export class CheckoutComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     ///inicializar el fomulario
-    this.crearForm(); 
-    this.getPaises();  
-    this.showAdress();
+ 
     this.getCarrito(); 
     this.getMediosDePago();
-    this.getPerfilCliente(); 
-    
-
-    // let efvo = document.getElementById("EFECTIVO") as HTMLInputElement;
-    // efvo.checked=true;
+    this.getPerfilCliente();
+    this.getPaises();
+    this.crearForm(); 
+    setTimeout(() => {
+      this.formEntrega.get("formaDePago").setValue(1);
+    }, 150);
   
+   
+    //// recibo del componente resumen  si llego el carrito para mostrar el bton
+    this.subscripcionInfoCompra=this.enviarInfoCompra.llegoCarrito$.subscribe(resp=> {
+       this.llegoCarrito=resp;
+     })
+     
  
   }
 
   ngOnDestroy():void{
-   
   }
   
 
@@ -136,13 +143,7 @@ export class CheckoutComponent implements OnInit, OnDestroy{
   /// muestro la direccion del local cuando eligen la opcion de retiro personalmente
   showAdress(){
     //cambio los validadores  de los campos de direccion de envio para q no sean obligatorios
-    
-    this.formEntrega.get('direccion.calle').setValue("");
-    this.formEntrega.get('direccion.nro').setValue("");
-    this.formEntrega.get('direccion.cp').setValue("");
-    this.formEntrega.get('direccion.ciudad').setValue("");
-    this.formEntrega.get('direccion.pais').setValue("");
-    this.formEntrega.get('direccion.estado').setValue("");
+  
  
     this.envioADomicilio=false;
     this.nuevaDireccion=false; //para q se oculte el form de nueva direccion
@@ -150,17 +151,17 @@ export class CheckoutComponent implements OnInit, OnDestroy{
 
     let paypal = document.getElementById("2") as HTMLInputElement;
     let efvo = document.getElementById("1") as HTMLInputElement;
-    if (paypal !== null) {
-      paypal.checked=false;
-      efvo.disabled=false;
-      efvo.style.display="block";
-      efvo.checked=true
-    }
+    efvo.style.display="initial"
+      // paypal.checked=false;
+      // efvo.disabled=false;
+      // efvo.style.display="block";
+      // efvo.checked=true
+    
     this.mostrarEfvo=true;
         
   }
   // para obtener todos los medios de pago
-   
+ 
   getMediosDePago(){
     this.carritoService.getMediosDePago().subscribe((response: any) => {
       this.mediosDePago=response.mediosPago;
@@ -176,20 +177,16 @@ export class CheckoutComponent implements OnInit, OnDestroy{
   getMedioDePago(id:number){
     this.carritoService.getMedioDePago(id).subscribe((response: any) => {
       this.pago=response.medioPago;
-      console.log(this.pago)
     });
   }
   cerrarComponente(){
     this.mostrarCheckout=false
     setTimeout(() => {
-    console.log(this.mostrarCheckout)
       this.enviarInfoCompra.enviarMostrarCheckout$.emit(this.mostrarCheckout);
      
     }, 100);
   }
   guardarDatos(){
-
-   
     /// guardo las vriables con la info que voy a enviar al siguiente paso : direccion, forma de entrega y de pago 
     /** para la forma de entrega me fijo si tengo q poner la direccion del local, la del perfil o la nueva  */
     if(this.formEntrega.controls.formaDeEntrega?.value == "Retiro personalmente" ){
@@ -197,38 +194,46 @@ export class CheckoutComponent implements OnInit, OnDestroy{
         this.formEntrega.get('direccion.nro').setValue("4678");
         this.formEntrega.get('direccion.cp').setValue("08007");
         this.formEntrega.get('direccion.ciudad').setValue(this.direccionTienda.ciudad);
+        this.formEntrega.get('direccion.pais').setValue("");
+        this.formEntrega.get('direccion.estado').setValue("");
     }else{
       if (this.formEntrega.controls.formaDeEntrega?.value == "Envío a domicilio") {
         if (this.nuevaDireccion== false) {
+         
           this.formEntrega.get('direccion.calle').setValue(this.direccionUsuario.calle);
           this.formEntrega.get('direccion.nro').setValue(this.direccionUsuario.numeroCalle);
           this.formEntrega.get('direccion.cp').setValue(this.direccionUsuario.codigoPostal);
           this.formEntrega.get('direccion.ciudad').setValue(this.direccionUsuario.ciudad);
+        }else{
+          if (this.formEntrega.invalid){
+            alert("Para finalizar la operación es necesario que ingrese una dirección de entrega válida")
+            this.msjCamposIncompletos=true;
+            return this.formEntrega.markAllAsTouched();
+          
+          }else{
+          this.clienteDireccion=this.formEntrega.controls.direccion.value
+          this.entrega=this.formEntrega.controls.formaDeEntrega?.value;
+          let idPago =this.formEntrega.controls.formaDePago?.value;
+          setTimeout(() => {
+          this.getMedioDePago(idPago);
+          
+          }, 150);
+        }
         }
       }
     }
-    if (this.formEntrega.invalid){
-      alert("Para finalizar la operación es necesario que ingrese una dirección de entrega válida")
-      this.msjCamposIncompletos=true;
-      return this.formEntrega.markAllAsTouched();
-    
-    }else{
-    setTimeout(() => {
-      this.clienteDireccion=this.formEntrega.controls.direccion.value
-    this.entrega=this.formEntrega.controls.formaDeEntrega?.value;
-    let idPago =this.formEntrega.controls.formaDePago?.value;
-    this.getMedioDePago(idPago);
-    
-    }, 750);
-  }
+    this.clienteDireccion=this.formEntrega.controls.direccion.value
+          this.entrega=this.formEntrega.controls.formaDeEntrega?.value;
+          let idPago =this.formEntrega.controls.formaDePago?.value;
+          setTimeout(() => {
+          this.getMedioDePago(idPago);
+          
+          }, 150);
     // this.formEntrega.disable();
     console.log(this.formEntrega);
     this.mostrarConfirmacion=true;
   
     setTimeout(() => {
-      console.log(this.entrega);
-      console.log(this.clienteDireccion);
-      console.log(this.pago)
       this.enviarInfoAConfirmData() 
     }, 1100);
    

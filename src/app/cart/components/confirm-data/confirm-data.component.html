@@ -26,7 +26,7 @@
     </div>
     <div class="buttons">
     <button mat-button matStepperPrevious class="btn" id="btn-edit" (click)="cerrarComponente()">Editar</button>
-    <button  mat-button *ngIf="entrega && clienteDireccion && pago"  class="btn" id="btn-confirm"(click)="irAPagar()">Ir a pagar</button>
+    <button  mat-button *ngIf="entrega && clienteDireccion && pago && carrito"  class="btn" id="btn-confirm"(click)="irAPagar()">Ir a pagar</button>
 
 </div>
 </section>

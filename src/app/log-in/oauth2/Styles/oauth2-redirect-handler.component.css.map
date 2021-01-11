@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../oauth2-redirect-handler/oauth2-redirect-handler.component.scss"
-    ],
-    "names": [],
-    "file": "oauth2-redirect-handler.component.css"
-}

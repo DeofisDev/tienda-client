@@ -16,11 +16,18 @@ $color-ppal:#fff;
 
 #nombre-producto{
     text-transform: capitalize;
-}    
+} 
+.text-rojo{
+    font-family: $fte-sec;
+    color: red;
+    font-size: 12px;
+    display: block;
+    margin-top: -30px;
+   }   
         .form2{
                 width: 100%;
                 font-family:$fte-sec;
-                margin-bottom: 60px;
+                margin-bottom: 25px;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
@@ -71,6 +78,9 @@ $color-ppal:#fff;
                         &:focus{
                             border-bottom: 2px solid $color-wf3;
                         }
+                        &.is-invalid{
+                            border-bottom: 1px solid red;
+                          }
                     }
                 }
                 .availability-container{
@@ -87,6 +97,9 @@ $color-ppal:#fff;
                         &:focus{
                             border-bottom: 2px solid $color-wf3;
                         }
+                        &.is-invalid{
+                            border-bottom: 1px solid red;
+                          }
                     } 
                 }
 
@@ -144,19 +157,18 @@ $color-ppal:#fff;
                     font-family: $fte-sec;
                     font-size: 17px;
                     border: 0px ;
-                    padding: 7px 8px;
                     box-sizing: border-box;
-                    width: 18%;
+                    width: 15%;
                     margin-left: 40%;
                     margin-top: -50px;
-                    margin-bottom: 30px;
-                    border-radius: 0px;   
+                    margin-bottom: 30px;  
                     &:hover{
                         transform: scale(1.03);
                     }
                     }
                 .container-skus{
                     padding-bottom: 20px;
+                    margin-top: 20px;
                     .titulo{
                         display: flex;
                         justify-content: space-between;
@@ -205,9 +217,10 @@ $color-ppal:#fff;
                             .iconos-editar{
                              display: flex;
                              justify-content: space-between;   
+                             width: 80px;
                                 i{
-                                    text-align: right;
-                                color: $color-sec;
+                                 text-align: right;
+                                color: $color-wf2;
                                 cursor: pointer;
                                 &:hover{
                                 font-size: 1.1em;
@@ -226,54 +239,43 @@ $color-ppal:#fff;
                     }
                     
                 }
-                
-               
                 }
-                .botones-final{
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    width: 50%;
-                    margin-top: 50px;
-                    .btn-final{
-                        background-color: $color-wf1;
-                        color: white;
-                        font-family: $fte-sec;
-                        font-size: 18px;
-                        border: 0px ;
-                        padding: 9px 8px;
-                        box-sizing: border-box;
-                        width: 35%;
-                        border-radius: 0px;   
-                        &:hover{
-                            transform: scale(1.03);
-                        }
-                        }
-                }
-                    
-              
-                
-
         }
-   
-    //modal editar
-    .row{
+        .botones-final{
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: space-between;
+            width: 50%;
+            margin-bottom: 55px;
+            .btn-final{
+                background-color: $color-wf1;
+                color: white;
+                font-family: $fte-sec;
+                font-size: 18px;
+                border: 0px ;
+                padding: 4px 8px;
+                box-sizing: border-box;
+                width: 35%;   
+                &:hover{
+                    transform: scale(1.03);
+                }
+                }
+        }
+            
+  // modal-editar
+    .leyenda{
+        font-family: $fte-sec;
+        font-size: 16px;
+        color: $color-sec;
+    }
+    .form-editar{
         display: flex;
         margin-bottom: 50px;
         align-items: baseline;
-        
-        .property{
-            font-size: 15px;
-            border: none;
-            outline: none;
-            width: 110px;
-            margin-right: 50px;
-            padding-left: 5px;
-            border-bottom: 1px solid grey;
-            &:focus{
-                border-bottom: 2px solid $color-wf3;
-            }
-        }
+        margin-top: 25px;
+       
     .price-container{
         display: flex;
         margin-left: 60px;
@@ -284,7 +286,12 @@ $color-ppal:#fff;
             display: block;
             margin-left: 10px;
         }
-        #precio{
+        label{
+            font-family: $fte-sec;
+            color: $color-sec;
+            font-size: 15px;
+        }
+        #precio-editar{
             border: none;
             outline: none;
             font-size: 14px;
@@ -298,8 +305,12 @@ $color-ppal:#fff;
         }
     }
     .availability-container{
-    
-        #availabilitySku{
+        label{
+            font-family: $fte-sec;
+            color: $color-sec;
+            font-size: 15px;
+        }
+        #disponibilidad-editar{
             border: none;
             outline: none;
             margin-left: 8px;

@@ -1,145 +1,139 @@
+<form #myForm="ngForm" class="form form2 " autocomplete="off" [formGroup]="formSkus"
+    (ngSubmit)="crearSku(); myForm.reset();  getPropertiesOfNewProduct()">
+    <div class="container-white">
+        <div class="col-10 offset-1">
+            <div class="row">
+                <p>Elaboramos una lista de propiedades en base a la categoría y subcategoría elegida, puedes
+                    combinarlas para generar productos o añadir nuevas. </p>
+            </div>
 
-    <form  #myForm="ngForm" class="form form2 " autocomplete="off" [formGroup]="formSkus" (ngSubmit)="crearSku(); myForm.reset();  getPropertiesOfNewProduct()">
-        <div class="container-white">
-            <div class="col-10 offset-1">
-                <div class="row">
-                    <p>Elaboramos una lista de propiedades en base a la categoría y subcategoría elegida, puedes
-                        combinarlas para generar productos o añadir nuevas. </p>
+
+            <button type="button" class="btn-add-property "
+                (click)="openCentrado(agregarprop); addProperty(newProduct)">
+                <p id="add"><i class="far fa-plus-square "></i> Agregar propiedades</p>
+
+            </button>
+            <div class="row properties">
+                <select [attr.id]="i" class="property" *ngFor="let property of properties ; let i=index" (change)="mostrarBotonGuardar()">
+                    <option hidden selected [ngValue]="property.nombre">-{{property.nombre}} -</option>
+
+                    <option [ngValue]="value" *ngFor="let value of property?.valores">
+                        {{value.valor}}</option>
+                </select>
+
+            </div>
+            <div class="row">
+                <div class="availability-container">
+                    <label for="availabilitySku"> Disponibles:</label>
+                    <input type="number" min="0"  pattern="^[0-9]+"  [class.is-invalid]="disponibilidadInvalida" id="availabilitySku"
+                        formControlName="disponibilidad">
                 </div>
-  
-    
-                <button type="button" class="btn-add-property " (click)="openCentrado(agregarprop); addProperty(newProduct)">
-                    <p id="add"><i class="far fa-plus-square " ></i> Agregar propiedades</p>
-    
-                </button>
-                <div class="row properties">
-                    <select [attr.id]="i" class="property"   *ngFor="let property of properties ; let i=index" >
-                        <option hidden selected [ngValue]="property.nombre" >-{{property.nombre}} -</option>
-    
-                        <option [ngValue]="value"  *ngFor="let value of property?.valores" >
-                            {{value.valor}}</option>
-                    </select>
-    
-                </div>
-                <div class="row">
-                    <div class="availability-container">
-                        <label for="availabilitySku"> Disponibles:</label>
-                        <input type="number" min="0" pattern="^[0-9]+" id="availabilitySku" formControlName="disponibilidad">
-                    </div>
-                    <div class="price-container">
-                        <label for="precio"> Precio:</label>
-                        <p id="euro-signo">€</p>
-                        <input type="number" min="0" pattern="^[0-9]+" id="precio" formControlName="precio">
-                    </div>
-                </div>
-               
-                    <button class="btn-end" id="btn-two" (click)="guardarValores()" >Guardar </button>
-          
-              
-                <div class="container-skus">
-                    <div class="titulo">
-                        <h3 >Combinaciones para  <span id="nombre-producto"> {{newProduct.nombre}} </span>   </h3>
-                        <span class="generar" (click)="generateAutomaticsSkus()"> Generar combinaciones automáticas</span>
-                    </div>
-                   
-                    <span class="line"></span>
-                    
-                    <div class="new-products">
-                        <div class="product">
-                           <!-- <p> {{newProduct.nombre}}
-                            <span *ngFor= "let seleccionado of seleccionados"> {{seleccionado.valor}} -</span>
-                           </p> -->
-                        </div>
-                        <div class="product" *ngFor= "let sku of skus">
-                            <p class="description" style="text-transform: capitalize;"> {{newProduct.nombre}} - {{sku.valoresData}} - {{sku.disponibilidad}}u. - €{{sku.precio}}  </p>
-                           <div class="iconos-editar">
-                            <i class="fas fa-tags"  (click)="openCentrado(promosku); promoSku(sku)" ></i>
-                            <i class="far fa-edit" (click)="openCentrado(editar);skuSeleccionado(sku.id)"></i>
-                            <i class="fas fa-times" (click)="deleteSku(sku.id)"></i>
-                           </div>
-                           
-                        <!-- modal promo skus  -->
-                           
-                        </div>
-                       <span class="msje-advertencia" id="advertencia">Recordá que si las combinaciones fueron generadas de manera automática, es posible que se requiera edición de precios.</span>
-                        <ng-template class="modal-editar" #editar let-modal>
-                            <div class="modal-header">
-                                <h4 class="modalTitle">
-                                    Editar combinación</h4>
-                                <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="" class="form-add-property">
-                                    <!-- <div class="row properties">
-                                        <select class="property" [(ngModel)]="opcionSeleccionado" [ngModelOptions]="{standalone: true}" (change)="guardarValores(i)" *ngFor="let property of properties ; let i=index" >
-                                            <option hidden selected [ngValue]="property.nombre" >-{{property.nombre}} -</option>
-                        
-                                            <option [ngValue]="value"  *ngFor="let value of property?.valores" >
-                                                {{value.valor}}</option>
-                                        </select>
-                        
-                                    </div> -->
-                                    <p>El articulo que estás modificando es : {{skuEditado.nombre }} - {{skuEditado.valoresData}} - Disponibilidad:{{skuEditado.disponibilidad}}u  - Precio: €{{skuEditado.precio}}  </p>
-                                    <div class="row">
-                                        <div class="availability-container">
-                                            <label for="availabilitySku"> Disponibles:</label>
-                                            <input type="number" min="0" pattern="^[0-9]+" id="disponibilidad-editar" >
-                                        </div>
-                                        <div class="price-container">
-                                            <label for="precio"> Precio:</label>
-                                            <p id="euro-signo">€</p>
-                                            <input type="number" min="0" pattern="^[0-9]+" id="precio-editar" >
-                                        </div>
-                                    </div>
-                                    <button class="btn" (click)="editarSku();modal.close()"> Guardar</button>
-                                </form>
-                            </div>
-                            
-                        </ng-template>
-
-                        <ng-template class="modal-promosku" #promosku let-modal>
-                            <div class="modal-header">
-                                <h4 class="modalTitle">
-                                    Editar combinación</h4>
-                                <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="" class="form-promo-sku">
-                                   <app-form-promo-product></app-form-promo-product>
-                                </form>
-                            </div>
-                            
-                        </ng-template>
-
-                          
-                        <ng-template #agregarprop let-modal>
-                            <div class="modal-header">
-                                <h4 class="modalTitle">
-                                    Agregar nueva propiedad</h4>
-                                <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-
-                                <app-form-propiedades></app-form-propiedades>
-                                    
-                            </div>
-                        </ng-template>
-                    </div>
+                <div class="price-container">
+                    <label for="precio"> Precio:</label>
+                    <p id="euro-signo">€</p>
+                    <input type="number" min="0" pattern="^[0-9]+" id="precio"  [class.is-invalid]="precioInvalido" formControlName="precio" placeholder="{{newProduct.precio}}" >
                 </div>
             </div>
-           
-        </div>
-        <div class="botones-final">
-            <button class="btn-final" >Cancelar </button>
-            <button class="btn-final" >Guardar y Finalizar </button>
-        </div>
-       
+            <span *ngIf="precioInvalido || disponibilidadInvalida" class="text-rojo">Todos los campos son obligatorios.</span>
+
+            <button mat-button class="btn-end" id="btn-two" *ngIf="mostrarBoton" (click)="guardarValores()">Guardar </button>
 
 
-    </form>
+            <div class="container-skus">
+                <div class="titulo">
+                    <h3>Combinaciones para <span id="nombre-producto"> {{newProduct.nombre}} </span> </h3>
+                    <span class="generar" (click)="generateAutomaticsSkus()"> Generar combinaciones automáticas</span>
+                </div>
+
+                <span class="line"></span>
+
+                <div class="new-products">
+                    <div class="product">
+                        <!-- <p> {{newProduct.nombre}}
+                            <span *ngFor= "let seleccionado of seleccionados"> {{seleccionado.valor}} -</span>
+                           </p> -->
+                    </div>
+                    <div class="product" *ngFor= "let sku of skus">
+                        <p class="description" style="text-transform: capitalize;"> {{newProduct.nombre}} -
+                            {{sku.valoresData}} - {{sku.disponibilidad}}u. - €{{sku.precio}} </p>
+                        <div class="iconos-editar">
+                            <i class="fas fa-tags" (click)="openCentrado(promosku); promoSku(sku)"></i>
+                            <i class="far fa-edit" (click)="openCentrado(editar);skuSeleccionado(sku.id)"></i>
+                            <i class="fas fa-times" (click)="deleteSku(sku.id)"></i>
+                        </div>
+
+                        <!-- modal promo skus  -->
+
+                    </div>
+                    <span class="msje-advertencia" id="advertencia">Recordá que si las combinaciones fueron generadas de
+                        manera automática, es posible que se requiera edición de precios.</span>
+                    <ng-template class="modal-editar" #editar let-modal>
+                        <div class="modal-header">
+                            <h4 class="modalTitle">
+                                Editar combinación</h4>
+                            <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" class="form-add-property">
+                                <p class="leyenda">El articulo que estás modificando es : {{skuEditado.nombre }} -
+                                    {{skuEditado.valoresData}}  </p>
+                                <div class="row form-editar">
+                                    <div class="availability-container">
+                                        <label for="availabilitySku"> Disponibles:</label>
+                                        <input value="{{this.skuEditado.disponibilidad}}" type="number" min="0" pattern="^[0-9]+" placeholder="{{skuEditado.disponibilidad}}" id="disponibilidad-editar">
+                                    </div>
+                                    <div class="price-container">
+                                        <label for="precio"> Precio:</label>
+                                        <p id="euro-signo">€</p>
+                                        <input value="{{this.skuEditado.precio}}" type="number" min="0" placeholder="{{skuEditado.precio}}" pattern="^[0-9]+" id="precio-editar">
+                                    </div>
+                                </div>
+                                <button mat-button class="btn" (click)="editarSku();modal.close()"> Guardar</button>
+                            </form>
+                        </div>
+
+                    </ng-template>
+
+                    <ng-template class="modal-promosku" #promosku let-modal>
+                        <div class="modal-header">
+                            <h4 class="modalTitle">
+                                Editar combinación</h4>
+                            <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" class="form-promo-sku">
+                                <app-form-promo-product></app-form-promo-product>
+                            </form>
+                        </div>
+
+                    </ng-template>
+
+
+                    <ng-template #agregarprop let-modal>
+                        <div class="modal-header">
+                            <h4 class="modalTitle">
+                                Agregar nueva propiedad</h4>
+                            <button mat-button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <app-form-propiedades></app-form-propiedades>
+
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+<div class="botones-final" *ngIf="mostrarBoton">
+    <button mat-button class="btn-final" (click)=" eliminarTodosLosSkus()">Cancelar </button>
+    <button mat-button class="btn-final" (click)="VerificarCantidades()">Guardar y Finalizar </button>
+</div>
