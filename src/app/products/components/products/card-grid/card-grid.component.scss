@@ -139,6 +139,7 @@ $color-ppal:#fff;
         margin-top: 0px;
         margin-bottom: 0px;
         margin-left: -80px;
+        width: 20vw;
         display: flex;
         align-items: baseline;
         p{
@@ -146,13 +147,14 @@ $color-ppal:#fff;
             font-size: 12px;
             line-height: 3px;
             font-style: italic;
-            margin-right: 4px;
+            margin-right: 4px          ;
         }
         span{
             font-weight: normal;
             font-style: normal;
             font-size: 12px;
-            margin-right: 4px;
+            margin-right: 4px;           ;
+            text-align: left;
             color: rgba(104, 98, 98, 0.801);
         }
     }

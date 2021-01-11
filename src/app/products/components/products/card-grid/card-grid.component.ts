@@ -30,7 +30,7 @@ export class CardGridComponent implements OnInit {
     this.tieneFoto();
     this.estaEnOferta();
     this.propiedades=this.producto.propiedades
-   
+    console.log(this.propiedades)
   }
   destacadosInsignia(){
     if (this.producto.destacado) {
