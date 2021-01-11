@@ -15,7 +15,6 @@ export class VentasService {
   constructor( private http: HttpClient ) { }
 
 
-  //Proximo deploy cambia a '/ventas'
   getVentas(){
     let arrayAux = [];
     return this.http.get(`${this.url}/ventas`).pipe(map((resp:any) => {
@@ -32,12 +31,20 @@ export class VentasService {
 
 
   updateVentaSent(idVenta){
-    console.log(idVenta);
     
     let parametro = new HttpParams();
-    parametro = parametro.append("nroOperacion", idVenta)
+    parametro = parametro.append("nroOperacion", idVenta);
 
-    return this.http.post(`${this.url}/operaciones/enviar`, null, {params: parametro})
+    return this.http.post(`${this.url}/operaciones/enviar`, null, {params: parametro});
   };
+
+  cancelVenta(idVenta){
+
+    let parametro = new HttpParams();
+    parametro = parametro.append("nroOperacion", idVenta);
+
+    return this.http.post(`${this.url}/operaciones/cancelar`, null, {params: parametro});
+
+  }
 
 }

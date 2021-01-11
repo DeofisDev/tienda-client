@@ -101,7 +101,7 @@
                   <ng-container matColumnDef="tools">
                     <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header>  </th>
                     <td mat-cell *matCellDef="let element"> <i class="far fa-edit point" (click)="openLg(content, element)"></i> </td>
-                </ng-container>
+                  </ng-container>
   
                   <ng-container matColumnDef="expandedDetail">
                       <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
@@ -162,14 +162,14 @@
         <div class="col">
           <p><strong>Cliente: </strong> {{updateStateVenta.cliente.nombre}} {{updateStateVenta.cliente.apellido}}</p>
         </div>
-        <div class="col">
-          <p><strong>Tel: </strong> 3512452296</p>
+        <div class="col" *ngIf="updateStateVenta.cliente.telefono">
+          <p><strong>Tel: </strong> {{updateStateVenta.cliente.telefono}}</p>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
-          <p><strong>E-mail: </strong> usuario@gmail.com</p>
+          <p><strong>E-mail: </strong> {{updateStateVenta.cliente.email}}</p>
         </div>
       </div>
 
@@ -193,19 +193,27 @@
 
       <hr>
 
-      <div class="row">
+      <div class="row" *ngIf="!esEstadoFinal()">
         <div class="col">
           <p><strong>Actualizar al siguiente estado: </strong> {{prueba()}}</p>
+          <a class="text-danger" style="cursor: pointer;" (click)="cancelarOperacion()"><u>Cancelar pedido</u></a>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="esEstadoFinal()">
+        <div class="col">
+          <p class="text-danger h6" *ngIf="updateStateVenta.estado === 'CANCELLED'">Venta cancelada</p>
+          <p class="h6" *ngIf="updateStateVenta.estado === 'RECEIVED'">Venta recibida</p>
         </div>
       </div>
       <br>
 
-      <div class="row">
-        <div class="col-2 offset-3 mr-5">
-          <button type="button" class="btn btn-secondary" style="border: none;" (click)="modal.dismiss('Cross click')">Cancelar</button>
+      <div class="row justify-content-center">
+        <div class="col-3">
+          <button type="button" class="btn btn-secondary btn-block" style="border: none;" (click)="modal.dismiss('Cross click')">Cerrar</button>
         </div>
-        <div class="col-2">
-          <button type="button" class="btn btn-primary reset" (click)="updateVentaSent()">Aceptar</button>
+        <div class="col-3">
+          <button type="button" class="btn btn-primary reset" (click)="updateVentaSent()">{{botonActuAcep}}</button>
         </div>
       </div>
 

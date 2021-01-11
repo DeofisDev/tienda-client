@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../log-in/services/auth.service';
 import { Router } from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
@@ -29,10 +29,11 @@ import Swal from "sweetalert2";
     ]),
   ],
 })
-export class AdminVentasComponent implements OnInit {
+export class AdminVentasComponent implements OnInit, AfterViewInit {
 
   key = "";
   state = "";
+  botonActuAcep: string;
 
 
   ventas:Operacion[] = [];
@@ -53,9 +54,18 @@ export class AdminVentasComponent implements OnInit {
 
   ngOnInit(): void {
     
+    
     this.obtenerVentas();
     this.updateStateVenta = new Operacion();
     
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.paginator._intl.itemsPerPageLabel = "Ventas por página";
+    this.paginator._intl.nextPageLabel = "Siguiente página";
+    this.paginator._intl.previousPageLabel = "Página anterior";
   }
 
 
@@ -92,6 +102,17 @@ export class AdminVentasComponent implements OnInit {
     
   };
 
+  esEstadoFinal(): boolean{
+    if (this.updateStateVenta.estado === "RECEIVED" || this.updateStateVenta.estado === "CANCELLED") {
+      this.botonActuAcep = "Aceptar"
+      return true;
+    }else{
+      this.botonActuAcep = "Actualizar"
+      return false;
+    }
+    
+  }
+
   openLg(content, venta: Operacion) {
     this.updateStateVenta = venta;
     console.log(this.updateStateVenta);
@@ -100,6 +121,12 @@ export class AdminVentasComponent implements OnInit {
   }
 
   updateVentaSent(){
+
+    if (this.updateStateVenta.estado === "RECEIVED" || this.updateStateVenta.estado === "CANCELLED") {
+      this.modalService.dismissAll();
+      return;
+      
+    }
 
     let siguienteEstado: string;
 
@@ -126,22 +153,51 @@ export class AdminVentasComponent implements OnInit {
 
         this.ventasServices.updateVentaSent(this.updateStateVenta.nroOperacion).subscribe((resp:any) => {
           console.log(resp);
+          this.obtenerVentas();
         })
 
         Swal.fire(
           '¡Listo!',
-          'El estado ha sido actualizado con éxito.',
+          'El estado ha sido actualizado exitosamente.',
           'success'
         )
-        this.obtenerVentas();
         this.modalService.dismissAll();
         
       }
     })
 
+  };
 
+  cancelarOperacion(){
 
-    
+    Swal.fire({
+      title: `Está por cancelar la venta.`,
+      text: "¿Está seguro que desea hacerlo?",
+      icon: 'warning',
+      reverseButtons: true,
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#1f4e84',
+      cancelButtonColor: '#6c757d'
+    }).then((result => {
+      if (result.isConfirmed) {
+
+        this.ventasServices.cancelVenta(this.updateStateVenta.nroOperacion).subscribe((resp:any) => {
+          console.log(resp);
+          this.obtenerVentas();
+        })
+
+        Swal.fire(
+          '¡Listo!',
+          'La venta ha sido cancelada exitosamente.',
+          'success'
+        )
+        this.modalService.dismissAll();
+        
+      }
+    }))
+
   }
 
   
