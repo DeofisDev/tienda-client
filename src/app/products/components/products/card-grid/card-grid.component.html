@@ -25,7 +25,7 @@
   <div class="cont-props ">
     <div *ngFor="let propiedad of propiedades; let i=index" class="props">
       <p> {{propiedad.nombre}}: </p>
-      <span *ngFor="let valor of propiedad?.valores "> {{valor.valor}}</span>
+      <span *ngFor="let valor of propiedad?.valores "> {{valor.valor}}-</span>
     </div>
   </div>
   <div class="i-fondo d-block"><i id="fav" class=" iconos far fa-heart fav" (click)="saveToFav()"></i></div>

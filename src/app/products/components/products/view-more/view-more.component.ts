@@ -57,11 +57,9 @@ export class ViewMoreComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProduct();
-    this.getPropiedadesProducto();
+    // this.getPropiedadesProducto();
   
-    setTimeout(() => {
-      this.getSkusDelProducto()
-    }, 1000);
+   
    
     // cambio de muestra de imagenes
     // let img2= document.getElementById("img-dos");
@@ -77,19 +75,22 @@ export class ViewMoreComponent implements OnInit {
     // destacado
     this.destacadosInsignia();
   }
-  getSkusDelProducto(){
-    this.productoService.getAllTheSkus(this.infoProducto?.id).subscribe(response => {
-      this.skusDelProducto=response;
-      console.log(this.skusDelProducto)
+  getProduct(){
+    this.activatedroute.params.subscribe(param=> {
+      let id= param.id;
+      this.catalogoservice.getInfoProducto(id).subscribe(response => {
+        this.infoProducto=response;
+        console.log(this.infoProducto)
+        setTimeout(() => {
+          this.obtenerValoresSkus();
+          // this.filtrarPropiedades();
+          
+          this.getSkusDelProducto()
+        }, 500);
+      });
     });
-    setTimeout(() => {
-     this.identificarSkuSeleccionado()
-    }, 150);
-  }
-  
 
- 
-
+  };
   obtenerValoresSkus(){
     let skus = this.infoProducto.skus;
 
@@ -103,6 +104,44 @@ export class ViewMoreComponent implements OnInit {
       // console.log(this.valoresSkus)
     });
   }
+  filtrarPropiedades() {
+    this.propiedadesFiltradas = this.propiedadesProducto;
+    this.propiedadesFiltradas?.forEach(propiedad => {
+      let valoresPropiedad = propiedad.valores;
+      propiedad.valores = [];
+      for (let i = 0; i < this.valoresSkus.length; i++) {
+        for (let x = 0; x < valoresPropiedad.length; x++) {
+          if (valoresPropiedad[x].id == this.valoresSkus[i].id) {
+            propiedad.valores.push(this.valoresSkus[i]);
+          }
+        }
+      }
+    });
+  }
+  getSkusDelProducto(){
+    this.productoService.getAllTheSkus(this.infoProducto?.id).subscribe(response => {
+      this.skusDelProducto=response;
+      setTimeout(() => {
+        this.identificarSkuSeleccionado()
+       }, 150);
+    });
+  
+  }
+  identificarSkuSeleccionado(){
+    let idSku=  this.skusDelProducto[0].id;
+    console.log(idSku)
+     this.productoService.getSku(this.infoProducto.id, idSku).subscribe( response => {
+       this.skuAEnviar=response; 
+       console.log(this.skuAEnviar)
+     })
+   
+    }
+    identificarCategoria(){
+      let idsub= this.infoProducto.subcategoria.id;
+      
+    }
+
+ 
 
   destacadosInsignia(){
     if (this.infoProducto.destacado) {
@@ -142,18 +181,7 @@ export class ViewMoreComponent implements OnInit {
     }
   }
   ////
-  ////// evaluo si ya se eligio un sku para habilitar los botones de agregar al carrito y comprar ahora 
-  habilitarBotones(){
-    let btnAgregarCarrito= document.getElementById("btn-carrito") as HTMLButtonElement;
-    
-    let btnComprar= document.getElementById("btn-comprar") as HTMLButtonElement;
-    
-     if (this.skuAEnviar!== null) {
-      btnAgregarCarrito.disabled=false;
-      btnComprar.disabled=false;
-     }
 
-  }
 
 
   ////////// INICIO CAMBIOS DE IMAGENES ////////////
@@ -181,55 +209,21 @@ export class ViewMoreComponent implements OnInit {
 
   }
 
-  getProduct(){
-    this.activatedroute.params.subscribe(param=> {
-      let id= param.id;
-      this.catalogoservice.getInfoProducto(id).subscribe(response => {
-        this.infoProducto=response;
-        console.log(this.infoProducto)
-        setTimeout(() => {
-          this.obtenerValoresSkus();
-          this.filtrarPropiedades();
-        }, 500);
-      });
-    });
-  };
-
-  filtrarPropiedades() {
-    this.propiedadesFiltradas = this.propiedadesProducto;
-    this.propiedadesFiltradas?.forEach(propiedad => {
-      let valoresPropiedad = propiedad.valores;
-      propiedad.valores = [];
-      for (let i = 0; i < this.valoresSkus.length; i++) {
-        for (let x = 0; x < valoresPropiedad.length; x++) {
-          if (valoresPropiedad[x].id == this.valoresSkus[i].id) {
-            propiedad.valores.push(this.valoresSkus[i]);
-          }
-        }
-      }
-    });
-  }
-
-  getPropiedadesProducto(){
-    this.activatedroute.params.subscribe(param => {
-      let id = param.id;
-      this.catalogoservice.getPropiedadesProducto(id).subscribe((resp:any) => {
-
-        this.propiedadesProducto = resp;
-
-      });
-    });
-  };
-
-
-  identificarSkuSeleccionado(){
-   
-    this.productoService.getSku(this.infoProducto.id,  this.skusDelProducto[0].id).subscribe( response => {
-      this.skuAEnviar=response;
-      console.log(this.skuAEnviar);  
-    })
   
-   }
+
+  // getPropiedadesProducto(){
+  //   this.activatedroute.params.subscribe(param => {
+  //     let id = param.id;
+  //     this.catalogoservice.getPropiedadesProducto(id).subscribe((resp:any) => {
+
+  //       this.propiedadesProducto = resp;
+
+  //     });
+  //   });
+  // };
+
+
+  
 
   agregarCarrito(sku:Sku): void {
     // if localStorage.getItem("carrito")

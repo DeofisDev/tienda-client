@@ -62,7 +62,9 @@
                     </select> -->
                     <p>Bodega: <span>Jorge Mayo</span> </p>
                     <p>Cosecha: <span>2014</span> </p>
-                    <p>Varietales: <span>Chardonnay, Viognier</span> </p>
+                    <p *ngIf="infoProducto?.subcategoria.id==1 ">Varietales: <span>{{skuAEnviar?.variedades}}</span> </p>
+                    <p *ngIf="infoProducto?.subcategoria.id==3 ">Dulzor: <span>{{skuAEnviar?.variedades}}</span> </p>
+
                     <p>Estuche: <span>No</span> </p>
                     <p>Temperatura ideal: <span>10-12 °C</span> </p>
                 </div>
@@ -82,9 +84,9 @@
                     </div>
                     <hr>
                     <p>Costo de envío se informará al realizar la operación.</p>
-                    <button mat-button (click)="agregarCarrito(skuAEnviar)" class="btn"  id="btn-carrito">Agregar al
+                    <button mat-button [disabled]="!skuAEnviar" (click)="agregarCarrito(skuAEnviar)" class="btn"  id="btn-carrito">Agregar al
                         Carrito</button>
-                    <button mat-button (click)="agregarCarrito(skuAEnviar)" class="btn"  id="btn-comprar">Comprar
+                    <button mat-button [disabled]="!skuAEnviar" (click)="agregarCarrito(skuAEnviar)" class="btn"  id="btn-comprar">Comprar
                         ahora</button>
 
                 </div>
@@ -104,7 +106,7 @@
                 <h3>Chardonnay Reserva </h3>
                 <!-- <p>{{infoProducto.descripcion}}</p> -->
                 <p>Cosecha: <Span>2016</Span></p>
-                <p>Variedades: <span>95% Chardonnay, 5% Viognier</span></p>
+                <p>Varietales: <span>{{skuAEnviar?.variedades}}</span></p>
                 <p>Viñedos: <span>Chardonnay: 30% Finca Potrero de Garay-(Alt. 850 msnm-Valle de Calamuchita), 65% Finca de Colonia Caroya (Alt. 550 msnm)</span></p>
                 <p>Viognier: <span>5% Finca Las Corzuelas-Quilino (Alt. 370 msnm-Norte de Córdoba). Conducción espaldero alto, Producción: 6 Ton/ha.</span></p>
                 <p>Metodo de cosecha: <span>Manual en cajones de 18/20 Kgs.</span></p>
