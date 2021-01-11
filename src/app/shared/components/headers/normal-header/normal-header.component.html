@@ -42,7 +42,7 @@
                             <div *ngIf="hasRole('ROLE_USER') || !estaLogueado" class="iconos carrito" [routerLink]="['/shopping-cart']">
                                 <!-- <i class="fas fa-shopping-cart opciones"></i> -->
                                 <img src="../../../../../assets/imagenes/icon-cart.png" alt="">
-                                <div class="circulo" *ngIf="hayAlgoEnElCarrito()">
+                                <div class="circulo" *ngIf="hayAlgoEnElCarrito() && hasRole('ROLE_USER')">
                                     <span>{{totalItemsCarrito}}</span>
                                 </div>
                             </div>

@@ -534,7 +534,7 @@ table {
     background-color:  #1f4e84;
     font-size: small;
     color: white;
-    text-align: center !important;
+    z-index: unset !important;
 }
 
 .reset {
