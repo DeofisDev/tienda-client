@@ -128,7 +128,7 @@
                 <div class="row">
                     <div class="price-container">
                         <label for="price"> Precio:</label>
-                        <p id="euro">€</p>
+                        <p id="euro">$</p>
                         <input type="number" min=0 pattern="^[0-9]+" id="price" formControlName="precio" [class.is-invalid]="precioInvalido">
                         <span *ngIf="precioInvalido" class="text-rojo"><strong>(*)</strong></span>
                     </div>

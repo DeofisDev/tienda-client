@@ -40,6 +40,7 @@ export class Step2Component implements OnInit, OnDestroy {
   cerrarModalPromo:Subscription;
   cerrarModalPropiedad:Subscription;
   mostrarBoton:boolean=false;
+  mostrarFormSku:boolean=true
   constructor(private productoService:ProductoService,
               private fb:FormBuilder,
               private Router:Router,
@@ -118,17 +119,7 @@ export class Step2Component implements OnInit, OnDestroy {
     
     this.Router.navigate(['/home']);
   }
-  generateAutomaticsSkus(){
-    this.productoService.generateSkus(this.newProduct.id).subscribe( response => {
-      
-      this.productoService.getAllTheSkus(this.newProduct.id).subscribe( response => 
-        this.skus=response)})
-    setTimeout(() => {
-      document.getElementById("advertencia").style.display="block";
-    
-    }, 1000);
-    this.mostrarBoton=true
-  }
+
   eliminarTodosLosSkus(){
     let idsSkus=[];
     //lleno mi array de ids de skus
@@ -142,7 +133,7 @@ export class Step2Component implements OnInit, OnDestroy {
       showCloseButton: true,
       confirmButtonText: 'Eliminar y Continuar',
       cancelButtonText: 'Cancelar',
-      title: 'Si decide continuar, las combinaciones de su producto serán eliminadas. ',
+      title: 'Si decide continuar, la/las propiedad/es de su producto serán eliminadas. ',
     }).then((result) => {
       if (result.isConfirmed) {
         /// si aprieta confirmar , elimino los skus
@@ -152,7 +143,7 @@ export class Step2Component implements OnInit, OnDestroy {
         // alerto que se han eliminado
         Swal.fire({
           icon: 'info',
-          title: 'Las combinaciones de su producto han sido eliminadas, si desea crearlas nuevamente dirígase al panel de Administración de Productos ',
+          title: 'La/las propiedad/es de producto han sido eliminadas, si desea crearlas nuevamente dirígase al panel de Administración de Productos ',
         })
          //me envio al inicio 
         this.Router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -212,7 +203,11 @@ export class Step2Component implements OnInit, OnDestroy {
          this.skus=response);
        })
        this.seleccionados=[]
-    
+    setTimeout(() => {
+      this.mostrarFormSku=false;
+      let btn = document.getElementById("btn-two") as HTMLButtonElement;
+      btn.style.display="none"
+    }, 150);
   
     ;}
   promoSku(sku:Sku){
@@ -313,7 +308,7 @@ export class Step2Component implements OnInit, OnDestroy {
           Swal.fire({
             icon: 'warning',
             title: 'Atención',
-            text:  'La disponibilidad de algunas combinaciones de su producto es 0 unidades. ¿Desea Continuar?',
+            text:  'La disponibilidad de su producto es 0 unidades. ¿Desea Continuar?',
             showCancelButton: true,
             cancelButtonText: `Cancelar`,
             confirmButtonText: `Continuar`,
@@ -321,7 +316,7 @@ export class Step2Component implements OnInit, OnDestroy {
             if (result.isConfirmed) {
               Swal.fire({
                 icon: 'success',
-                title: 'El producto y sus combinaciones han sido creadas con éxito',
+                title: 'El producto  han sido creado con éxito',
               });
                //para refrescar el form 
                this.Router.navigateByUrl('/', { skipLocationChange: true }).then(() => {

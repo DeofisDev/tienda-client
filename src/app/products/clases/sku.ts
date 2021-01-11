@@ -14,5 +14,6 @@ export class Sku{
     valores:ValorPropiedadProducto [];
     defaultProducto:Producto;
     producto:Producto;
+    variedades:string;
     
 }

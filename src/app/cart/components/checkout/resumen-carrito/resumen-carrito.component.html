@@ -6,19 +6,19 @@
                 <span id="cantidad">{{item?.cantidad }}</span>
                 <span>{{item?.sku.nombre}}</span>
             </div>
-            <span *ngIf="!item.sku.promocion?.estaVigente" class="item-price">€{{item?.sku.precio | number:
+            <span *ngIf="!item.sku.promocion?.estaVigente" class="item-price">${{item?.sku.precio | number:
                 '.0-2'}}</span>
-            <span *ngIf="item.sku.promocion?.estaVigente" class="item-price">€{{item?.sku.promocion.precioOferta | number:
+            <span *ngIf="item.sku.promocion?.estaVigente" class="item-price">${{item?.sku.promocion.precioOferta | number:
                 '.0-2'}}</span>
         </div>
     </div>
     <span id="linea-sep"></span>
-    <div id="subtotal-summary"><span>Subtotal:</span> <span>€{{carrito?.total | number: '.0-2'}}</span>
+    <div id="subtotal-summary"><span>Subtotal:</span> <span>${{carrito?.total | number: '.0-2'}}</span>
     </div>
     <div class="envio-costo" id="costo-envio">
-        <span>Costo de Envío:</span> <span>€{{costoDeEnvio | number: '.0-2'}}</span>
+        <span>Costo de Envío:</span> <span>${{costoDeEnvio | number: '.0-2'}}</span>
     </div>
-    <div id="total-summary"><span>Total:</span> <span>€{{carrito?.total + costoDeEnvio | number:
+    <div id="total-summary"><span>Total:</span> <span>${{carrito?.total + costoDeEnvio | number:
             '.0-2'}}</span> </div>
     <div class="coupon">
         <i class="fas fa-ticket-alt"></i> <span>¿Tenés un cupón de descuento?</span>

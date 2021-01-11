@@ -65,8 +65,8 @@ export class CheckoutComponent implements OnInit, OnDestroy{
             this.carrito = new Carrito();
             this.pago = new MedioPago();
             this.direccionTienda = new Direccion();
-            this.direccionTienda.ciudad={id:32653, nombre:"Barcelona"};
-            this.direccionTienda.ciudad.nombre="Barcelona";
+            this.direccionTienda.ciudad={id:815, nombre:"Córdoba"};
+            this.direccionTienda.ciudad.nombre="Córdoba";
             this.direccionUsuario = new Direccion();
   }
 

@@ -58,7 +58,7 @@ export class ViewMoreComponent implements OnInit {
   ngOnInit(): void {
     this.getProduct();
     this.getPropiedadesProducto();
- 
+  
     setTimeout(() => {
       this.getSkusDelProducto()
     }, 1000);
@@ -80,52 +80,13 @@ export class ViewMoreComponent implements OnInit {
   getSkusDelProducto(){
     this.productoService.getAllTheSkus(this.infoProducto?.id).subscribe(response => {
       this.skusDelProducto=response;
+      console.log(this.skusDelProducto)
     });
+    setTimeout(() => {
+     this.identificarSkuSeleccionado()
+    }, 150);
   }
-  valoresSiguienteCombobox(i){
-     /// tomo el valor de la propiedad que seleccioné
-      let select = document.getElementsByClassName("select") as HTMLCollectionOf<HTMLInputElement>;
-      let valorCombobox= select[i].value;
-      
-      // me fijo si es la primer seleccion que hago desde q se iniciaron los valores
-    //  if(!this.elegido){
-
-    //  }
-        for (let x = 0; x < this.skusDelProducto?.length; x++) {
-          // let   valorSeleccionado= this.skusDelProducto.filter(sku=> sku.valores[x].valor ==valorCombobox);
-          for (let z = 0; z < this.skusDelProducto[x]?.valores.length; z++) {
-             if(this.skusDelProducto[x].valores[z].valor == valorCombobox){
-           
-              for (let u = 0; u < this.skusDelProducto[x].valores.length; u++) {
-                if (!this.valoresSkuSleccionado.some(val => val.id == this.skusDelProducto[x].valores[u].id)) {
-                  this.valoresSkuSleccionado.push(this.skusDelProducto[x].valores[u]);
-                }
-              }
-             }
-          }
-         };
-        
-      
-      ///filtro los skus del producto para qeudarme solo con los que tienen el valor elegido
-      this.propiedadesFiltradas = this.propiedadesProducto;
-      this.propiedadesFiltradas?.forEach(propiedad => {
-        let valoresPropiedad = propiedad.valores;
-        propiedad.valores = [];
-        for (let i = 0; i < this.valoresSkuSleccionado.length; i++) {
-          for (let x = 0; x < valoresPropiedad.length; x++) {
-            if (valoresPropiedad[x].id == this.valoresSkuSleccionado[i].id) {
-              propiedad.valores.push(this.valoresSkuSleccionado[i])
-            }
-          }
-        }
-      });
-       
-
-     
-        setTimeout(() => {
-          this.identificarSkuSeleccionado()
-        }, 800);
-  }
+  
 
  
 
@@ -225,6 +186,7 @@ export class ViewMoreComponent implements OnInit {
       let id= param.id;
       this.catalogoservice.getInfoProducto(id).subscribe(response => {
         this.infoProducto=response;
+        console.log(this.infoProducto)
         setTimeout(() => {
           this.obtenerValoresSkus();
           this.filtrarPropiedades();
@@ -261,39 +223,11 @@ export class ViewMoreComponent implements OnInit {
 
 
   identificarSkuSeleccionado(){
- 
-    //guardo en un array vacio los objetos completos de propiedadque coincidadn con los valores elegidos en los select
-    let select = document.getElementsByClassName("select") as HTMLCollectionOf<HTMLInputElement>;
-    let valoresAEnviar:ValorPropiedadProducto []=[]
-    for (let i = 0; i < select.length; i++) {
-      let valorCombobox= select[i].value;
-      for (let x = 0; x < this.valoresSkus.length; x++) {
-        if (valorCombobox == this.valoresSkus[x].valor) {
-          valoresAEnviar.push(this.valoresSkus[x] as ValorPropiedadProducto); 
-        }
-      }
-    }
-    // recommo mi array de skus del producto y si algun sku tiene los mismos valores seleccionados, obtengo su id
-    for (let x = 0; x < this.skusDelProducto.length; x++) {
-      let a = this.skusDelProducto[x].valores;
-      let b = valoresAEnviar
-        if ( JSON.stringify(a) == JSON.stringify(b)) {
-            //identifico el sku
-            this.idSkuAEnviar=this.skusDelProducto[x].id
-            console.log(this.idSkuAEnviar);
-          
-              // con el id llamo a ese sku para luego enviarlo al servicio
-            this.productoService.getSku(this.infoProducto.id, this.idSkuAEnviar).subscribe( response => {
-            this.skuAEnviar=response;
-
-            console.log(this.skuAEnviar);
-            this.habilitarBotones();
-            // this.agregarCarrito(this.skuAEnviar)
-            })
-            break;
-         }       
-       }
-  
+   
+    this.productoService.getSku(this.infoProducto.id,  this.skusDelProducto[0].id).subscribe( response => {
+      this.skuAEnviar=response;
+      console.log(this.skuAEnviar);  
+    })
   
    }
 

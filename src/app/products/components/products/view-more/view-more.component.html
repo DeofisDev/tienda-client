@@ -17,8 +17,7 @@
             <div id="izquierda" class="izquierda">
                 <div id="img-sec" class="img-sec">
                     <div id="img-uno">
-                        <!-- <img src="{{infoProducto?.foto.imageUrl}}" alt=""> -->
-                        <img src="../../../../../assets/imagenes/privado-chardonnay.jpg" alt="">
+                        <img src="{{infoProducto?.foto.imageUrl}}" alt="">
                     </div>
                     <!-- <div id="img-dos">
 
@@ -29,48 +28,26 @@
                     <div id="img-seis"></div> -->
                 </div>
                 <div id="img-ppal" class="img-ppal">
-                    <!-- <img src="{{infoProducto?.foto.imageUrl}}" alt=""> -->
-                    <img src="../../../../../assets/imagenes/privado-chardonnay.jpg" alt="">
+                    <img src="{{infoProducto?.foto.imageUrl}}" alt="">
                 </div>
             </div>
             <div id="derecha">
                 <div id="caja-titulo">
-                    <!-- <h2>{{infoProducto?.nombre}}</h2> -->
-                    <h2>Chardonnay Reserva</h2>
+                    <h2>{{infoProducto?.nombre}}</h2>                     
                 </div>
 
                 <div id="caja-precio">
                     <div >
                         <!-- contenedor del precio sku -->
-                        <!-- <div class="precio" *ngIf="!mostrarPrecioProducto()">
-                            <!-- <h3 *ngIf="!ofertaSku" class="pcio-sin-oferta">€50</h3>
-                            <h3 *ngIf="ofertaSku"  class="pcio-oferta">€42</h3> -->
-                            <!-- <h3 *ngIf="!ofertaSku" class="pcio-sin-oferta">€{{skuAEnviar?.precio | number: '.2'}}</h3>
-                            <h3 *ngIf="ofertaSku" class="pcio-sin-oferta">€{{skuAEnviar?.promocion.precioOferta | number: '.2'}}</h3>
+                        <div class="precio" *ngIf="!mostrarPrecioProducto()">
+                             <h3 *ngIf="!ofertaSku" class="pcio-sin-oferta">${{skuAEnviar?.precio | number: '.2'}}</h3>
+                            <h3 *ngIf="ofertaSku" class="pcio-sin-oferta">${{skuAEnviar?.promocion.precioOferta | number: '.2'}}</h3>
                             <div *ngIf="ofertaSku" class="row-oferta">
-                                <span>€{{skuAEnviar?.precio | number: '.2'}} </span>
+                                <span>${{skuAEnviar?.precio | number: '.2'}} </span>
                                 <p class="off ">{{skuAEnviar.promocion?.porcentaje * 100 | number: '2.0-0'}}% 0FF</p>
                             </div> 
-                        </div> -->
-                        <!-- Fin del contenedor precio Sku  -->
-                        <!-- Contenedor precio producto -->
-                        <div class="precio" *ngIf="mostrarPrecioProducto()">
-                            <h3 *ngIf="!infoProducto?.promocion" class="pcio-sin-oferta">€{{infoProducto?.precio | number: '.2'}}
-                            </h3>
-
-                            <!-- <h3 *ngIf="infoProducto?.promocion" class="pcio-oferta">€{{infoProducto.promocion?.precioOferta | number:
-                                '.2'}}</h3> -->
-                                <h3 *ngIf="infoProducto?.promocion" class="pcio-oferta">$950.00</h3>
-                                <div *ngIf="infoProducto?.promocion" class="row-oferta">
-                                    <span>$1060.00 </span>
-                                    <p class="off ">10% 0FF</p>
-                                </div>
-                            <!-- <div *ngIf="infoProducto?.promocion" class="row-oferta">
-                                <span>€{{infoProducto?.precio | number: '.2'}} </span>
-                                <p class="off ">{{infoProducto.promocion?.porcentaje * 100 | number: '2.0-0'}}% 0FF</p>
-                            </div> -->
                         </div>
-                        <!-- Fin del contenedor precio producto -->
+                        
                     </div>
                     <i class="fas fa-medal" *ngIf="destacado"></i>
                 </div>
@@ -91,8 +68,7 @@
                 </div>
                 <div id="descripcion-producto">
                     <h3>Descripción </h3>
-                    <!-- <p>{{infoProducto.descripcion}}</p> -->
-                    <p> Se perciben aromas y sabores cítricos, florales y tropicales; delicada burbuja con acidez sutilmente marcada.</p>
+                   <p>{{infoProducto.descripcion}}</p> 
                 </div>    
 
             
