@@ -95,8 +95,8 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <h4>Precio: {{producto.precio | currency:"EUR":"symbol"}}</h4>
-                                    <h4>Precio oferta: {{producto.promocion.precioOferta | currency:"EUR":"symbol"}}</h4>
+                                    <h4>Precio: {{producto.precio | currency}}</h4>
+                                    <h4>Precio oferta: {{producto.promocion.precioOferta | currency}}</h4>
                                     <h4>Porcentaje oferta: {{(producto.promocion.porcentaje * 100) | number:'2.0-0'}}%</h4>
                                     
                                     
