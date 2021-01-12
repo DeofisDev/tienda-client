@@ -19,8 +19,8 @@
                     <td style="width: 20px;"><img src="assets/imagenes/baron.jpg" alt="" style="width: 60px; height: auto"></td> 
                     <td class="text-left">{{item.sku.nombre}}</td>
                     <td class="text-center">{{item.cantidad}}</td>
-                    <td class="text-center">{{item.precioVenta | currency:"EUR":"symbol"}}</td>
-                    <td class="text-center">{{item.subtotal | currency:"EUR":"symbol"}}</td>
+                    <td class="text-center">{{item.precioVenta | currency}}</td>
+                    <td class="text-center">{{item.subtotal | currency}}</td>
                 </tr>
             </tbody>
             </table>
@@ -30,7 +30,7 @@
 
 <div class="row" >
     <div class="col">
-        <strong>Costo de envío:</strong> {{21 | currency:"EUR":"symbol"}} 
+        <strong>Costo de envío:</strong> {{21 | currency}} 
     </div>
     <div class="col">
         <strong>Código de promoción:</strong> A32BC
