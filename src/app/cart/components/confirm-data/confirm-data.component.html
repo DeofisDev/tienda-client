@@ -20,7 +20,7 @@
                     {{clienteDireccion?.pais.nombre}} 
                     -  CP: {{clienteDireccion?.cp}} </span></p>
            <!-- <p class="campo" *>Dirección de Entrega: <span> Av. Calle XXXX, Barcelona,Cataluña.</span></p> -->
-            <p class="total">Total : <span> ${{carrito?.total + costoDeEnvio | number: '.0-2'}}</span></p>
+            <p class="total">Total : <span> {{carrito?.total + costoDeEnvio | currency}}</span></p>
         </div>
        
     </div>
