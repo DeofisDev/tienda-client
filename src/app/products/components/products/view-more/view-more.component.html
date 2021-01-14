@@ -17,7 +17,7 @@
             <div id="izquierda" class="izquierda">
                 <div id="img-sec" class="img-sec">
                     <div id="img-uno">
-                        <img src="{{infoProducto?.foto.imageUrl}}" alt="">
+                        <img  *ngIf="infoProducto?.foto" src="{{infoProducto?.foto.imageUrl}}" alt="">
                     </div>
                     <!-- <div id="img-dos">
 
@@ -28,7 +28,7 @@
                     <div id="img-seis"></div> -->
                 </div>
                 <div id="img-ppal" class="img-ppal">
-                    <img src="{{infoProducto?.foto.imageUrl}}" alt="">
+                    <img   *ngIf="infoProducto?.foto" src="{{infoProducto?.foto.imageUrl}}" alt="">
                 </div>
             </div>
             <div id="derecha">
@@ -39,9 +39,9 @@
                 <div id="caja-precio">
                     <div >
                         <!-- contenedor del precio sku -->
-                        <div class="precio" *ngIf="!mostrarPrecioProducto()">
+                        <div class="precio" >
                              <h3 *ngIf="!ofertaSku" class="pcio-sin-oferta">{{skuAEnviar?.precio | currency}}</h3>
-                            <h3 *ngIf="ofertaSku" class="pcio-sin-oferta">{{skuAEnviar?.promocion.precioOferta | currency}}</h3>
+                            <h3 *ngIf="ofertaSku" class="pcio-sin-oferta">{{skuAEnviar?.promocion?.precioOferta | currency}}</h3>
                             <div *ngIf="ofertaSku" class="row-oferta">
                                 <span>{{skuAEnviar?.precio | currency}} </span>
                                 <p class="off ">{{skuAEnviar.promocion?.porcentaje * 100 | number: '2.0-0'}}% 0FF</p>

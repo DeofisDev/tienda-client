@@ -25,9 +25,9 @@ export class ViewMoreComponent implements OnInit {
   stock: boolean;
   infoProducto:Producto;
   propiedadesProducto:PropiedadProducto[];
-  destacado:boolean=false;
+  destacado:boolean;
   oferta:boolean=false;
-  ofertaSku:boolean=false;
+  ofertaSku:boolean;
   valoresSkuSleccionado:ValorPropiedadProducto []=[];
   skusDelProducto:Sku [];
   valoresSkus:ValorPropiedadProducto[]=[];
@@ -53,6 +53,7 @@ export class ViewMoreComponent implements OnInit {
     this.stock = true;
     this.infoProducto=new Producto();
     this.skusCarritoLS= new Array();
+   
   }
 
   ngOnInit(): void {
@@ -68,12 +69,7 @@ export class ViewMoreComponent implements OnInit {
     let btnSend = document.getElementById("enviarMsg")
     btnSend.addEventListener("click",this.deleteMessage);
 
-    /// precio oferta
-    this.estaEnOfertaElProducto();
-    this.estaEnOfertaElSku();
-
-    // destacado
-    this.destacadosInsignia();
+ 
   }
   getProduct(){
     this.activatedroute.params.subscribe(param=> {
@@ -85,11 +81,12 @@ export class ViewMoreComponent implements OnInit {
           this.obtenerValoresSkus();
           // this.filtrarPropiedades();
           
-          this.getSkusDelProducto()
+          this.getSkusDelProducto();
+          
+          
         }, 500);
       });
-    });
-
+    });    
   };
   obtenerValoresSkus(){
     let skus = this.infoProducto.skus;
@@ -123,9 +120,10 @@ export class ViewMoreComponent implements OnInit {
       this.skusDelProducto=response;
       setTimeout(() => {
         this.identificarSkuSeleccionado()
+        
        }, 150);
     });
-  
+   
   }
   identificarSkuSeleccionado(){
     let idSku=  this.skusDelProducto[0].id;
@@ -134,7 +132,12 @@ export class ViewMoreComponent implements OnInit {
        this.skuAEnviar=response; 
        console.log(this.skuAEnviar)
      })
-   
+     setTimeout(() => {
+      /// precio oferta
+      this.estaEnOfertaElProducto();
+      // destacado
+      this.destacadosInsignia();
+ }, 1000);
     }
     identificarCategoria(){
       let idsub= this.infoProducto.subcategoria.id;
@@ -144,42 +147,22 @@ export class ViewMoreComponent implements OnInit {
  
 
   destacadosInsignia(){
-    if (this.infoProducto.destacado) {
-      this.destacado=false
-    }else{
+    if (this.infoProducto?.destacado) {
       this.destacado=true
+    }else{
+      this.destacado=false
     }
   }
   /// en los siguientes metodos veo que precio y precio oferta mostrar segun si estoy viendo el producto inicial o  si ya se eligio un sku usar el del sku
   estaEnOfertaElProducto(){
     if (this.skuAEnviar?.promocion!== null) {
-        this.ofertaSku=false;
+        this.ofertaSku=true;
     }else{
-      this.ofertaSku=true;
+      this.ofertaSku=false;
     }
   }
-  estaEnOfertaElSku(){
-    if (this.infoProducto.promocion!== null) {
-        this.oferta=true;
-    }else{
-      this.oferta=false;
-    }
-  }
-  mostrarPrecio(){
-    if (this.oferta) {
-      return false
-    }else{
-      return true
-    }
-  }
-  mostrarPrecioProducto(){
-    if(this.skuAEnviar!== null){
-      return false
-    }else{
-      return true 
-      
-    }
-  }
+ 
+
   ////
 
 
