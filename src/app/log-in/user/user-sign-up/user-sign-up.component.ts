@@ -226,7 +226,9 @@ export class UserSignUpComponent implements OnInit {
   get passwordInvalida() {
     return this.formRegistro.get('password').invalid && this.formRegistro.get('password').touched;
   }
-
+  get passwordRepeatInvalida() {
+    return this.formRegistro.get('passwordRepeat').invalid && this.formRegistro.get('passwordRepeat').touched;
+  }
   /**
    * Getter validador de passwords iguales.
    * @return: true si las contraseñas NO son iguales.
@@ -234,8 +236,9 @@ export class UserSignUpComponent implements OnInit {
   get passwordNoIguales() {
     const pass1 = this.formRegistro.get('password').value;
     const pass2 = this.formRegistro.get('passwordRepeat').value;
-
-    return (pass1 === pass2) ? false : true;
+    if (pass2 !== "" ) {
+      return (pass1 === pass2) ? false : true;
+    }
   }
 
 }

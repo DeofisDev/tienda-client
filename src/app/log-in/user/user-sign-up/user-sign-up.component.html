@@ -94,7 +94,7 @@
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="campo" id="campo2">
-                                                <input [ngClass]="{'is-invalid': passwordNoIguales}" type="password" id="new-pasw-repeat" placeholder="*Repetir contraseña" formControlName="passwordRepeat">
+                                                <input [ngClass]="{'is-invalid': passwordNoIguales || passwordRepeatInvalida}" type="password" id="new-pasw-repeat" placeholder="*Repetir contraseña" formControlName="passwordRepeat">
 
                                                 <i class="far fa-eye" id="show2" (click)="mostrarPsw2()"></i>
                                                 <i class="far fa-eye-slash" id="hide2" (click)="mostrarPsw2()"></i>
