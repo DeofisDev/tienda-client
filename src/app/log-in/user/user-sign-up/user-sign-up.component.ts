@@ -118,7 +118,7 @@ export class UserSignUpComponent implements OnInit {
   crearFormulario(): void {
     this.formRegistro = this.fb.group({
       // Expresion regular para verificar que sea un email correcto.
-      email: ["", [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      email: ["", [Validators.required, Validators.pattern( '[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}')]],
       password: ["", [Validators.required, Validators.minLength(8)]],
       passwordRepeat: ["", Validators.required],
       checkterminos:["" ,Validators.required],
@@ -229,6 +229,7 @@ export class UserSignUpComponent implements OnInit {
   get passwordRepeatInvalida() {
     return this.formRegistro.get('passwordRepeat').invalid && this.formRegistro.get('passwordRepeat').touched;
   }
+
   /**
    * Getter validador de passwords iguales.
    * @return: true si las contraseñas NO son iguales.
