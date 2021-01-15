@@ -75,11 +75,11 @@
 
             
                 <div id="caja-carrito">
-                    <div class="color-quantity">
+                    <div class="color-quantity" *ngIf="skuAEnviar">
                         <div class="modify-quantity">
-                            <i class="fas fa-minus-circle"></i>
-                            <span class="item-quantity"> 1</span>
-                            <i class="fas fa-plus-circle"></i>
+                            <i class="fas fa-minus-circle" id="restar" (click)="restarUnidad()"></i>
+                            <span class="item-quantity" > {{cantidadSeleccionada}}</span>
+                            <i class="fas fa-plus-circle" id="sumar" (click)="sumarUnidad()"></i>
                         </div>
                     </div>
                     <hr>

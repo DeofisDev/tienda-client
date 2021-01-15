@@ -46,6 +46,8 @@ export class ViewMoreComponent implements OnInit {
  /// carrito del localStorage
  skusCarritoLS;
 
+   /// cantidad seleccionada para enviar al carrito
+   cantidadSeleccionada:number
 
  /// posicion de la notificacion de producto agregado al carrito
  horizontalPosition : MatSnackBarHorizontalPosition = 'end' ;
@@ -63,6 +65,7 @@ export class ViewMoreComponent implements OnInit {
     this.stock = true;
     this.infoProducto=new Producto();
     this.skusCarritoLS= new Array();
+    this.cantidadSeleccionada=1
    
   }
 
@@ -196,21 +199,49 @@ export class ViewMoreComponent implements OnInit {
     cartel.style.color="#2779cd"
     let contenedor=document.getElementById("contenedorCartel");
   }
-
+///
+///// sumar y restar unidades para enviaral carrito
+sumarUnidad(){
+  /// evaluo si la cantidad seleccionada es menor q la cantidad disponible, le sumo 
+  if (this.cantidadSeleccionada < this.skuAEnviar.disponibilidad) {
+    this.cantidadSeleccionada=this.cantidadSeleccionada+1
+    if (this.cantidadSeleccionada == this.skuAEnviar.disponibilidad) {
+      document.getElementById("sumar").style.opacity="0.5"
+    }
+  }
+ 
+  if (this.cantidadSeleccionada!==1) {
+    document.getElementById("restar").style.opacity="1"
+  }
+ 
+}
+restarUnidad(){
+  if (this.cantidadSeleccionada !==1) {
+    ///  si es distinto de uno le resto uno y evaluo nuevamente, si esunocambio el estilo del boton
+    this.cantidadSeleccionada=this.cantidadSeleccionada-1;
+    document.getElementById("sumar").style.opacity="1";
+     if (this.cantidadSeleccionada==1) {
+        document.getElementById("restar").style.opacity="0.5"
+     }
+  }
+}
+////
 
   
 //// agregar al carrito y notificacion 
   agregarCarrito(sku:Sku): void {
     // if localStorage.getItem("carrito")
-   if (this.authService.isLoggedIn()) {
-      this.carritoService.agregarSkuAlCarrito(sku?.id.toString()).subscribe(response => {
-        console.log("producto agregado al carrito")
-        console.log(response);
-        this.totalItemsCarrito = response.carrito.items.length;
-        setTimeout(() => {
-          this.enviarInfoCompra.enviarCantidadProductosCarrito$.emit(this.totalItemsCarrito); 
-        }, 100);
-      });
+    if (this.authService.isLoggedIn()) {
+      /// envio el sku al carrito
+       this.carritoService.agregarSkuAlCarrito(sku?.id.toString()).subscribe(response => {
+         /// actualizo la cantidad acorde a la cantidad elegida 
+           this.carritoService.actualizarCantidad( this.cantidadSeleccionada.toString(),sku?.id.toString()).subscribe()
+         ///seteo la cantidad de items para compartirla por el event emmiter
+         this.totalItemsCarrito = response.carrito.items.length;
+         setTimeout(() => {
+           this.enviarInfoCompra.enviarCantidadProductosCarrito$.emit(this.totalItemsCarrito); 
+         }, 100);
+       });
     } else{
       console.log("usuario no logueado");
       // creo un arrayy vacio y le pusheo el sku q estoy agregando
