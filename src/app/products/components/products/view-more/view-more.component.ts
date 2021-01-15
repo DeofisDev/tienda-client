@@ -13,12 +13,16 @@ import { PropiedadProducto } from 'src/app/products/clases/propiedad-producto';
 import { Sku } from 'src/app/products/clases/sku';
 import { Router } from '@angular/router';
 import { EnviarInfoCompraService } from 'src/app/user-options/user-profile/services/enviar-info-compra.service';
+import { MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBarRef,MatSnackBar, MatSnackBarContainer,} from  '@angular/material/snack-bar';
+import { ViewEncapsulation } from '@angular/core';
 
 
 @Component({
   selector: 'app-view-more',
   templateUrl: './view-more.component.html',
-  styleUrls: ['./view-more.component.scss']
+  styleUrls: ['./view-more.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class ViewMoreComponent implements OnInit {
 
@@ -42,6 +46,11 @@ export class ViewMoreComponent implements OnInit {
  /// carrito del localStorage
  skusCarritoLS;
 
+
+ /// posicion de la notificacion de producto agregado al carrito
+ horizontalPosition : MatSnackBarHorizontalPosition = 'end' ;
+ verticalPosition: MatSnackBarVerticalPosition = 'top' ;
+
   constructor(private catalogoservice:CatalogoService,
               private activatedroute:ActivatedRoute,
               private _cartService:MockCartService,
@@ -49,6 +58,7 @@ export class ViewMoreComponent implements OnInit {
               private enviarInfoCompra:EnviarInfoCompraService,
               private carritoService: CarritoService,
               private productoService:ProductoService,
+              private snackBar:MatSnackBar,
               private authService: AuthService) {
     this.stock = true;
     this.infoProducto=new Producto();
@@ -139,13 +149,9 @@ export class ViewMoreComponent implements OnInit {
       this.destacadosInsignia();
  }, 1000);
     }
-    identificarCategoria(){
-      let idsub= this.infoProducto.subcategoria.id;
-      
-    }
 
  
-
+  ////mostar u ocultar insignia segun si es un producto destacado o no 
   destacadosInsignia(){
     if (this.infoProducto?.destacado) {
       this.destacado=true
@@ -153,6 +159,8 @@ export class ViewMoreComponent implements OnInit {
       this.destacado=false
     }
   }
+  ////
+
   /// en los siguientes metodos veo que precio y precio oferta mostrar segun si estoy viendo el producto inicial o  si ya se eligio un sku usar el del sku
   estaEnOfertaElProducto(){
     if (this.skuAEnviar?.promocion!== null) {
@@ -162,7 +170,6 @@ export class ViewMoreComponent implements OnInit {
     }
   }
  
-
   ////
 
 
@@ -176,7 +183,7 @@ export class ViewMoreComponent implements OnInit {
   // }
 //////// FIN CAMBIO DE IMAGENES //////////
 
-//////////// EVENTO DE BOTON ENVIAR ///////////
+//////////// BOTON ENVIAR MENSAJE
   deleteMessage(){
      let mensaje = document.getElementById("pregunta");
 
@@ -188,26 +195,11 @@ export class ViewMoreComponent implements OnInit {
     cartel.innerHTML="Gracias! Te responderemos a la brevedad.";
     cartel.style.color="#2779cd"
     let contenedor=document.getElementById("contenedorCartel");
-
-
   }
 
-  
-
-  // getPropiedadesProducto(){
-  //   this.activatedroute.params.subscribe(param => {
-  //     let id = param.id;
-  //     this.catalogoservice.getPropiedadesProducto(id).subscribe((resp:any) => {
-
-  //       this.propiedadesProducto = resp;
-
-  //     });
-  //   });
-  // };
-
 
   
-
+//// agregar al carrito y notificacion 
   agregarCarrito(sku:Sku): void {
     // if localStorage.getItem("carrito")
    if (this.authService.isLoggedIn()) {
@@ -243,6 +235,27 @@ export class ViewMoreComponent implements OnInit {
 
     }
   }
+
+  openSnackBar(){
+    if ($(window).scrollTop() >= 30) {
+      let snackBarRef= this.snackBar.open('Producto agregado al Carrito', null, {
+        duration:1300 ,
+        horizontalPosition : this .horizontalPosition,
+        verticalPosition : this .verticalPosition,
+        panelClass :['warning'],
+        
+     });
+    }else{
+      let snackBarRef= this.snackBar.open('Producto agregado al Carrito', null, {
+        duration:1300 ,
+        horizontalPosition : this .horizontalPosition,
+        verticalPosition : this .verticalPosition,
+        
+     });
+    }
+   }
+
+  ////
   /*
 ///// CANTIDAD////
 public  removeOne(item:ItemCarrito){
@@ -253,13 +266,5 @@ public addOne(item:ItemCarrito){
 }
 */
 
-///////// Agregar al carrito /////////
-//   addCart(producto:Producto){
-//     let item:ItemCarrito=new ItemCarrito();
-//     item.cantidad=1;
-//     item.producto=producto;
-//     console.log(item.producto);
-//     this._cartService.changeCart(item);
-//  }
 
 }

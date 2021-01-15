@@ -9,7 +9,21 @@ $color-ppal:#fff;
  $color-wf2:#1f4e84;
  $color-wf3:#2779cd;
  $color-wf4:#70b8f3;
-
+ 
+ /* estilos de snackbar*/
+ .mat-snack-bar-container{
+    background-color:$color-wf2!important;
+    color:white !important;
+    margin-top: 90px !important;
+    font-family: $fte-sec !important;
+    width: 270px !important;
+    min-width: unset !important;
+    opacity: 0.9  !important;
+  }
+  ///
+  .warning{
+    margin-top: 25px !important;
+  }
 %prop-bg-img{
     background-size: contain;
     background-repeat: no-repeat;

@@ -84,7 +84,7 @@
                     </div>
                     <hr>
                     <p>Costo de envío se informará al realizar la operación.</p>
-                    <button mat-button [disabled]="!skuAEnviar" (click)="agregarCarrito(skuAEnviar)" class="btn"  id="btn-carrito">Agregar al
+                    <button mat-button (click)="agregarCarrito(skuAEnviar); openSnackBar()" class="btn" [disabled]="!skuAEnviar" id="btn-carrito">Agregar al
                         Carrito</button>
                     <button mat-button [disabled]="!skuAEnviar" (click)="agregarCarrito(skuAEnviar)" class="btn"  id="btn-comprar">Comprar
                         ahora</button>
