@@ -100,6 +100,12 @@ url:string=API_BASE_URL+"/api";
     return this.http.post(`${this.url}/productos/skus/${id}/promociones`, promocion);
   };
 
+  getProdcutos(){
+    return this.http.get(`${this.url}/productos`).pipe(map ((resp:any) => {
+      return resp.productos;
+    }))
+  };
+
  
 
 

@@ -74,12 +74,13 @@
 
                   <ng-container matColumnDef="fechaEnvio">
                       <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Fecha de envío</th>
-                      <td mat-cell *matCellDef="let element">Sin datos</td> <!-- {{element.fechaEnviada}} -->
+                      <td  mat-cell *matCellDef="let element">{{tieneFechaEnvio(element.fechaEnviada)}}</td> <!-- {{element.fechaEnviada}} -->
+                      <!-- <td  mat-cell *matCellDef="let element"><div *ngIf="element.fechaEnviada">{{element.fechaEnviada | convertFecha | slice:0:8}}</div></td> -->
                   </ng-container>
 
                   <ng-container matColumnDef="fechaEntrega">
                       <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Fecha de entrega </th>
-                      <td mat-cell *matCellDef="let element">Sin datos</td> <!-- {{element.fechaRecibida}} -->
+                      <td mat-cell *matCellDef="let element">{{tieneFechaEntrega(element.fechaRecibida)}}</td> <!-- {{element.fechaRecibida}} -->
                   </ng-container>
                 
                   <!-- Symbol Column -->

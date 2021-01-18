@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -17,7 +20,16 @@ import { DataService } from './data.service';
 @Component({
   selector: 'app-admin-promos',
   templateUrl: './admin-promos.component.html',
-  styleUrls: ['./admin-promos.component.scss']
+  styleUrls: ['./admin-promos.component.scss'],
+  animations: [
+    trigger('detailExpand',
+    [
+        state('collapsed, void', style({ height: '0px'})),
+        state('expanded', style({ height: '*' })),
+        transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        transition('expanded <=> void', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class AdminPromosComponent implements OnInit {
 
@@ -29,6 +41,14 @@ export class AdminPromosComponent implements OnInit {
   value = 'Ejemplo: Galaxy';
   arrow:boolean;
   filterPromos ='';
+
+
+  columnsToDisplay = ['id', 'nombre', 'subcategoria', 'precio', 'precioOf',
+                       'porcentaje', 'desde', 'hasta', 'estado', 'tools'];
+  data = new MatTableDataSource();
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
 
 
   constructor( private catalogoService: CatalogoService,
@@ -59,6 +79,9 @@ export class AdminPromosComponent implements OnInit {
       }
 
       this.productos = promos;
+      this.data.data = this.productos;
+      this.data.paginator = this.paginator;
+      this.data.sort = this.sort
       
       
       

@@ -118,6 +118,7 @@ export class UserSignUpComponent implements OnInit {
   crearFormulario(): void {
     this.formRegistro = this.fb.group({
       // Expresion regular para verificar que sea un email correcto.
+   
       email: ["", [Validators.required, Validators.pattern( '[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}')]],
       password: ["", [Validators.required, Validators.minLength(8)]],
       passwordRepeat: ["", Validators.required],

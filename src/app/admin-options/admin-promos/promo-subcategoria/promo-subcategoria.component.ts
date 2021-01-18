@@ -25,7 +25,8 @@ export class PromoSubcategoriaComponent implements OnInit {
 
   formSubcategoria: FormGroup;
 
-  date = new Date().toISOString().substring(0, 16)/* split(':')[0]; */
+  tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+  localISOTime = (new Date(Date.now() - this.tzoffset)).toISOString().slice(0, -8);
   
 
   constructor( private fb:FormBuilder,
@@ -79,7 +80,7 @@ export class PromoSubcategoriaComponent implements OnInit {
 
   cargarFechaDesde(){
     this.formSubcategoria.setValue({
-      fechaDesde: this.date,
+      fechaDesde: this.localISOTime,
       fechaHasta: "",
       porcentaje: ""
     })

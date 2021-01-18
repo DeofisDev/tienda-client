@@ -9,10 +9,13 @@ import { CatalogoService } from 'src/app/products/services/catalogo.service';
 import Swal from 'sweetalert2';
 import { Promocion } from '../../clases/promocion';
 import { DataService } from '../../data.service';
+import { ConvertFechaPipe } from '../../../../pipes/convert-fecha.pipe';
+
 
 @Component({
   selector: 'app-form-promo-product',
   templateUrl: './form-promo-product.component.html',
+  providers: [ConvertFechaPipe],
   styleUrls: ['./form-promo-product.component.scss']
 })
 export class FormPromoProductComponent implements OnInit, OnDestroy {
@@ -33,7 +36,8 @@ export class FormPromoProductComponent implements OnInit, OnDestroy {
 
   formProducto:FormGroup;
 
-  date = new Date().toISOString().substring(0, 16);
+  tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+  localISOTime = (new Date(Date.now() - this.tzoffset)).toISOString().slice(0, -8);
 
   promocion:Promocion;
 
@@ -44,7 +48,8 @@ export class FormPromoProductComponent implements OnInit, OnDestroy {
                private validadores: ValidadoresService,
                private fb:FormBuilder,
                private productoService: ProductoService,
-               private dataService: DataService ) { }
+               private dataService: DataService,
+               private fecha: ConvertFechaPipe ) { }
 
   ngOnInit(): void {
 
@@ -56,7 +61,11 @@ export class FormPromoProductComponent implements OnInit, OnDestroy {
       /* this.producto = new Producto(); */
       this.productoGeneral = producto;
       /* this.producto = producto; */
-      this.cargarFechaDesde();
+      console.log(this.localISOTime, "Prueba")
+      
+      
+      
+      
       
     });
 
@@ -128,7 +137,7 @@ export class FormPromoProductComponent implements OnInit, OnDestroy {
 
   cargarFechaDesde(){
     this.formProducto.setValue({
-      fechaDesde: this.date,
+      fechaDesde: this.localISOTime,
       fechaHasta: "",
       porcentaje: "",
       precio: ""

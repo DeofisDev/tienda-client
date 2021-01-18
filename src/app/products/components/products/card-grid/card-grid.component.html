@@ -1,11 +1,12 @@
 <div class="items">
   <div>
-    <i class="fas fa-medal" *ngIf="destacado"></i>
+    <i class="fas fa-medal" *ngIf="destacado" ></i>
   </div>
 
   <div class="img-fondo" [routerLink]="['/viewmore',producto.id]">
-
-    <img *ngIf="tieneFotoPpal" id="fotoprod" src="{{producto.foto.imageUrl}}" alt="foto-producto">
+  
+    <img *ngIf="tieneFotoPpal" id="fotoprod"  src="{{producto.foto.imageUrl}}" alt="foto-producto">
+    <img *ngIf="!tieneFotoPpal" class="" src="assets/imagenes/noimage.png" alt="" style="width: 60px; height: auto;">
   </div>
   <div class="title-pcio">
     <h3 [routerLink]="['/viewmore',producto.id]">{{producto.nombre}}</h3>

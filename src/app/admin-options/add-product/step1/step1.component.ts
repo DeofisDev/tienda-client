@@ -145,7 +145,8 @@ mensajeProductoCreado(){
     });
      //para refrescar el form 
      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-     this.router.navigate(['/add-product']); 
+     this.router.navigate(['/products-list']);
+     this.modal.dismissAll(); 
   }); 
   }
  
@@ -164,7 +165,7 @@ crearProducto(){
     this.newProduct.subcategoria=this.form.controls.subcategoria.value;
     this.newProduct.unidadMedida=this.form.controls.unidadMedida.value;
     this.newProduct.propiedades = this.propiedadesSeleccionadas;
-
+    
     this.productoService.createNewProduct(this.newProduct).subscribe( response => {
       console.log(response);
       this.newProduct.id=response.id;

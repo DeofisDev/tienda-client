@@ -6,13 +6,13 @@
         </div>
         <div class="lateral-container" id="lateral-container">
             <ul class="userOptions">
+                <li [routerLink]="['/admin-profile']">Mis Datos</li>
                 <li [routerLink]="['/sales']">Ventas<i class="fas fa-angle-down "></i> </li>
                 <!-- <li [routerLink]="['/add-product']">Añadir Producto<i class="fas fa-angle-down "></i> </li> -->
                 <li [routerLink]="['/products-list']">Productos<i class="fas fa-angle-down "></i> </li>
-                <li [routerLink]="['/admin-propiedades']">Propiedades<i class="fas fa-angle-down "></i> </li>
                 <li [routerLink]="['/admin-promo']">Promociones<i class="fas fa-angle-down "></i> </li>
                 <li [routerLink]="['/brands-panel']">Marcas<i class="fas fa-angle-down "></i> </li>
-                <li [routerLink]="['/admin-profile']">Mis Datos</li>
+                <li [routerLink]="['/admin-propiedades']">Propiedades<i class="fas fa-angle-down "></i> </li>
                 <li (click)="logout()"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</li>
             </ul>
         </div>

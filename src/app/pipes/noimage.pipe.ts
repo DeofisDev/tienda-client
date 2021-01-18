@@ -9,10 +9,11 @@ export class NoimagePipe implements PipeTransform {
 
   transform(images: any): string {
 
-    console.log(images);
     
     if (!images){
       return 'assets/imagenes/noimage.png';
+    }else{
+      return images
     }
 
 /*     if (images.length > 0) {

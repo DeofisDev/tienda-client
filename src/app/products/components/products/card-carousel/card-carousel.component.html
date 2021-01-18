@@ -4,14 +4,15 @@
        <!-- <img class="medalla" src="../../../../../assets/imagenes/medalla.png" alt="hdj">  -->
       <i class="fas fa-medal" *ngIf="destacado"></i>
         <img *ngIf="tieneFotoPpal" class="producto" src="{{producto.foto.imageUrl}}" alt="foto-producto">
+        <img *ngIf="!tieneFotoPpal" class="mt-0 mt-md-5" src="assets/imagenes/noimage.png" alt="" style="width: 60px; height: auto;">
     </div>
     <h3 [routerLink]="['/viewmore',producto.id]">{{producto.nombre}}</h3>
     <div class="cont-precios" [routerLink]="['/viewmore',producto.id]">
        <div *ngIf="oferta" class="row-oferta">
-           <span  > {{producto.precio | currency}}</span>
+           <span  > {{producto.precio | currency:'EUR':'symbol'}}</span>
            <p class="off " >{{producto.promocion?.porcentaje * 100 | number:'2.0-0'}}% 0FF</p>
         </div> 
-        <p class="precio"  *ngIf="mostrarPrecio()" >{{producto.precio | currency}}</p>
-        <p class="precioOferta" *ngIf="oferta">{{producto.promocion?.precioOferta | currency}}</p>
+        <p class="precio"  *ngIf="mostrarPrecio()" >{{producto.precio | currency:'EUR':'symbol'}}</p>
+        <p class="precioOferta" *ngIf="oferta">{{producto.promocion?.precioOferta | currency:'EUR':'symbol'}}</p>
     </div>
 </div>

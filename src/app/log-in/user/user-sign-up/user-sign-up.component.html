@@ -62,7 +62,7 @@
                                                             <input type="number" [class.is-invalid]="nroInvalido" id="nro" placeholder="*Nro" formControlName="numeroCalle">
                                                         </div>
                                                         <div class=" col-4 piso">
-                                                            <input type="text" id="piso" placeholder="Piso y Nro" formControlName="piso">
+                                                            <input type="text" id="piso" placeholder="Piso y Dpto" formControlName="piso">
                                                         </div>
                                                         <div class="col-4 cp">
                                                             <input type="text" [class.is-invalid]="cpInvalido" id="cp" placeholder="*CP" formControlName="codigoPostal">
@@ -95,7 +95,7 @@
                                         <div class="col-12 col-md-6">
                                             <div class="campo" id="campo2">
                                                 <input [ngClass]="{'is-invalid': passwordNoIguales || passwordRepeatInvalida}" type="password" id="new-pasw-repeat" placeholder="*Repetir contraseña" formControlName="passwordRepeat">
-
+                                        
                                                 <i class="far fa-eye" id="show2" (click)="mostrarPsw2()"></i>
                                                 <i class="far fa-eye-slash" id="hide2" (click)="mostrarPsw2()"></i>
                                             </div>

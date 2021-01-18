@@ -21,7 +21,7 @@ section {
         display: flex;
         justify-content: center;
         .frame {
-            width: 85%;
+            width: 100%;
             margin-top: 30px;
             .title {
                 display: flex;
@@ -454,3 +454,120 @@ section {
     }
 
 }
+
+thead tr th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    /* background-color: #1f4e84; */
+}
+
+.table-responsive {
+    height: 420px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+h4 {
+    font-size: 0.97em;
+}
+
+
+table {
+    width: 100%;
+  }
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+
+.headerTable{
+    background-color:  #1f4e84;
+    font-size: small;
+    color: white;
+    z-index: 40 !important;
+}
+
+.reset {
+    background-color: #1f4e84;
+    border: none;
+}
+
+.rowCursor{
+    :hover{
+        cursor: pointer;
+    }
+}
+
+.titulo{
+    font-family: $fte-ppal;
+    font-size: 24px;
+    color: $color-sec;
+}
+
+
+thead tr th{ 
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    /* background-color: #1f4e84; */
+    }
+    
+    .table-responsive { 
+    height: 400px;
+    width: auto;
+    overflow:scroll;
+    overflow-x: hidden;
+    }
+
+.table-responsive::-webkit-scrollbar {
+    width: 7px;
+    }
+.table-responsive::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #30384291;
+    border-radius: 5px;
+}
+

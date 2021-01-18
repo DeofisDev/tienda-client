@@ -17,7 +17,7 @@
             <tbody>
                 <tr *ngFor="let item of operacion.items">
                 <td class="text-center">{{item.sku.id}}</td>
-                <td>{{item.sku.nombre}}</td>
+                <td>{{item.sku.nombre}} - <small style="color: #1f4e84;">{{item.sku.valoresData | slice:0:-1}}</small></td>
                 <td class="text-center">{{item.cantidad}}</td>
                 <td class="text-center">{{item.precioVenta | currency}}</td>
                 <td class="text-center">{{item.subtotal | currency}}</td>

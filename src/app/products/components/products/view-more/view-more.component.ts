@@ -1,6 +1,6 @@
 import { ProductoService } from './../../../../admin-options/producto.service';
 import { ValorPropiedadProducto } from './../../../clases/valor-propiedad-producto';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ItemCarrito } from 'src/app/cart/clases/item-carrito';
 import { MockCartService } from 'src/app/cart/services/mock-cart.service';
@@ -14,7 +14,7 @@ import { Sku } from 'src/app/products/clases/sku';
 import { Router } from '@angular/router';
 import { EnviarInfoCompraService } from 'src/app/user-options/user-profile/services/enviar-info-compra.service';
 import { MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBarRef,MatSnackBar, MatSnackBarContainer,} from  '@angular/material/snack-bar';
-import { ViewEncapsulation } from '@angular/core';
+
 
 
 @Component({
@@ -22,7 +22,6 @@ import { ViewEncapsulation } from '@angular/core';
   templateUrl: './view-more.component.html',
   styleUrls: ['./view-more.component.scss'],
   encapsulation: ViewEncapsulation.None,
-
 })
 export class ViewMoreComponent implements OnInit {
 
@@ -164,7 +163,8 @@ export class ViewMoreComponent implements OnInit {
   }
   ////
 
-  /// en los siguientes metodos veo que precio y precio oferta mostrar segun si estoy viendo el producto inicial o  si ya se eligio un sku usar el del sku
+
+  //// veo que precio y precio oferta mostrar segun si estoy viendo el producto inicial o  si ya se eligio un sku usar el del sku
   estaEnOfertaElProducto(){
     if (this.skuAEnviar?.promocion!== null) {
         this.ofertaSku=true;

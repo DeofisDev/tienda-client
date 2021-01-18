@@ -41,6 +41,9 @@ export class Step2Component implements OnInit, OnDestroy {
   cerrarModalPropiedad:Subscription;
   mostrarBoton:boolean=false;
   mostrarFormSku:boolean=true
+
+  modalProp = true;
+
   constructor(private productoService:ProductoService,
               private fb:FormBuilder,
               private Router:Router,
@@ -63,11 +66,15 @@ export class Step2Component implements OnInit, OnDestroy {
    
      //// para suscribirse a cerrar el componente de promos
     this.cerrarModalPromo=this.dataService.cerrarModal$.subscribe(resp =>{
-      this.modal.dismissAll();
+      /* this.modal.dismissAll(); */
     })
 
     this.cerrarModalPropiedad=this.dataPropiedad.cerrarModal$.subscribe(resp =>{
-      this.modal.dismissAll();
+      /* this.modal.dismissAll(); */
+      /* let modal2 =  document.getElementById("promoSku")
+      modal2.style.display = "none"
+      this.modalProp = false; */
+      /* this.modal.dismissAll() */
       this.getPropertiesOfNewProduct()
 
     })
@@ -143,11 +150,12 @@ export class Step2Component implements OnInit, OnDestroy {
         // alerto que se han eliminado
         Swal.fire({
           icon: 'info',
-          title: 'La/las propiedad/es de producto han sido eliminadas, si desea crearlas nuevamente dirígase al panel de Administración de Productos ',
-        })
+          title: 'Las combinaciones de su producto han sido eliminadas, si desea crearlas nuevamente dirígase al panel de Administración de Productos ',
+        });
+        this.modal.dismissAll();
          //me envio al inicio 
         this.Router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-         this.Router.navigate(['/home']);  })
+         this.Router.navigate(['/products-list']);  })
         }
         })
 
@@ -299,10 +307,8 @@ export class Step2Component implements OnInit, OnDestroy {
             icon: 'success',
             title: 'El producto y sus combinaciones han sido creadas con éxito',
           });
-           //para refrescar el form 
-           this.Router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-           this.Router.navigate(['/add-product']); 
-        }); 
+          this.modal.dismissAll();
+          
          
         }else{
           Swal.fire({
@@ -318,10 +324,8 @@ export class Step2Component implements OnInit, OnDestroy {
                 icon: 'success',
                 title: 'El producto  han sido creado con éxito',
               });
-               //para refrescar el form 
-               this.Router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-               this.Router.navigate(['/add-product']); 
-            }); 
+              this.modal.dismissAll();
+              
             }
           });
         

@@ -1,15 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+
+import { MatSort } from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
+// import { SortEvent } from 'primeng/api';
+import { MatTableDataSource } from '@angular/material/table';
+
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/log-in/services/auth.service';
 import { Producto } from 'src/app/products/clases/producto';
 import { EnviarProductoService } from '../enviar-producto.service';
+import { ProductoService } from '../producto.service';
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.scss']
+  styleUrls: ['./products-list.component.scss'],
+  animations: [
+    trigger('detailExpand',
+    [
+        state('collapsed, void', style({ height: '0px'})),
+        state('expanded', style({ height: '*' })),
+        transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        transition('expanded <=> void', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ProductsListComponent implements OnInit {
 
@@ -18,10 +36,22 @@ export class ProductsListComponent implements OnInit {
   newProduct: Producto;
   flag = false;
 
+  //Productos - Tabla
+  productos:Producto[] = [];
+  columnsToDisplay = ['id', 'nombre', 'precio', 'subcategoria.nombre',
+                       'marca.nombre', 'disponibilidadGeneral', 'activo',
+                       'destacado', 'tools'];
+
+  data = new MatTableDataSource();
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+
   constructor( private router:Router,
                private authService: AuthService,
                private modalService: NgbModal, 
-               private enviarProducto: EnviarProductoService ) {  }
+               private enviarProducto: EnviarProductoService,
+               private productoService: ProductoService ) {  }
 
   ngOnInit(): void {
 
@@ -30,6 +60,9 @@ export class ProductsListComponent implements OnInit {
       this.newProduct = producto;
       this.step2 = true;
     });
+
+    this.getProductos();
+
 
   }
   showDetail1(){
@@ -74,5 +107,16 @@ hideDetail1() {
     this.modalService.open(contenido, { size: 'xl', scrollable: true});
 
   };
+
+  getProductos(){
+    this.productoService.getProdcutos().subscribe((resp: any) => {
+      this.productos = resp;
+      this.data.data = this.productos;
+      this.data.paginator = this.paginator;
+      this.data.sort = this.sort;
+      console.log(this.productos);
+      
+    })
+  }
 
 }

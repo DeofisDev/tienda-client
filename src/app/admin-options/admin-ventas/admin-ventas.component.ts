@@ -15,10 +15,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import Swal from "sweetalert2";
 
+import { ConvertFechaPipe } from '../../pipes/convert-fecha.pipe';
+
+
 @Component({
   selector: 'app-admin-ventas',
   templateUrl: './admin-ventas.component.html',
   styleUrls: ['./admin-ventas.component.scss'],
+  providers: [ConvertFechaPipe],
   animations: [
     trigger('detailExpand',
     [
@@ -50,7 +54,8 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
   constructor( private router:Router,
                private authService: AuthService,
                private ventasServices:  VentasService,
-               private modalService: NgbModal ) { }
+               private modalService: NgbModal,
+               private convertFecha: ConvertFechaPipe ) { }
 
   ngOnInit(): void {
     
@@ -198,6 +203,22 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
       }
     }))
 
+  }
+
+  tieneFechaEnvio(fecha: any){
+    if (fecha) {
+      return this.convertFecha.transform(fecha).substring(0, 8);
+    }else{
+      return "Sin enviar"
+    }
+  }
+
+  tieneFechaEntrega(fecha:any){
+    if (fecha) {
+      return this.convertFecha.transform(fecha).substring(0, 8);
+    }else{
+      return "Sin entregar"
+    }
   }
 
   

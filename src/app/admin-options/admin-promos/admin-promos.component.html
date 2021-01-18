@@ -2,15 +2,18 @@
     <app-admin-sidebar></app-admin-sidebar>
     <div class="container-miscompras">
         <div class="frame">
-            <div class="title">
+            <!-- <div class="title">
                 <h2>Promociones</h2>
-            </div>
+            </div> -->
 
 
 
 
             <div class="container">
 
+                <div >
+                    <h2 class="titulo">Promociones</h2>
+                </div>
 
                 <!-- MODAL NUEVA PROMOCIÓN -->
                 <ng-template #contenido let-modal>
@@ -61,28 +64,29 @@
 
                 <div class="row mb-md-1 mb-2">
                     <div class="col-md-3 col-xs-3 form-group">
-                        <input type="text" class="form-control" placeholder="Buscar" name="filterPromos" [(ngModel)]="filterPromos">
+                        <input type="text" class="form-control form-control-sm" placeholder="Buscar" name="filterPromos" [(ngModel)]="filterPromos">
                     </div>
                     <div class="col-md-3 col-xs-3">
-                        <select class="custom-select">
+                        <select class="form-control form-control-sm">
                             <option value="" hidden selected>Ordene por:</option>
                             <option value="">Producto</option>
                             <option value="">Subcategoría</option>
                         </select>
                     </div>
+
+                    
                     <div class="col-md col-xs-12 text-right d-none d-sm-block">
                         <button class="btn btn-primary" style="background-color: #1f4e84; border: none;" (click)="open(contenido)">Nueva promoción</button>
                     </div>
                 </div>
 
-                <div class="accordion" id="accordionExample">
+ <!--                <div class="accordion" id="accordionExample">
                     <div class="card" *ngFor="let producto of productos | sort:filterPromos | paginate:page_size:page_number ; let i=index;">
                         <div class="card-header" id="headingOne" style="background-color:white ; border-style: solid; border-color: #1f4e84; border-radius: 3px; border-width: 1px;">
 
                             <div class="row">
                                 <div class="col-md-2 text-center col-xs-12">
                                     <i [attr.id]="i" (click)="arrowIcono(i)"  class="fas fa-angle-down fa-lg mr-2" data-toggle="collapse" [attr.data-target]="'#collapse'+i" aria-expanded="true" aria-controls="collapseOne"  style="cursor: pointer;"></i>
-                                    <!-- <i  class="fas fa-angle-up fa-lg mr-2" data-toggle="collapse" [attr.data-target]="'#collapse'+i" aria-expanded="true" aria-controls="collapseOne"  style="cursor: pointer;"></i> -->
                                     <img [src]="producto.foto.imageUrl" class="img-prod" alt="..." *ngIf="producto.foto">
                                     <img src="assets/imagenes/noimage.png" class="img-prod" alt="..." *ngIf="!producto.foto">
                                 </div>
@@ -139,7 +143,101 @@
                 <div class="paginator">
                     <mat-paginator style="background:none;" [length]="productos.length" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions" (page)="handlePage($event)">
                     </mat-paginator>
-                </div>
+                </div> -->
+
+
+                <div class="table-responsive">
+                    <table mat-table matTableResponsive [dataSource]="data" matSort  class="mat-elevation-z8" multiTemplateDataRows>
+    
+                      <ng-container  matColumnDef="id">
+                        <th  mat-header-cell *matHeaderCellDef class="headerTable text-center" mat-sort-header> ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                      </ng-container>
+
+                      <ng-container  matColumnDef="nombre">
+                        <th  mat-header-cell *matHeaderCellDef class="headerTable text-center" mat-sort-header> Nombre </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                      </ng-container>
+                    
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="subcategoria">
+                        <th mat-header-cell *matHeaderCellDef class="headerTable text-center" mat-sort-header> Subcategoría </th>
+                        <td mat-cell *matCellDef="let element"> {{element.subcategoria.nombre}}  </td>
+                      </ng-container>
+    
+                      <ng-container matColumnDef="precio">
+                          <th mat-header-cell *matHeaderCellDef class="headerTable"> Precio </th>
+                          <td mat-cell *matCellDef="let element"> {{element.precio | currency:"EUR":"symbol"}} </td>
+                        </ng-container>
+                    
+                      <!-- Weight Column -->
+                      <ng-container matColumnDef="precioOf">
+                        <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Precio Oferta</th>
+                        <td mat-cell *matCellDef="let element"> {{element.promocion.precioOferta | currency:"EUR":"symbol"}} </td>
+                      </ng-container>
+    
+    
+                      <ng-container matColumnDef="porcentaje">
+                          <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Porcentaje</th>
+                          <td mat-cell *matCellDef="let element">{{(element.promocion.porcentaje * 100)}}%</td> 
+                      </ng-container>
+    
+                      <ng-container matColumnDef="desde">
+                          <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Fecha desde </th>
+                          <td mat-cell *matCellDef="let element">
+                              {{(element.promocion.fechaDesde | convertFecha).length === 17 ? (element.promocion.fechaDesde | convertFecha | slice:0:14) : (element.promocion.fechaDesde | convertFecha | slice:0:13) }}
+                            </td> <!-- element.promocion.fechaDesde | convertFecha | slice:0:14 -->
+                      </ng-container>
+                    
+                      <!-- Symbol Column -->
+                      <ng-container matColumnDef="hasta">
+                        <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Fecha hasta </th>
+                        <td mat-cell *matCellDef="let element"> 
+                            {{(element.promocion.fechaHasta | convertFecha).length === 17 ? (element.promocion.fechaHasta | convertFecha | slice:0:14) : (element.promocion.fechaHasta | convertFecha | slice:0:13) }}
+                        </td>
+                      </ng-container>
+      
+                      <ng-container matColumnDef="estado">
+                          <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Estado </th>
+                          <td mat-cell *matCellDef="let element"> {{element.promocion.estaVigente ? 'Activa' : 'Inactiva'}} </td>
+                      </ng-container>
+    
+                      <ng-container matColumnDef="tools">
+                        <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header>  </th>
+                        <td mat-cell *matCellDef="let element"> <i class="far fa-edit point"></i> </td>
+                      </ng-container>
+      
+                      <ng-container matColumnDef="expandedDetail">
+                          <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                            <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                              
+                              <div class="container-fluid jumbotron pt-3 pb-3">
+    
+                                <h3>Propiedades: </h3>
+                                <p *ngFor="let propiedad of element.propiedades">
+                                    {{propiedad.nombre}}: <small *ngFor="let valor of propiedad.valores; last as isLast">{{valor.valor}}{{isLast ? '' : ', '}} </small>
+                                </p>
+                                  
+                              </div>
+                                                          
+                            </div>
+                          </td>
+                          
+                      </ng-container>
+                      
+                      <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true" class="text-center"></tr>
+                      <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+                          class="example-element-row rowCursor"
+                          [class.example-expanded-row]="expandedElement === element"
+                          (click)="expandedElement = expandedElement === element ? null : element">
+                      </tr>
+                      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+                      <!--  -->
+      
+                    </table>
+                    
+                  </div>
+                  <mat-paginator style="background-color: transparent;" [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
 
             </div>
 
