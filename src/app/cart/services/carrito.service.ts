@@ -49,9 +49,9 @@ export class CarritoService {
    * @param skuId id del sku a agregar al carrito.
    * @return Observable con el objeto carrito.
    */
-  agregarSkuAlCarrito(skuId: string): Observable<any> {
+  agregarSkuAlCarrito(skuId: string, cantidad: string): Observable<any> {
    
-    const params = new HttpParams().set('skuId', skuId);
+    const params = new HttpParams().set('skuId', skuId).set('cantidad', cantidad);
 
     ++this.totalItems;
     this.totalItemsEmmiter.emit(this.totalItems);

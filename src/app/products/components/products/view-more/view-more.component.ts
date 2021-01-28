@@ -245,9 +245,8 @@ restarUnidad(){
     // if localStorage.getItem("carrito")
     if (this.authService.isLoggedIn()) {
       /// envio el sku al carrito
-       this.carritoService.agregarSkuAlCarrito(sku?.id.toString()).subscribe(response => {
+       this.carritoService.agregarSkuAlCarrito(sku?.id.toString(), this.cantidadSeleccionada.toString()).subscribe(response => {
          /// actualizo la cantidad acorde a la cantidad elegida 
-           this.carritoService.actualizarCantidad( this.cantidadSeleccionada.toString(),sku?.id.toString()).subscribe()
          ///seteo la cantidad de items para compartirla por el event emmiter
          this.totalItemsCarrito = response.carrito.items.length;
          setTimeout(() => {
