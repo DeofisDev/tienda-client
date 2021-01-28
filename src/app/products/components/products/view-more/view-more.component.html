@@ -29,7 +29,7 @@
                     <div id="img-seis"></div> -->
                 </div>
                 <div id="img-ppal" class="img-ppal">
-                    <!-- <img src="{{infoProducto?.foto.imageUrl}}" alt=""> -->
+                    <img src="{{infoProducto.foto?.imageUrl}}" alt="">
                 </div>
             </div>
             <div id="derecha">
@@ -63,8 +63,8 @@
                     </select> -->
                     <p>Bodega: <span>Jorge Mayo</span> </p>
                     <p>Cosecha: <span>2014</span> </p>
-                    <p *ngIf="infoProducto?.subcategoria.id==1 || infoProducto?.subcategoria.id==2 || infoProducto?.subcategoria.id==3">Varietales: <span>{{skuAEnviar?.variedades}}</span> </p>
-                    <p *ngIf="infoProducto?.subcategoria.id==4 || infoProducto?.subcategoria.id==5 || infoProducto?.subcategoria.id==6 ">Dulzor: <span>{{skuAEnviar?.variedades}}</span> </p>
+                    <p *ngIf="infoProducto.subcategoria?.id==1 || infoProducto.subcategoria?.id==2 || infoProducto.subcategoria?.id==3">Varietales: <span>{{skuAEnviar?.variedades}}</span> </p>
+                    <p *ngIf="infoProducto.subcategoria?.id==4 || infoProducto.subcategoria?.id==5 || infoProducto.subcategoria?.id==6 ">Dulzor: <span>{{skuAEnviar?.variedades}}</span> </p>
 
                     <p>Estuche: <span>No</span> </p>
                     <p>Temperatura ideal: <span>10-12 °C</span> </p>
@@ -107,8 +107,8 @@
                 <h3>{{infoProducto?.nombre}} </h3>
                 <!-- <p>{{infoProducto.descripcion}}</p> -->
                 <p>Cosecha: <Span>2016</Span></p>
-                <p *ngIf="infoProducto?.subcategoria.id==1 || infoProducto?.subcategoria.id==2 || infoProducto?.subcategoria.id==3">Varietales: <span>{{skuAEnviar?.variedades}}</span></p>
-                <p *ngIf="infoProducto?.subcategoria.id==4 || infoProducto?.subcategoria.id==5 || infoProducto?.subcategoria.id==6">Dulzor: <span>{{skuAEnviar?.variedades}}</span></p>
+                <p *ngIf="infoProducto.subcategoria?.id==1 || infoProducto.subcategoria?.id==2 || infoProducto.subcategoria?.id==3">Varietales: <span>{{skuAEnviar?.variedades}}</span></p>
+                <p *ngIf="infoProducto.subcategoria?.id==4 || infoProducto.subcategoria?.id==5 || infoProducto.subcategoria?.id==6">Dulzor: <span>{{skuAEnviar?.variedades}}</span></p>
                 <p>Viñedos: <span>Chardonnay: 30% Finca Potrero de Garay-(Alt. 850 msnm-Valle de Calamuchita), 65% Finca de Colonia Caroya (Alt. 550 msnm)</span></p>
                 <p>Viognier: <span>5% Finca Las Corzuelas-Quilino (Alt. 370 msnm-Norte de Córdoba). Conducción espaldero alto, Producción: 6 Ton/ha.</span></p>
                 <p>Metodo de cosecha: <span>Manual en cajones de 18/20 Kgs.</span></p>

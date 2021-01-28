@@ -135,13 +135,13 @@ irAPagar(){
  /// registro la operacion
   this.registrarNuevaOperacion.crearNuevaPropiedadProducto(this.operacion).subscribe( response => {
     console.log(response);
-       /// evaluo si el metodo de pago es paypal, abro el fm paypal
-        if(this.operacion.medioPago.id == 2){
-        window.open(response.compra.approveUrl, "_blank" )
-        }else{/// si no lo es, abro el de efvo
-          const url = this.router.serializeUrl( this.router.createUrlTree([`cash/approved`]));
-          window.open(url);
-        }
+    /// evaluo si el metodo de pago es paypal, abro el fm paypal
+    if (this.operacion.medioPago.id == 2) {
+      window.open(response.compra.approveUrl, "_self")
+    } else {/// si no lo es, abro el de efvo
+      const url = this.router.serializeUrl( this.router.createUrlTree([`cash/approved`]));
+      window.open(url, "_self");
+    }
    }, err => {
     console.log(err);
     });
