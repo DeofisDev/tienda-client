@@ -1,11 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CatalogoService } from 'src/app/products/services/catalogo.service';
 import { Categoria } from 'src/app/products/clases/categoria';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ItemCarrito } from 'src/app/cart/clases/item-carrito';
-import { MockCarrito } from 'src/app/cart/clases/cart';
-import { MockCartService } from 'src/app/cart/services/mock-cart.service';
 import { AuthService } from '../../../../log-in/services/auth.service';
 import { CarritoService } from '../../../../cart/services/carrito.service';
 import { Carrito } from '../../../../cart/clases/carrito';
@@ -13,12 +11,14 @@ import { Subcategoria } from 'src/app/products/clases/subcategoria';
 import { Subscription } from 'rxjs';
 import { EnviarInfoCompraService } from 'src/app/user-options/user-profile/services/enviar-info-compra.service';
 
+declare function inicializarNotificaciones(target: HTMLElement, email: string);
+
 @Component({
   selector: 'app-normal-header',
   templateUrl: './normal-header.component.html',
   styleUrls: ['./normal-header.component.scss']
 })
-export class NormalHeaderComponent implements OnInit {
+export class NormalHeaderComponent implements OnInit, AfterViewInit {
 
   varietal = ["Malbec", "Ancellota", "Blend", "Cabernet Sauvignon", "Syrah"
               , "Merlot", "Chardonnay"];
@@ -34,21 +34,22 @@ export class NormalHeaderComponent implements OnInit {
   totalQuantity:number = 0;
   carrito: Carrito;
 
-  // Para perfil de usuario
+  // Para perfil de usuario y notificaciones
+  @ViewChild('notificationsInbox') notificationsInbox: ElementRef;
   estaLogueado: boolean;
-  totalItemsCarrito:number=null
+  userEmail: string;
+  totalItemsCarrito:number=null;
+
+  subcategoriasMostrar:Subcategoria[]=[];
   
   constructor (private catalogoservice:CatalogoService,
               private router:Router,
-              private _cartService:MockCartService,
               private authService: AuthService,
               private enviarInfoCompra:EnviarInfoCompraService,
               private carritoService: CarritoService) { }
 
   ngOnInit(): void {
-    //this.totalQuantity = this.carritoService.getTotalItems();
-    //this.carritoService.totalItemsEmmiter.subscribe(resp => this.totalQuantity = resp)
-
+  
     this.verificarSesion();
     this.getCarrito(); 
     this.subscripcionInfoCompra=this.enviarInfoCompra.enviarCantidadProductosCarrito$.subscribe(totalProductos=> {
@@ -56,10 +57,6 @@ export class NormalHeaderComponent implements OnInit {
       console.log(this.totalItemsCarrito)
     })
 
-    //to keep seeing the scroll and adjust the header opacity
-    // window.addEventListener("scroll",this.headerEffect)
- 
-    // get category list 
     this.getListaCategorias();
     this.getSubcategorias();
     //cart counter
@@ -74,7 +71,25 @@ export class NormalHeaderComponent implements OnInit {
   //   }
   //     })
   }
-  
+
+  ngAfterViewInit(): void {
+    this.initNotificaciones();
+  }
+
+  /**
+   * Inicializa las notificaciones en el Header, utilizando #notificationsInbox
+   * y el email del usuario logueado (en caso de estar logueado) para recibir las
+   * notificaciones correspondientes.
+   */
+  initNotificaciones(): void {
+    if (!this.estaLogueado) {
+      return ;
+    }
+      
+    let notificationsInboxHtmlElement = this.notificationsInbox?.nativeElement as HTMLElement;
+    inicializarNotificaciones(notificationsInboxHtmlElement, this.userEmail);
+  }
+
   getCarrito(): void {
     if (this.authService.isLoggedIn()) {
       this.carritoService.getCarrito().subscribe((response: any) => {
@@ -84,6 +99,7 @@ export class NormalHeaderComponent implements OnInit {
     }
     this.hayAlgoEnElCarrito()
   }
+
   hayAlgoEnElCarrito(){
     if (this.totalItemsCarrito!== 0) {
       return true
@@ -102,17 +118,16 @@ export class NormalHeaderComponent implements OnInit {
               /********DROP DOWN MENUS */
 //***categories */
   showCategories(){
-    let categoriesList= document.getElementById("categoriesList");
-    categoriesList.style.display="block";
+ 
+    let categoriesList= document.getElementById("container-subcategories");
+    categoriesList.style.display="flex";
 
     
-
     this.bgOpenMenu();    
   }
  
 showsubcategories(index:number){
-  let categories =document.getElementById("categoriesList");
-  categories.style.borderRadius=" 0px 0px 0px 10px"
+  /// me fijo que cantidad de subcategorias trae y en base a eso pongo la cantidad de columnas  a mostrar con los if 
  let container = document.getElementById("container-sub");
  container.style.display="initial";
  let categoriaActual=this.subcategorias[index]; 
@@ -142,10 +157,8 @@ hiddesubcategories(){
   }
 }
 hiddeSubAndCategories(){
-  let containerSubcategories = document.getElementById("container-sub");
- containerSubcategories.style.display="none";
- let categoriesList= document.getElementById("categoriesList");
- categoriesList.style.display="none";
+  let categoriesList= document.getElementById("container-subcategories");
+    categoriesList.style.display="none";
   this.hiddeBgMenu();
 }
 showCategoriesAndSubcategories(){
@@ -195,6 +208,7 @@ hiddeMenu(){
           /**** Search bar  ****/
   buscarProducto(termino:string):void {
     this.router.navigate(['/search',termino]);
+    this.hiddeSubAndCategories()
    }
 
    irPerfil(): void {
@@ -205,27 +219,7 @@ hiddeMenu(){
      }
    }
 
-  //   /// HEADER SCROLL EFFECT 
-  // headerEffect(){
-  //   let scrollTop= document.documentElement.scrollTop;
-  //   let header= document.getElementById("header");
-  //   let redes=document.getElementById("redes-header");
-  //   let subcategories= document.getElementById("container-subcategories")
-  //   let positionheader=1;
-  //   if(scrollTop>positionheader){
-  //     header.style.opacity="0.92";
-  //     header.style.height="80px";
-  //     redes.style.display="none";
-  //     subcategories.style.top="80px"
-
-  //   } else{
-  //     header.style.opacity="1";
-  //     header.style.height="115px"
-  //     redes.style.display="flex";
-  //     redes.style.justifyContent= "flex-end";
-  //     subcategories.style.top="115px"
-  //   }
-  // }
+ 
   
   /**
    * Se encarga de recibir los cambios en la sesión. La primera vez que carga el componente
@@ -236,6 +230,9 @@ hiddeMenu(){
   verificarSesion(): void {
     this.authService.loggedIn.subscribe(resp => this.estaLogueado = resp);
     this.estaLogueado = this.authService.isLoggedIn();
+
+    this.authService.useremail.subscribe(resp => this.userEmail = resp);
+    this.userEmail = this.authService.getEmailUser();
   }
 
   /**
@@ -257,7 +254,7 @@ hiddeMenu(){
         text: response,
         width: '350px'
       }).then(() => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home']).then(() => window.location.reload());
         // refresh
       });
     });

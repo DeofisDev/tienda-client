@@ -277,10 +277,10 @@ $color-ppal:#fff;
                                 font-size: 1em;
                             }
                             .fa-minus-circle{
+                                opacity: 0.5;
                                 &:hover{
                                     font-size: 1.1em;
-                                    cursor: pointer;
-                                   
+                                    cursor: pointer;                                   
                                 }
                             }
                             .fa-plus-circle{

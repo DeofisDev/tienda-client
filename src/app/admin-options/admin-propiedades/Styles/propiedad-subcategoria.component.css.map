@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,KAAK,CAAC,EAAE,CAAC,EAAE,AAAA,CACP,QAAQ,CAAE,MAAM,CAChB,GAAG,CAAE,CAAC,CACN,OAAO,CAAE,EAAE,CAEZ,AAED,AAAA,iBAAiB,AAAC,CAChB,MAAM,CAAE,KAAK,CACb,QAAQ,CAAC,MAAM,CACf,UAAU,CAAE,MAAM,CACnB,AAID,AAAA,yBAAyB,AAAC,CACxB,MAAM,CAAE,IAAI,CACZ,UAAU,CAAE,KAAK,CACjB,UAAU,CAAE,KAAK,CACjB,QAAQ,CAAC,MAAM,CACf,UAAU,CAAE,MAAM,CACnB",
+    "sources": [
+        "../propiedad-subcategoria/propiedad-subcategoria.component.scss"
+    ],
+    "names": [],
+    "file": "propiedad-subcategoria.component.css"
+}

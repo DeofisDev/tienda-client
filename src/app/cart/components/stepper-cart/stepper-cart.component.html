@@ -1,18 +1,18 @@
-<mat-horizontal-stepper linear id="bg">
+<mat-horizontal-stepper  linear id="bg" (click)="recargarCarrito()" >
     <ng-template matStepperIcon="done">
         <mat-icon>done</mat-icon>
     </ng-template>
 
-    <mat-step label="Carrito">
+    <mat-step label="Carrito" >
         <app-shopping-cart  ></app-shopping-cart>
        
     </mat-step>
 
-    <mat-step label="Envío y Facturación">
-        <app-checkout  [mostrarCheckout]="mostrarCheckout" *ngIf="mostrarCheckout"></app-checkout>
+    <mat-step label="Envío y Facturación" [completed]="step2Completo">
+        <app-checkout [actualizarCarrito]="actualizarCarrito"  [mostrarResumen]="mostrarResumen" [mostrarCheckout]="mostrarCheckout" *ngIf="mostrarCheckout"></app-checkout>
     </mat-step>
 
-    <mat-step label="Confirmación">
+    <mat-step label="Confirmación"  >
         <app-confirm-data *ngIf="mostrarConfirmacion" [clienteDireccion]="clienteDireccion" [entrega]="entrega" [pago]="pago"></app-confirm-data>
     </mat-step>
 </mat-horizontal-stepper>

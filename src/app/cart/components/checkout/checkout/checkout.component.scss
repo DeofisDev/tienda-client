@@ -175,9 +175,43 @@ $color-ppal:#fff;
                                 }
                             }
                         }
+                        .btn-span{
+                            display: flex;
+                            justify-content: space-between;
+                            .btn{
+                                background-color: $color-wf1;
+                                color: white;
+                                font-family: $fte-sec;
+                                width: 83px;
+                                font-size: 13px;
+                                display: block;
+                                padding: 1px;
+                                padding-right: 3px;
+                                padding-left: 3px;
+                                position: absolute;
+                                right: 10px;
+                                bottom: -23px;
+                                border-radius: 10px;
+                                &:hover{
+                                    background-color: $color-wf2;
+                                    cursor: pointer;
+                                }
+                            }
+                            .span-msje{
+                                color:rgb(252, 62, 62) ;
+                                font-family: $fte-sec;
+                                font-size: 13px;
+                                margin-left: 20px;
+                                font-weight: bold;
+                            }
+                            
+                        }
+                        
                     }
                 }
-                
+                .margin{
+                    margin-bottom: 45px;
+                }
             }
             .pick-up{
                 input{
@@ -284,8 +318,16 @@ $color-ppal:#fff;
     display: block;
   transform: translateY(-15px);
    }
-#combobox-estados, #combobox-ciudades{
+#combobox-estados,#combobox-estados-envio, #combobox-ciudades, #combobox-ciudades-envio{
     display: none;
+}
+.edit-form{
+    color: $color-wf2;
+    margin-left: 12px;
+    display: none;
+    &:hover{
+        color: $color-wf3;
+    }
 }
 .container-right{
     background-color: white;
@@ -296,7 +338,28 @@ $color-ppal:#fff;
     margin-top: 45px;
    
 }
-
+.titulos-forms{
+    font-family: $fte-sec;
+    display: block;
+    padding: 1px 7px;
+    border-radius: 3px;
+    background-color:#12d6f033;
+}
+.titulo-dir{
+    border-top: 1px solid grey;
+    padding-top: 20px;
+    margin-top: -10px;
+    p{
+        font-family: $fte-sec;
+    }
+    .check-repetir{
+        font-size: 14px;
+        color: $color-wf3;
+        input{
+            margin-right: 7px;
+        }
+    }
+}
 .botones{
     position: relative;
     margin-top:20px;

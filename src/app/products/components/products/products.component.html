@@ -52,7 +52,7 @@
 
             <div class="card-c" id="card-c" *ngFor="let categoria of categorias">
                 <div class="cat">
-                    <img id="img-cat" src="{{categoria.foto.imageUrl}}" alt="foto-categoria">
+                    <img id="img-cat" src="{{categoria.foto?.imageUrl}}" alt="foto-categoria">
 
                     <h3>{{categoria.nombre}}</h3>
                 </div>

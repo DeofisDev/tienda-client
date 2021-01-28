@@ -18,7 +18,9 @@ export class ShoppingCartComponent implements OnInit {
   carrito: Carrito;
   totalProductos: number;
   mostrarCheckout:boolean=false;
+  actualizarCarrito:boolean;
   // item:ItemCarrito
+
   constructor(private carritoService: CarritoService,
                private _cartService:MockCartService, 
                private authService: AuthService,
@@ -34,7 +36,6 @@ export class ShoppingCartComponent implements OnInit {
     setTimeout(() => {
       this.getCarrito();
     }, 100);
-    console.log(this.carrito);
        
     
  
@@ -57,14 +58,38 @@ export class ShoppingCartComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.carritoService.getCarrito().subscribe((response: any) => {
         this.carrito = response.carrito;
-        console.log(this.carrito)
         this.totalProductos = this.carrito.items.length;
+        this.actualizarCarrito=true;
         /// envio la cantidad de producto al header para q muestre la notifiicacion
         setTimeout(() => {
             this.enviarInfoCompra.enviarCantidadProductosCarrito$.emit(this.totalProductos); 
+            this.enviarInfoCompra.enviarActualizarCarrito.emit(this.actualizarCarrito);
           }, 100);
       });
-    }  
+    }  else{
+        const getlocal = localStorage.getItem("miCarrito");
+        if(getlocal != null ){ /* osea si existe*/
+          this.carrito = JSON.parse(getlocal); 
+        }
+        let subtotal =0
+        for (let x = 0; x < this.carrito.items.length; x++) {
+          if (this.carrito.items[x].sku.promocion !==null && this.carrito.items[x].sku.promocion.estaVigente) {
+            subtotal=this.carrito.items[x].cantidad* this.carrito.items[x].sku.promocion.precioOferta;
+            this.carrito.items[x].subtotal = subtotal;
+          }else{
+            subtotal = this.carrito.items[x].cantidad * this.carrito.items[x].sku.precio;
+            this.carrito.items[x].subtotal= subtotal;
+          }
+          
+        }
+       
+        let total = 0;
+        this.carrito.items.forEach(item => {
+            total = total + item.subtotal;
+        });
+        this.carrito.total = total;
+      
+    }
    
   }
  
@@ -126,11 +151,10 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   enviarInfoACheckout(){
-    this.mostrarCheckout=true
+    this.mostrarCheckout=true;
     setTimeout(() => {
     console.log(this.mostrarCheckout)
-      this.enviarInfoCompra.enviarMostrarCheckout$.emit(this.mostrarCheckout);
-     
+      this.enviarInfoCompra.enviarMostrarCheckout$.emit(this.mostrarCheckout)
     }, 100);
    
   }

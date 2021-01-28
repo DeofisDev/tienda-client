@@ -17,8 +17,8 @@
             <div id="izquierda" class="izquierda">
                 <div id="img-sec" class="img-sec">
                     <div id="img-uno">
-                        <!-- <img *ngIf="!infoProducto?.foto.imageUrl" src="../../../../../assets/imagenes/pumaEjemplo.png" alt="">
-                        <img *ngIf="infoProducto?.foto.imageUrl" src="{{infoProducto?.foto.imageUrl}}" alt=""> -->
+                        <img *ngIf="!infoProducto?.foto" src="assets/imagenes/noimage.png" alt="">
+                        <img *ngIf="infoProducto?.foto" src="{{infoProducto?.foto.imageUrl}}" alt="">
                     </div>
                     <!-- <div id="img-dos">
 
@@ -58,7 +58,7 @@
 
                     <!-- <select id="color" *ngFor="let propiedad of propiedadesFiltradas;let i=index " class="select"
                         (change)="valoresSiguienteCombobox(i)">
-                        <option hidden selected value="">{{propiedad.nombre}}</option>
+                        <option hidden selected value="" >{{propiedad.nombre}}</option>
                         <option [value]="valor.valor" *ngFor="let valor of propiedad.valores">{{valor.valor}}</option>
                     </select> -->
                     <p>Bodega: <span>Jorge Mayo</span> </p>

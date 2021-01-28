@@ -33,6 +33,7 @@ height: fit-content;
     }
     .products-list{
         ul{ width: 100%;
+           height: fit-content;
             li{
                 list-style: none;
                 width: 100%;
@@ -249,7 +250,8 @@ height: fit-content;
     }
 }
 #contai{
-    height: 480px;
+   height: fit-content;
+   padding-bottom: 50px;
 }
 .btn-cont{
     background-color: $color-wf1;

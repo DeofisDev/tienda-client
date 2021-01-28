@@ -3,6 +3,9 @@ import { Injectable, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { API_BASE_URL } from '../../config/config';
 import { Observable, Subject } from 'rxjs';
+import { Sku } from 'src/app/products/clases/sku';
+import { Carrito } from '../clases/carrito';
+import { DetalleCarrito } from '../clases/detalle-carrito';
 
 @Injectable({
   providedIn: 'root'
@@ -54,9 +57,28 @@ export class CarritoService {
     this.totalItemsEmmiter.emit(this.totalItems);
     
     return this.http.post(`${this.urlEndpoint}/carrito/item/agregar`, null, {params: params});
-    
+  }
 
-
+  agregarItemLocal(sku:Sku, carrito:Carrito){
+    let items=carrito.items
+    console.log("producto agregado al carrito")
+    let existeItem=false;
+      
+    for (let x = 0; x < items.length; x++) {
+      if (sku.id===items[x].sku.id ) {
+          items[x].cantidad = items[x].cantidad+1;
+          existeItem=true;
+          break;
+      }else{
+         existeItem=false
+      }
+    }
+    if (!existeItem) {
+      let detalle: DetalleCarrito = new DetalleCarrito();
+      detalle.sku=sku;
+      detalle.cantidad=1
+      carrito.items.push(detalle)
+    }
   }
 
   /**
@@ -90,15 +112,7 @@ export class CarritoService {
     const parametros = new HttpParams().set('skuId', skuId).set('cantidad', cantidad);
 
     return this.http
-    .put(`${this.urlEndpoint}/carrito/item/actualizar`, null, {params: parametros})
-    // .pipe(
-    //   tap(
-    //     ()=> {
-    //       this._refreshNeeded$.next();
-    //     }
-    //   )
-    // )
-    ;
+    .put(`${this.urlEndpoint}/carrito/item/actualizar`, null, {params: parametros}) ;
     
 
   }

@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 import { VentasService } from '../ventas.service';
+
 import { Operacion } from './clases/Operacion';
 
 import { MatSort } from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
-// import { SortEvent } from 'primeng/api';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -46,7 +46,7 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
 
   updateStateVenta: Operacion;
 
-  columnsToDisplay = ['nroOperacion', 'cliente.nombre', 'direccion.calle', 'fechaOperacion', 'fechaEnvio', 'fechaEntrega', 'estado', 'total', 'tools'];
+  columnsToDisplay = ['nroOperacion', 'cliente.nombre', 'direccionEnvio.calle', 'fechaOperacion', 'fechaEnviada', 'fechaRecibida', 'estado', 'total', 'tools'];
   data = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -63,6 +63,7 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
     this.obtenerVentas();
     this.updateStateVenta = new Operacion();
     
+    
   }
 
   ngAfterViewInit(): void {
@@ -77,8 +78,17 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
   obtenerVentas(){
     this.ventasServices.getVentas().subscribe((resp:any) => {
       this.ventas = resp;
-      this.data.data = this.ventas
+      /* this.data.data = this.ventas */
+      this.data = new MatTableDataSource(this.ventas)
+      this.data.filterPredicate = (data: any, filter) => {
+        const dataStr = JSON.stringify(data).toLocaleLowerCase();
+        return dataStr.indexOf(filter) != -1
+      }
       this.data.paginator = this.paginator;
+
+      this.data.sortingDataAccessor = (obj, property) => this.getProperty(obj, property); 
+      
+
       this.data.sort = this.sort;
 
       console.log(this.ventas);
@@ -89,6 +99,11 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.data.filter = filterValue.trim().toLowerCase();
   };
+
+  /* applyFilter(event) {
+    const filterValue = event.target.value.trim().toLowerCase();
+    this.data.filter = filterValue;
+  }; */
 
   reset(){
     this.key = "";
@@ -220,6 +235,10 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
       return "Sin entregar"
     }
   }
+
+  getProperty = (obj, path) => (
+    path.split('.').reduce((o, p) => o && o[p], obj)
+  )
 
   
 

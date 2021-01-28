@@ -1,4 +1,4 @@
-<div class="container-fluid" id="contai" > 
+<div class="container-fluid" id="contai">
     <div class="row">
         <div class="col-12 col-md-7 col-lg-7 offset-lg-1 container-left">
             <div class="row">
@@ -15,27 +15,34 @@
                             </div>
                             <div class="deliver box row">
                                 <input type="radio" value="Envío a domicilio" id="deliver"
-                                    formControlName="formaDeEntrega" (change)="showProfileAdress()">
+                                    formControlName="formaDeEntrega" (change)="showProfileAdress();guardarDatos()">
                                 <span><i class="fas fa-truck"></i> </span>
                                 <label for="deliver" class="options">Envío </label>
                             </div>
                             <div class="deliveryAdress row " *ngIf="envioADomicilio">
-                                <div class="col">
+                                <!-- form editar direccion de envio -->
+                                <div class="col" *ngIf="tieneDireccion">
                                     <div class="direccion-perfil row" id="dir-perfil">
-                                        <span>{{infoCliente.direccion.calle}}  {{infoCliente.direccion.numeroCalle}} - Piso:{{infoCliente.direccion.piso}} - CP: {{infoCliente.direccion.codigoPostal}} - {{infoCliente.direccion.ciudad.nombre}} </span>
+                                        <span>{{infoCliente.direccion.calle}} {{infoCliente.direccion.numeroCalle}} -
+                                            Piso:{{infoCliente.direccion.piso}} - CP:
+                                            {{infoCliente.direccion.codigoPostal}} -
+                                            {{infoCliente.direccion.ciudad.nombre}} </span>
                                         <span><i class="far fa-edit" (click)="mostrarFormNewAdress()"></i></span>
                                     </div>
                                     <div class="row cont-nueva-dir" *ngIf="nuevaDireccion">
                                         <div class="col">
                                             <div class="row">
-                                                <p>Ingrese su dirección de entrega</p>
+                                                <p class="titulos-forms">Ingrese su dirección de entrega</p>
+                                                <span><i class="far fa-edit edit-form" id="edit-envio-1" (click)="editarDireccionEnvioUno()"></i></span>
+
                                             </div>
                                             <div class="row campos-direccion ">
                                                 <div class="col" formGroupName="direccion">
                                                     <div class=" row location ">
                                                         <div class="col-12  col-sm-4 ">
                                                             <select class="country" (change)="showEstados()"
-                                                                formControlName="pais" [class.is-invalid]="paisInvalido">
+                                                                formControlName="pais"
+                                                                [class.is-invalid]="paisInvalido">
                                                                 <option hidden selected value="">-*Pais-</option>
                                                                 <option [ngValue]="pais" *ngFor="let pais of paises">
                                                                     {{pais.nombre}}
@@ -47,16 +54,19 @@
                                                                 id="combobox-estados" formControlName="estado"
                                                                 [class.is-invalid]="estadoInvalido">
                                                                 <option hidden selected value="">-*Estado-</option>
-                                                                <option [ngValue]="estado" *ngFor="let estado of estados">
+                                                                <option [ngValue]="estado"
+                                                                    *ngFor="let estado of estados">
                                                                     {{estado.nombre}}
                                                                 </option>
                                                             </select>
                                                         </div>
                                                         <div class="col-12  col-sm-4 ">
                                                             <select class="city" id="combobox-ciudades"
-                                                                [class.is-invalid]="ciudadInvalida" formControlName="ciudad">
+                                                                [class.is-invalid]="ciudadInvalida"
+                                                                formControlName="ciudad">
                                                                 <option hidden selected value="">-*Ciudad-</option>
-                                                                <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad">
+                                                                <option *ngFor="let ciudad of ciudades"
+                                                                    [ngValue]="ciudad">
                                                                     {{ciudad.nombre}}
                                                                 </option>
                                                             </select>
@@ -70,33 +80,223 @@
                                                         <div class="col-12 col-sm-6">
                                                             <div class="row">
                                                                 <div class=" col-4 nro">
-                                                                    <input type="number" [class.is-invalid]="nroInvalido"
-                                                                        id="nro" placeholder="*Nro" formControlName="nro">
+                                                                    <input type="number"
+                                                                        [class.is-invalid]="nroInvalido" id="nro"
+                                                                        placeholder="*Nro" formControlName="numeroCalle">
                                                                 </div>
                                                                 <div class=" col-4 piso">
                                                                     <input type="text" id="piso" placeholder="Piso"
                                                                         formControlName="piso">
                                                                 </div>
                                                                 <div class="col-4 cp">
-                                                                    <input type="text" [class.is-invalid]="cpInvalido" id="cp"
-                                                                        placeholder="*CP" formControlName="cp">
+                                                                    <input type="text" [class.is-invalid]="cpInvalido"
+                                                                        id="cp" placeholder="*CP" formControlName="codigoPostal">
                                                                 </div>
-        
+
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div class="row btn-span" id="msje-btn-form-envio">
+                                                        <span class="span-msje" *ngIf="mostrarMsjeEnvio"> (*)Campos
+                                                            obligatorios.</span>
+                                                        <button class="btn" id="btn-guardar-envio" (click)="guardarDatos();mostarEditarFormUno()">
+                                                            Guardar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                     </div>
-                                
-
                                 </div>
+                                <!-- FIN form editar direccion de envio -->
+
+
+                                <!-- form direccion de envio y de facturacion -->
+                                <div class="col" *ngIf="!tieneDireccion">
+                                    <div class="row cont-nueva-dir margin">
+                                        <div class="col">
+                                            <div class="row">
+                                                <p class="titulos-forms">Ingrese su dirección de Facturación</p>
+                                                <span><i class="far fa-edit edit-form" id="edit-facturacion" (click)="editarDirecionFacturacion()"></i></span>
+                                            </div>
+                                            <div class="row campos-direccion">
+                                                <div class="col" formGroupName="direccionFacturacion">
+                                                    <div class=" row location ">
+                                                        <div class="col-12  col-sm-4 ">
+                                                            <select class="country" (change)="showEstados()"
+                                                                formControlName="pais">
+                                                                <option hidden selected value="">-*Pais-</option>
+                                                                <option [ngValue]="pais" *ngFor="let pais of paises">
+                                                                    {{pais.nombre}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-12  col-sm-4 ">
+                                                            <select class="state" (change)="showCiudades()"
+                                                                id="combobox-estados" formControlName="estado">
+                                                                <option hidden selected value="">-*Estado-</option>
+                                                                <option [ngValue]="estado"
+                                                                    *ngFor="let estado of estados">
+                                                                    {{estado.nombre}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-12  col-sm-4 ">
+                                                            <select class="city" id="combobox-ciudades"
+                                                                formControlName="ciudad">
+                                                                <option hidden selected value="">-*Ciudad-</option>
+                                                                <option *ngFor="let ciudad of ciudades"
+                                                                    [ngValue]="ciudad">
+                                                                    {{ciudad.nombre}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row calle-nro">
+                                                        <div class=" col-12 col-sm-6 calle">
+                                                            <input type="text" placeholder="*Calle" id="calle"
+                                                                formControlName="calle">
+                                                        </div>
+                                                        <div class="col-12 col-sm-6">
+                                                            <div class="row">
+                                                                <div class=" col-4 nro">
+                                                                    <input type="number" id="nro" placeholder="*Nro"
+                                                                        formControlName="numeroCalle">
+                                                                </div>
+                                                                <div class=" col-4 piso">
+                                                                    <input type="text" id="piso" placeholder="Piso"
+                                                                        formControlName="piso">
+                                                                </div>
+                                                                <div class="col-4 cp">
+                                                                    <input type="text" id="cp" placeholder="*CP"
+                                                                        formControlName="codigoPostal">
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    <div class="row btn-span" id="msje-btn-form-facturacion">
+                                                        <span class="span-msje" *ngIf="mostrarMsje"> (*)Campos
+                                                            obligatorios.</span>
+                                                        <button class="btn" (click)="guardarDireccion()">
+                                                            Guardar
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                             
+                                <!-- FIN form  direccion de facturacion  -->
+                                 <!-- inicio form direccion de envio  -->
+                              
+                                    <div class="row cont-nueva-dir margin borde"*ngIf="guardarDireccionFacturacion">
+                                        <div class="col">
+                                            <div class="row titulo-dir">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <p class="titulos-forms">Ingrese su dirección de Envío</p>
+                                                        <span><i class="far fa-edit edit-form" id="edit-envio-2" (click)="editarDireccionEnvio()"></i></span>
+                                                    </div>
+                                                    <div class="check-repetir row">
+                                                        <input type="checkbox" id="repetir" (change)="ocultarFormDireccion()">
+                                                        <label for="repetir">   Utilizar dirección de facturación como dirección de envío.
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="row campos-direccion" id="campo-ocultar">
+                                                <div class="col"
+                                                    formGroupName="direccion">
+                                                    <div class=" row location ">
+                                                        <div class="col-12  col-sm-4 ">
+                                                            <select class="country"
+                                                                (change)="showEstados()"
+                                                                formControlName="pais">
+                                                                <option hidden selected value="">
+                                                                    -*Pais-</option>
+                                                                <option [ngValue]="pais"
+                                                                    *ngFor="let pais of paises">
+                                                                    {{pais.nombre}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-12  col-sm-4 ">
+                                                            <select class="state"
+                                                                (change)="showCiudades()"
+                                                                id="combobox-estados-envio"
+                                                                formControlName="estado">
+                                                                <option hidden selected value="">
+                                                                    -*Estado-</option>
+                                                                <option [ngValue]="estado"
+                                                                    *ngFor="let estado of estados">
+                                                                    {{estado.nombre}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-12  col-sm-4 ">
+                                                            <select class="city"
+                                                                id="combobox-ciudades-envio"
+                                                                formControlName="ciudad">
+                                                                <option hidden selected value="">
+                                                                    -*Ciudad-</option>
+                                                                <option
+                                                                    *ngFor="let ciudad of ciudades"
+                                                                    [ngValue]="ciudad">
+                                                                    {{ciudad.nombre}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row calle-nro">
+                                                        <div class=" col-12 col-sm-6 calle">
+                                                            <input type="text" placeholder="*Calle"
+                                                                id="calle" formControlName="calle">
+                                                        </div>
+                                                        <div class="col-12 col-sm-6">
+                                                            <div class="row">
+                                                                <div class=" col-4 nro">
+                                                                    <input type="number" id="nro"
+                                                                        placeholder="*Nro"
+                                                                        formControlName="numeroCalle">
+                                                                </div>
+                                                                <div class=" col-4 piso">
+                                                                    <input type="text" id="piso"
+                                                                        placeholder="Piso"
+                                                                        formControlName="piso">
+                                                                </div>
+                                                                <div class="col-4 cp">
+                                                                    <input type="text" id="cp"
+                                                                        placeholder="*CP"
+                                                                        formControlName="codigoPostal">
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row btn-span" id="msje-btn-form-envio">
+                                                        <span class="span-msje" *ngIf="mostrarMsjeEnvio"> (*)Campos
+                                                            obligatorios.</span>
+                                                        <button class="btn" id="btn-guardar-envio" (click)="guardarDatos();mostrarEditarForm()">
+                                                            Guardar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- FIN direccion de envio -->
                             </div>
                             <div class="pick-up box row">
-                                <input type="radio" value="Retiro personalmente" id="entrega" (change)="showAdress()"
-                                    formControlName="formaDeEntrega">
+                                <input type="radio" value="Retiro personalmente" id="entrega"
+                                    (change)="showAdress();guardarDatos()" formControlName="formaDeEntrega">
 
                                 <i class="fas fa-store"></i>
                                 <label for="entrega" class="options">Retire en nuestra tienda</label>
@@ -110,15 +310,18 @@
                         <div class="col">
                             <div class="row titulo-pago">
                                 <h3 class="subtitulo">Método de Pago</h3>
-                               
-                                <span class="leyenda">El pago en efectivo solo se encuentra disponible para la opción de entrega en tienda.</span>
+
+                                <span class="leyenda">El pago en efectivo solo se encuentra disponible para la opción de
+                                    entrega en tienda.</span>
                             </div>
                             <div class="row pago" *ngFor="let medioPago of mediosDePago, let i=index ">
-                                <input type="radio" value="{{medioPago?.id}}" id="{{medioPago?.id}}" 
-                                formControlName="formaDePago">
+                                <input type="radio" value="{{medioPago?.id}}" id="{{medioPago?.id}}"
+                                    formControlName="formaDePago" (change)="guardarDatos()">
                                 <label for="{{medioPago?.nombre}}">
-                                    <img class="cash" *ngIf="imgEfvo(i)&& mostrarEfvo" src="../../../../../assets/imagenes/cash.png" alt="">
-                                    <img class="paypal" *ngIf="imgPayPal(i)" src="../../../../../assets/imagenes/paypal.png" alt="">
+                                    <img class="cash" *ngIf="imgEfvo(i)&& mostrarEfvo"
+                                        src="../../../../../assets/imagenes/cash.png" alt="">
+                                    <img class="paypal" *ngIf="imgPayPal(i)"
+                                        src="../../../../../assets/imagenes/paypal.png" alt="">
                                 </label>
                             </div>
                             <!-- <div class="paypal-box row">
@@ -138,17 +341,18 @@
                     </div>
                 </div>
             </form>
+            <!-- <span>Debe  seleccionar una forma de entrega y pago antes de continuar.</span> -->
         </div>
         <div class="col-12 col-md-5 col-lg-4 offset-lg-1 container-right">
-          <app-resumen-carrito ></app-resumen-carrito>
+            <app-resumen-carrito [actualizarCarrito]="actualizarCarrito" *ngIf="mostrarResumen"></app-resumen-carrito>
         </div>
     </div>
     <div class=" botones row">
-      
+
         <div class="cont-botones">
             <button mat-button matStepperPrevious class="btn" (click)="cerrarComponente()">Atrás</button>
-            <button mat-button  matStepperNext (click)="guardarDatos()"
-                class="btn" id="btn-continuar" *ngIf="llegoCarrito">Continuar</button>
+            <button mat-button matStepperNext (click)="guardarDatos()" class="btn" id="btn-continuar"
+                *ngIf="llegoCarrito" [disabled]="!formValido">Continuar</button>
         </div>
     </div>
 </div>

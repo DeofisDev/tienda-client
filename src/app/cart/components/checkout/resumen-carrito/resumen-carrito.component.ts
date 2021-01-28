@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Carrito } from 'src/app/cart/clases/carrito';
 import { CarritoService } from 'src/app/cart/services/carrito.service';
 import { AuthService } from 'src/app/log-in/services/auth.service';
@@ -12,23 +12,30 @@ import { EventEmitter } from '@angular/core';
   templateUrl: './resumen-carrito.component.html',
   styleUrls: ['./resumen-carrito.component.scss']
 })
-export class ResumenCarritoComponent implements OnInit {
+export class ResumenCarritoComponent implements OnInit ,  OnDestroy{
   carrito: Carrito;
   totalProductos: number;
   totalPrice:number ;
   totalQuantity:number;
   costoDeEnvio = 0;
-llegoCarrito:boolean
-
+  llegoCarrito:boolean
+  @Input() actualizarCarrito:boolean;
   constructor(private carritoService: CarritoService,
               private authService: AuthService,
               private enviarInfoCompra:EnviarInfoCompraService,
               private Router:Router, ) {
       this.carrito = new Carrito();
      }
+  ngOnDestroy(): void {
+    console.log("destruyendoresumente")
+  }
 
   ngOnInit(): void {
-    this.getCarrito(); 
+    this.getCarrito();
+    
+    if (this.actualizarCarrito) {
+      this.getCarrito();
+    }
   }
   getCarrito(): void {
     if (this.authService.isLoggedIn()) {

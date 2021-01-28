@@ -1,3 +1,4 @@
+import { Cliente } from './../clases/cliente/cliente';
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { API_BASE_URL } from 'src/app/config/config';
 import { Observable } from 'rxjs';
@@ -68,12 +69,11 @@ export class AuthService {
     return this.http.post(`${this.urlEndpoint}/logout`, refreshTokenPayload, {responseType: 'text'}).pipe(
       tap(response => {
         this.loggedIn.emit(false);
-        this.useremail.emit('');
+        this.useremail.emit(null);
         localStorage.clear();
         
         return response;
       }));
-
     
   }
 
@@ -169,4 +169,10 @@ export class AuthService {
   hasRole(role: string) {
     return localStorage.getItem('rol') == role;
   }
+
+  emitUserAndLogged(userEmail: string): void {
+    this.loggedIn.emit(true);
+    this.useremail.emit(userEmail);
+  }
+
 }

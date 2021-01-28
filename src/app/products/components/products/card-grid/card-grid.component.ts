@@ -22,7 +22,7 @@ export class CardGridComponent implements OnInit {
   propiedades:PropiedadProducto[]=[];
   valoresSkus:ValorPropiedadProducto[]=[];
   valoresPropiedades:string[];
-  propiedadesYValoresUsadosEnSkus:PropiedadProducto;
+  propiedadesYValoresUsadosEnSkus:PropiedadProducto[] = [];
   arrayMostrarProp:PropiedadProducto[]=[]
   constructor(private catalogoservice:CatalogoService,private _cartService:MockCartService) { }
  
@@ -30,7 +30,7 @@ export class CardGridComponent implements OnInit {
   ngOnInit(): void {
     this.infoProducto=new Producto();
     this.valoresPropiedades = new Array;
-    this.propiedadesYValoresUsadosEnSkus=  new PropiedadProducto();
+    /* this.propiedadesYValoresUsadosEnSkus=  new PropiedadProducto(); */
 
     this.destacadosInsignia();
     this.tieneFoto();
@@ -88,9 +88,9 @@ export class CardGridComponent implements OnInit {
      // z abtengo las propiedades del producto , para asociar cada valor del sku a uma propiedad y mostrarla
    setTimeout(() => {
     /* this.obtenerPropiedades() */
-    /* this.obtenerPro2() */
+    this.obtenerPro2()
 
-   }, 2000);
+   }, 200);
 
     // for (let i = 0; i <this.valoresSkus.length; i++) {
     //   this.valoresPropiedades.push(this.valoresSkus[i].valor);
@@ -100,13 +100,16 @@ export class CardGridComponent implements OnInit {
       let valores =[]
       console.log(this.propiedades)
       for (let x = 0; x < 2; x++) {
-        let propiedad =this.propiedades[x]?.nombre;
+
+        let propiedad = this.propiedades[x]?.nombre;
 
           // recorro los valores de cada una de mis prop
           for (let j = 0; j < this.propiedades[x]?.valores.length; j++) {
+
             let idValor = this.propiedades[x].valores[j].id
-            ///  loc omparo con lso ids de los valores skkus
+            ///  lo comparo con los ids de los valores skkus
             for (let i = 0; i < this.valoresSkus.length; i++) {
+
               if (idValor == this.valoresSkus[i].id) {
                 //si coinciden, lo agrego a mi array de valores de la propiedad q estoy recorriendo 
                 valores.push(this.valoresSkus[i]?.valor)
@@ -118,13 +121,13 @@ export class CardGridComponent implements OnInit {
             
           }
           /// uno el nombre de mi propiedad y sus valores en un objeto llamado propiedades y valores usados
-          this.propiedadesYValoresUsadosEnSkus.nombre=propiedad;
+          /* this.propiedadesYValoresUsadosEnSkus.nombre=propiedad;
           this.propiedadesYValoresUsadosEnSkus.valores=valores;
-          console.log(this.propiedadesYValoresUsadosEnSkus)
+          console.log(this.propiedadesYValoresUsadosEnSkus) */
           
           //hago un push de ese objeto al array q voy a mostrar
-            this.arrayMostrarProp.push(this.propiedadesYValoresUsadosEnSkus);
-             console.log(this.arrayMostrarProp);  
+          /* this.arrayMostrarProp.push(this.propiedadesYValoresUsadosEnSkus);
+          console.log(this.arrayMostrarProp);   */
         
       }
       
@@ -132,19 +135,95 @@ export class CardGridComponent implements OnInit {
 
     obtenerPro2(){
 
-      let props = this.propiedades
-      console.log(props);
+      let props = new PropiedadProducto();
       
+      props = this.copy(this.propiedades)
+      console.log(this.propiedades);
+
+      for (let i = 0; i < this.propiedades.length; i++) {
+
+        props[i].valores = []
+
+      }
+
+      let array = []
 
       for (let i = 0; i < this.valoresSkus.length; i++) {
+        array.push(this.valoresSkus[i].valor)
+        
+      }
+
+      
+      
+
+      
+
+
+      for (let i = 0; i < this.propiedades.length; i++) {
+        
+        for (let j = 0; j < this.propiedades[i].valores.length; j++) {
+          
+          if (array.includes(this.propiedades[i].valores[j].valor)) {
+
+            props[i].valores.push(this.propiedades[i].valores[j])
+            
+          }
+        
+          
+        }
+        
+      }
+
+      this.propiedadesYValoresUsadosEnSkus.push(props);
+      console.log(this.propiedadesYValoresUsadosEnSkus);
+      
+
+
+      /* for (let i = 0; i < this.propiedades.length; i++) {
+        props[i].valores = []
+        
+      } */
+
+      /* for (let o = 0; o < this.propiedades.length; o++) {
+        
+        for (let j = 0; j < this.valoresSkus.length; j++) {
+
+          if (props[o].valores[j].valor !== this.valoresSkus[j].valor) {
+            
+            props[o].valores.splice(j, 1)
+
+          }
+          
+          
+          
+        }
+        
+      } */
+
+      
+      
+      
+
+      /* for (let i = 0; i < this.valoresSkus.length; i++) {
+        
+        
         
         for (let x = 0; x < this.propiedades.length; x++) {
+
+                    
           
-          for (let j = 0; j < this.propiedades[x].valores.length; j++) {
+          for (let j = 0; j <  this.propiedades[x].valores.length; j++) {
+
             
-            if (this.valoresSkus[i].valor !== this.propiedades[x].valores[j].valor) {
-              props.slice(j, 1)
-              console.log(this.valoresSkus[i].valor, this.propiedades[x].valores[j].valor);
+            
+            
+            if (this.valoresSkus[i].id !== this.propiedades[x].valores[j].id) {
+
+              
+              props[x].valores.splice(j, 1);
+            
+              
+              
               
             }
             
@@ -152,8 +231,8 @@ export class CardGridComponent implements OnInit {
           
         }
         
-      }
-      console.log(props);
+      } */
+      
       
 
       
@@ -163,6 +242,21 @@ export class CardGridComponent implements OnInit {
   
 saveToFav() {
 
+}
+
+ copy (obj) {
+  let result;
+  if (obj instanceof Array) {
+    result = [ ...obj ];
+  } else if (typeof obj === 'object') {
+    result = {...obj}
+  } else {
+    return obj;
+  }
+  for (let prop of Reflect.ownKeys (result)) {
+    result[ prop ] = this.copy (result[ prop ]);
+  }
+  return result;
 }
 
 

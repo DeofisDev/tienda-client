@@ -29,10 +29,9 @@ export class Oauth2RedirectHandlerComponent implements OnInit {
         localStorage.setItem('rol', rol);
         localStorage.setItem('expiraEn', expiraEn);
 
-        this.authService.loggedIn.emit(true);
-        this.authService.useremail.emit(userEmail);
-
-        this.router.navigate(['home']);
+        this.authService.emitUserAndLogged(userEmail);
+        
+        this.router.navigate(['home']).then(() => window.location.reload());
       } else {
         this.router.navigate(['login']);
         alert(error);

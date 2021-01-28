@@ -1,3 +1,4 @@
+import { DetalleCarrito } from './../../../../cart/clases/detalle-carrito';
 import { ProductoService } from './../../../../admin-options/producto.service';
 import { ValorPropiedadProducto } from './../../../clases/valor-propiedad-producto';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -37,16 +38,20 @@ export class ViewMoreComponent implements OnInit {
   propiedadesFiltradas: PropiedadProducto[]=[];
   elegido:boolean=false;
   totalItemsCarrito:number;
-  pcioNormal:boolean
+  pcioNormal:boolean;
+  skusCombobox:Sku[];
+  tieneMasDeUna:boolean=true
+  /// cantidad seleccionada para enviar al carrito
+  cantidadSeleccionada:number
+
   /// sku que voy a enviar al carrito
- idSkuAEnviar:number;
- skuAEnviar:Sku = null;
+  idSkuAEnviar:number;
+  skuAEnviar:Sku = null;
+  itemsCarrito:DetalleCarrito[]
 
  /// carrito del localStorage
  skusCarritoLS;
-
-   /// cantidad seleccionada para enviar al carrito
-   cantidadSeleccionada:number
+ tieneValores:boolean=true;
 
  /// posicion de la notificacion de producto agregado al carrito
  horizontalPosition : MatSnackBarHorizontalPosition = 'end' ;
@@ -125,7 +130,11 @@ export class ViewMoreComponent implements OnInit {
           }
         }
       }
+      if (propiedad.valores.length==0) {
+        this.tieneValores=false
+      }
     });
+  
   }
   getSkusDelProducto(){
     this.productoService.getAllTheSkus(this.infoProducto?.id).subscribe(response => {
@@ -185,22 +194,9 @@ export class ViewMoreComponent implements OnInit {
   //  imgPpal.style.backgroundImage=url2;
   // }
 //////// FIN CAMBIO DE IMAGENES //////////
+///// cantidad a enviar 
 
-//////////// BOTON ENVIAR MENSAJE
-  deleteMessage(){
-     let mensaje = document.getElementById("pregunta");
 
-    // if(mensaje.value!=="")
-    // mensaje.nodeValue="";
-
-    // cabio de cartel
-    let cartel=document.getElementById("cartel");
-    cartel.innerHTML="Gracias! Te responderemos a la brevedad.";
-    cartel.style.color="#2779cd"
-    let contenedor=document.getElementById("contenedorCartel");
-  }
-///
-///// sumar y restar unidades para enviaral carrito
 sumarUnidad(){
   /// evaluo si la cantidad seleccionada es menor q la cantidad disponible, le sumo 
   if (this.cantidadSeleccionada < this.skuAEnviar.disponibilidad) {
@@ -225,9 +221,25 @@ restarUnidad(){
      }
   }
 }
+
+
 ////
 
-  
+
+//////////// BOTON ENVIAR MENSAJE
+  deleteMessage(){
+     let mensaje = document.getElementById("pregunta");
+
+    // if(mensaje.value!=="")
+    // mensaje.nodeValue="";
+
+    // cabio de cartel
+    let cartel=document.getElementById("cartel");
+    cartel.innerHTML="Gracias! Te responderemos a la brevedad.";
+    cartel.style.color="#2779cd"
+    let contenedor=document.getElementById("contenedorCartel");
+  }
+
 //// agregar al carrito y notificacion 
   agregarCarrito(sku:Sku): void {
     // if localStorage.getItem("carrito")
@@ -245,26 +257,41 @@ restarUnidad(){
     } else{
       console.log("usuario no logueado");
       // creo un arrayy vacio y le pusheo el sku q estoy agregando
-      let arrayItemsCarrito = [];
-      arrayItemsCarrito.push(sku);
+    
+      // this.arrayItemsCarrito.items.push(detalle);
 
       // verifico si existe micarrito
-      var getlocal = localStorage.getItem("miCarrito");
-      var parslocal;
+      const getlocal = localStorage.getItem("miCarrito");
+      let carrito:Carrito;
       if(getlocal != null ){ /* osea si existe*/
         // parseo lo que trae para poder pushearlo a mi array
-        parslocal = JSON.parse(getlocal); 
-        for (let i = 0; i < parslocal.length; i++) {
-          arrayItemsCarrito.push(parslocal[i]);
-        }
+        carrito = JSON.parse(getlocal); 
+        console.log(carrito);
+      
+        this.carritoService.agregarItemLocal(sku,carrito)
+          setTimeout(() => {
+            this.enviarInfoCompra.enviarCantidadProductosCarrito$.emit(this.totalItemsCarrito); 
+          }, 100);
+        
         /// envio el array completo , con la info q me traje y parsié y con el nuevo item
-        localStorage.setItem("miCarrito",JSON.stringify(arrayItemsCarrito) );
+        localStorage.setItem("miCarrito",JSON.stringify(carrito) );
       }else{ /* si no existe, lo creo con el sku q estoy enviando como contenido*/
-        console.log("else");
-        localStorage.setItem("miCarrito",JSON.stringify(arrayItemsCarrito) );
+        let nuevoCarrito:Carrito= new Carrito();
+        let detalle: DetalleCarrito = new DetalleCarrito();
+        detalle.sku=sku;
+        detalle.cantidad=1;
+        // if (detalle.sku.promocion!== null) {
+        //   nuevoCarrito.total=detalle.sku.promocion.precioOferta*detalle.cantidad
+        // }else{
+        //   nuevoCarrito.total=detalle.sku.precio*detalle.cantidad
+        // }
+        nuevoCarrito.items.push(detalle);
+        localStorage.setItem("miCarrito",JSON.stringify(nuevoCarrito) );
       }
 
     }
+
+  
   }
 
   openSnackBar(){

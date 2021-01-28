@@ -16,7 +16,7 @@
             <tbody>
                 <tr *ngFor="let item of operacion.items" class="text-center">
                     <!-- <td *ngIf="item.sku.producto.foto" style="width: 20px;"><img [src]="item.sku.producto.foto.imageUrl" alt="" style="width: 60px; height: auto"></td> -->
-                    <td style="width: 20px;"><img [src]="item.sku.producto.foto.imageUrl | noimage" alt="" style="width: 60px; height: auto"></td>  <!-- item.sku.producto.foto.imageUrl -->
+                    <td style="width: 20px;"><img [src]="item.sku.producto?.foto?.imageUrl | noimage" alt="" style="width: 60px; height: auto"></td>  <!-- item.sku.producto.foto.imageUrl -->
                     <td class="text-left">{{item.sku.nombre}} - <small style="color: #1f4e84;">{{item.sku.valoresData | slice:0:-1}}</small></td>
                     <td class="text-center">{{item.cantidad}}</td>
                     <td class="text-center">{{item.precioVenta | currency}}</td>

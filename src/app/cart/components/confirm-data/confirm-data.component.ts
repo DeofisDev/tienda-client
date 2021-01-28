@@ -36,6 +36,8 @@ export class ConfirmDataComponent implements OnInit, OnDestroy {
   operacion:Operacion;
   items:DetalleOperacion[];
   item:DetalleOperacion ;
+
+
   constructor(private perfilClienteService:PerfilClienteService,
               private authService: AuthService,
               private enviarInfoCompra:EnviarInfoCompraService,
@@ -49,7 +51,12 @@ export class ConfirmDataComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
       this.getPerfilCliente(); 
-      this.getCarrito();  
+      this.getCarrito(); 
+      console.log("alfo")
+      setTimeout(() => {
+        console.log(this.clienteDireccion)
+      }, 1000); 
+     
       // this.carritoService.refreshNeeded$
       // .subscribe(()=>{
       //   this.getCarrito();
@@ -58,6 +65,7 @@ export class ConfirmDataComponent implements OnInit, OnDestroy {
 
      
   ngOnDestroy():void{
+    console.log("cerradocomp3")
   }
   
   /// traigo la info del cliente loggeado (nombre,mail,telefono,direccion...)
@@ -79,10 +87,9 @@ getCarrito(): void {
 
 
 cerrarComponente(){
-  this.mostrarConfirmacion=false
+  this.mostrarConfirmacion=false;
   setTimeout(() => {
     this.enviarInfoCompra.enviarMostrarConfirmacion$.emit(this.mostrarConfirmacion);
-   
   }, 100);
 }
 
@@ -95,8 +102,8 @@ irAPagar(){
   let direccion =new Direccion();
   direccion.calle=this.clienteDireccion?.calle;
   direccion.ciudad=this.clienteDireccion?.ciudad;
-  direccion.codigoPostal=this.clienteDireccion?.cp;
-  direccion.numeroCalle=this.clienteDireccion?.nro;
+  direccion.codigoPostal=this.clienteDireccion?.codigoPostal;
+  direccion.numeroCalle=this.clienteDireccion?.numeroCalle;
   direccion.piso=this.clienteDireccion?.piso;
 
   this.operacion.direccionEnvio=direccion
@@ -135,13 +142,13 @@ irAPagar(){
  /// registro la operacion
   this.registrarNuevaOperacion.crearNuevaPropiedadProducto(this.operacion).subscribe( response => {
     console.log(response);
-    /// evaluo si el metodo de pago es paypal, abro el fm paypal
-    if (this.operacion.medioPago.id == 2) {
-      window.open(response.compra.approveUrl, "_self")
-    } else {/// si no lo es, abro el de efvo
-      const url = this.router.serializeUrl( this.router.createUrlTree([`cash/approved`]));
-      window.open(url, "_self");
-    }
+       /// evaluo si el metodo de pago es paypal, abro el fm paypal
+        if(this.operacion.medioPago.id == 2){
+        window.open(response.compra.approveUrl, "_self");
+        }else{/// si no lo es, abro el de efvo
+          const url = this.router.serializeUrl( this.router.createUrlTree([`cash/approved`]));
+          window.open(url,"_self");
+        }
    }, err => {
     console.log(err);
     });

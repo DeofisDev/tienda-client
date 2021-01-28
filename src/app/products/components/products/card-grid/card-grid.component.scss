@@ -133,10 +133,20 @@ $color-ppal:#fff;
        
     }
     
-    .cont-props{
-        margin-top: 90px;
-        margin-left: -80px;
-        //
+   .cont-props{
+       margin-top: 70px;
+       margin-left: -80px;
+       //
+       display: flex;
+       align-items: baseline;
+       flex-direction: row;
+       flex-wrap: wrap;
+       width: 100%;
+        height: 40px;
+       //
+    .props{
+        margin-top: 0px;
+        margin-bottom: 0px;
         display: flex;
         align-items: baseline;
         flex-direction: row;
@@ -254,8 +264,4 @@ $color-ppal:#fff;
         right: 12px;
     }
 }
-
-
-
-
-
+}

@@ -21,15 +21,17 @@
     </div>
 
   </div>
-  <div class="cont-props ">
+  <div *ngIf="producto.skus.length > 0" class="cont-props container">
     <!-- <div *ngFor="let propiedad of arrayMostrarProp; let i=index" class="props">
       <p> {{propiedad.nombre}}: </p>
       <span *ngFor="let valor of propiedad?.valores "> {{valor}}</span> 
     
     </div> -->
-    <div *ngFor="let valor of valoresSkus; let i=index" class="props">
-      <span>{{valor.valor}} </span>
+    <div *ngFor="let prop of propiedadesYValoresUsadosEnSkus[0]; let i=index" class="props">
+      <div style="font-size: 13px;">{{prop.nombre}}:</div>&nbsp;<span *ngFor="let valor of prop.valores">{{valor.valor}}</span>
     </div>
   </div>
   <div class="i-fondo d-block"><i id="fav" class=" iconos far fa-heart fav" (click)="saveToFav()"></i></div>
 </div>
+
+

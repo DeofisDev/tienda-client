@@ -75,6 +75,7 @@ $color-wf4:#70b8f3;
                 }
                 &:hover {
                     background-size: 100% 2px;
+                    cursor: pointer;
                 }
                 &:focus {
                     background-size: 100% 2px;
@@ -143,7 +144,7 @@ $color-wf4:#70b8f3;
 #contenedor_iconos {
     .iconos {
          position: relative;
-       
+         cursor: pointer;
         &:focus{
             outline: none;
         }
@@ -242,26 +243,30 @@ $color-wf4:#70b8f3;
     background-color: rgba(31, 27, 27, 0.26);
     position: absolute;
     z-index: 3;
-    top: 80px;
+    top: 77px;
     left: 0px;
     display: none;
 }
 
 // categorias y subcategorias
 .contenedor-categorias {
-
+    background-color: $color-menues;
+    display: none;
+    padding-top: 20px;
+    padding-bottom: 7px;
+    position: absolute;
+    z-index: 4;
+    width: fit-content;
+    height: fit-content;
+    left:18vw ;
+    border-radius: 0px 0px 15px 15px;
+    display: flex;
     .submenu {
-        display: none;
         width: 210px;
         background-color: $color-menues;
-        padding-top: 10px;
-        padding-bottom: 15px;
-        border-radius: 0px 0px 10px 10px;
-        position: absolute;
-        left: 18vw;
-        z-index: 50;
-        border-right: 1px solid rgba(187, 184, 184, 0.5);
-        //    top: 115px;        
+        border-radius: 0px 0px 0px 15px;
+        border-right: 1px solid rgba(187, 184, 184, 0.5);        
+       margin-bottom: 27px;
         li {
             background-color: $color-menues;
             font-size: 16px;
@@ -284,18 +289,27 @@ $color-wf4:#70b8f3;
             }
         }
     }
-    #container-sub {
-        background: $color-menues;
-        width: 16vw;
-        height: auto;
-        min-height: auto;
-        position: absolute;
-        left:calc(18vw + 209px);
-        z-index: 49;
-        border-radius: 0px 0px 10px 0px;
-        display: none;
-        padding: 20px 15px 20px 25px;
+    
+    #container-sub{
+        display: grid;
+        border-radius: 0px 0px 0px 15px;
+        grid-template-columns: 170px ;
+        grid-template-rows: 1fr 1fr 1fr 1fr ;
+        padding-bottom: 10px;
+        .subcategoria-item{
+            list-style: none;
+            font-family: $fte-sec;
+            color: grey;
+            padding-left: 15px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            &:hover{
+                cursor: pointer;
+                color: $color-wf1;
+            }
+        }
     }
+  
 }
 
 //// *** **** MENU HAMBURGUESA **** *** ///

@@ -96,29 +96,29 @@
                 <div class="row mb-3">
                     <div class="col-12 col-md-2">
                         <small id="emailHelp" class="form-text text-muted">&nbsp;Palabra clave</small>
-                        <input class="form-control form-control-sm"
-                             name="key" placeholder="Search" #input>
+                        <input class="form-control form-control-sm" (keyup)="applyFilter($event)"
+                             name="key" [(ngModel)]="key" placeholder="Search" #input>
                     </div>
                     <div class="col-12 col-md-2">
                         <small id="emailHelp" class="form-text text-muted">&nbsp;Estados</small>
-                        <select class="form-control form-control-sm"  #select name = "state">
+                        <select class="form-control form-control-sm" (change)="applyFilter($event)" #select name = "state" [(ngModel)]="state">
                           <option value="">Todos</option>
-                          <option  value = "true">
+                          <option  value = true>
                             Activo
                           </option>
-                          <option value="false">
+                          <option value=false>
                               Inactivo
                           </option>
                         </select>
                     </div>
                     <div class="col-12 col-md-2">
                         <small id="emailHelp" class="form-text text-muted">&nbsp;Destacados</small>
-                        <select class="form-control form-control-sm"  #select name = "state">
+                        <select class="form-control form-control-sm" (change)="applyFilter($event)"  #select name = "destacado" [(ngModel)]="destacado">
                           <option value="">Todos</option>
-                          <option  value = "true">
+                          <option  value = true>
                             Si
                           </option>
-                          <option value="false">
+                          <option value = false>
                             No
                           </option>
                         </select>

@@ -28,7 +28,7 @@
                       <small id="emailHelp" class="form-text text-muted">&nbsp;Estados.</small>
                       <select class="form-control form-control-sm" (change)="applyFilter($event)" #select name = "state" [(ngModel)]="state">
                         <option value="">Todos</option>
-                        <option *ngFor="let estado of estadosOperacion" [value] = "estado">
+                        <option *ngFor="let estado of estadosOperacion" [value] = "estado | convertEstadoOp">
                           {{estado | convertEstadoOp}}
                         </option>
                       </select>
@@ -60,9 +60,9 @@
                     <td mat-cell *matCellDef="let element"> {{element.cliente.nombre}} {{element.cliente.apellido}} </td>
                   </ng-container>
 
-                  <ng-container matColumnDef="direccion.calle">
-                      <th mat-header-cell *matHeaderCellDef class="headerTable"> Direccion de envio </th>
-                      <td mat-cell *matCellDef="let element"> {{element.direccionEnvio.calle}} {{element.direccionEnvio.numeroCalle}}, Córdoba </td>
+                  <ng-container matColumnDef="direccionEnvio.calle">
+                      <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Direccion de envio </th>
+                      <td mat-cell *matCellDef="let element"> {{element.direccionEnvio.calle}} {{element.direccionEnvio.numeroCalle}} </td>
                     </ng-container>
                 
                   <!-- Weight Column -->
@@ -72,13 +72,13 @@
                   </ng-container>
 
 
-                  <ng-container matColumnDef="fechaEnvio">
+                  <ng-container matColumnDef="fechaEnviada">
                       <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Fecha de envío</th>
                       <td  mat-cell *matCellDef="let element">{{tieneFechaEnvio(element.fechaEnviada)}}</td> <!-- {{element.fechaEnviada}} -->
                       <!-- <td  mat-cell *matCellDef="let element"><div *ngIf="element.fechaEnviada">{{element.fechaEnviada | convertFecha | slice:0:8}}</div></td> -->
                   </ng-container>
 
-                  <ng-container matColumnDef="fechaEntrega">
+                  <ng-container matColumnDef="fechaRecibida">
                       <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Fecha de entrega </th>
                       <td mat-cell *matCellDef="let element">{{tieneFechaEntrega(element.fechaRecibida)}}</td> <!-- {{element.fechaRecibida}} -->
                   </ng-container>
@@ -100,7 +100,7 @@
                   </ng-container>
 
                   <ng-container matColumnDef="tools">
-                    <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header>  </th>
+                    <th mat-header-cell *matHeaderCellDef class="headerTable"></th>
                     <td mat-cell *matCellDef="let element"> <i class="far fa-edit point" (click)="openLg(content, element)"></i> </td>
                   </ng-container>
   

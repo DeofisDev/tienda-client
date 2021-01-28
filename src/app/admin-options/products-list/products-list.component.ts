@@ -4,7 +4,6 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 
 import { MatSort } from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
-// import { SortEvent } from 'primeng/api';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -30,6 +29,10 @@ import { ProductoService } from '../producto.service';
   ],
 })
 export class ProductsListComponent implements OnInit {
+
+  state = "";
+  key = "";
+  destacado = "";
 
   step2: boolean = false;
   subscripcionProducto: Subscription;
@@ -111,12 +114,33 @@ hideDetail1() {
   getProductos(){
     this.productoService.getProdcutos().subscribe((resp: any) => {
       this.productos = resp;
-      this.data.data = this.productos;
+
+      this.data = new MatTableDataSource(this.productos)
+
+      this.data.filterPredicate = (data: any, filter) => {
+        const dataStr = JSON.stringify(data).toLocaleLowerCase();
+        return dataStr.indexOf(filter) != -1
+      }
+      
       this.data.paginator = this.paginator;
+      
+      this.data.sortingDataAccessor = (obj, property) => this.getProperty(obj, property);
+
       this.data.sort = this.sort;
+
       console.log(this.productos);
       
     })
   }
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.data.filter = filterValue.trim().toLowerCase();
+  };
+
+  getProperty = (obj, path) => (
+    path.split('.').reduce((o, p) => o && o[p], obj).toLocaleLowerCase()
+  )
 
 }
