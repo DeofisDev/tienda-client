@@ -90,6 +90,7 @@ import { ImgSecundariasComponent } from './admin-options/products-list/product-e
 import { NuevaImgSecundariaComponent } from './admin-options/products-list/product-edit/nueva-img-secundaria/nueva-img-secundaria.component';
 import { CardFavoriteComponent } from './user-options/favorites/card-favorite/card-favorite.component';
 import { BuyNowComponent } from './buy-now/buy-now.component';
+import { AdminUsersComponent } from './admin-options/admin-users/admin-users.component';
 
 
 
@@ -160,6 +161,7 @@ import { BuyNowComponent } from './buy-now/buy-now.component';
     NuevaImgSecundariaComponent,
     CardFavoriteComponent,
     BuyNowComponent,
+    AdminUsersComponent,
   ],
   imports: [
     BrowserModule,
