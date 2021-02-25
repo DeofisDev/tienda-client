@@ -81,6 +81,7 @@ import { FmEfectivoComponent } from './cart/components/checkout/checkout-redirec
 import { CheckoutCancelComponent } from './cart/components/checkout/checkout-redirect/otros/cancel/checkout-cancel.component';
 import { ProductEditComponent } from './admin-options/products-list/product-edit/product-edit.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatMenuModule } from '@angular/material/menu';
 import { SkuEditComponent } from './admin-options/products-list/product-edit/sku-edit/sku-edit.component';
 import { Step3Component } from './admin-options/add-product/step3/step3.component';
 import { WebConfigurationComponent } from './admin-options/web-configuration/web-configuration/web-configuration.component';
@@ -185,7 +186,8 @@ import { BuyNowComponent } from './buy-now/buy-now.component';
     MatIconModule,
     MatRippleModule,
     MatSnackBarModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatMenuModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true
