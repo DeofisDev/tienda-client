@@ -80,7 +80,8 @@ import { ResumenCarritoComponent } from './cart/components/checkout/resumen-carr
 import { FmEfectivoComponent } from './cart/components/checkout/checkout-redirect/efectivo/fm-efectivo.component';
 import { CheckoutCancelComponent } from './cart/components/checkout/checkout-redirect/otros/cancel/checkout-cancel.component';
 import { ProductEditComponent } from './admin-options/products-list/product-edit/product-edit.component';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatMenuModule } from '@angular/material/menu';
 import { SkuEditComponent } from './admin-options/products-list/product-edit/sku-edit/sku-edit.component';
 import { Step3Component } from './admin-options/add-product/step3/step3.component';
 import { WebConfigurationComponent } from './admin-options/web-configuration/web-configuration/web-configuration.component';
@@ -91,6 +92,10 @@ import { NuevaImgSecundariaComponent } from './admin-options/products-list/produ
 import { CardFavoriteComponent } from './user-options/favorites/card-favorite/card-favorite.component';
 import { BuyNowComponent } from './buy-now/buy-now.component';
 import { AdminUsersComponent } from './admin-options/admin-users/admin-users.component';
+import { ConvertRolPipe } from './pipes/convert-rol.pipe';
+import { AdminClientsComponent } from './admin-options/admin-clients/admin-clients.component';
+import { NgxLoadingModule } from 'ngx-loading';
+import { LoadingComponent } from './shared/components/loading/loading/loading.component';
 
 
 
@@ -162,6 +167,9 @@ import { AdminUsersComponent } from './admin-options/admin-users/admin-users.com
     CardFavoriteComponent,
     BuyNowComponent,
     AdminUsersComponent,
+    ConvertRolPipe,
+    AdminClientsComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -187,7 +195,9 @@ import { AdminUsersComponent } from './admin-options/admin-users/admin-users.com
     MatIconModule,
     MatRippleModule,
     MatSnackBarModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatMenuModule,
+    NgxLoadingModule.forRoot({})
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true

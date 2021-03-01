@@ -1,1 +1,309 @@
-<p>admin-users works!</p>
+
+
+
+<section>
+    <app-admin-sidebar></app-admin-sidebar>
+    <div class="container-miscompras">
+        <div class="frame">
+
+
+
+
+
+            <div class="container">
+
+                <div>
+                    <h2 class="titulo">Usuarios</h2>
+                </div>
+
+                <div class="row">
+                    <div class="col text-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" style="background-color: #1f4e84; border: none;"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Regsitros
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <button class="dropdown-item" type="button" (click)="openLg(regRoles)">Historial cambio de roles</button>
+                              <button class="dropdown-item" type="button" (click)="openLg(regEstados)">Historial cambio de estados</button>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+
+
+                <div class="table-responsive mt-3">
+                    <table mat-table matTableResponsive [dataSource]="data" matSort class="mat-elevation-z8" multiTemplateDataRows>
+                
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef class="headerTable text-center" mat-sort-header> ID </th>
+                            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                        </ng-container>
+                
+                        <ng-container matColumnDef="email">
+                            <th mat-header-cell *matHeaderCellDef class="headerTable text-center" mat-sort-header> Email </th>
+                            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="rol">
+                            <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Rol </th>
+                            <td mat-cell *matCellDef="let element"> {{element.rol | convertRol}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="enabled">
+                            <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Estado </th>
+                            <td mat-cell *matCellDef="let element"> {{element.enabled ? 'Activo' : 'Inactivo'}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="fechaCreacion">
+                            <th mat-header-cell *matHeaderCellDef class="headerTable text-center" mat-sort-header> Fecha creación </th>
+                            <td mat-cell *matCellDef="let element"> {{element.fechaCreacion | convertFecha}} </td>
+                        </ng-container>
+                
+                
+                     
+                        <ng-container matColumnDef="authProvider">
+                            <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Tipo registro </th>
+                            <td mat-cell *matCellDef="let element"> {{element.authProvider | titlecase}} </td>
+                        </ng-container>
+                        
+                
+                        <ng-container matColumnDef="tools">
+                            <th mat-header-cell *matHeaderCellDef class="headerTable"> </th>
+                            <td mat-cell *matCellDef="let element"> <i class="far fa-edit point" (click)="usuarioAEditar = element; crearFormEditarEstadoUsuario(); crearFormEditarRolUsuario(); open(contenido)"></i> </td>
+                        </ng-container>
+                <!-- 
+                        <ng-container matColumnDef="expandedDetail">
+                            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                                <div class="example-element-detail"
+                                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                
+                                    <div class="container-fluid jumbotron pt-3 pb-3">
+                
+                                        <h3>Propiedades: </h3>
+                                        <p *ngFor="let propiedad of element.propiedades">
+                                            {{propiedad.nombre}}: <small
+                                                *ngFor="let valor of propiedad.valores; last as isLast">{{valor.valor}}{{isLast ? '' :
+                                                ', '}} </small>
+                                        </p>
+                
+                                    </div>
+                
+                                </div>
+                            </td>
+                
+                        </ng-container> -->
+                
+                        <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true" class="text-center"></tr>
+                        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row rowCursor"
+                            [class.example-expanded-row]="expandedElement === element"
+                            (click)="expandedElement = expandedElement === element ? null : element">
+                        </tr>
+                        <!-- <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr> -->
+                        <!--  -->
+                
+                    </table>
+                
+                </div>
+                <mat-paginator style="background-color: transparent;" [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+
+
+
+
+
+
+
+                <!-- MODAL EDICION USUARIO -->
+                <ng-template #contenido let-modal>
+                    <div class="modal-header">
+                        <h1 class="mt-4">Editar usuario</h1>
+                        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                            
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="ml-1">Estado del usuario</label>
+                                    </div>
+                                </div>
+                                <div class="row" [formGroup] = "formEditarEstadoUsuario">
+                                    <div class="col offset-1">
+                                        <mat-slide-toggle formControlName="estado" (click)="cambiarEstadoUsuario()">{{formEditarEstadoUsuario.get('estado').value ? 'Activo' : 'Inactivo'}}</mat-slide-toggle>
+                                    </div>                                
+                                </div>
+
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="row">
+                                    <div class="col">
+                                        <label>Rol del usuario</label>
+                                    </div>
+                                </div>
+                                <div class="row" [formGroup] = "formEditarRolUsuario">
+                                    <div class="col">
+                                        <!-- <select formControlName = "rol" class="form-control">
+                                            <option [ngValue]="rol.nombre" *ngFor="let rol of roles">{{rol.nombre | convertRol}}</option>
+                                        </select> -->
+
+                                        <div class="input-group">
+                                            <select formControlName = "rol" class="custom-select" id="inputGroupSelect04">
+                                                <option [ngValue]="rol.nombre" *ngFor="let rol of roles">{{rol.nombre | convertRol}}</option>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" style="background-color: #1f4e84; border: none;" (click)="editarRolUsuario()">Editar</button>
+                                            </div>
+                                          </div>
+
+                                    </div>
+                                </div>
+
+                               
+
+
+                            </div>
+                        </div>
+
+                        
+                
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col text-right">
+                                <button class="btn btn-secondary" style="border: none;" (click)="modal.dismiss()">Salir</button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+
+
+                <!-- MODAL REGISTRO ROLES -->
+                <ng-template #regRoles let-modal>
+                    <div class="modal-header">
+                        <h1 class="mt-4">Registro de cambios de roles</h1>
+                        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                
+                        <div class="row mt-2">
+                            <div class="col-md-12 table-response">
+                                <table class="table table-striped">
+                                    <thead class="thead-dark">
+                                      <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Responsable</th>
+                                        <th scope="col">Usuario afectado</th>
+                                        <th scope="col">Nuevo rol</th>
+                                        <th scope="col">Fecha del cambio</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let cambio of registrosRol">
+                                        <th>{{cambio.id}}</th>
+                                        <td>{{cambio.usuarioAdmin}}</td>
+                                        <td>{{cambio.usuarioCambioRol}}</td>
+                                        <td>{{cambio.nuevoRol | convertRol}}</td>
+                                        <td>{{cambio.fechaCambio | convertFecha}}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                        
+                
+                    </div>
+
+                    <div class="modal-footer">
+                        
+                        <div class="row">
+                            <div class="col text-right">
+                                <button class="btn btn-secondary" style=" border: none;" (click)="modal.dismiss()">Salir</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </ng-template>
+
+
+                <!-- MODAL REGISTRO ESTADOS -->
+                <ng-template #regEstados let-modal>
+                    <div class="modal-header">
+                        <h1 class="mt-4">Registro de cambios de estados</h1>
+                        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                
+                        <div class="row mt-2">
+                            <div class="col-md-12 table-response">
+                                <table class="table table-striped">
+                                    <thead class="thead-dark">
+                                      <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Acción</th>
+                                        <th scope="col">Responsable</th>
+                                        <th scope="col">Usuario afectado</th>
+                                        <th scope="col">Fecha del cambio</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let cambio of registrosEstado">
+                                        <th>{{cambio.id}}</th>
+                                        <th>{{cambio.accion}}</th>
+                                        <td>{{cambio.usuarioAdmin}}</td>
+                                        <td>{{cambio.usuarioCambioHabilitacion}}</td>
+                                        <td>{{cambio.fechaCambio | convertFecha}}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                        
+                
+                    </div>
+
+                    <div class="modal-footer">
+                        
+                        <div class="row">
+                            <div class="col text-right">
+                                <button class="btn btn-secondary" style=" border: none;" (click)="modal.dismiss()">Salir</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </ng-template>
+
+
+                
+
+
+                
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+    <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', primaryColour: '#1f4e84', secondaryColour: '#1f4e84', tertiaryColour: '#1f4e84', animationType: ngxLoadingAnimationTypes.circleSwish}" ></ngx-loading> -->
+
+</section>
+
+<!-- <ngx-loading [show]="loading" [config]="{primaryColour: primaryColour, secondaryColour: secondaryColour, tertiaryColour: primaryColour, backdropBorderRadius: '3px'}"
+      [template]="loadingTemplate"></ngx-loading> -->
+
+
+<app-loading [load]="loading"></app-loading>

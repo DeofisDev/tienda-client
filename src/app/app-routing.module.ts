@@ -28,6 +28,8 @@ import { AdminPromosComponent } from './admin-options/admin-promos/admin-promos.
 import { AdminVentasComponent } from './admin-options/admin-ventas/admin-ventas.component';
 import { AdminPropiedadesComponent } from './admin-options/admin-propiedades/admin-propiedades.component';
 import { WebConfigurationComponent } from './admin-options/web-configuration/web-configuration/web-configuration.component';
+import { AdminUsersComponent } from './admin-options/admin-users/admin-users.component';
+import { AdminClientsComponent } from "./admin-options/admin-clients/admin-clients.component";
 
 const admin = 'ROLE_ADMIN';
 const user  = 'ROLE_USER';
@@ -44,11 +46,14 @@ const routes: Routes = [
   { path:"admin-profile", component:AdminProfileComponent, canActivate: [AuthGuard, RoleGuard], data: {role: admin} },
   { path:"brands-panel" , component:BrandsPanelComponent, canActivate: [AuthGuard, RoleGuard], data: {role: admin} },
   { path:"sales",component:AdminVentasComponent, canActivate: [AuthGuard, RoleGuard], data: {role: admin} },
+  { path:"sales/:cliente",component:AdminVentasComponent, canActivate: [AuthGuard, RoleGuard], data: {role: admin} },
   { path:"add-product",component:AddProductComponent, canActivate: [AuthGuard, RoleGuard], data: {role: admin} },
   { path:"products-list" , component:ProductsListComponent, canActivate: [AuthGuard, RoleGuard], data: {role: admin} },
   { path:"admin-promo", component:AdminPromosComponent/* , canActivate: [AuthGuard, RoleGuard], data: {role: admin} */ },
   { path:"admin-propiedades", component: AdminPropiedadesComponent, canActivate: [AuthGuard, RoleGuard], data: {role: admin} },
   { path:"web-configuration", component: WebConfigurationComponent, canActivate: [AuthGuard, RoleGuard], data: {role: admin} },
+  { path:"users-admin", component: AdminUsersComponent, canActivate: [AuthGuard, RoleGuard], data: {role: admin}},
+  { path:"adminClients", component: AdminClientsComponent, canActivate: [AuthGuard, RoleGuard], data: {role: admin}},
   { path:"user-sign-up",component:UserSignUpComponent },
   { path:"new-password", component:NewPasswordComponent},
   { path:"recuperar-password/:token",component:NewPasswordComponent },

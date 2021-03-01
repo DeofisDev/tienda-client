@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../log-in/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 import { VentasService } from '../ventas.service';
@@ -50,18 +50,23 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
   data = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  parametroCliente: string; //Parametro que viene desde el componentes de Administracion de Clientes.
   
   constructor( private router:Router,
                private authService: AuthService,
                private ventasServices:  VentasService,
                private modalService: NgbModal,
-               private convertFecha: ConvertFechaPipe ) { }
+               private convertFecha: ConvertFechaPipe,
+               private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
     
     
     this.obtenerVentas();
     this.updateStateVenta = new Operacion();
+    
+    
     
     
   }
@@ -90,6 +95,13 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
       
 
       this.data.sort = this.sort;
+
+      this.route.paramMap.subscribe((params: ParamMap) => {
+        this.key = params.get('cliente')
+        const filterValue = params.get('cliente')
+        this.data.filter = filterValue.trim().toLowerCase();
+        
+      });
 
       console.log(this.ventas);
     })
