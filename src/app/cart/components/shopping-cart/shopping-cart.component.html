@@ -1,7 +1,7 @@
 <div class="container-fluid" id="contai">
     <div class="row">
-        <!-- listado de productos DERECHA -->
-        <div class="col-12 col-md-7 col-lg-7 offset-lg-1 container-left">
+        <!-- listado de productos IZQUIERDA -->
+        <div class="col-12  col-lg-7 offset-lg-1 container-left">
             <div class="row">
                 <div class="col">
                     <h2>Mi carrito</h2>
@@ -16,7 +16,7 @@
                     <ul class="shopping-cart-items">
                         <li *ngFor="let item of carrito?.items">
                             <div class="row ">
-                                <div class="col-12 col-lg-6  ">
+                                <div class="col-12 col-xl-6  ">
                                     <div class="row ">
                                         <div class="col-2 col-lg-1 ">
                                             <!-- img carrito con api -->
@@ -47,7 +47,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6  ">
+                                <div class="col-12 col-xl-6  info-dos ">
                                     <div class="row ">
                                         <div class="col-4  price-u">
                                             <span>Precio:</span>
@@ -78,8 +78,8 @@
             </div>
         </div>
 
-        <!-- resumen de compra IZQUIERDA -->
-        <div class="col-12 col-md-5 col-lg-4 offset-lg-1 container-right">
+        <!-- resumen de compra DERECHA -->
+        <div class="col-12  col-lg-4 offset-lg-1 container-right">
             <div class="row  summary">
                 <h2>Resumen de compra</h2>
                 <div id="subtotal-summary"><span>Subtotal:</span> <span>€{{carrito?.total | number: '.0-2'}}</span>
@@ -91,7 +91,7 @@
                 <!-- <button [routerLink]="['/pre-checkout']">Continuar</button> -->
 
             </div>
-            <div class="row">
+            <div class="row btn-contenedor">
                 <button mat-button matStepperNext class="btn-cont" (click)="enviarInfoACheckout()"  *ngIf="estaLogueado() && carrito?.total!==0 " id="btn-cont">Continuar</button>
                 <span *ngIf="!estaLogueado() && carrito?.total!==0 "  class="msje-inicio" > <a  [routerLink]="['/pre-checkout']">Iniciar sesión</a> para continuar.</span>
             </div>

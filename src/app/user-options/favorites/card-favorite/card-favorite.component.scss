@@ -226,3 +226,33 @@ $color-wf3:#2779cd;
 .corazon{
     color: $color-menues !important;
 }
+
+@media screen and (max-width:800px) {
+  
+    .price-quatity {
+        width: 170px !important;
+        .item-price {
+            font-size: 26px;
+        }
+        .modify-quantity {
+            width: 60px;
+        }
+    }
+    .fa-heart{
+        transform: translateX(15px) !important;
+    }
+    .buttons {
+        .btn {
+            margin-left: unset;
+            font-size: 15px;
+            border: 0px;
+            padding: 1px 13px;
+            align-self: center;
+            margin-bottom: 5px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            width: 80%;
+        }
+    }
+
+}

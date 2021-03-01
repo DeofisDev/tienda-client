@@ -1,35 +1,49 @@
 <section>
     <div class="container-left">
         <h2>Confirme sus datos</h2>
-        <div id="userInfo">
-            <p class="titulo">Porfavor verifique que la información sea correcta antes de finalizar su compra</p>
-            <div class="rowData">
-            <p> Nombre : <span id="nameData"> {{infoCliente?.nombre }}  {{infoCliente?.apellido}} </span></p>
-            <p> E-mail : <span id="emailData">{{infoCliente?.email}}</span></p>
-            <p> Teléfono : <span id="cellphoneData"> {{infoCliente?.telefono}}</span></p>
-        </div>
-        <div class="rowData">
-        <p>Método de Pago: <span id="pagoData" style="text-transform: lowercase;"> {{pago?.nombre}}</span></p>
-            <p> Forma de Entrega : <span id="envioData"> {{entrega}} </span></p>
-          </div>
-            <p class="campo"  > Dirección de Envío : <span id="adressData" >
-                 {{clienteDireccion?.calle}}  {{clienteDireccion?.numeroCalle}}
-                 <span *ngIf="clienteDireccion?.piso">- Piso: {{clienteDireccion?.piso}} </span>,
-                   {{clienteDireccion?.ciudad.nombre}}, 
-                   {{clienteDireccion?.estado.nombre}} ,
-                    {{clienteDireccion?.pais.nombre}} 
-                    -  CP: {{clienteDireccion?.codigoPostal}} </span></p>
-           <!-- <p class="campo" *>Dirección de Entrega: <span> Av. Calle XXXX, Barcelona,Cataluña.</span></p> -->
-            <p class="total" *ngIf="skuComprarAhora==undefined">Total : <span> €{{carrito?.total + costoDeEnvio | number: '.0-2'}}</span></p>
-            <p class="total" *ngIf="skuComprarAhora!==undefined">Total : <span> €{{subtotal | number: '.0-2'}}</span></p>
+        <div id="userInfo" class="container">
+            <p class="titulo row">Porfavor verifique que la información sea correcta antes de finalizar su compra</p>
+            <div class="rowData row">
+                <div class="col-lg-3">
+                    <p> Nombre : <span id="nameData"> {{infoCliente?.nombre }} {{infoCliente?.apellido}} </span></p>
+                </div>
+                <div class="col-lg-6">
+                    <p> E-mail : <span id="emailData">{{infoCliente?.email}}</span></p>
+                </div>
+                <div class="col-lg-3" >
+                    <p > Teléfono : <span id="cellphoneData"> {{infoCliente?.telefono}}</span></p>
+                </div>
+            </div>
+            <div class="rowData row">
+                <div class="col-lg-6">
+                    <p>Método de Pago: <span id="pagoData" style="text-transform: lowercase;"> {{pago?.nombre}}</span></p>
+                </div>
+                <div class="col-lg-6">
+                    <p> Forma de Entrega : <span id="envioData"> {{entrega}} </span></p>
+                </div>
+            </div>
+            <p class="campo row"> Dirección de Envío : <span id="adressData">
+                    {{clienteDireccion?.calle}} {{clienteDireccion?.numeroCalle}}
+                    <span *ngIf="clienteDireccion?.piso">- Piso: {{clienteDireccion?.piso}} </span>,
+                    {{clienteDireccion?.ciudad.nombre}},
+                    {{clienteDireccion?.estado.nombre}} ,
+                    {{clienteDireccion?.pais.nombre}}
+                    - CP: {{clienteDireccion?.codigoPostal}} </span></p>
+            <!-- <p class="campo" *>Dirección de Entrega: <span> Av. Calle XXXX, Barcelona,Cataluña.</span></p> -->
+            <p class="total row" *ngIf="skuComprarAhora==undefined">Total : <span> €{{carrito?.total + costoDeEnvio |
+                    number: '.0-2'}}</span></p>
+            <p class="total row" *ngIf="skuComprarAhora!==undefined">Total : <span> €{{subtotal | number: '.0-2'}}</span>
+            </p>
 
         </div>
-       
+
     </div>
     <div class="buttons">
-    <button mat-button matStepperPrevious class="btn" id="btn-edit" (click)="cerrarComponente()">Editar</button>
-    <button  mat-button *ngIf="entrega && clienteDireccion && pago && carrito && skuComprarAhora==undefined"  class="btn" id="btn-confirm"(click)="irAPagar()">Ir a pagar</button>
-    <button  mat-button *ngIf="entrega && clienteDireccion && pago && carrito && skuComprarAhora!==undefined"  class="btn" id="btn-confirm"(click)="irAPagarYa()">Ir a pagar</button>
+        <button mat-button matStepperPrevious class="btn" id="btn-edit" (click)="cerrarComponente()">Editar</button>
+        <button mat-button *ngIf="entrega && clienteDireccion && pago && carrito && skuComprarAhora==undefined"
+            class="btn" id="btn-confirm" (click)="irAPagar()">Ir a pagar</button>
+        <button mat-button *ngIf="entrega && clienteDireccion && pago && carrito && skuComprarAhora!==undefined"
+            class="btn" id="btn-confirm" (click)="irAPagarYa()">Ir a pagar</button>
 
-</div>
+    </div>
 </section>

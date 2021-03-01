@@ -168,15 +168,15 @@ $color-ppal:#fff;
         }
      
         .contenedor-uno{
-            display: flex;
-            justify-content: space-between;
-            padding: 0px 15px 0px 15px;
-            width: 86%;
+            // display: flex;
+            // justify-content: space-between;
+            // padding: 0px 15px 0px 15px;
+            // width: 86%;
          
             .izquierda{
                 display: flex;
                 justify-content: space-around;
-                width: 50%;
+                // width: 50%;
               
                 #img-sec{
                     display: grid;
@@ -213,8 +213,7 @@ $color-ppal:#fff;
             #derecha{
                 border: none;
                 border-radius: 15px;
-                margin-left: 4vw;
-                width: 36%;
+                padding-left: 80px;
                 position: relative;
                 #caja-titulo{
                     display: flex;
@@ -506,8 +505,7 @@ $color-ppal:#fff;
                     &:focus{
                         outline: none;
                     }
-                }
-                                 
+                }                               
              
                 }
             
@@ -553,10 +551,6 @@ $color-ppal:#fff;
     #contenedor-vermas{
         section{
             .contenedor-uno{
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                width: 95%;
                 max-width: 500px;
                 #izquierda{
                     display: unset;
@@ -564,8 +558,6 @@ $color-ppal:#fff;
                     flex-direction: column-reverse;
                     justify-content: center;
                     align-items: center;
-                    width: 100%;
-                  
                     #img-sec{
                         margin-top: 0px;
                         display: flex;
@@ -573,7 +565,6 @@ $color-ppal:#fff;
                         align-items: center;
                         width: 100%;
                         max-width: 480px;
-                       
                         #img-uno{
                             background-image: url(https://www.mgmstore.com.ar/339-large_default/Samsung-Galaxy-S10-Plus-128GB.jpg);
                         
@@ -610,9 +601,7 @@ $color-ppal:#fff;
                     }
                 }
                 #derecha{
-                    margin-left: auto;
-                    margin-right: auto;
-                    width: 100%;
+                    padding-left: unset;
                     position: relative;
                     #caja-titulo{
                         display: flex;
@@ -743,10 +732,11 @@ $color-ppal:#fff;
                     }
                     }
                 button{
-                    width: 90%;
+                    width: 100%;
                     background-color: $color-menues;
-                    height: 39px;
-                    border-radius: 8px 0px 8px 8px;                 
+                    height: 34px;
+                    border-radius: 8px 8px 8px 8px;   
+                    padding: 0;              
                     }                    
             
     
@@ -758,20 +748,20 @@ $color-ppal:#fff;
     #contenedor-vermas{
         section{
             .contenedor-uno{
-                display: flex;
-                justify-content: space-between;
+                // display: flex;
+                // justify-content: space-between;
                 padding: 0px 15px 0px 15px;
-                width: 86%;
+                // width: 86%;
                 #izquierda{
                     display: flex;
-                    justify-content: space-around;
-                    width: 56%;                  
+                    justify-content: flex-start;
+                    // width: 56%;                  
                     #img-sec{
                         display: grid;
                         grid-template-columns: 1fr;
                         grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
                         align-items: center;
-                       
+                       height: 350px;
                         #img-uno{
                             background-image: url(https://d26lpennugtm8s.cloudfront.net/stores/086/894/products/img-20200518-wa00101-9587272a3a2cc19c4715898271067988-1024-1024.jpg);
                         }
@@ -793,13 +783,19 @@ $color-ppal:#fff;
                         }
                     }
                     #img-ppal{
-                        width: 45vw;
-                        height:470px; 
+                        margin-left: 0;
+                        width: 40vw;
+                        height:350px;
+                            img{
+                                width: 100%;
+                                height: 100%;
+                            }
+                       
                     }
                 }
                 #derecha{
-                    margin-left: 1vw;
-                    width: 38%;
+                    margin-left: 0;
+                    padding-left: 0px;
                     position: relative;
                     #caja-titulo{
                         display: flex;

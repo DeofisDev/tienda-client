@@ -15,101 +15,104 @@
             </div>
         </div>
        
-        <article class="contenedor-uno">
-            <div id="izquierda" class="izquierda">
-                <div id="img-sec" class="img-sec">
-                    <div id="img-uno">
-                        <img *ngIf="!infoProducto?.foto" src="assets/imagenes/noimage.png" alt="">
+        <article class="contenedor-uno container" >
+            <div class="row">
+                <div id="izquierda" class="izquierda col-sm-7">
+                    <div id="img-sec" class="img-sec">
+                        <div id="img-uno">
+                            <img *ngIf="!infoProducto?.foto" src="assets/imagenes/noimage.png" alt="">
+                            <img *ngIf="infoProducto?.foto" src="{{infoProducto?.foto.imageUrl}}" alt="">
+                        </div>
+                        <!-- <div id="img-dos">
+    
+                        </div>
+                        <div id="img-tres"></div>
+                        <div id="img-cuatro"></div>
+                        <div id="img-cinco"></div>
+                        <div id="img-seis"></div> -->
+                    </div>
+                    <div id="img-ppal" class="img-ppal">
                         <img *ngIf="infoProducto?.foto" src="{{infoProducto?.foto.imageUrl}}" alt="">
+                        <img *ngIf="!infoProducto?.foto" src="assets/imagenes/noimage.png"
+                            style="width: 350px; height: auto;" alt="">
                     </div>
-                    <!-- <div id="img-dos">
-
+                </div>
+                <div id="derecha" class="col-sm-5">
+                    <div id="caja-titulo">
+                        <h2>{{infoProducto?.nombre}}</h2>
+    
+    
                     </div>
-                    <div id="img-tres"></div>
-                    <div id="img-cuatro"></div>
-                    <div id="img-cinco"></div>
-                    <div id="img-seis"></div> -->
-                </div>
-                <div id="img-ppal" class="img-ppal">
-                    <img *ngIf="infoProducto?.foto" src="{{infoProducto?.foto.imageUrl}}" alt="">
-                    <img *ngIf="!infoProducto?.foto" src="assets/imagenes/noimage.png"
-                        style="width: 350px; height: auto;" alt="">
-                </div>
-            </div>
-            <div id="derecha">
-                <div id="caja-titulo">
-                    <h2>{{infoProducto?.nombre}}</h2>
-
-
-                </div>
-
-                <div id="caja-precio">
-                    <div>
-                        <!-- contenedor del precio sku -->
-                        <div class="precio" *ngIf="!mostrarPrecioProducto()">
-                            <h3 *ngIf="!mostrarPrecioOferta()" class="pcio-sin-oferta">€{{skuAEnviar?.precio | number:
-                                '.2'}}</h3>
-                            <h3 *ngIf="mostrarPrecioOferta() " class="pcio-oferta">€{{skuAEnviar?.promocion.precioOferta
-                                | number: '.2'}}</h3>
-                            <div *ngIf="mostrarPrecioOferta()" class="row-oferta">
-                                <span>€{{skuAEnviar?.precio | number: '.2'}} </span>
-                                <p class="off ">{{skuAEnviar.promocion?.porcentaje * 100 | number: '2.0-0'}}% 0FF</p>
+    
+                    <div id="caja-precio">
+                        <div>
+                            <!-- contenedor del precio sku -->
+                            <div class="precio" *ngIf="!mostrarPrecioProducto()">
+                                <h3 *ngIf="!mostrarPrecioOferta()" class="pcio-sin-oferta">€{{skuAEnviar?.precio | number:
+                                    '.2'}}</h3>
+                                <h3 *ngIf="mostrarPrecioOferta() " class="pcio-oferta">€{{skuAEnviar?.promocion.precioOferta
+                                    | number: '.2'}}</h3>
+                                <div *ngIf="mostrarPrecioOferta()" class="row-oferta">
+                                    <span>€{{skuAEnviar?.precio | number: '.2'}} </span>
+                                    <p class="off ">{{skuAEnviar.promocion?.porcentaje * 100 | number: '2.0-0'}}% 0FF</p>
+                                </div>
+                            </div>
+                            <!-- Fin del contenedor precio Sku  -->
+    
+                        </div>
+                        <i class="fas fa-medal" *ngIf="destacado"></i>
+                    </div>
+    
+                    <br>
+                    <!-- contenedor propiedades  -->
+                    <div class="text-center" id="cont-props"  *ngIf="tieneValores">
+                        <div class="combobox-cont" *ngFor="let propiedad of propiedadesFiltradas;let i=index ">
+                            <span>{{propiedad.nombre}}</span>
+                            <select id="color"  class="select"
+                               (change)="valoresSiguienteCombobox(i)">
+                                <option [value]="valor.valor" *ngFor="let valor of propiedad.valores">{{valor.valor}}</option>
+    
+                           </select>
+                        </div>
+                    </div>
+                    <!-- FIN contenedor propiedades  -->
+                    <div *ngIf="mostrarActualizar" class="caja-actualizar" (click)=" resetSeleccion()">
+                        <p class="actulizar"> <i class="fas fa-redo"></i> Reiniciar selección</p>
+                    </div>
+                    <div id="caja-carrito">
+                        <div class="color-quantity" id="cantidad" *ngIf="skuAEnviar">
+                            <div class="modify-quantity">
+                                <i class="fas fa-minus-circle" id="restar" (click)="restarUnidad()"></i>
+                                <span class="item-quantity"> {{cantidadSeleccionada}}</span>
+                                <i class="fas fa-plus-circle" id="sumar" (click)="sumarUnidad()"></i>
                             </div>
                         </div>
-                        <!-- Fin del contenedor precio Sku  -->
-
+                        <hr>
+                        <p>Costo de envío se informará al realizar la operación.</p>
+                        <button mat-button (click)="agregarCarrito(skuAEnviar); openSnackBar();  resetSeleccion()"
+                            class="btn" [disabled]="!skuAEnviar || skuAEnviar?.disponibilidad==0" id="btn-carrito">Agregar al
+                            Carrito</button>
+                        <button mat-button (click)="openModal(comprarAhora)" class="btn"  [disabled]="!skuAEnviar || skuAEnviar?.disponibilidad==0" 
+                            id="btn-comprar">Comprar
+                            ahora</button>
                     </div>
-                    <i class="fas fa-medal" *ngIf="destacado"></i>
-                </div>
-
-                <br>
-                <!-- contenedor propiedades  -->
-                <div class="text-center" id="cont-props"  *ngIf="tieneValores">
-                    <div class="combobox-cont" *ngFor="let propiedad of propiedadesFiltradas;let i=index ">
-                        <span>{{propiedad.nombre}}</span>
-                        <select id="color"  class="select"
-                           (change)="valoresSiguienteCombobox(i)">
-                            <option [value]="valor.valor" *ngFor="let valor of propiedad.valores">{{valor.valor}}</option>
-
-                       </select>
-                    </div>
-                </div>
-                <!-- FIN contenedor propiedades  -->
-                <div *ngIf="mostrarActualizar" class="caja-actualizar" (click)=" resetSeleccion()">
-                    <p class="actulizar"> <i class="fas fa-redo"></i> Reiniciar selección</p>
-                </div>
-                <div id="caja-carrito">
-                    <div class="color-quantity" id="cantidad" *ngIf="skuAEnviar">
-                        <div class="modify-quantity">
-                            <i class="fas fa-minus-circle" id="restar" (click)="restarUnidad()"></i>
-                            <span class="item-quantity"> {{cantidadSeleccionada}}</span>
-                            <i class="fas fa-plus-circle" id="sumar" (click)="sumarUnidad()"></i>
+                    <!--COMPRAR AHORA MODAL  -->
+                    <ng-template #comprarAhora let-modal  >   
+                        <div class="modal-header ">
+                            <h4 class="modalTitle" >
+                                Comprar Ahora</h4>
+                            <button mat-button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>        
+                        <div class="modal-body " style="display: flex; justify-content: center; align-items: center;">
+                            <app-buy-now [skuComprarAhora]="skuAEnviar" [cantidad]="cantidadSeleccionada"></app-buy-now>
                         </div>
-                    </div>
-                    <hr>
-                    <p>Costo de envío se informará al realizar la operación.</p>
-                    <button mat-button (click)="agregarCarrito(skuAEnviar); openSnackBar();  resetSeleccion()"
-                        class="btn" [disabled]="!skuAEnviar || skuAEnviar?.disponibilidad==0" id="btn-carrito">Agregar al
-                        Carrito</button>
-                    <button mat-button (click)="openModal(comprarAhora)" class="btn"  [disabled]="!skuAEnviar || skuAEnviar?.disponibilidad==0" 
-                        id="btn-comprar">Comprar
-                        ahora</button>
+                    </ng-template>
+                    <!-- FIN DE COMPRAR AHORA MODAL -->
                 </div>
-                <!--COMPRAR AHORA MODAL  -->
-                <ng-template #comprarAhora let-modal  >   
-                    <div class="modal-header ">
-                        <h4 class="modalTitle" >
-                            Comprar Ahora</h4>
-                        <button mat-button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>        
-                    <div class="modal-body " style="display: flex; justify-content: center; align-items: center;">
-                        <app-buy-now [skuComprarAhora]="skuAEnviar" [cantidad]="cantidadSeleccionada"></app-buy-now>
-                    </div>
-                </ng-template>
-                <!-- FIN DE COMPRAR AHORA MODAL -->
             </div>
+           
         </article>
         <article class="contenedor-dos">
             <div id="datos">

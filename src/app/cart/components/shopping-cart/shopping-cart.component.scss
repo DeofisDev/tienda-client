@@ -110,6 +110,8 @@ height: fit-content;
                         justify-content: space-around;
                         align-items: center;
                         width: 70%;
+                        max-width: 70px;
+                        min-width: 50px;
                         i{
                             color: $color-wf2;
                             font-size: 0.8em;
@@ -205,6 +207,7 @@ height: fit-content;
         .coupon{
             border: 2px solid $color-sec;
             border-radius: 10px;
+            
             width: 85%;
             align-self: center;
             display: flex;
@@ -218,10 +221,11 @@ height: fit-content;
             i{
                 color: $color-sec;
                 transform: rotate(-45deg);
+                margin-right: 6px;
             }
             span{
                 font-size: 13px;
-                font-weight: bolder;
+                font-weight: bolder !important;
                 color: $color-sec;
             }
             &:hover{
@@ -271,12 +275,18 @@ height: fit-content;
    height: fit-content;
    padding-bottom: 50px;
 }
-
+//// mediasq GENERALES
 @media  screen and (max-width: 767px)  {
-
+    #contai{
+        width: 100%;
+        padding: 0px;
+        
+    }
     .container-left{
-        margin-top: 20px;
+        margin-top: 10px;
         max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
            h2{
                font-size: 20px;
            }
@@ -285,16 +295,16 @@ height: fit-content;
                    li{
                        margin-top: 10px;
                        margin-bottom: 5px;
+                       width: 100%;
+                       min-width: 270px;
                        img{
                            margin-left: -7px;
                        }
                        .info{
-                       margin-left: 10px;
+                       margin-left: 19px;
                        .item-name{
-                           font-size:17px;
-                           &:hover{
-                               cursor: pointer;
-                           }
+                           font-size:16px;
+                           width: 85%;
                        }
                        }
                        .subtotal{
@@ -312,10 +322,13 @@ height: fit-content;
        }
        .container-right{
            margin-top: 25px;
-           margin-bottom: 30px;
+           margin-bottom: 0px;
            max-width: 480px;
+           margin-left: auto;
+            margin-right: auto;
            .summary{
                border-radius: 10px;
+            margin-bottom: 0px;
                h2{
                    font-size: 18x;
                    margin-top: 10px;
@@ -341,11 +354,22 @@ height: fit-content;
                }
        
            }
-           button{
-               font-size: 16px;
-               padding: 2px 25px;
-               height: 34px;
+           .btn-contenedor{
+            margin-top: -50px;
+            padding-top: 0px;
+            margin-bottom: 60px;
+            button{
+                font-size: 16px;
+                padding: 0px;
+                height: 34px;
+                min-width: 260px;
+                 position: unset;
+                 display: block;
+                 margin-left: auto;
+                 margin-right: auto;
+            }
            }
+          
        }
        
 
@@ -365,8 +389,88 @@ height: fit-content;
                        .fa-times{
                           top: -60px;
                        }
+                       .info{
+                        margin-left: -5px;
+                        .item-name{
+                            font-size:20px;
+                            &:hover{
+                                cursor: pointer;
+                            }
+                        }
+                    }
                    }
                }
            }
        }
+       .info-dos{
+           padding-left: 100px;
+       }
+       
+    .container-right{
+        margin-bottom: 20px;
+        max-width:unset;
+        .summary{
+            margin-top: 30px;
+            margin-bottom: 0px;
+        }
+        .btn-cont{
+            width: 40%;
+            position: unset;
+            margin-left: auto;
+            margin-top: 90px;
+            margin-right: auto;
+        }
+       
+    }
    }
+//// FIN mediasq GENERALES
+
+//// mediasq PUNTUALES
+ @media  screen and (max-width: 350px)  {
+    .container-left{
+        .products-list{
+            ul{
+                li{
+                    margin-left: -15px;
+                }
+            }
+        }
+    }
+    .container-right{
+        .summary{
+            min-width: 260px;
+            margin-left: -20px;
+        }
+    }
+    
+    }
+@media  screen and (min-width: 992px) and (max-width: 1199px)  {
+    .container-left{
+           .products-list{
+               ul{ 
+                   li{
+                       
+                       .fa-times{
+                        top: -60px;
+                        }
+                    }
+                }
+            }
+    }
+    .info-dos{
+        padding-left: 80px;
+    }
+    
+}
+@media  screen and (min-width: 450px) and (max-width: 990px)  {
+    .container-right{
+        .summary{
+            .coupon{
+                max-width: 300px;
+                 align-self: flex-end;
+            }
+        }
+    }
+    
+}
+//// FIN mediasq PUNTUALES

@@ -117,6 +117,7 @@ modalInicio:boolean;
       this.modalInicio=resp;
        
      })
+    
   }
 
   cantidad(){
@@ -211,6 +212,7 @@ modalInicio:boolean;
      let idDefaultSku=this.infoProducto.defaultSku.id;
      this.productoService.getSku(this.infoProducto.id, idDefaultSku).subscribe( response => {
       this.skuAEnviar=response;   
+      this.cantidad();
     })
 
     }
@@ -336,8 +338,7 @@ modalInicio:boolean;
             this.productoService.getSku(this.infoProducto.id, this.idSkuAEnviar).subscribe( response => {
             this.skuAEnviar=response;  
             console.log(this.skuAEnviar)  
-            this.cantidad();
-                  
+            this.cantidad();                  
             })
             break;
          }      

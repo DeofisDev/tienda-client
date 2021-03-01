@@ -19,8 +19,8 @@ $color-ppal:#fff;
     font-family: $fte-sec;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    min-width:350px;
+    width: 100% ;
+    // min-width: 290px;
     margin-top: 1px;
     h2{
         font-family: $fte-ppal;
@@ -116,6 +116,7 @@ $color-ppal:#fff;
         i{
             color: $color-sec;
             transform: rotate(-45deg);
+            margin-right: 6px;
         }
         span{
             font-size: 13px;
@@ -155,5 +156,36 @@ button{
     &:hover{
         cursor: pointer;
         background-color: $color-wf2;
+    }
+}
+@media  screen and (min-width: 580px)and (max-width: 991px)  {
+  .summary{
+    .coupon{
+        max-width: 300px;
+        align-self: flex-end;
+       } 
+  }
+   
+
+}
+@media  screen and (max-width: 400px) {
+    .summary{
+        .cont-detalle-compra{
+            .detalle-compra{
+                .cant-nombre{
+                    .ppal{
+                        img{
+                            margin-right: 10px;
+                        }
+                        span{
+                            line-height: 12px;
+                        }
+                    }
+                    .info{
+                        margin-top: -5px;
+                    }
+                }
+            }
+        }    
     }
 }
