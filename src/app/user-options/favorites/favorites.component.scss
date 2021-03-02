@@ -44,7 +44,7 @@ section {
     }
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:1000px) {
 section{
     grid-template-columns: 1fr;
     margin-top: 0px;
@@ -53,4 +53,36 @@ section{
 app-user-sidebar{
     display: none;
 }
+}
+@media screen and (max-width:730px) {
+    section{
+        .container-favorites {
+            .frame{
+                width: 100%;
+                .title{
+                    h2{
+                        padding-left: 15px;
+                    }
+                }
+                .favorites-list {
+                    ul {
+                        width: 100%;
+                        display: flex ;
+                        flex-direction: column ;
+                        justify-content: center ;
+                        align-items: center ;
+                       
+                    }
+                }
+            }
+        }
+
+    }
+}
+@media screen and (min-width:630px) and (max-width:730px){
+  
+    ul{
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+    }
 }

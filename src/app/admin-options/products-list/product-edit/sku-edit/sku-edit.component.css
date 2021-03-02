@@ -1,0 +1,21 @@
+.point {
+  cursor: pointer;
+}
+
+.point:hover {
+  font-size: 1.2em;
+  color: #1f4e84;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+/*# sourceMappingURL=sku-edit.component.css.map */

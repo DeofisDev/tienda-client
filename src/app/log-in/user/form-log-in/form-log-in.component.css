@@ -1,19 +1,9 @@
-div {
-  height: 100%;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.container {
+  padding-right: 10vw;
+  padding-left: 10vw;
 }
 
-div .contenedor-form {
+.container .contenedor-form {
   padding-top: 20px;
   padding-bottom: 30px;
   background-color: #f6f2f2;
@@ -28,18 +18,31 @@ div .contenedor-form {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 30vw;
-  min-width: 290px;
   -webkit-box-shadow: 2px 4px 10px grey;
           box-shadow: 2px 4px 10px grey;
+  min-width: 390px;
 }
 
-div .contenedor-form .campos-inicio-s {
-  width: 80%;
+.container .contenedor-form .fa-times {
+  color: #575353;
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  z-index: 5;
+}
+
+.container .contenedor-form .fa-times:hover {
+  color: #222121;
+}
+
+.container .contenedor-form .campos-inicio-s {
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 10px;
+  width: 90%;
 }
 
-div .contenedor-form .campos-inicio-s h2 {
+.container .contenedor-form .campos-inicio-s h2 {
   font-family: "Open Sans", sans-serif;
   font-size: 23px;
   color: #575353;
@@ -51,22 +54,12 @@ div .contenedor-form .campos-inicio-s h2 {
   padding-bottom: 5px;
 }
 
-div .contenedor-form .campos-inicio-s .row1 {
+.container .contenedor-form .campos-inicio-s .row1 {
   height: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
   margin-bottom: 20px;
 }
 
-div .contenedor-form .campos-inicio-s .row1 .campo1 {
+.container .contenedor-form .campos-inicio-s .row1 .campo1 {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -80,7 +73,7 @@ div .contenedor-form .campos-inicio-s .row1 .campo1 {
   position: relative;
 }
 
-div .contenedor-form .campos-inicio-s .row1 .campo1 #username {
+.container .contenedor-form .campos-inicio-s .row1 .campo1 #username {
   margin-top: 7px;
   height: 44px;
   width: 100%;
@@ -91,24 +84,24 @@ div .contenedor-form .campos-inicio-s .row1 .campo1 #username {
           box-sizing: border-box;
 }
 
-div .contenedor-form .campos-inicio-s .row1 .campo1 #username:focus {
+.container .contenedor-form .campos-inicio-s .row1 .campo1 #username:focus {
   outline: none;
   border: 1px solid #b4aaaa;
 }
 
-div .contenedor-form .campos-inicio-s .row1 .campo1 #username:focus ~ i {
+.container .contenedor-form .campos-inicio-s .row1 .campo1 #username:focus ~ i {
   color: #222121;
 }
 
-div .contenedor-form .campos-inicio-s .row1 .campo1 #username.is-invalid {
+.container .contenedor-form .campos-inicio-s .row1 .campo1 #username.is-invalid {
   border: 1px solid #fc3e3e;
 }
 
-div .contenedor-form .campos-inicio-s .row1 .campo1 #username.is-invalid ~ i {
+.container .contenedor-form .campos-inicio-s .row1 .campo1 #username.is-invalid ~ i {
   color: #960909;
 }
 
-div .contenedor-form .campos-inicio-s .row1 .campo1 #icono-user {
+.container .contenedor-form .campos-inicio-s .row1 .campo1 #icono-user {
   position: absolute;
   padding: 13px;
   font-size: 1.1em;
@@ -117,7 +110,7 @@ div .contenedor-form .campos-inicio-s .row1 .campo1 #icono-user {
   left: 0;
 }
 
-div .contenedor-form .campos-inicio-s .row1 .text-rojo-uno {
+.container .contenedor-form .campos-inicio-s .row1 .text-rojo-uno {
   font-family: "Open Sans", sans-serif;
   color: red;
   text-align: right;
@@ -125,7 +118,7 @@ div .contenedor-form .campos-inicio-s .row1 .text-rojo-uno {
   font-size: 12px;
 }
 
-div .contenedor-form .campos-inicio-s .row2 {
+.container .contenedor-form .campos-inicio-s .row2 {
   height: 60px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -140,7 +133,7 @@ div .contenedor-form .campos-inicio-s .row2 {
   margin-bottom: 20px;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .campo2 {
+.container .contenedor-form .campos-inicio-s .row2 .campo2 {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -154,7 +147,7 @@ div .contenedor-form .campos-inicio-s .row2 .campo2 {
   position: relative;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .campo2 #password {
+.container .contenedor-form .campos-inicio-s .row2 .campo2 #password {
   height: 44px;
   width: 100%;
   font-family: "Open Sans", sans-serif;
@@ -164,48 +157,48 @@ div .contenedor-form .campos-inicio-s .row2 .campo2 #password {
           box-sizing: border-box;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .campo2 #password:focus {
+.container .contenedor-form .campos-inicio-s .row2 .campo2 #password:focus {
   outline: none;
   border: 1px solid #b4aaaa;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .campo2 #password:focus ~ .fa-lock {
+.container .contenedor-form .campos-inicio-s .row2 .campo2 #password:focus ~ .fa-lock {
   color: #222121;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .campo2 #password.is-invalid {
+.container .contenedor-form .campos-inicio-s .row2 .campo2 #password.is-invalid {
   border: 1px solid #fc3e3e;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .campo2 #password.is-invalid ~ i {
+.container .contenedor-form .campos-inicio-s .row2 .campo2 #password.is-invalid ~ i {
   color: #960909;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .campo2 i {
+.container .contenedor-form .campos-inicio-s .row2 .campo2 i {
   position: absolute;
   padding: 13px;
   font-size: 1.1em;
   color: #aca5a5;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .campo2 .fa-eye,
-div .contenedor-form .campos-inicio-s .row2 .campo2 .fa-eye-slash {
+.container .contenedor-form .campos-inicio-s .row2 .campo2 .fa-eye,
+.container .contenedor-form .campos-inicio-s .row2 .campo2 .fa-eye-slash {
   margin-left: 86%;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .campo2 .fa-eye-slash {
+.container .contenedor-form .campos-inicio-s .row2 .campo2 .fa-eye-slash {
   visibility: hidden;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .campo2 .fa-lock {
+.container .contenedor-form .campos-inicio-s .row2 .campo2 .fa-lock {
   left: 0;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .campo2 .fa-lock.is-invalid {
+.container .contenedor-form .campos-inicio-s .row2 .campo2 .fa-lock.is-invalid {
   border: 1px solid red;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .row-mssg {
+.container .contenedor-form .campos-inicio-s .row2 .row-mssg {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -214,7 +207,7 @@ div .contenedor-form .campos-inicio-s .row2 .row-mssg {
   height: 20px;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .row-mssg .recuperar {
+.container .contenedor-form .campos-inicio-s .row2 .row-mssg .recuperar {
   text-align: left;
   font-family: "Open Sans", sans-serif;
   color: #222121;
@@ -222,11 +215,11 @@ div .contenedor-form .campos-inicio-s .row2 .row-mssg .recuperar {
   margin-bottom: 0px;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .row-mssg .recuperar:hover {
+.container .contenedor-form .campos-inicio-s .row2 .row-mssg .recuperar:hover {
   cursor: pointer;
 }
 
-div .contenedor-form .campos-inicio-s .row2 .row-mssg .text-rojo-two {
+.container .contenedor-form .campos-inicio-s .row2 .row-mssg .text-rojo-two {
   font-family: "Open Sans", sans-serif;
   color: red;
   text-align: right;
@@ -234,8 +227,10 @@ div .contenedor-form .campos-inicio-s .row2 .row-mssg .text-rojo-two {
   font-size: 12px;
 }
 
-div .contenedor-form .campos-inicio-s .buttons .boton {
-  width: 100%;
+.container .contenedor-form .campos-inicio-s .buttons .boton {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
   height: 40px;
   padding-top: 3px;
   padding-bottom: 3px;
@@ -251,13 +246,13 @@ div .contenedor-form .campos-inicio-s .buttons .boton {
   outline: none;
 }
 
-div .contenedor-form .campos-inicio-s .buttons .boton:hover {
+.container .contenedor-form .campos-inicio-s .buttons .boton:hover {
   -webkit-box-shadow: 1px 2px 2px gray;
           box-shadow: 1px 2px 2px gray;
   background-color: #1f4e84;
 }
 
-div .contenedor-form .separacion {
+.container .contenedor-form .separacion {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -271,54 +266,45 @@ div .contenedor-form .separacion {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-left: auto;
+  margin-right: auto;
   width: 80%;
 }
 
-div .contenedor-form .separacion p {
+.container .contenedor-form .separacion p {
   margin-bottom: 0px;
   display: block;
   color: #222121;
   font-size: 17px;
 }
 
-div .contenedor-form .separacion span {
+.container .contenedor-form .separacion span {
   display: block;
   border-bottom: 1px solid #575353;
   width: 42%;
 }
 
-div .contenedor-form .social-media {
+.container .contenedor-form .social-media {
   width: 80%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  margin-left: auto;
+  margin-right: auto;
   height: 95px;
   margin-top: 15px;
 }
 
-div .contenedor-form .social-media button {
+.container .contenedor-form .social-media button {
   width: 100%;
   height: 40px;
   border: none;
   outline: none;
 }
 
-div .contenedor-form .social-media button:hover {
+.container .contenedor-form .social-media button:hover {
   -webkit-box-shadow: 1px 2px 2px gray;
           box-shadow: 1px 2px 2px gray;
 }
 
-div .contenedor-form .social-media button a {
+.container .contenedor-form .social-media button a {
   text-decoration: none;
   color: white;
   font-family: "Open Sans", sans-serif;
@@ -327,58 +313,77 @@ div .contenedor-form .social-media button a {
   width: 100%;
 }
 
-div .contenedor-form .social-media button a i {
+.container .contenedor-form .social-media button a i {
   margin-right: 10px;
 }
 
-div .contenedor-form .social-media .btn1 {
+.container .contenedor-form .social-media .btn1 {
   background-color: #3b5998;
   margin-bottom: 5px;
 }
 
-div .contenedor-form .social-media .btn2 {
+.container .contenedor-form .social-media .btn2 {
   background-color: #db4a39;
 }
 
-div .contenedor-form #contenedor-forgot-psw {
-  width: 80%;
+.container .contenedor-form #contenedor-forgot-psw {
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 10px;
+  width: 85%;
+  min-width: 400px;
   display: none;
   position: relative;
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 
-div .contenedor-form #contenedor-forgot-psw .titulo h2 {
-  font-family: "Poppins", sans-serif;
-  text-transform: uppercase;
-  font-size: 23px;
+.container .contenedor-form #contenedor-forgot-psw form {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.titulo {
+  padding-bottom: 0;
+  margin-top: -10px;
+}
+
+.titulo h2 {
+  border-bottom: 1px solid grey;
+  font-family: "Open Sans", sans-serif;
+  font-size: 22px;
   color: #575353;
   display: block;
-  border-bottom: 1px solid grey;
   width: 100%;
   padding-bottom: 5px;
 }
 
-div .contenedor-form #contenedor-forgot-psw .titulo .fa-arrow-circle-left {
+.titulo .fa-arrow-circle-left {
   font-size: 1.3em;
   color: #222121;
   margin-right: 8px;
   outline: none;
   position: absolute;
-  top: 4px;
-  left: -3vw;
+  top: 10px;
+  left: -1.7vw;
 }
 
-div .contenedor-form #contenedor-forgot-psw p {
-  font-family: "Open Sans", sans-serif;
-  color: #222121;
-  margin-bottom: -15px;
+.texto {
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-div .contenedor-form #contenedor-forgot-psw .caja {
-  margin-bottom: 15px;
+.caja {
+  margin-bottom: 25px;
+  margin-top: -15px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
 }
 
-div .contenedor-form #contenedor-forgot-psw .caja .campo {
+.caja .campo {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -390,11 +395,11 @@ div .contenedor-form #contenedor-forgot-psw .caja .campo {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
-  margin-top: 18px;
+  margin-top: -8px;
   height: 60px;
 }
 
-div .contenedor-form #contenedor-forgot-psw .caja .campo i {
+.caja .campo i {
   position: absolute;
   padding: 13px;
   font-size: 1.1em;
@@ -403,11 +408,11 @@ div .contenedor-form #contenedor-forgot-psw .caja .campo i {
   top: 15px;
 }
 
-div .contenedor-form #contenedor-forgot-psw .caja .campo .fa-user {
+.caja .campo .fa-user {
   top: 7.1px;
 }
 
-div .contenedor-form #contenedor-forgot-psw .caja .campo #emailPsw {
+.caja .campo #emailPsw {
   margin-top: 16px;
   height: 44px;
   width: 100%;
@@ -418,279 +423,194 @@ div .contenedor-form #contenedor-forgot-psw .caja .campo #emailPsw {
           box-sizing: border-box;
 }
 
-div .contenedor-form #contenedor-forgot-psw .caja .campo #emailPsw:focus {
+.caja .campo #emailPsw:focus {
   outline: none;
   border: 1px solid #b4aaaa;
 }
 
-div .contenedor-form #contenedor-forgot-psw .caja .campo #emailPsw:focus ~ i {
+.caja .campo #emailPsw:focus ~ i {
   color: #222121;
 }
 
-div .contenedor-form #contenedor-forgot-psw .caja .campo #emailPsw:focus ~ .fa-lock {
+.caja .campo #emailPsw:focus ~ .fa-lock {
   color: #222121;
 }
 
-div .contenedor-form #contenedor-forgot-psw .caja .campo #emailPsw.is-invalid {
+.caja .campo #emailPsw.is-invalid {
   border: 1px solid #fc3e3e;
 }
 
-div .contenedor-form #contenedor-forgot-psw .caja .campo #emailPsw.is-invalid ~ i {
+.caja .campo #emailPsw.is-invalid ~ i {
   color: #960909;
 }
 
-div .contenedor-form #contenedor-forgot-psw .caja .text-rojo {
-  -ms-flex-item-align: end;
-      align-self: flex-end;
+.caja .text-rojo {
   font-family: "Open Sans", sans-serif;
   color: red;
-  text-align: right;
-  margin-bottom: 0;
   font-size: 16px;
+  position: absolute;
+  right: 0;
+  bottom: -20px;
 }
 
-div .contenedor-form #contenedor-forgot-psw .boton {
+.btn-enviar {
+  width: 100%;
+  margin: 0px auto -15px auto;
+}
+
+.btn-enviar #btn-recover-psw {
   width: 100%;
   padding-top: 3px;
   padding-bottom: 3px;
   background-color: #223e66;
   color: white;
-  font-family: "Poppins", sans-serif;
-  text-transform: uppercase;
-  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 17px;
   border: none;
-  margin-bottom: 5px;
-  margin-top: 5px;
+  height: 44px;
   outline: none;
 }
 
-div .contenedor-form #contenedor-forgot-psw .boton:hover {
-  -webkit-box-shadow: 1px 2px 2px gray;
-          box-shadow: 1px 2px 2px gray;
+.btn-enviar #btn-recover-psw:hover {
   background-color: #1f4e84;
 }
 
-@media screen and (max-width: 900px) {
-  div .contenedor-form {
-    padding-top: 15px;
-    padding-bottom: 20px;
-    border-radius: 10px;
-    margin-top: 10px;
-  }
-  div .contenedor-form .campos-inicio-s {
-    width: 85%;
-    margin-bottom: 10px;
-  }
-  div .contenedor-form .campos-inicio-s .row1 {
-    height: 50px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: end;
-        -ms-flex-align: end;
-            align-items: flex-end;
-    margin-bottom: 7px;
-  }
-  div .contenedor-form .campos-inicio-s .row1 .campo1 #username {
-    margin-top: 3px;
-    height: 36px;
-  }
-  div .contenedor-form .campos-inicio-s .row1 .campo1 #icono-user {
-    position: absolute;
-    padding: 13px;
-    font-size: 1.1em;
-    color: #aca5a5;
-    top: 0px;
-    left: 0;
-  }
-  div .contenedor-form .campos-inicio-s .row2 {
-    height: 60px;
-    margin-bottom: 14px;
-  }
-  div .contenedor-form .campos-inicio-s .row2 .campo2 #password {
-    height: 36px;
-  }
-  div .contenedor-form .campos-inicio-s .row2 .campo2 .fa-eye,
-  div .contenedor-form .campos-inicio-s .row2 .campo2 .fa-eye-slash {
-    margin-left: 86%;
-    margin-top: -3px;
-  }
-  div .contenedor-form .campos-inicio-s .row2 .campo2 .fa-lock {
-    top: -3px;
-  }
-  div .contenedor-form .campos-inicio-s .buttons .boton {
-    font-size: 15px;
-    margin-top: 0px;
-  }
-  div .contenedor-form .separacion {
-    margin-top: -15px;
-    margin-bottom: -10px;
-  }
-  div .contenedor-form .social-media {
-    width: 80%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    height: 95px;
+@media screen and (max-width: 720px) {
+  .container {
     margin-top: 15px;
   }
-  div .contenedor-form .social-media button {
-    height: 34px;
+  .container .contenedor-form .campos-inicio-s {
+    width: 100%;
   }
-  div .contenedor-form .social-media button a {
-    font-size: 14px;
-  }
-  div .contenedor-form .social-media .btn1 {
-    background-color: #3b5998;
-    margin-bottom: 5px;
-  }
-  div .contenedor-form .social-media .btn2 {
-    background-color: #db4a39;
-  }
-  div .contenedor-form #contenedor-forgot-psw {
-    width: 80%;
-    margin-bottom: 10px;
-    display: none;
-  }
-  div .contenedor-form #contenedor-forgot-psw .titulo {
-    border-bottom: 1px solid grey;
-    padding-bottom: 2px;
-  }
-  div .contenedor-form #contenedor-forgot-psw .titulo h2 {
-    font-family: "Poppins", sans-serif;
-    text-transform: uppercase;
+  .container .contenedor-form .campos-inicio-s h2 {
     font-size: 20px;
-    color: #575353;
-    display: block;
-    border-bottom: none;
-    width: 100%;
-    padding-bottom: 0px;
-    position: relative;
-    top: 0px;
-    left: 35px;
-    margin-bottom: -8px;
   }
-  div .contenedor-form #contenedor-forgot-psw .titulo .fa-arrow-circle-left {
-    font-size: 1.3em;
-    color: #222121;
-    margin-right: 8px;
-    outline: none;
-    position: absolute;
-    top: 6px;
-    left: 0px;
+  .container .contenedor-form .campos-inicio-s .row1 .campo1 #username {
+    margin-top: -3px;
+    height: 40px;
   }
-  div .contenedor-form #contenedor-forgot-psw p {
-    display: block;
-    -webkit-transform: translateY(10px);
-            transform: translateY(10px);
-    font-size: 14px;
+  .container .contenedor-form .campos-inicio-s .row1 .campo1 #icono-user {
+    top: -3px;
   }
-  div .contenedor-form #contenedor-forgot-psw .caja {
-    margin-bottom: 15px;
+  .container .contenedor-form .campos-inicio-s .row1 .text-rojo-uno {
+    font-size: 11px;
   }
-  div .contenedor-form #contenedor-forgot-psw .caja .campo {
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    position: relative;
-    margin-top: 18px;
-    height: 60px;
+  .container .contenedor-form .campos-inicio-s .row2 {
+    margin-bottom: -4px;
   }
-  div .contenedor-form #contenedor-forgot-psw .caja .campo i {
-    top: 13px;
+  .container .contenedor-form .campos-inicio-s .row2 .campo2 {
+    margin-top: -20px;
   }
-  div .contenedor-form #contenedor-forgot-psw .caja .campo #emailPsw {
-    margin-top: 16px;
-    height: 37px;
+  .container .contenedor-form .campos-inicio-s .row2 .campo2 #password {
+    height: 40px;
   }
-}
-
-@media screen and (max-width: 1100px) {
-  div .contenedor-form .campos-inicio-s {
-    width: 85%;
-    margin-bottom: 10px;
+  .container .contenedor-form .campos-inicio-s .row2 .campo2 .fa-eye,
+  .container .contenedor-form .campos-inicio-s .row2 .campo2 .fa-eye-slash {
+    margin-left: 82%;
   }
-  div .contenedor-form .campos-inicio-s h2 {
-    font-size: 18px;
+  .container .contenedor-form .campos-inicio-s .row2 .row-mssg {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
   }
-  div #contenedor-forgot-psw {
-    width: 80%;
-    margin-bottom: 10px;
-    display: none;
+  .container .contenedor-form .campos-inicio-s .row2 .row-mssg .recuperar {
+    font-size: 11px;
+    margin-bottom: 0px;
+    text-align: right;
   }
-  div #contenedor-forgot-psw h2 {
-    font-size: 21px;
-    -webkit-box-align: baseline;
-        -ms-flex-align: baseline;
-            align-items: baseline;
+  .container .contenedor-form .campos-inicio-s .row2 .row-mssg .text-rojo-two {
+    font-size: 11px;
   }
-  div #contenedor-forgot-psw p {
+  .container .contenedor-form .campos-inicio-s .buttons .boton {
+    padding-top: 0px;
+    height: 35px;
+    font-size: 15px;
+  }
+  .container .contenedor-form .separacion {
+    width: 90%;
+  }
+  .container .contenedor-form .separacion p {
     font-size: 16px;
   }
-  div #contenedor-forgot-psw .caja {
+  .container .contenedor-form .separacion span {
+    width: 40%;
+  }
+  .container .contenedor-form .social-media {
+    width: 90%;
+    height: 95px;
+  }
+  .container .contenedor-form .social-media button {
+    height: 35px;
+    font-size: 15px;
+  }
+  .container .contenedor-form .social-media .btn1 {
+    background-color: #3b5998;
+    margin-bottom: 0px;
+  }
+  .container .contenedor-form .social-media .btn2 {
+    background-color: #db4a39;
+    margin-top: -13px;
+  }
+  .container .contenedor-form #contenedor-forgot-psw {
+    min-width: 300px;
+    margin-bottom: 10px;
+    width: 95%;
+  }
+  .container .contenedor-form #contenedor-forgot-psw form {
+    width: 90%;
+  }
+  .container .contenedor-form #contenedor-forgot-psw form .titulo h2 {
+    font-size: 20px;
+  }
+  .container .contenedor-form #contenedor-forgot-psw form .titulo .fa-arrow-circle-left {
+    font-size: 1.1em;
+    top: 10px;
+    left: -8px;
+  }
+  .container .contenedor-form #contenedor-forgot-psw form .caja {
     margin-bottom: 15px;
   }
-  div #contenedor-forgot-psw .caja .campo {
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    position: relative;
-    margin-top: 18px;
+  .container .contenedor-form #contenedor-forgot-psw form .caja .campo {
+    margin-top: -18px;
     height: 60px;
   }
-  div #contenedor-forgot-psw .caja .campo i {
-    top: 13px;
-  }
-  div #contenedor-forgot-psw .caja .campo #emailPsw {
+  .container .contenedor-form #contenedor-forgot-psw form .caja .campo #emailPsw {
     margin-top: 16px;
     height: 37px;
   }
+  .container .contenedor-form #contenedor-forgot-psw form .caja .text-rojo {
+    font-size: 11px;
+  }
+  .btn-enviar #btn-recover-psw {
+    font-size: 16px;
+    height: 36px;
+  }
 }
 
-@media screen and (max-width: 1250px) {
-  div .contenedor-form .campos-inicio-s .row2 .row-mssg {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
-    -webkit-box-align: end;
-        -ms-flex-align: end;
-            align-items: flex-end;
-    -ms-grid-columns: unset;
-        grid-template-columns: unset;
-    width: 100%;
-    height: 40px;
+@media screen and (max-width: 1050px) {
+  .titulo h2 {
+    font-size: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .titulo .fa-arrow-circle-left {
+    font-size: 1.1em;
+    top: 10px;
+    left: -2vw;
+  }
+  .texto {
+    margin-top: -5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .caja .text-rojo {
+    font-family: "Open Sans", sans-serif;
+    color: red;
+    position: absolute;
+    right: 0;
+    bottom: -10px;
   }
 }
 /*# sourceMappingURL=form-log-in.component.css.map */

@@ -1,0 +1,14 @@
+thead tr th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  /* background-color: #1f4e84; */
+}
+
+.table-responsive {
+  height: 420px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+/*# sourceMappingURL=promo-producto.component.css.map */

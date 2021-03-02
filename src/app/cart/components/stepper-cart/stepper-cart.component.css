@@ -1,0 +1,29 @@
+#bg {
+  position: relative;
+  background-color: #f8f7f7;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: 87vh;
+}
+
+.cont-botones {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 28%;
+  position: absolute;
+  bottom: 50px;
+  right: 45px;
+}
+/*# sourceMappingURL=stepper-cart.component.css.map */

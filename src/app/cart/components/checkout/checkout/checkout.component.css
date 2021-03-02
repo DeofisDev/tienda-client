@@ -1,34 +1,44 @@
-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  min-height: 90vh;
-  width: 85%;
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+          appearance: none;
+}
+
+#contai {
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 20px;
-  padding-bottom: 30px;
+}
+
+.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .location .country, .container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .location .state, .container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .location .city, .container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .calle-nro .calle #calle, .container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .calle-nro .piso #piso, .container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .calle-nro .nro #nro, .container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .calle-nro .cp #cp {
+  margin-top: 7px;
+  margin-bottom: 15px;
+  height: 35px;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  padding-left: 5px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid grey;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .location .country:focus, .container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .location .state:focus, .container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .location .city:focus, .container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .calle-nro .calle #calle:focus, .container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .calle-nro .piso #piso:focus, .container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .calle-nro .nro #nro:focus, .container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .calle-nro .cp #cp:focus {
+  outline: none;
+  border-bottom: 2px solid #2779cd;
 }
 
 .container-left {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border-radius: 20px;
-  width: 65%;
-  padding: 30px 30px 60px 0px;
+  margin-left: 0px;
 }
 
 .container-left h2 {
   font-family: "Poppins", sans-serif;
-  margin-top: 0px;
+  margin-top: 15px;
   display: block;
   font-size: 21px;
   border-bottom: 1px solid #bebbbb;
@@ -39,72 +49,71 @@ section {
           box-sizing: border-box;
   border-radius: 15px;
   background-color: #fff;
-  margin-top: -10px;
-  -webkit-box-shadow: 1px 2px 4px rgba(170, 168, 168, 0.513);
-          box-shadow: 1px 2px 4px rgba(170, 168, 168, 0.513);
+  margin-top: 10px;
+  padding: 10px 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .container-left form .deliveryMethod {
-  margin-top: 30px;
-  padding-top: 15px;
+  margin-top: 15px;
 }
 
-.container-left form .deliveryMethod fieldset legend {
+.container-left form .deliveryMethod .subtitulo {
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
-  padding-left: 20px;
-  padding-right: 20px;
+  color: #575353;
 }
 
-.container-left form .deliveryMethod fieldset .box {
+.container-left form .deliveryMethod .box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  width: 100%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.container-left form .deliveryMethod fieldset .deliver {
-  width: 28%;
-  padding-left: 40px;
-  margin-top: 20px;
+.container-left form .deliveryMethod .box :first-of-type {
+  margin-bottom: 20px;
 }
 
-.container-left form .deliveryMethod fieldset .deliver label {
-  font-size: 16px;
-  font-family: "Open Sans", sans-serif;
+.container-left form .deliveryMethod .deliver input {
+  margin-right: 12px;
 }
 
-.container-left form .deliveryMethod fieldset .deliver i {
+.container-left form .deliveryMethod .deliver i {
   color: #575353;
   font-size: 2em;
-  margin-right: -20px;
+  display: block;
+  margin-right: 20px;
 }
 
-.container-left form .deliveryMethod fieldset .deliver .options {
+.container-left form .deliveryMethod .deliver .options {
   font-size: 15px;
+  font-family: "Open Sans", sans-serif;
 }
 
-.container-left form .deliveryMethod fieldset .deliveryAdress {
+.container-left form .deliveryMethod .deliveryAdress {
   border-top: 1px solid grey;
   padding-top: 10px;
-  margin-top: 20px;
+  margin-top: -15px;
   font-family: "Open Sans", sans-serif;
-  width: 90%;
+  width: 97%;
   margin-left: auto;
   margin-right: auto;
-  display: none;
 }
 
-.container-left form .deliveryMethod fieldset .deliveryAdress p {
-  font-size: 14px;
-}
-
-.container-left form .deliveryMethod fieldset .deliveryAdress .inputAdress {
+.container-left form .deliveryMethod .deliveryAdress .direccion-perfil {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -114,67 +123,130 @@ section {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 7px;
+  width: 87%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
 }
 
-.container-left form .deliveryMethod fieldset .deliveryAdress .inputAdress #deliveryAdress {
-  width: 40%;
-}
-
-.container-left form .deliveryMethod fieldset .deliveryAdress .inputAdress #number {
-  width: 9%;
-}
-
-.container-left form .deliveryMethod fieldset .deliveryAdress .inputAdress #dto {
-  width: 9%;
-}
-
-.container-left form .deliveryMethod fieldset .deliveryAdress .inputAdress #CP {
-  width: 10%;
-}
-
-.container-left form .deliveryMethod fieldset .deliveryAdress .inputAdress input {
-  border: 1px solid #575353;
+.container-left form .deliveryMethod .deliveryAdress .direccion-perfil span {
+  color: grey;
+  display: block;
   font-family: "Open Sans", sans-serif;
-  padding: 2px 10px;
-  width: 60%;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid grey;
+  font-size: 13px;
+  text-transform: capitalize;
 }
 
-.container-left form .deliveryMethod fieldset .deliveryAdress .inputAdress input:focus {
-  border-bottom: 2px solid #2779cd;
-}
-
-.container-left form .deliveryMethod fieldset .pick-up {
-  width: 47%;
-  margin-top: 30px;
-  padding-left: 40px;
-}
-
-.container-left form .deliveryMethod fieldset .pick-up label {
+.container-left form .deliveryMethod .deliveryAdress .direccion-perfil span .fa-edit {
+  color: #575353;
+  cursor: pointer;
   font-size: 16px;
-  font-family: "Open Sans", sans-serif;
 }
 
-.container-left form .deliveryMethod fieldset .pick-up i {
+.container-left form .deliveryMethod .deliveryAdress .direccion-perfil span .fa-edit:hover {
+  font-size: 17px;
+  color: #2779cd;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .location .country.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .location .state.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .location .city.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .calle-nro .calle #calle.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .calle-nro .nro #nro.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .calle-nro .cp #cp.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .btn-span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .btn-span .btn {
+  background-color: #223e66;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  width: 83px;
+  font-size: 13px;
+  display: block;
+  padding: 1px;
+  padding-right: 3px;
+  padding-left: 3px;
+  position: absolute;
+  right: 10px;
+  bottom: -23px;
+  border-radius: 10px;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .btn-span .btn:hover {
+  background-color: #1f4e84;
+  cursor: pointer;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .cont-nueva-dir .campos-direccion .btn-span .span-msje {
+  color: #fc3e3e;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.container-left form .deliveryMethod .deliveryAdress .margin {
+  margin-bottom: 45px;
+}
+
+.container-left form .deliveryMethod .pick-up input {
+  margin-right: 12px;
+}
+
+.container-left form .deliveryMethod .pick-up i {
   color: #575353;
   font-size: 2em;
-  margin-right: -20px;
+  display: block;
+  margin-right: 20px;
 }
 
-.container-left form .deliveryMethod fieldset .adress1 {
-  display: none;
+.container-left form .deliveryMethod .pick-up .options {
+  font-size: 15px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.container-left form .deliveryMethod .adress1 {
   border-top: 1px solid grey;
-  margin-top: 15px;
+  margin-top: 0px;
   padding-top: 10px;
-  width: 90%;
+  width: 97%;
   margin-left: auto;
   margin-right: auto;
 }
 
-.container-left form .deliveryMethod fieldset .adress1 span {
+.container-left form .deliveryMethod .adress1 span {
   color: grey;
   display: block;
   font-family: "Open Sans", sans-serif;
@@ -183,88 +255,87 @@ section {
 }
 
 .container-left form .paymentMethod {
+  padding-bottom: 10px;
   margin-top: 30px;
 }
 
-.container-left form .paymentMethod fieldset {
-  padding-top: 30px;
-  padding-bottom: 20px;
+.container-left form .paymentMethod .titulo-pago {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.container-left form .paymentMethod fieldset legend {
+.container-left form .paymentMethod .titulo-pago .subtitulo {
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
-  padding-left: 20px;
-  padding-right: 20px;
+  color: #575353;
+  margin-bottom: 0px;
 }
 
-.container-left form .paymentMethod fieldset .paypal-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 25%;
-  margin-bottom: 10px;
-  padding-left: 40px;
-}
-
-.container-left form .paymentMethod fieldset .paypal-box img {
-  width: 90px;
-  height: 43px;
-}
-
-.container-left form .paymentMethod fieldset .cash-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  padding-left: 40px;
-  width: 58%;
-  display: none;
-}
-
-.container-left form .paymentMethod fieldset .cash-box div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 29%;
-}
-
-.container-left form .paymentMethod fieldset .cash-box div label img {
-  width: 70px;
-  height: 60px;
-}
-
-.container-left form .paymentMethod fieldset .cash-box div .options {
-  font-size: 15px;
-}
-
-.container-left form .paymentMethod fieldset .cash-box p {
+.container-left form .paymentMethod .titulo-pago .leyenda {
   font-family: "Open Sans", sans-serif;
-  font-size: 13px;
   color: grey;
+  font-size: 13px;
+  display: block;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.container-left form .paymentMethod .pago {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+
+.container-left form .paymentMethod .pago .cash {
+  width: 50px;
+  height: 43px;
+  margin-left: 12px;
+}
+
+.container-left form .paymentMethod .pago .paypal {
+  width: 70px;
+  height: 35px;
+  margin-left: 12px;
+}
+
+.container-left form .cont-boton-guardar {
+  position: relative;
+}
+
+.container-left form .cont-boton-guardar .btn {
+  background-color: #223e66;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  width: 15%;
+  font-size: 14px;
+  display: block;
+  padding: 0;
+  padding-right: 4px;
+  padding-left: 4px;
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+}
+
+.container-left form .cont-boton-guardar .btn:hover {
+  background-color: #1f4e84;
+  cursor: pointer;
 }
 
 .container-right {
-  background-color: white;
   border-radius: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -273,136 +344,154 @@ section {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 28%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  margin-top: 60px;
+  margin-top: 0px;
+  padding-top: 15px;
 }
 
-.container-right .summary {
-  font-family: "Open Sans", sans-serif;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.container-right .summary h2 {
-  font-family: "Poppins", sans-serif;
-  color: #575353;
-  font-size: 20px;
-  border-bottom: 1px solid #bebbbb;
-  margin-bottom: 5px;
-  margin-top: 14px;
-  display: block;
-  padding: 0px 25px 0px 25px;
-}
-
-.container-right .summary h2:hover {
-  cursor: default;
-}
-
-.container-right .summary #subtotal-summary, .container-right .summary #total-summary {
+.container-right .cont-botones {
+  margin-top: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 5px 25px;
-}
-
-.container-right .summary #subtotal-summary:hover, .container-right .summary #total-summary:hover {
-  cursor: default;
-}
-
-.container-right .summary #subtotal-summary {
-  color: #aca5a5;
-  font-size: 16px;
-}
-
-.container-right .summary #total-summary {
-  font-weight: bolder;
-  font-size: 19px;
-  background-color: #f3ecec;
-}
-
-.container-right .summary .coupon {
-  border: 2px solid #575353;
-  border-radius: 10px;
-  width: 85%;
-  -ms-flex-item-align: center;
-      align-self: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 5px 10px;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  outline: none;
-}
-
-.container-right .summary .coupon i {
-  color: #575353;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-
-.container-right .summary .coupon span {
-  font-size: 13px;
-  font-weight: bolder;
-  color: #575353;
-}
-
-.container-right .summary .coupon:hover {
-  cursor: pointer;
-  background-color: #575353;
-}
-
-.container-right .summary .coupon:hover > i {
-  color: white;
-}
-
-.container-right .summary .coupon:hover > span {
-  color: white;
-  font-weight: normal;
-}
-
-.container-right button {
-  background-color: #223e66;
-  font-size: 17px;
-  color: white;
-  font-family: "Poppins", sans-serif;
-  border-radius: 0px 0px 15px 15px;
-  border: 0px;
-  margin-top: 5px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   width: 100%;
-  padding: 4px 25px;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-  outline: none;
-  height: 37px;
 }
 
-.container-right button:hover {
-  cursor: pointer;
+.container-right .cont-botones .btn {
+  background-color: #223e66;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  width: 40%;
+  font-size: 16px;
+  display: block;
+}
+
+.container-right .cont-botones .btn:hover {
   background-color: #1f4e84;
+  cursor: pointer;
+}
+
+.text-rojo {
+  font-family: "Open Sans", sans-serif;
+  color: red;
+  line-height: 13px;
+  display: block;
+  -webkit-transform: translateY(-15px);
+          transform: translateY(-15px);
+}
+
+#combobox-estados, #combobox-estados-envio, #combobox-ciudades, #combobox-ciudades-envio {
+  display: none;
+}
+
+.edit-form {
+  color: #1f4e84;
+  margin-left: 12px;
+  display: none;
+}
+
+.edit-form:hover {
+  color: #2779cd;
+}
+
+.titulos-forms {
+  font-family: "Open Sans", sans-serif;
+  display: block;
+  padding: 1px 7px;
+  border-radius: 3px;
+  background-color: #12d6f033;
+}
+
+.titulo-dir {
+  border-top: 1px solid grey;
+  padding-top: 20px;
+  margin-top: -10px;
+}
+
+.titulo-dir p {
+  font-family: "Open Sans", sans-serif;
+}
+
+.titulo-dir .check-repetir {
+  font-size: 14px;
+  color: #2779cd;
+}
+
+.titulo-dir .check-repetir input {
+  margin-right: 7px;
+}
+
+@media screen and (max-width: 768px) {
+  .container-right {
+    margin-top: 50px;
+    width: 100%;
+    padding: 0px;
+  }
+  #contai {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container-left h2 {
+    font-size: 20px;
+  }
+  .container-left form .deliveryMethod .deliver i {
+    color: #575353;
+    font-size: 1.2em;
+    display: block;
+    -webkit-transform: translateY(7px);
+            transform: translateY(7px);
+    margin-right: 10px;
+  }
+  .container-left form .deliveryMethod .deliveryAdress .direccion-perfil {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    width: 100%;
+    padding: 0;
+    margin-left: 0px;
+  }
+  .container-left form .deliveryMethod .deliveryAdress .direccion-perfil span {
+    margin-left: -15px;
+  }
+  .container-left form .deliveryMethod .deliveryAdress .direccion-perfil .icon-edit {
+    margin-left: 0px;
+    margin-top: -20px;
+  }
+  .container-left form .deliveryMethod .pick-up {
+    width: 100%;
+  }
+  .container-left form .deliveryMethod .pick-up i {
+    font-size: 1.2em;
+    margin-right: 10px;
+  }
+  .container-left form .deliveryMethod .pick-up .options {
+    font-size: 15px;
+    line-height: 16px;
+    width: 65%;
+  }
+  .container-left form .deliveryMethod .adress1 {
+    padding-top: 10px;
+  }
+  .container-left form .deliveryMethod .adress1 span {
+    font-size: 13px;
+    padding-left: 0px;
+  }
+  .container-right {
+    margin-bottom: 50px;
+  }
 }
 /*# sourceMappingURL=checkout.component.css.map */

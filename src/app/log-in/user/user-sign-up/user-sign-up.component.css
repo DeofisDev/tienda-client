@@ -4,7 +4,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   margin: 0;
 }
 
-section .contenedor-form #contenedor-registrarse #formName .nombre-apellido .name #name, section .contenedor-form #contenedor-registrarse #formName .nombre-apellido .lastname #lastname, section .contenedor-form #contenedor-registrarse .location .country, section .contenedor-form #contenedor-registrarse .location .state, section .contenedor-form #contenedor-registrarse .location .city, section .contenedor-form #contenedor-registrarse .calle-nro .calle #calle, section .contenedor-form #contenedor-registrarse .calle-nro .nro #nro, section .contenedor-form #contenedor-registrarse .calle-nro .cp #cp, section .contenedor-form #contenedor-registrarse .cont-email .email #email, section .contenedor-form #contenedor-registrarse .passwords .campo #new-pasw, section .contenedor-form #contenedor-registrarse .passwords .campo #new-pasw-repeat {
+.nombre-apellido .name #name, .nombre-apellido .lastname #lastname, .location .country, .location .state, .location .city, .calle-nro .calle #calle, .calle-nro .piso #piso, .calle-nro .nro #nro, .calle-nro .cp #cp, .cont-email .email #email, .cont-email .passwords .campo #new-pasw, .cont-email .passwords .campo #new-pasw-repeat {
   margin-top: 7px;
   margin-bottom: 15px;
   height: 35px;
@@ -19,12 +19,12 @@ section .contenedor-form #contenedor-registrarse #formName .nombre-apellido .nam
   border-bottom: 1px solid grey;
 }
 
-section .contenedor-form #contenedor-registrarse #formName .nombre-apellido .name #name:focus, section .contenedor-form #contenedor-registrarse #formName .nombre-apellido .lastname #lastname:focus, section .contenedor-form #contenedor-registrarse .location .country:focus, section .contenedor-form #contenedor-registrarse .location .state:focus, section .contenedor-form #contenedor-registrarse .location .city:focus, section .contenedor-form #contenedor-registrarse .calle-nro .calle #calle:focus, section .contenedor-form #contenedor-registrarse .calle-nro .nro #nro:focus, section .contenedor-form #contenedor-registrarse .calle-nro .cp #cp:focus, section .contenedor-form #contenedor-registrarse .cont-email .email #email:focus, section .contenedor-form #contenedor-registrarse .passwords .campo #new-pasw:focus, section .contenedor-form #contenedor-registrarse .passwords .campo #new-pasw-repeat:focus {
+.nombre-apellido .name #name:focus, .nombre-apellido .lastname #lastname:focus, .location .country:focus, .location .state:focus, .location .city:focus, .calle-nro .calle #calle:focus, .calle-nro .piso #piso:focus, .calle-nro .nro #nro:focus, .calle-nro .cp #cp:focus, .cont-email .email #email:focus, .cont-email .passwords .campo #new-pasw:focus, .cont-email .passwords .campo #new-pasw-repeat:focus {
   outline: none;
   border-bottom: 2px solid #2779cd;
 }
 
-section {
+.container {
   height: 100vh;
   width: 100%;
   display: -webkit-box;
@@ -39,66 +39,44 @@ section {
           align-items: center;
 }
 
-section a img {
+.container .row-logo a img {
   width: 200px;
   height: 60px;
   margin-top: 35px;
 }
 
-section .contenedor-form {
+.container .row-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .row-body .contenedor-form {
   padding-top: 20px;
   padding-bottom: 30px;
   background-color: #f6f2f2;
   border-radius: 15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   margin-top: 35px;
   margin-bottom: 50px;
-  width: 40vw;
-  min-width: 500px;
+  min-width: 700px;
   -webkit-box-shadow: 2px 4px 10px grey;
           box-shadow: 2px 4px 10px grey;
 }
 
-section .contenedor-form #contenedor-registrarse {
-  width: 80%;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  position: relative;
+.container .row-body .contenedor-form #cont-form {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-section .contenedor-form #contenedor-registrarse .titulo {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  padding-bottom: 0;
-  width: 100%;
-}
-
-section .contenedor-form #contenedor-registrarse .titulo h2 {
+.titulo h2 {
   border-bottom: 1px solid grey;
   font-family: "Open Sans", sans-serif;
   font-size: 22px;
@@ -108,260 +86,99 @@ section .contenedor-form #contenedor-registrarse .titulo h2 {
   padding-bottom: 5px;
 }
 
-section .contenedor-form #contenedor-registrarse .titulo .fa-arrow-circle-left {
-  font-size: 1.3em;
+.titulo .fa-arrow-circle-left {
+  font-size: 1.2em;
   color: #222121;
   margin-right: 8px;
   outline: none;
   position: absolute;
   top: 8px;
-  left: -2.5vw;
+  left: -1.7vw;
 }
 
-section .contenedor-form #contenedor-registrarse #formName {
-  width: 100%;
+.nombre-apellido .name #name.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
 }
 
-section .contenedor-form #contenedor-registrarse #formName .nombre-apellido {
-  width: 100%;
-  display: -ms-grid;
-  display: grid;
-      grid-template-areas: "nombre apellido "
- "alert1  alert2";
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.nombre-apellido .lastname #lastname.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
 }
 
-section .contenedor-form #contenedor-registrarse #formName .nombre-apellido .name {
- grid-column: 1;
- grid-row: 1;
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: nombre;
-  width: 100%;
+.location .country.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
 }
 
-section .contenedor-form #contenedor-registrarse #formName .nombre-apellido .lastname {
-  grid-column: 1;
-  grid-row: 1;
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: apellido;
-  width: 100%;
+.location .state.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
 }
 
-section .contenedor-form #contenedor-registrarse #formName .nombre-apellido #alert1 {
-  grid-column: 1;
-  grid-row: 1;
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
-  grid-area: alert1;
+.location .city.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
 }
 
-section .contenedor-form #contenedor-registrarse #formName .nombre-apellido #alert2 {
-  -ms-grid-row: 2;
-  -ms-grid-column: 2;
-  grid-column: 1;
-  grid-row: 1;
-  grid-area: alert2;
+.calle-nro .calle #calle.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
 }
 
-section .contenedor-form #contenedor-registrarse .location {
-  width: 100%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+.calle-nro .nro #nro.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
 }
 
-section .contenedor-form #contenedor-registrarse .location .country {
-  width: 30%;
+.calle-nro .cp #cp.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
 }
 
-section .contenedor-form #contenedor-registrarse .location .state {
-  width: 30%;
+.cont-email .email #email.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
 }
 
-section .contenedor-form #contenedor-registrarse .location .city {
-  width: 30%;
-}
-
-section .contenedor-form #contenedor-registrarse .calle-nro {
-  width: 100%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
-section .contenedor-form #contenedor-registrarse .calle-nro .calle {
-  width: 55%;
-}
-
-section .contenedor-form #contenedor-registrarse .calle-nro .nro {
-  width: 15%;
-}
-
-section .contenedor-form #contenedor-registrarse .calle-nro .cp {
-  width: 18%;
-}
-
-section .contenedor-form #contenedor-registrarse .cont-email {
-  width: 100%;
-}
-
-section .contenedor-form #contenedor-registrarse .cont-email .email {
-  width: 55%;
-}
-
-section .contenedor-form #contenedor-registrarse .passwords {
-  width: 100%;
-  display: -ms-grid;
-  display: grid;
-      grid-template-areas: "campo1  campo2 "
- "msj1  msj2";
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-section .contenedor-form #contenedor-registrarse .passwords .campo {
-  width: 95%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.cont-email .passwords .campo #new-pasw, .cont-email .passwords .campo #new-pasw-repeat {
   position: relative;
 }
 
-section .contenedor-form #contenedor-registrarse .passwords .campo #new-pasw.is-invalid ~ i, section .contenedor-form #contenedor-registrarse .passwords .campo #new-pasw-repeat.is-invalid ~ i {
+.cont-email .passwords .campo #new-pasw.is-invalid ~ i, .cont-email .passwords .campo #new-pasw-repeat.is-invalid ~ i {
   color: #960909;
 }
 
-section .contenedor-form #contenedor-registrarse .passwords .campo i {
+.cont-email .passwords .campo #new-pasw.is-invalid, .cont-email .passwords .campo #new-pasw-repeat.is-invalid {
+  border-bottom: 1px solid #fc3e3e;
+}
+
+.cont-email .passwords .campo i {
   position: absolute;
   padding: 13px;
   font-size: 1.1em;
   color: grey;
+  right: 12px;
+  top: 5px;
 }
 
-section .contenedor-form #contenedor-registrarse .passwords .campo .fa-eye,
-section .contenedor-form #contenedor-registrarse .passwords .campo .fa-eye-slash {
-  margin-left: 78%;
-  margin-top: -6px;
-}
-
-section .contenedor-form #contenedor-registrarse .passwords .campo .fa-eye-slash {
+.cont-email .passwords .campo .fa-eye-slash {
   visibility: hidden;
 }
 
-section .contenedor-form #contenedor-registrarse .passwords #campo1 {
-  grid-column: 1;
-  grid-row: 1;
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: campo1;
+.terms-checkbox {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  margin-left: 5px;
 }
 
-section .contenedor-form #contenedor-registrarse .passwords #campo2 {
-  -ms-grid-row: 1;
-  grid-column: 1;
-  grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: campo2;
+.terms-checkbox #terms {
+  margin-right: 8px;
 }
 
-section .contenedor-form #contenedor-registrarse .passwords #msj1 {
-  grid-column: 1;
-  grid-row: 1;
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
-  grid-area: msj1;
-  width: 190px;
-}
-
-section .contenedor-form #contenedor-registrarse .passwords #msj2 {
-  grid-column: 1;
-  grid-row: 1;
-  -ms-grid-row: 2;
-  -ms-grid-column: 2;
-  grid-area: msj2;
-  -webkit-transform: translateY(-17px);
-          transform: translateY(-17px);
-}
-
-section .contenedor-form #contenedor-registrarse .msje {
-  color: grey;
+.terms-checkbox #aceptar-terminos {
   font-family: "Open Sans", sans-serif;
-  font-size: 13px;
-  display: block;
-  margin-top: 5px;
-}
-
-section .contenedor-form #msje-registro {
-  font-family: "Open Sans", sans-serif;
-  color: #222121;
-  text-align: center;
-  display: none;
-  margin-bottom: auto;
-}
-
-section .contenedor-form #msje-registro span {
-  font-size: 16px;
-  color: #575353;
-}
-
-section .contenedor-form #msje-registro #name,
-section .contenedor-form #msje-registro #lastname {
-  margin-top: 7px;
-  height: 39px;
-  width: 100%;
-  font-family: "Open Sans", sans-serif;
-  font-size: 15px;
-  padding-left: 20px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-section .contenedor-form #msje-registro #name:focus,
-section .contenedor-form #msje-registro #lastname:focus {
-  outline: none;
-  border: 1px solid #b4aaaa;
-}
-
-section .contenedor-form #msje-registro #lastname {
-  margin-bottom: 10px;
 }
 
 .boton {
-  width: 100%;
+  width: 60%;
+  min-width: 210px;
   height: 40px;
   background-color: #223e66;
   color: white;
@@ -369,6 +186,8 @@ section .contenedor-form #msje-registro #lastname {
   font-size: 17px;
   border: none;
   margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
   outline: none;
 }
 
@@ -387,413 +206,121 @@ section .contenedor-form #msje-registro #lastname {
           transform: translateY(-15px);
 }
 
-.is-invalid {
-  border: 1px solid #fc3e3e;
+#combobox-estados, #combobox-ciudades {
+  display: none;
 }
 
-@media screen and (max-width: 550px) {
-  section {
-    height: 100%;
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  section .fondo img {
+#alert2 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  font-size: 15px;
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+.msje-teminos {
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+  margin-left: 4px;
+  font-size: 12px;
+}
+
+#msje-registro {
+  font-family: "Open Sans", sans-serif;
+  color: #222121;
+  text-align: center;
+  display: none;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 250px;
+  max-width: 600px;
+  width: 90%;
+}
+
+#msje-registro span {
+  font-size: 16px;
+  color: #575353;
+}
+
+@media screen and (max-width: 600px) {
+  .container .row-logo a img {
     width: 140px;
     height: 40px;
     position: unset;
-    top: 10px;
+    margin-top: 10px;
   }
-  section .contenedor-form {
-    padding-top: 20px;
-    padding-bottom: 30px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    margin-top: -500px;
-    width: 80vw;
-    min-width: 280px;
+  .container .row-body .contenedor-form {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    min-width: 90vw;
   }
-  section .contenedor-form #contenedor-registrarse {
-    width: 85%;
+  .titulo h2 {
+    font-size: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
-  section .contenedor-form #contenedor-registrarse h2 {
-    font-size: 18px;
-    padding-bottom: 3px;
-  }
-  section .contenedor-form #contenedor-registrarse #formName {
-    width: 100%;
-  }
-  section .contenedor-form #contenedor-registrarse #formName .nombre-apellido {
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-        grid-template-areas: none;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-  }
-  section .contenedor-form #contenedor-registrarse #formName .nombre-apellido .name {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-column: 1;
-    grid-row: 1;
-    grid-area: nombre;
-    width: 100%;
-  }
-  section .contenedor-form #contenedor-registrarse #formName .nombre-apellido .name #name {
-    margin-top: 7px;
-    margin-bottom: 10px;
-    height: 27px;
-    width: 100%;
-    font-family: "Open Sans", sans-serif;
-    font-size: 15px;
-    padding-left: 5px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-  }
-  section .contenedor-form #contenedor-registrarse #formName .nombre-apellido .name #name:focus {
-    outline: none;
-    border: 1px solid #b4aaaa;
-  }
-  section .contenedor-form #contenedor-registrarse #formName .nombre-apellido .lastname {
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
-    grid-column: 1;
-    grid-row: 1;
-    grid-area: apellido;
-    width: 100%;
-  }
-  section .contenedor-form #contenedor-registrarse #formName .nombre-apellido .lastname #lastname {
-    margin-top: 7px;
-    margin-bottom: 15px;
-    height: 35px;
-    width: 100%;
-    font-family: "Open Sans", sans-serif;
-    font-size: 15px;
-    padding-left: 5px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-  }
-  section .contenedor-form #contenedor-registrarse #formName .nombre-apellido .lastname #lastname:focus {
-    outline: none;
-    border: 1px solid #b4aaaa;
-  }
-  section .contenedor-form #contenedor-registrarse #formName .nombre-apellido #alert1 {
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-column: 1;
-    grid-row: 1;
-    grid-area: alert1;
-  }
-  section .contenedor-form #contenedor-registrarse #formName .nombre-apellido #alert2 {
-    grid-column: 1;
-    grid-row: 1;
-    -ms-grid-row: 2;
-    -ms-grid-column: 2;
-    grid-area: alert2;
-  }
-  section .contenedor-form #contenedor-registrarse .location {
-    width: 100%;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-  }
-  section .contenedor-form #contenedor-registrarse .location .country {
-    width: 30%;
-    margin-top: 7px;
-    margin-bottom: 15px;
-    height: 35px;
-    width: 100%;
-    font-family: "Open Sans", sans-serif;
-    font-size: 15px;
-    padding-left: 5px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-  }
-  section .contenedor-form #contenedor-registrarse .location .country:focus {
-    outline: none;
-    border: 1px solid #b4aaaa;
-  }
-  section .contenedor-form #contenedor-registrarse .location .state {
-    width: 30%;
-    margin-top: 7px;
-    margin-bottom: 15px;
-    height: 35px;
-    width: 100%;
-    font-family: "Open Sans", sans-serif;
-    font-size: 15px;
-    padding-left: 5px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-  }
-  section .contenedor-form #contenedor-registrarse .location .state:focus {
-    outline: none;
-    border: 1px solid #b4aaaa;
-  }
-  section .contenedor-form #contenedor-registrarse .location .city {
-    width: 30%;
-    margin-top: 7px;
-    margin-bottom: 15px;
-    height: 35px;
-    width: 100%;
-    font-family: "Open Sans", sans-serif;
-    font-size: 15px;
-    padding-left: 5px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-  }
-  section .contenedor-form #contenedor-registrarse .location .city:focus {
-    outline: none;
-    border: 1px solid #b4aaaa;
-  }
-  section .contenedor-form #contenedor-registrarse .calle-nro {
-    width: 100%;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-  }
-  section .contenedor-form #contenedor-registrarse .calle-nro .calle {
-    width: 55%;
-  }
-  section .contenedor-form #contenedor-registrarse .calle-nro .calle #calle {
-    margin-top: 7px;
-    margin-bottom: 15px;
-    height: 35px;
-    width: 100%;
-    font-family: "Open Sans", sans-serif;
-    font-size: 15px;
-    padding-left: 5px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-  }
-  section .contenedor-form #contenedor-registrarse .calle-nro .calle #calle:focus {
-    outline: none;
-    border: 1px solid #b4aaaa;
-  }
-  section .contenedor-form #contenedor-registrarse .calle-nro .nro {
-    width: 15%;
-  }
-  section .contenedor-form #contenedor-registrarse .calle-nro .nro #nro {
-    margin-top: 7px;
-    margin-bottom: 15px;
-    height: 35px;
-    width: 100%;
-    font-family: "Open Sans", sans-serif;
-    font-size: 15px;
-    padding-left: 5px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-  }
-  section .contenedor-form #contenedor-registrarse .calle-nro .nro #nro:focus {
-    outline: none;
-    border: 1px solid #b4aaaa;
-  }
-  section .contenedor-form #contenedor-registrarse .calle-nro .cp {
-    width: 18%;
-  }
-  section .contenedor-form #contenedor-registrarse .calle-nro .cp #cp {
-    margin-top: 7px;
-    margin-bottom: 15px;
-    height: 35px;
-    width: 100%;
-    font-family: "Open Sans", sans-serif;
-    font-size: 15px;
-    padding-left: 5px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-  }
-  section .contenedor-form #contenedor-registrarse .calle-nro .cp #cp:focus {
-    outline: none;
-    border: 1px solid #b4aaaa;
-  }
-  section .contenedor-form #contenedor-registrarse .cont-email {
-    width: 100%;
-  }
-  section .contenedor-form #contenedor-registrarse .cont-email .email {
-    width: 55%;
-  }
-  section .contenedor-form #contenedor-registrarse .cont-email .email #email {
-    margin-top: 7px;
-    margin-bottom: 15px;
-    height: 35px;
-    width: 100%;
-    font-family: "Open Sans", sans-serif;
-    font-size: 15px;
-    padding-left: 5px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-  }
-  section .contenedor-form #contenedor-registrarse .cont-email .email #email:focus {
-    outline: none;
-    border: 1px solid #b4aaaa;
-  }
-  section .contenedor-form #contenedor-registrarse .passwords {
-    width: 100%;
-    display: -ms-grid;
-    display: grid;
-        grid-template-areas: "campo1  campo2 "
- "msj1  msj2";
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-  }
-  section .contenedor-form #contenedor-registrarse .passwords .campo {
-    width: 95%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    position: relative;
-  }
-  section .contenedor-form #contenedor-registrarse .passwords .campo #new-pasw, section .contenedor-form #contenedor-registrarse .passwords .campo #new-pasw-repeat {
-    margin-top: 7px;
-    margin-bottom: 15px;
-    height: 35px;
-    width: 100%;
-    font-family: "Open Sans", sans-serif;
-    font-size: 15px;
-    padding-left: 5px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-  }
-  section .contenedor-form #contenedor-registrarse .passwords .campo #new-pasw:focus, section .contenedor-form #contenedor-registrarse .passwords .campo #new-pasw-repeat:focus {
-    outline: none;
-    border: 1px solid #b4aaaa;
-  }
-  section .contenedor-form #contenedor-registrarse .passwords .campo #new-pasw.is-invalid ~ i, section .contenedor-form #contenedor-registrarse .passwords .campo #new-pasw-repeat.is-invalid ~ i {
-    color: #960909;
-  }
-  section .contenedor-form #contenedor-registrarse .passwords .campo i {
-    position: absolute;
-    padding: 13px;
+  .titulo .fa-arrow-circle-left {
     font-size: 1.1em;
-    color: grey;
+    top: 10px;
+    left: -6vw;
   }
-  section .contenedor-form #contenedor-registrarse .passwords .campo .fa-eye,
-  section .contenedor-form #contenedor-registrarse .passwords .campo .fa-eye-slash {
-    margin-left: 78%;
-    margin-top: -6px;
-  }
-  section .contenedor-form #contenedor-registrarse .passwords .campo .fa-eye-slash {
-    visibility: hidden;
-  }
-  section .contenedor-form #contenedor-registrarse .passwords #campo1 {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-column: 1;
-    grid-row: 1;
-    grid-area: campo1;
-  }
-  section .contenedor-form #contenedor-registrarse .passwords #campo2 {
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
-    grid-column: 1;
-    grid-row: 1;
-    grid-area: campo2;
-  }
-  section .contenedor-form #contenedor-registrarse .passwords #msj1 {
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-column: 1;
-    grid-row: 1;
-    grid-area: msj1;
-    width: 190px;
-  }
-  section .contenedor-form #contenedor-registrarse .passwords #msj2 {
-    -ms-grid-row: 2;
-    grid-column: 1;
-    grid-row: 1;
-    -ms-grid-column: 2;
-    grid-area: msj2;
-    -webkit-transform: translateY(-17px);
-            transform: translateY(-17px);
-  }
-  section .contenedor-form #contenedor-registrarse .msje {
-    color: grey;
-    font-family: "Open Sans", sans-serif;
+  .terms-checkbox {
+    margin-top: 10px;
     font-size: 13px;
-    display: block;
-    margin-top: 5px;
   }
-  section .contenedor-form #msje-registro {
+  .terms-checkbox #terms {
+    margin-right: 5px;
+  }
+  .terms-checkbox #aceptar-terminos {
     font-family: "Open Sans", sans-serif;
-    color: #222121;
-    text-align: center;
-    display: none;
-    margin-top: auto;
-    margin-bottom: auto;
+    width: 70%;
   }
-  section .contenedor-form #msje-registro span {
-    font-size: 16px;
-    color: #575353;
-  }
-  section .contenedor-form #msje-registro #name,
-  section .contenedor-form #msje-registro #lastname {
-    margin-top: 7px;
-    height: 39px;
+  .boton {
     width: 100%;
-    font-family: "Open Sans", sans-serif;
-    font-size: 15px;
-    padding-left: 20px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    min-width: unset;
+    height: 35px;
+    margin-top: 3px;
   }
-  section .contenedor-form #msje-registro #name:focus,
-  section .contenedor-form #msje-registro #lastname:focus {
-    outline: none;
-    border: 1px solid #b4aaaa;
+  #formName {
+    margin-top: -10px;
   }
-  section .contenedor-form #msje-registro #lastname {
-    margin-bottom: 10px;
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+  .container .row-logo a img {
+    width: 170px;
+    height: 50px;
+    right: 20px;
+    top: 20px;
+  }
+  .container .row-body .contenedor-form {
+    padding-top: 10px;
+    margin-top: 15px;
+    min-width: 600px;
+  }
+  .titulo h2 {
+    font-size: 22px;
+  }
+  .titulo .fa-arrow-circle-left {
+    font-size: 1.2em;
+    top: 8px;
+    left: -5vw;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 700px) {
+  .container .row-logo a img {
+    width: 140px;
+    height: 40px;
+    position: unset;
+    margin-top: 10px;
+  }
+  .container .row-body .contenedor-form {
+    margin-top: 20px;
   }
 }
 /*# sourceMappingURL=user-sign-up.component.css.map */

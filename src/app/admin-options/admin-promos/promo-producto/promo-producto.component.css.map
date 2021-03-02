@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC,EAAE,CAAC,EAAE,CAAA;EACP,QAAQ,EAAE,MAAM;EAChB,GAAG,EAAE,CAAC;EACN,OAAO,EAAE,EAAE;EACX,gCAAgC;CACjC;;AAED,AAAA,iBAAiB,CAAC;EAChB,MAAM,EAAE,KAAK;EACb,QAAQ,EAAC,MAAM;EACf,UAAU,EAAE,MAAM;CACnB",
+    "sources": [
+        "promo-producto.component.scss"
+    ],
+    "names": [],
+    "file": "promo-producto.component.css"
+}

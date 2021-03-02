@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "banner-individual.component.scss"
+    ],
+    "names": [],
+    "file": "banner-individual.component.css"
+}

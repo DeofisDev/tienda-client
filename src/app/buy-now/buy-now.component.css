@@ -1,0 +1,9 @@
+#bg {
+  position: relative;
+  width: 100%;
+  margin-top: 120px !important;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+/*# sourceMappingURL=buy-now.component.css.map */

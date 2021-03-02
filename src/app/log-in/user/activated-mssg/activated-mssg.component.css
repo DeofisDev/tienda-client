@@ -53,8 +53,6 @@ section #mssg p a {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(1%, #1f4e84), color-stop(55%, #f3ecec));
-    background: linear-gradient(to top, #1f4e84 1%, #f3ecec 55%);
   }
   section a img {
     width: 140px;
@@ -64,14 +62,15 @@ section #mssg p a {
   }
   section #mssg {
     width: 80vw;
-    margin-top: 20px;
+    margin-top: 50px;
     border-radius: 20px;
-    padding: 25px 20px 20px 20px;
+    padding: 25px 10px 10px 20px;
     -webkit-box-shadow: 1px 2px 3px grey;
             box-shadow: 1px 2px 3px grey;
   }
   section #mssg p {
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 20px;
   }
   section #mssg p a {
     text-decoration: none;
@@ -92,14 +91,10 @@ section #mssg p a {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(1%, #1f4e84), color-stop(55%, #f3ecec));
-    background: linear-gradient(to top, #1f4e84 1%, #f3ecec 55%);
   }
   section a img {
     width: 200px;
     height: 60px;
-    position: absolute;
-    right: 50px;
     top: 20px;
   }
   section #mssg {

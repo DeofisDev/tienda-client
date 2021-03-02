@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAA;EACR,KAAK,EAAE,OAAO;CACjB;;AAED,AAAA,KAAK,CAAA;EACD,OAAO,EAAC,MAAM;CACjB",
+    "sources": [
+        "form-promo-product.component.scss"
+    ],
+    "names": [],
+    "file": "form-promo-product.component.css"
+}

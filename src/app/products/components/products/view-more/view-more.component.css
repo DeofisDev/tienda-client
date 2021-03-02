@@ -1,7 +1,99 @@
-#contenedor-vermas section .contenedor-uno .izquierda #img-sec div, #contenedor-vermas section .contenedor-uno .izquierda #img-ppal {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+/* estilos combobox*/
+#cont-props {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#cont-props .combobox-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100px;
+}
+
+#cont-props .combobox-cont span {
+  color: grey;
+  font-size: 10px;
+  position: relative;
+  z-index: 2;
+  left: 5px;
+  bottom: -20px;
+}
+
+#cont-props .combobox-cont .select {
+  margin: 5px;
+  margin-top: 0px;
+  font-size: 16px;
+  padding-top: 15px;
+  border-radius: 0rem;
+  border-width: 2px;
+  line-height: 1.6rem;
+  position: relative;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-color: #223e66;
+  background-color: #fff;
+  width: 80px;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+}
+
+#cont-props .combobox-cont .select:focus {
+  outline: none;
+}
+
+#cont-props .combobox-cont .select option {
+  background-color: #f3ecec;
+  color: #575353;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 0px 10px 10px 0px;
+}
+
+#cont-props .combobox-cont:hover {
+  -webkit-transform: scale(1.07);
+          transform: scale(1.07);
+}
+
+#cont-props .combobox-cont:hover > span {
+  color: #2779cd;
+}
+
+#cont-props .combobox-cont:hover > select {
+  color: #575353;
+}
+
+.cruz:hover {
+  cursor: pointer;
+}
+
+/* estilos de snackbar*/
+.mat-snack-bar-container {
+  background-color: #1f4e84 !important;
+  color: white !important;
+  margin-top: 90px !important;
+  font-family: "Open Sans", sans-serif !important;
+  width: 270px !important;
+  min-width: unset !important;
+  opacity: 0.9  !important;
 }
 
 #contenedor-vermas {
@@ -87,7 +179,8 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  width: 5vw;
+  width: 7vw;
+  min-width: 100px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -100,22 +193,19 @@
 
 #contenedor-vermas section .superior .iconos-detalle-producto a i {
   font-size: 1.4em;
-  color: #575353;
+  color: #8f8080;
 }
 
 #contenedor-vermas section .superior .iconos-detalle-producto a i:hover {
   font-size: 1.6em;
 }
 
-#contenedor-vermas section .contenedor-uno {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding: 0px 15px 0px 15px;
-  width: 86%;
+#contenedor-vermas section .superior .iconos-detalle-producto a .fa-whatsapp-square {
+  font-style: 1.5em;
+}
+
+#contenedor-vermas section .superior .iconos-detalle-producto:hover {
+  cursor: pointer;
 }
 
 #contenedor-vermas section .contenedor-uno .izquierda {
@@ -124,7 +214,6 @@
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  width: 50%;
 }
 
 #contenedor-vermas section .contenedor-uno .izquierda #img-sec {
@@ -152,41 +241,26 @@
           box-shadow: 1px 2px 1px #979393;
 }
 
-#contenedor-vermas section .contenedor-uno .izquierda #img-sec #img-uno {
-  background-image: url(https://www.mgmstore.com.ar/339-large_default/Samsung-Galaxy-S10-Plus-128GB.jpg);
-}
-
-#contenedor-vermas section .contenedor-uno .izquierda #img-sec #img-dos {
-  background-image: url(https://img.global.news.samsung.com/cl/wp-content/uploads/2020/01/lite.jpeg);
-}
-
-#contenedor-vermas section .contenedor-uno .izquierda #img-sec #img-tres {
-  background-image: url(https://doto.vteximg.com.br/arquivos/ids/156984-1200-1200/samsung-galaxy-s20-rosa-1-doto-bothview.jpg?v=637236891053970000);
-}
-
-#contenedor-vermas section .contenedor-uno .izquierda #img-sec #img-cinco {
-  background-image: url(https://www.muycomputer.com/wp-content/uploads/2019/01/Samsung-Galaxy-S10.jpg);
-}
-
-#contenedor-vermas section .contenedor-uno .izquierda #img-sec #img-cuatro {
-  background-image: url(https://www.maxmovil.com/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0002_samsung-galaxy-s20-plus-8-128gb-cosmic-black-libre.jpg);
-}
-
-#contenedor-vermas section .contenedor-uno .izquierda #img-sec #img-seis {
-  background-image: url(https://as01.epimg.net/meristation/imagenes/2020/02/11/betech/1581450045_842534_1581450104_noticia_normal_recorte1.jpg);
+#contenedor-vermas section .contenedor-uno .izquierda #img-sec #img-uno img {
+  width: 100%;
+  height: 100%;
 }
 
 #contenedor-vermas section .contenedor-uno .izquierda #img-ppal {
   width: 45vw;
   height: 470px;
-  background-image: url(https://doto.vteximg.com.br/arquivos/ids/156984-1200-1200/samsung-galaxy-s20-rosa-1-doto-bothview.jpg?v=637236891053970000);
+  margin-left: 40px;
+}
+
+#contenedor-vermas section .contenedor-uno .izquierda #img-ppal img {
+  width: 100%;
+  height: 100%;
 }
 
 #contenedor-vermas section .contenedor-uno #derecha {
   border: none;
   border-radius: 15px;
-  margin-left: 4vw;
-  width: 36%;
+  padding-left: 80px;
   position: relative;
 }
 
@@ -214,13 +288,23 @@
   width: 100%;
 }
 
+#contenedor-vermas section .contenedor-uno #derecha #caja-titulo:hover {
+  cursor: default;
+}
+
 #contenedor-vermas section .contenedor-uno #derecha #caja-precio {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-#contenedor-vermas section .contenedor-uno #derecha #caja-precio h3 {
+#contenedor-vermas section .contenedor-uno #derecha #caja-precio .precio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#contenedor-vermas section .contenedor-uno #derecha #caja-precio .precio .pcio-oferta {
   font-family: "Open Sans", sans-serif;
   font-weight: normal;
   font-size: 38px;
@@ -228,7 +312,15 @@
   color: #2779cd;
 }
 
-#contenedor-vermas section .contenedor-uno #derecha #caja-precio .row-oferta {
+#contenedor-vermas section .contenedor-uno #derecha #caja-precio .precio .pcio-sin-oferta {
+  font-family: "Open Sans", sans-serif;
+  font-weight: normal;
+  font-size: 38px;
+  margin-bottom: 25px;
+  color: #575353;
+}
+
+#contenedor-vermas section .contenedor-uno #derecha #caja-precio .precio .row-oferta {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -242,7 +334,7 @@
           align-items: baseline;
 }
 
-#contenedor-vermas section .contenedor-uno #derecha #caja-precio .row-oferta span {
+#contenedor-vermas section .contenedor-uno #derecha #caja-precio .precio .row-oferta span {
   text-decoration: line-through;
   font-size: 13px;
   color: grey;
@@ -252,7 +344,7 @@
   display: block;
 }
 
-#contenedor-vermas section .contenedor-uno #derecha #caja-precio .row-oferta .off {
+#contenedor-vermas section .contenedor-uno #derecha #caja-precio .precio .row-oferta .off {
   font-size: 14px;
   font-family: "Open Sans", sans-serif;
   display: block;
@@ -261,8 +353,23 @@
   color: orangered;
 }
 
+#contenedor-vermas section .contenedor-uno #derecha #caja-precio .fa-medal {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-top: 0px;
+  margin-left: 20px;
+  color: #2779cd;
+  font-size: 2em;
+  -webkit-transform: rotate(170deg);
+          transform: rotate(170deg);
+}
+
+#contenedor-vermas section .contenedor-uno #derecha #caja-precio:hover {
+  cursor: default;
+}
+
 #contenedor-vermas section .contenedor-uno #derecha #caja-carrito {
-  margin-top: 25px;
+  margin-top: 7px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -285,6 +392,7 @@
 
 #contenedor-vermas section .contenedor-uno #derecha #caja-carrito .color-quantity .modify-quantity {
   border: none;
+  margin-top: 10px;
   border-radius: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -302,6 +410,10 @@
   font-size: 1em;
 }
 
+#contenedor-vermas section .contenedor-uno #derecha #caja-carrito .color-quantity .modify-quantity .fa-minus-circle {
+  opacity: 0.5;
+}
+
 #contenedor-vermas section .contenedor-uno #derecha #caja-carrito .color-quantity .modify-quantity .fa-minus-circle:hover {
   font-size: 1.1em;
   cursor: pointer;
@@ -316,23 +428,6 @@
   font-weight: bold;
   font-family: "Poppins", sans-serif;
   font-size: 17px;
-}
-
-#contenedor-vermas section .contenedor-uno #derecha #caja-carrito .color-quantity #color {
-  width: 120px;
-  height: 30px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 17px;
-  text-align: center;
-  font-weight: bold;
-  border: 1px solid #aca5a5;
-  border-radius: 5px;
-  outline: none;
-  padding-left: 10px;
-}
-
-#contenedor-vermas section .contenedor-uno #derecha #caja-carrito .color-quantity #color:focus {
-  outline: none;
 }
 
 #contenedor-vermas section .contenedor-uno #derecha #caja-carrito .talles {
@@ -371,14 +466,14 @@
   font-family: "Open Sans", sans-serif;
   font-size: 17px;
   border: 0px;
-  padding: 8px 15px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  border-radius: 0px;
 }
 
 #contenedor-vermas section .contenedor-uno #derecha #caja-carrito .btn:hover {
@@ -391,6 +486,32 @@
 
 #contenedor-vermas section .contenedor-uno #derecha #caja-carrito #btn-comprar {
   margin-bottom: 15px;
+}
+
+#contenedor-vermas section .contenedor-uno #derecha .caja-actualizar {
+  width: 100%;
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-item-align: baseline;
+      align-self: baseline;
+}
+
+#contenedor-vermas section .contenedor-uno #derecha .caja-actualizar:hover {
+  cursor: pointer;
+}
+
+#contenedor-vermas section .contenedor-uno #derecha .caja-actualizar .actualizar {
+  font-family: "Open Sans", sans-serif;
+}
+
+#contenedor-vermas section .contenedor-uno #derecha .caja-actualizar .fa-redo {
+  margin-right: 3px;
+  color: #1f4e84;
 }
 
 #contenedor-vermas section .contenedor-dos {
@@ -445,95 +566,98 @@
   color: #aca5a5;
 }
 
+#contenedor-vermas section .contenedor-dos:hover {
+  cursor: default;
+}
+
 #contenedor-vermas section .contenedor-tres {
   font-family: "Poppins", sans-serif;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 80% 20%;
-      grid-template-columns: 80% 20%;
-  -ms-grid-rows: 1fr 3fr 1fr;
-      grid-template-rows: 1fr 3fr 1fr;
-      grid-template-areas: "titulo titulo" "mensaje cartel" "mensaje enviar";
+  margin-left: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   height: 270px;
   margin-bottom: 50px;
-  width: 65%;
+  width: 70vw;
   margin-top: 25px;
 }
 
 #contenedor-vermas section .contenedor-tres #titulo-a {
-  opacity: 0;
   font-size: 21px;
   padding-bottom: 20px;
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
   grid-area: titulo;
   color: #575353;
   font-family: "Open Sans", sans-serif;
 }
 
 #contenedor-vermas section .contenedor-tres #pregunta {
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 2;
-  -ms-grid-column: 1;
   grid-area: mensaje;
-  width: 93%;
+  width: 100%;
   outline: none;
   border: none;
-  border-radius: 30px 30px 0 30px;
+  border-radius: 15px;
   padding: 15px 10px;
+  border: 1px solid #aca5a5;
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
+  resize: none;
 }
 
 #contenedor-vermas section .contenedor-tres #pregunta:focus {
-  border: 2px solid #575353;
+  border: 1px solid #575353;
 }
 
-#contenedor-vermas section .contenedor-tres div {
-  -ms-grid-row: 2;
-  -ms-grid-column: 2;
-  grid-area: cartel;
-  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#f3ecec));
-  background: linear-gradient(to bottom, white, #f3ecec);
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  padding: 10px 15px;
-  border-radius: 10px;
+#contenedor-vermas section .contenedor-tres #contenedorCartel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-#contenedor-vermas section .contenedor-tres div #cartel {
-  font-size: 16px;
-  text-align: center;
+#contenedor-vermas section .contenedor-tres #contenedorCartel #cartel {
+  font-size: 14px;
   padding-bottom: 0;
-  color: #575353;
+  color: grey;
   font-family: "Open Sans", sans-serif;
+  margin-top: 18px;
 }
 
-#contenedor-vermas section .contenedor-tres button {
-  -ms-grid-row: 3;
-  -ms-grid-column: 2;
-  grid-area: enviar;
-  background-color: white;
+#contenedor-vermas section .contenedor-tres #contenedorCartel #enviarMsg {
+  background-color: #223e66;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 17px;
+  border: 0px;
+  height: 40px;
+  padding: 4px auto;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 26%;
+  margin-top: 18px;
+}
+
+#contenedor-vermas section .contenedor-tres #contenedorCartel #enviarMsg:hover {
+  background-color: #1f4e84;
+}
+
+#contenedor-vermas section .contenedor-tres #contenedorCartel #enviarMsg:focus {
   outline: none;
-  border: 2px solid #575353;
-  border-radius: 8px 8px 8px 0;
-  -webkit-box-shadow: 1px 1px 1px grey;
-          box-shadow: 1px 1px 1px grey;
-}
-
-#contenedor-vermas section .contenedor-tres button:hover {
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
-  -webkit-box-shadow: 1px 2px 1px grey;
-          box-shadow: 1px 2px 1px grey;
-  cursor: pointer;
-}
-
-#contenedor-vermas section .contenedor-tres button i {
-  color: #223e66;
-  font-size: 1.6em;
 }
 
 .animacion-titulo {
@@ -543,6 +667,31 @@
           animation-duration: 1s;
   -webkit-animation-timing-function: cubic-bezier(0.12, 1.14, 0.62, 1.33);
           animation-timing-function: cubic-bezier(0.12, 1.14, 0.62, 1.33);
+}
+
+.modalTitle {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 23px !important;
+  margin-bottom: -20px !important;
+}
+
+.inciar-sesion {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 5;
+  background-color: rgba(61, 54, 54, 0.363);
 }
 
 @-webkit-keyframes questions {
@@ -569,17 +718,6 @@
 
 @media screen and (max-width: 760px) {
   #contenedor-vermas section .contenedor-uno {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    width: 95%;
     max-width: 500px;
   }
   #contenedor-vermas section .contenedor-uno #izquierda {
@@ -597,7 +735,6 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    width: 100%;
   }
   #contenedor-vermas section .contenedor-uno #izquierda #img-sec {
     margin-top: 0px;
@@ -643,9 +780,7 @@
     background-position: center;
   }
   #contenedor-vermas section .contenedor-uno #derecha {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+    padding-left: unset;
     position: relative;
   }
   #contenedor-vermas section .contenedor-uno #derecha #caja-titulo {
@@ -796,31 +931,25 @@
     font-size: 15px;
   }
   #contenedor-vermas section .contenedor-tres button {
-    width: 90%;
+    width: 100%;
     background-color: #f3ecec;
-    height: 39px;
-    border-radius: 8px 0px 8px 8px;
+    height: 34px;
+    border-radius: 8px 8px 8px 8px;
+    padding: 0;
   }
 }
 
 @media screen and (min-width: 761px) and (max-width: 1100px) {
   #contenedor-vermas section .contenedor-uno {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
     padding: 0px 15px 0px 15px;
-    width: 86%;
   }
   #contenedor-vermas section .contenedor-uno #izquierda {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    width: 56%;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
   }
   #contenedor-vermas section .contenedor-uno #izquierda #img-sec {
     display: -ms-grid;
@@ -832,6 +961,7 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    height: 350px;
   }
   #contenedor-vermas section .contenedor-uno #izquierda #img-sec #img-uno {
     background-image: url(https://d26lpennugtm8s.cloudfront.net/stores/086/894/products/img-20200518-wa00101-9587272a3a2cc19c4715898271067988-1024-1024.jpg);
@@ -852,12 +982,17 @@
     background-image: url(https://d2ye0ltusw47tz.cloudfront.net/196572-large_default/termo-stanley-clasico-14-lts-plegable-rojo-10-08999-007.jpg);
   }
   #contenedor-vermas section .contenedor-uno #izquierda #img-ppal {
-    width: 45vw;
-    height: 470px;
+    margin-left: 0;
+    width: 40vw;
+    height: 350px;
+  }
+  #contenedor-vermas section .contenedor-uno #izquierda #img-ppal img {
+    width: 100%;
+    height: 100%;
   }
   #contenedor-vermas section .contenedor-uno #derecha {
-    margin-left: 1vw;
-    width: 38%;
+    margin-left: 0;
+    padding-left: 0px;
     position: relative;
   }
   #contenedor-vermas section .contenedor-uno #derecha #caja-titulo {
@@ -944,5 +1079,9 @@
   #contenedor-vermas section .contenedor-tres button {
     height: 39px;
   }
+}
+
+.corazon {
+  color: #e42a2a !important;
 }
 /*# sourceMappingURL=view-more.component.css.map */

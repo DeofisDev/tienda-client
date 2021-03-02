@@ -16,19 +16,19 @@ section {
   height: -moz-fit-content;
   height: fit-content;
   min-height: 75vh;
-  width: 85%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 20px;
+  width: 100%;
+  padding-top: 0px;
   padding-bottom: 30px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  margin-top: -30px;
 }
 
 .container-left {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  width: 100%;
+  width: 95%;
+  max-width: 1000px;
   padding: 30px 30px 60px 0px;
 }
 
@@ -62,7 +62,7 @@ section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 80%;
+  width: 100%;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -93,6 +93,7 @@ section {
   color: #aca5a5;
   font-weight: normal;
   margin-left: 15px;
+  text-transform: capitalize;
 }
 
 .container-left #userInfo .total {
@@ -105,34 +106,93 @@ section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 40vw;
-  margin-top: -40px;
+  width: 35vw;
+  min-width: 290px;
+  margin-top: -10px;
 }
 
 .buttons .btn {
   background-color: #223e66;
   color: white;
   font-family: "Open Sans", sans-serif;
-  font-size: 17px;
-  border: 0px;
-  padding: 8px 15px;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 40%;
-  border-radius: 0px;
+  width: 12vw;
+  min-width: 130px;
+  font-size: 15px;
+  display: block;
+  padding: 0;
+  padding-right: 4px;
+  padding-left: 4px;
 }
 
 .buttons .btn:hover {
   background-color: #1f4e84;
   cursor: pointer;
+}
+
+#nameData {
+  text-transform: capitalize;
+}
+
+@media screen and (max-width: 988px) {
+  .container-left #userInfo .rowData {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .container-left .campo {
+    margin-top: 0px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container-left {
+    padding: 20px 0px 40px 0px;
+    width: 100%;
+  }
+  .container-left h2 {
+    font-size: 20px;
+  }
+  .container-left #userInfo {
+    padding: 15px 15px;
+    margin-top: 20px;
+  }
+  .container-left #userInfo .titulo {
+    font-size: 13px;
+    margin-bottom: 25px;
+  }
+  .container-left #userInfo .rowData {
+    margin-top: 15px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .container-left #userInfo .rowData p {
+    font-family: "Open Sans", sans-serif;
+    color: #575353;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .container-left #userInfo .rowData p span {
+    margin-left: 4px;
+  }
+  .container-left #userInfo .campo {
+    font-size: 14px;
+    margin-top: 0px;
+  }
+  .container-left #userInfo .campo span {
+    margin-left: 4px;
+  }
+  .container-left #userInfo .total {
+    font-size: 20px;
+    margin-top: 50px;
+  }
 }
 /*# sourceMappingURL=confirm-data.component.css.map */

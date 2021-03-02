@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AACI,YADQ,CACR,MAAM,CAAA;EACF,MAAM,EAAE,OAAO;CAClB",
+    "sources": [
+        "nueva-img-secundaria.component.scss"
+    ],
+    "names": [],
+    "file": "nueva-img-secundaria.component.css"
+}

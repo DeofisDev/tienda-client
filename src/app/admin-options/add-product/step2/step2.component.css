@@ -1,0 +1,286 @@
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: #1f4e8494;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: #1f4e84;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.form-img {
+  width: 100%;
+}
+
+.form-img .box-img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.form-img .box-img .izq {
+  width: 45%;
+  border: 1px solid rgba(230, 219, 219, 0.658);
+  border-radius: 15px;
+  padding-top: 10px;
+}
+
+.form-img .box-img .izq .images .fa-medal {
+  position: absolute;
+  z-index: 4;
+  top: 20px;
+  left: 123px;
+  color: #2779cd;
+  font-size: 1.7em;
+  -webkit-transform: rotate(-170deg);
+          transform: rotate(-170deg);
+}
+
+.form-img .box-img .izq .images #img-ppal {
+  width: 200px;
+  height: 200px;
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-img .box-img .izq .images #no-img {
+  width: 200px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-img .box-img .izq .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 20px;
+  border-radius: 0px 0px 15px 15px;
+  padding: 10px 45px;
+  background-color: rgba(230, 219, 219, 0.452);
+}
+
+.form-img .box-img .izq .info:hover {
+  cursor: default;
+}
+
+.form-img .box-img .izq .info .nombre-prod {
+  font-family: "Open Sans", sans-serif;
+  text-transform: capitalize;
+  font-size: 17px;
+}
+
+.form-img .box-img .izq .info .items {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 15px;
+}
+
+.form-img .box-img .izq .info .items span {
+  font-size: 12px;
+}
+
+.form-img .box-img .izq .info .oferta {
+  color: #1f4e84;
+  font-weight: bold;
+}
+
+.form-img .box-img .der {
+  width: 55%;
+  padding: 20px 0px 20px 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.form-img .box-img .der .add-img {
+  outline: none;
+  margin-bottom: 35px;
+}
+
+.form-img .box-img .der .add-img h2 {
+  font-family: "Open Sans", sans-serif;
+  color: #223e66;
+}
+
+.form-img .box-img .der .add-img p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  margin-bottom: 25px;
+  margin-left: 30px;
+}
+
+.form-img .box-img .der .add-img p span {
+  font-family: "Open Sans", sans-serif;
+  font-style: italic;
+  color: #999393;
+  font-size: 13px;
+}
+
+.form-img .box-img .der .add-img #add-files {
+  font-size: 13px;
+  display: block;
+  outline: none;
+  width: 350px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-img .box-img .der .add-promo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.form-img .box-img .der .add-promo h2 {
+  font-family: "Open Sans", sans-serif;
+  color: #223e66;
+}
+
+.form-img .box-img .der .add-promo .promo {
+  font-size: 15px;
+  display: block;
+  color: #2779cd;
+  margin-left: 30px;
+}
+
+.form-img .box-img .der .add-promo .promo:hover {
+  cursor: pointer;
+}
+
+.form-img .box-img .der .fila {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.form-img .box-img .der .fila h2 {
+  font-family: "Open Sans", sans-serif;
+  color: #223e66;
+}
+
+.form-img .box-img .der .fila .availability-container {
+  margin-left: 30px;
+}
+
+.form-img .box-img .der .fila .availability-container #availability {
+  border: none;
+  outline: none;
+  margin-left: 8px;
+  font-size: 14px;
+  padding-right: 3px;
+  padding-left: 3px;
+  width: 30px;
+  border-bottom: 1px solid grey;
+}
+
+.form-img .box-img .der .fila .availability-container #availability:focus {
+  border-bottom: 2px solid #2779cd;
+}
+
+.form-img .box-img .der .fila .availability-container #availability.is-invalid {
+  border-bottom: 1px solid red;
+}
+
+.form-img .box-img .der .fila .producto-destacado {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.form-img .box-img .der .fila .producto-destacado .destacado {
+  margin-right: 15px;
+}
+
+.form-img .box-img .der #btn-guardar {
+  background-color: #223e66;
+  font-family: "Open Sans", sans-serif;
+  border: none;
+  color: white;
+  width: 42%;
+  font-size: 15px;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-right: 12px;
+  padding-left: 12px;
+  border-radius: 7px;
+  margin-left: 55%;
+  display: block;
+}
+
+.form-img .box-img .der #btn-guardar:hover {
+  background-color: #1f4e84;
+  cursor: pointer;
+}
+
+.form-img .box-img .der #btn-guardar:focus {
+  outline: none;
+}
+
+.form-img .check-sku {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 45px;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.form-img .check-sku #combinations {
+  margin-right: 10px;
+  margin-top: -5px;
+  margin-bottom: -20px;
+}
+
+.imageResalt :hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+/*# sourceMappingURL=step2.component.css.map */

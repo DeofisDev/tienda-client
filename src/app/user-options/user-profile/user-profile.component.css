@@ -60,15 +60,6 @@ section #lateralMenu .lateral-container .userOptions li {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 section #lateralMenu .lateral-container .userOptions li:last-child {
@@ -104,7 +95,6 @@ section .container-myprofile {
 section .container-myprofile .frame {
   width: 85%;
   margin-top: 30px;
-  margin-left: 50px;
 }
 
 section .container-myprofile .frame .title {
@@ -117,13 +107,12 @@ section .container-myprofile .frame .title {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 section .container-myprofile .frame .title h2 {
   font-family: "Poppins", sans-serif;
-  text-transform: uppercase;
-  font-size: 24px;
+  font-size: 22px;
   color: #575353;
 }
 
@@ -150,59 +139,52 @@ section .container-myprofile .frame .title #save:hover {
 
 section .container-myprofile .frame .personalInformation {
   background-color: white;
+  width: 100%;
+  padding: 0;
   padding: 30px 60px;
   -webkit-box-shadow: 1px 2px 3px #575353;
           box-shadow: 1px 2px 3px #575353;
   margin-bottom: 60px;
 }
 
-section .container-myprofile .frame .personalInformation .item-information {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 20% 70% 10%;
-      grid-template-columns: 20% 70% 10%;
-  -ms-grid-rows: 1fr;
-      grid-template-rows: 1fr;
+section .container-myprofile .frame .personalInformation .campo, section .container-myprofile .frame .personalInformation .info {
   font-family: "Open Sans", sans-serif;
-  padding-bottom: 1px;
-  padding-top: 5px;
   font-size: 15px;
 }
 
-section .container-myprofile .frame .personalInformation .item-information:hover {
-  border-bottom: 1px solid rgba(128, 128, 128, 0.295);
+section .container-myprofile .frame .personalInformation .campo {
+  font-family: "Open Sans", sans-serif;
 }
 
-section .container-myprofile .frame .personalInformation .item-information p {
-  cursor: default;
-}
-
-section .container-myprofile .frame .personalInformation .item-information span {
+section .container-myprofile .frame .personalInformation .info {
+  display: block;
+  overflow: hidden;
+  width: 40vw;
   color: grey;
   text-align: center;
   cursor: default;
+  font-size: 15px;
+  margin-left: -9vw;
 }
 
-section .container-myprofile .frame .personalInformation .item-information i {
-  text-align: right;
+section .container-myprofile .frame .personalInformation .fa-edit {
   color: #575353;
   cursor: pointer;
 }
 
-section .container-myprofile .frame .personalInformation .item-information i:hover {
+section .container-myprofile .frame .personalInformation .fa-edit:hover {
   font-size: 1.1em;
   color: #2779cd;
 }
 
 section .container-myprofile .frame .title2 {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 section .container-myprofile .frame .title2 h2 {
   font-family: "Poppins", sans-serif;
   color: #575353;
-  text-transform: uppercase;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 section .container-myprofile .frame .cards {
@@ -269,200 +251,32 @@ section .container-myprofile .frame .cards .card-row #delete:hover {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  section #lateralMenu {
-    padding-bottom: 0px;
-    z-index: 4;
-    height: 0;
-    width: 100%;
-    position: -webkit-sticky;
-    position: sticky;
-    left: 0px;
-    top: 5px;
-    opacity: 0.8;
-  }
-  section #lateralMenu .boton {
-    position: -webkit-sticky;
-    position: sticky;
-    left: 0px;
-    margin-left: 0px;
-    width: 25px;
-    height: 30px;
-    font-size: 1.5em;
-    z-index: 4;
-    display: block;
-  }
-  section #lateralMenu .boton i {
-    -webkit-transform: translateY(2px);
-            transform: translateY(2px);
-    margin-left: 5px;
-    display: block;
-  }
-  section #lateralMenu .lateral-container {
-    position: relative;
-    top: -60px;
-    display: none;
-  }
-  section #lateralMenu .lateral-container .userOptions {
-    background-color: #223e66;
-    display: block;
-    padding-top: 40px;
-  }
   section .container-myprofile .frame {
-    width: 90%;
-    margin-left: 0;
-    margin-top: 25px;
-  }
-  section .container-myprofile .frame .title {
-    padding-bottom: 0px;
-    margin-bottom: 8px;
-  }
-  section .container-myprofile .frame .title h2 {
-    font-size: 18px;
-    margin-left: 4px;
+    width: 93%;
+    margin-top: 15px;
   }
   section .container-myprofile .frame .personalInformation {
-    padding: 15px 10px;
-    margin-bottom: 35px;
+    padding: 15px 6px;
+    margin-bottom: 65px;
   }
-  section .container-myprofile .frame .personalInformation .item-information {
-    margin-left: auto;
-    margin-right: auto;
-    -ms-grid-columns: none;
-        grid-template-columns: none;
-    -ms-grid-rows: none;
-        grid-template-rows: none;
-        grid-template-areas: "titulo titulo" "info  editar";
+  section .container-myprofile .frame .personalInformation .campo, section .container-myprofile .frame .personalInformation .info {
     font-size: 14px;
-    width: 90%;
   }
-  section .container-myprofile .frame .personalInformation .item-information span {
-    -ms-grid-row: 2;
-    -ms-grid-column: 2;
-    grid-area: info;
-    text-align: left;
+  section .container-myprofile .frame .personalInformation .info {
     display: block;
-    width: 60%;
-  }
-  section .container-myprofile .frame .personalInformation .item-information i {
-    text-align: right;
-    -ms-grid-row: 2;
-    -ms-grid-column: 2;
-    grid-area: editar;
-  }
-  section .container-myprofile .frame .personalInformation .item-information p {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
-    grid-area: titulo;
-    margin-bottom: -3px;
-  }
-  section .container-myprofile .frame .title2 {
-    margin-bottom: 20px;
-  }
-  section .container-myprofile .frame .title2 h2 {
-    font-size: 18px;
-  }
-  section .container-myprofile .frame .cards {
-    padding: 5px 10px;
-    padding-bottom: 25px;
-    margin-bottom: 40px;
-  }
-  section .container-myprofile .frame .cards .card-row {
-    -ms-grid-columns: none;
-        grid-template-columns: none;
-    -ms-grid-rows: none;
-        grid-template-rows: none;
-        grid-template-areas: " nada eliminar" "img info";
-    margin-bottom: 10px;
-    margin-top: 5px;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  section .container-myprofile .frame .cards .card-row img {
-    width: 75px;
-    height: 42px;
+    overflow: hidden;
+    width: 40vw;
+    color: grey;
+    text-align: center;
     cursor: default;
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-area: img;
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
-    margin-top: -8px;
-  }
-  section .container-myprofile .frame .cards .card-row div {
-    -ms-grid-row: 2;
-    -ms-grid-column: 2;
-    grid-area: info;
-  }
-  section .container-myprofile .frame .cards .card-row div p {
-    line-height: 12px;
-    margin-bottom: 5px;
-  }
-  section .container-myprofile .frame .cards .card-row #delete {
-    font-size: 12px;
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
-    grid-area: eliminar;
-    display: block;
-    -webkit-transform: translateX(36vw);
-            transform: translateX(36vw);
+    margin-left: -5vw;
   }
 }
 
-@media screen and (min-width: 650px) and (max-width: 900px) {
-  section .container-myprofile .frame {
-    width: 90%;
-    margin-left: 0;
-    margin-top: 25px;
-  }
-  section .container-myprofile .frame .cards {
-    padding: 5px 10px;
-    padding-bottom: 25px;
-    margin-bottom: 80px;
-  }
-  section .container-myprofile .frame .cards .card-row {
-    -ms-grid-columns: none;
-        grid-template-columns: none;
-    -ms-grid-rows: none;
-        grid-template-rows: none;
-        grid-template-areas: " nada eliminar" "img info";
-    margin-bottom: 10px;
-    margin-top: 5px;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  section .container-myprofile .frame .cards .card-row img {
-    width: 75px;
-    height: 42px;
-    cursor: default;
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-area: img;
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
-    margin-top: -8px;
-  }
-  section .container-myprofile .frame .cards .card-row div {
-    -ms-grid-row: 2;
-    -ms-grid-column: 2;
-    grid-area: info;
-  }
-  section .container-myprofile .frame .cards .card-row div p {
-    line-height: 12px;
-    margin-bottom: 5px;
-  }
-  section .container-myprofile .frame .cards .card-row #delete {
-    font-size: 12px;
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
-    grid-area: eliminar;
-    display: block;
-    -webkit-transform: translateX(36vw);
-            transform: translateX(36vw);
-  }
+.snackPerfil {
+  background-color: #1f4e84 !important;
+  color: white !important;
+  font-family: "Open Sans", sans-serif !important;
+  text-align: center !important;
 }
 /*# sourceMappingURL=user-profile.component.css.map */

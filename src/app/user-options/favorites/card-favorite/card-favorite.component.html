@@ -1,10 +1,11 @@
-<li *ngIf="favorito!==null">
-    <img *ngIf="infoProducto?.foto" src="{{infoProducto?.foto.imageUrl}}" alt="" >
-    <img *ngIf="!infoProducto?.foto" src="assets/imagenes/noimage.png"  alt="">
-    
+<li *ngIf="favorito!==null" class="tarjeta-fav">
+    <img *ngIf="infoProducto?.foto" src="{{infoProducto?.foto.imageUrl}}" alt="">
+    <img *ngIf="!infoProducto?.foto" src="assets/imagenes/noimage.png" alt="">
+
     <div class="info">
-        <span [routerLink]="['/viewmore',infoProducto.id]" class="item-name">{{infoProducto.nombre}}</span>
-        
+        <span [routerLink]="['/viewmore',infoProducto.id]" class="item-name">{{ (infoProducto?.nombre.length>30) ?
+            (infoProducto.nombre | slice:0:30)+'...' : (infoProducto.nombre)}}</span>
+
         <div class="row-oferta" *ngIf="skuAEnviar?.promocion!==null && skuAEnviar?.promocion.estaVigente">
             <span>{{skuAEnviar?.precio| currency:'EUR':'symbol'}}</span>
             <p class="off">{{skuAEnviar?.promocion.porcentaje * 100 | number:'2.0-0'}}%0FF</p>
@@ -20,7 +21,8 @@
             <span class="item-price" style="color: rgb(87, 83, 83);"
                 *ngIf="skuAEnviar?.promocion==null || !skuAEnviar?.promocion.estaVigente">{{skuAEnviar?.precio|
                 currency:'EUR':'symbol'}}</span>
-            <span class="item-price" style="color: rgb(87, 83, 83);margin-right: 200px;" *ngIf="skuAEnviar===null">{{infoProducto?.precio |
+            <span class="item-price" style="color: rgb(87, 83, 83);margin-right: 200px;"
+                *ngIf="skuAEnviar===null">{{infoProducto?.precio |
                 currency:'EUR':'symbol'}}</span>
             <div class="modify-quantity" id="cantidad" *ngIf="skuAEnviar">
                 <i class="fas fa-minus-circle" id="restar" (click)="restarUnidad()"></i>
@@ -31,23 +33,81 @@
         </div>
     </div>
     <!-- contenedor propiedades  -->
-    <div class="text-center" id="cont-props"  >
-        <div class="combobox-cont" *ngFor="let propiedad of propiedadesFiltradas;let index=index; trackBy:trackByIndex; " >
+    <div class="text-center" id="cont-props">
+        <div class="combobox-cont"
+            *ngFor="let propiedad of propiedadesFiltradas;let index=index; trackBy:trackByIndex; ">
             <span>{{propiedad.nombre}}:</span>
-            <select id="color"  class="select-prop" (change)="valoresSiguienteCombobox(i)"  [(ngModel)]="selectedValue[index]">
+            <select id="color" class="select-prop" (change)="valoresSiguienteCombobox(i)"
+                [(ngModel)]="selectedValue[index]">
                 <option [value]="valor.valor" *ngFor="let valor of propiedad.valores">{{valor.valor}}</option>
 
-           </select>
+            </select>
         </div>
-        <span class="reset" (click)=" resetSeleccion()" *ngIf="mostrarActualizar" > Reiniciar</span>
+        <span class="reset" (click)=" resetSeleccion()" *ngIf="mostrarActualizar"> Reiniciar</span>
     </div>
     <!-- FIN contenedor propiedades  -->
 
     <div class="buttons">
-        <button  mat-button (click)="agregarCarrito(skuAEnviar); openSnackBar();  resetSeleccion()"
-        class="btn" [disabled]="skuAEnviar==null || skuAEnviar.disponibilidad==0" id="btn-carrito">Agregar al carrito</button>
-        <button  mat-button (click)="agregarCarrito(skuAEnviar)" class="btn" disabled
-        id="btn-comprar">Comprar ahora</button>
+        <button mat-button (click)="agregarCarrito(skuAEnviar); openSnackBar();  resetSeleccion()" class="btn"
+            [disabled]="skuAEnviar==null || skuAEnviar.disponibilidad==0" id="btn-carrito">Agregar al carrito</button>
+        <button mat-button (click)="agregarCarrito(skuAEnviar)" class="btn" disabled id="btn-comprar">Comprar
+            ahora</button>
     </div>
-    <div class="i-fondo d-block" ><i id="fav"  class=" iconos fas fa-heart fav" [ngClass]="{'corazon':!esFavorito}"  (click)="administrarFavoritos(infoProducto?.id)"></i></div>
+    <div class="i-fondo d-block"><i id="fav" class=" iconos fas fa-heart fav" [ngClass]="{'corazon':!esFavorito}"
+            (click)="administrarFavoritos(infoProducto?.id)"></i></div>
+</li>
+
+<li *ngIf="favorito!==null" class="tarjeta-fav-chica">
+    <div class="cont-name">
+        <span [routerLink]="['/viewmore',infoProducto.id]" class="item-name">{{ (infoProducto?.nombre.length>30) ?
+            (infoProducto.nombre | slice:0:30)+'...' : (infoProducto.nombre)}}</span>
+        <div class="i-fondo d-block"><i id="fav" class=" iconos fas fa-heart fav" [ngClass]="{'corazon':!esFavorito}"
+                (click)="administrarFavoritos(infoProducto?.id)"></i></div>
+    </div>
+    <div class="img-pcio-cant">
+        <img *ngIf="infoProducto?.foto" src="{{infoProducto?.foto.imageUrl}}" alt="">
+        <img *ngIf="!infoProducto?.foto" src="assets/imagenes/noimage.png" alt="">
+        <div class="pcio-cant">
+            <div class="pcio">
+                <span class="item-price"
+                    *ngIf="skuAEnviar?.promocion!==null && skuAEnviar?.promocion.estaVigente">{{skuAEnviar?.promocion.precioOferta|
+                    currency:'EUR':'symbol'}}</span>
+
+                <span class="item-price" style="color: rgb(87, 83, 83);"
+                    *ngIf="skuAEnviar?.promocion==null || !skuAEnviar?.promocion.estaVigente">{{skuAEnviar?.precio|
+                    currency:'EUR':'symbol'}}</span>
+                <div class="modify-quantity" id="cantidad" *ngIf="skuAEnviar">
+                    <i class="fas fa-minus-circle" id="restar" (click)="restarUnidad()"></i>
+                    <span class="item-quantity"> {{cantidadSeleccionada}}</span>
+                    <i class="fas fa-plus-circle" id="sumar" (click)="sumarUnidad()"></i>
+                </div>
+
+            </div>
+            <div class="oferta-chico" *ngIf="skuAEnviar?.promocion!==null && skuAEnviar?.promocion.estaVigente">
+                <span>{{skuAEnviar?.precio| currency:'EUR':'symbol'}}</span>
+                <p class="off">{{skuAEnviar?.promocion.porcentaje * 100 | number:'2.0-0'}}%0FF</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="props">
+        <div class="combobox-cont"
+            *ngFor="let propiedad of propiedadesFiltradas;let index=index; trackBy:trackByIndex; ">
+            <span>{{propiedad.nombre}}:</span>
+            <select id="color" class="select-prop" (change)="valoresSiguienteCombobox(i)"
+                [(ngModel)]="selectedValue[index]">
+                <option [value]="valor.valor" *ngFor="let valor of propiedad.valores">{{valor.valor}}</option>
+
+            </select>
+        </div>
+        <span class="reset" (click)=" resetSeleccion()" *ngIf="mostrarActualizar"> Reiniciar</span>
+    </div>
+    <div class="buttons">
+        <button mat-button (click)="agregarCarrito(skuAEnviar); openSnackBar();  resetSeleccion()" class="btn"
+            [disabled]="skuAEnviar==null || skuAEnviar.disponibilidad==0" id="btn-carrito">Agregar al
+            carrito</button>
+        <button mat-button (click)="agregarCarrito(skuAEnviar)" class="btn" disabled id="btn-comprar">Comprar
+            ahora</button>
+    </div>
+
 </li>

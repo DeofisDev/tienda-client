@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAUA,AAAA,GAAG,CAAA;EACC,QAAQ,EAAE,QAAQ;EAClB,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,gBAAgB;EAC5B,MAAM,EAAE,WAAW;CACtB",
+    "sources": [
+        "buy-now.component.scss"
+    ],
+    "names": [],
+    "file": "buy-now.component.css"
+}

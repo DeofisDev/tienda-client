@@ -12,88 +12,6 @@ section {
   min-height: 83vh;
 }
 
-section #lateralMenu {
-  background-color: #223e66;
-  width: 200px;
-  padding-bottom: 250px;
-  position: relative;
-  z-index: 4;
-  -webkit-box-shadow: 1px 2px 2px #aca5a5;
-          box-shadow: 1px 2px 2px #aca5a5;
-}
-
-section #lateralMenu .boton {
-  display: none;
-  width: 35px;
-  height: 55px;
-  border-radius: 0 30px 30px 0;
-  background-color: #223e66;
-  color: white;
-}
-
-section #lateralMenu .boton i {
-  -webkit-transform: translateY(6px);
-          transform: translateY(6px);
-  margin-left: 5px;
-  display: block;
-}
-
-section #lateralMenu .boton .fa-close {
-  display: none;
-}
-
-section #lateralMenu .lateral-container {
-  margin-top: 20px;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 40px;
-  bottom: 80vh;
-}
-
-section #lateralMenu .lateral-container .userOptions {
-  list-style: none;
-  cursor: pointer;
-}
-
-section #lateralMenu .lateral-container .userOptions li {
-  outline: none;
-  font-size: 16px;
-  color: #fff;
-  width: 100%;
-  padding: 10px 18px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-section #lateralMenu .lateral-container .userOptions li:last-child {
-  border-top: 0.2px solid #ccc1c1;
-}
-
-section #lateralMenu .lateral-container .userOptions li:hover {
-  background-color: #fff;
-  cursor: pointer;
-  color: #575353;
-}
-
-section #lateralMenu .lateral-container .userOptions li:hover > i {
-  font-size: 1em;
-}
-
-section #lateralMenu .lateral-container .userOptions li i {
-  font-size: 0.8em;
-  margin-bottom: 3px;
-}
-
 section .container-miscompras {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -106,9 +24,8 @@ section .container-miscompras {
 }
 
 section .container-miscompras .frame {
-  width: 85%;
+  width: 95%;
   margin-top: 30px;
-  margin-left: 50px;
 }
 
 section .container-miscompras .frame .title {
@@ -121,13 +38,12 @@ section .container-miscompras .frame .title {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 section .container-miscompras .frame .title h2 {
   font-family: "Poppins", sans-serif;
-  text-transform: uppercase;
-  font-size: 24px;
+  font-size: 22px;
   color: #575353;
 }
 
@@ -185,8 +101,7 @@ section .container-miscompras .frame .title .filtros-miscompras ul .ordenar ul {
   position: absolute;
   right: -1px;
   width: 105px;
-  background: -webkit-gradient(linear, left bottom, left top, from(#aca5a5), to(#f3ecec));
-  background: linear-gradient(to top, #aca5a5, #f3ecec);
+  background: #f3ecec;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   cursor: pointer;
@@ -278,11 +193,11 @@ section .container-miscompras .frame .detalleCompras .row-information .row1 div 
   display: none;
   list-style: none;
   position: absolute;
+  z-index: 3;
   top: 25px;
-  right: -3px;
+  right: -100px;
   width: 105px;
-  background: -webkit-gradient(linear, left bottom, left top, from(#f3ecec), to(white));
-  background: linear-gradient(to top, #f3ecec, white);
+  background: #f3ecec;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   -webkit-box-shadow: 1px 2px 2px #aca5a5;
@@ -444,7 +359,7 @@ section .container-miscompras .frame .detalleCompras .row-information .row2 .lis
     width: 100%;
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "id  id menu" "arrow date price";
+        grid-template-areas: "id  id menu" "arrow date price";
     -ms-grid-columns: none;
         grid-template-columns: none;
     -ms-grid-rows: none;
@@ -611,5 +526,105 @@ section .container-miscompras .frame .detalleCompras .row-information .row2 .lis
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+.headerTable {
+  background-color: #1f4e84;
+  font-size: small;
+  color: white;
+  z-index: unset !important;
+}
+
+.reset {
+  background-color: #1f4e84;
+  border: none;
+}
+
+.rowCursor :hover {
+  cursor: pointer;
+}
+
+.img-prod {
+  width: 60px;
+  height: 50px;
+}
+
+thead tr th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10 !important;
+  /* background-color: #1f4e84; */
+}
+
+.table-responsive {
+  height: 400px;
+  width: auto;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.table-responsive::-webkit-scrollbar {
+  width: 7px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: #30384291;
+  border-radius: 5px;
 }
 /*# sourceMappingURL=mis-compras.component.css.map */
