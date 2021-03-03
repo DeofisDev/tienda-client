@@ -1,15 +1,15 @@
 <div class="contenedor">
     <form autocomplete="off" class="form1" id="form1" [formGroup]="form" (ngSubmit)="crearProducto()" >
-        <div class="container-white">
+        <div class="container-white container">
             <div class="fila row">
-
-                <div class="name">
+                
+                <div class="name col-12  col-lg-6 col-xl-7">
                     <label for="name"> Nombre:</label>
                     <input type="text" id="name" formControlName="nombre" [class.is-invalid]="nombreInvalido">
                     <span *ngIf="nombreInvalido" class="text-rojo"><strong>(*)</strong></span>
                 </div>
 
-                <div class="brand">
+                <div class="brand col-12  col-lg-6 col-xl-5 ">
                     <label for="brand">Marca: </label>
                     <mat-form-field class="example-full-width inputBrand">
 
@@ -53,7 +53,7 @@
           
 
             <div class="fila row subandcat">
-                <div class="input-msj">
+                <div class="input-msj col-md-6 col-lg-3">
                     <span *ngIf="categoriaInvalida" class="text-rojo"><strong>(*)</strong></span>
                     <select name="category" id="categories" (change)="showSubcategories()" formControlName="categoria" [ngModel]="categoria" [class.is-invalid]="categoriaInvalida">
                         <option disabled>{{categoria}}</option>
@@ -63,7 +63,7 @@
                     </select>
 
                 </div>
-                <div class="input-msj">
+                <div class="input-msj col-md-6 col-lg-3" >
                     <span *ngIf="subcategoriaInvalida" class="text-rojo"><strong>(*)</strong></span>
                     <select name="subcategory" *ngIf="subcategorias" id="subcategories" formControlName="subcategoria" [class.is-invalid]="subcategoriaInvalida" [ngModel]="subcategoria" (change)="showProperties()">
                         <option>{{subcategoria}}</option>
@@ -112,7 +112,7 @@
 
             </form>
             <div class="fila row">
-                <div class="input-msj">
+                <div class="input-msj col-md-6 col-lg-3">
                     <span *ngIf="unidadInvalida" class="text-rojo"><strong>(*)</strong></span>
                     <select name="unidadMedida" id="unidadMedida" formControlName="unidadMedida" [ngModel]="unidad" [class.is-invalid]="unidadInvalida">
                         <option>{{unidad}}</option>
@@ -121,7 +121,7 @@
 
                 </div>
                 
-                <div class="price-container">
+                <div class="price-container col-md-6 col-lg-6">
                     <label for="price"> Precio:</label>
                     <p id="euro">€</p>
                     <input type="number" min=0 pattern="^[0-9]+" id="price" formControlName="precio" [class.is-invalid]="precioInvalido">
@@ -135,7 +135,7 @@
             </div>
            
             <span *ngIf="precioInvalido || categoriaInvalida || subcategoriaInvalida || unidadInvalida || nombreInvalido " class="text-rojo"><strong>(*)Los campos señalados son obligatorios.</strong></span>
-            <button    id="btn-end" (click)="mensajeProductoCreado()"> Crear producto</button>
+            <button   id="btn-end" (click)="mensajeProductoCreado()"> Crear producto</button>
         </div>
     </form>
    

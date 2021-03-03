@@ -32,9 +32,9 @@ $color-ppal:#fff;
         flex-direction: column;
        .container-white{
         .fila{
-            display: flex;
+            // display: flex;
             margin-bottom: 45px;
-            align-items: baseline;
+            // align-items: baseline;
            
                 .name{
                     #name{
@@ -43,7 +43,7 @@ $color-ppal:#fff;
                         outline: none;
                         border-bottom: 1px solid grey;
                         font-size: 14px;
-                        width: 400px;
+                        width:70%;
                         padding-right: 3px;
                         &:focus{
                             border-bottom: 2px solid $color-wf3;
@@ -54,21 +54,17 @@ $color-ppal:#fff;
                      }
                 }
                 .brand{
-                    margin-left: 60px;
                     .inputBrand{
                         margin-left: 10px;
                         padding: 0;
                     }
                     #brand{
-                      
                         border: none;
                         outline: none;
                         font-size: 14px;
                         padding-right: 3px;
                         padding-left:0 ;
-                        // &:focus{
-                        //     border-bottom: 2px solid $color-wf3;
-                        // }
+                        width: 60% !important;
                        
                     }
                     .fa-plus-square{
@@ -106,7 +102,7 @@ $color-ppal:#fff;
                       }
                 }
                 #subcategories {
-                    margin-left: 90px;
+                   
                     display: block;
                 }
                 #marca{
@@ -144,7 +140,6 @@ $color-ppal:#fff;
            .price-container{
             display: flex;
             align-items: baseline;
-            margin-left: 60px;
             #euro{
                 font-weight: bold;
                 font-size: 14px;
@@ -361,6 +356,7 @@ $color-ppal:#fff;
     color: black;
     font-family: $fte-sec;
     width: 20%;
+    min-width: 170px;
     font-size: 16px;
     margin-bottom: 20px;
     margin-top: -15px;
@@ -384,6 +380,7 @@ $color-ppal:#fff;
     color: white;
     font-family: $fte-sec;
     width: 17%;
+    min-width: 130px;
     font-size: 14px;
     margin-bottom: 20px;
     margin-top: -15px;
@@ -401,6 +398,152 @@ $color-ppal:#fff;
 }            
             
 
-
+@media  screen and (max-width: 767px) {
+    .contenedor{
+        width: 98%;
+        .form1{
+           .container-white{
+            .fila{
+                margin-bottom: 22px;
+                     
+                    .text-rojo{
+                        font-family: $fte-sec;
+                        color: red;
+                        text-align: right;
+                        margin-bottom: 0;
+                        font-size: 12px;
+                       }
+                       
+                .input-msj{
+                    #categories{
+                        width: 90%;
+                    }
+                    #subcategories {
+                       margin-top: 20px;
+                        display: block;
+                        width: 90%;
+                    }
+                }
+             
+               #unidadMedida{
+                font-size: 15px;
+                border: none;
+                outline: none;
+                width: 90%;
+                padding-left: 5px;
+                border-bottom: 1px solid grey;
+                &:focus{
+                    border-bottom: 2px solid $color-wf3;
+                }
+                &.is-invalid{
+                    border-bottom: 1px solid red;
+                  }
+               }
+                
+                
+               .price-container{
+                margin-top: 20px;
+                #price{
+                    width: 76%;
+                }
+               }
+               
+                .check-oferta{
+                   margin-left: 50px;
+                }
+               
+               .availability-container{
+                margin-left: 60px;
+               
+               }
+           
+    
+            }
+            .text-rojo{
+                font-family: $fte-sec;
+                color: red;
+                text-align:left;
+                margin-bottom: 0;
+                font-size: 14px;  
+            }
+           
+            .elegir-props{
+                display: flex;
+                height: fit-content;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                width: 95%;
+                margin-left: auto;
+                margin-right: auto;
+                .contenido{
+                    .leyenda{
+                        font-family: $fte-sec;
+                        font-size: 14px;
+                        display: block;
+                        width: 50%;
+                    }
+                    .aclaracion{
+                        font-family: $fte-sec;
+                        font-size: 13px;
+                        display: block;
+                        font-style: italic;
+                        color: grey;
+                        margin-top: -12px;
+                    }
+                    .propiedad-check{
+                        font-family: $fte-sec;
+                        font-size: 13px;
+                        color: $color-wf3;
+                        margin-right: 25px;
+                        display: block;
+                        margin-top: 10px;
+                        #propiedad{
+                            margin-right: 5px;
+                        }
+                    }  
+                    .btn-add-property{
+                        border: none;
+                        #add{
+                            position: absolute;
+                            font-size: 14px;
+                            right: 0px;
+                            top: 0px;
+                            font-family: $fte-sec;
+                            display: block;
+                            padding: 4px 13px;
+                            border-radius: 7px;
+                            background-color:#90cafa71 ;
+                            cursor: pointer;
+                            box-shadow: 1px 1px 1px rgb(195, 197, 197);
+                            .fa-plus-square{
+                                color: $color-wf3;
+                                margin-left: 7px;
+                                font-size: 17px;
+                            }
+                            &:hover {
+                                transform: scale(1.03);
+                            }
+                        }
+                    }   
+                    
+                }
+               
+                
+            }
+            .textarea{
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+               
+            }
+           }
+        }
+    } 
+    #btn-end{
+        margin-left:auto;
+        margin-right: auto;
+    }         
+       
+}
 
 
