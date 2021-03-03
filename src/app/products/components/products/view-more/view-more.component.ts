@@ -211,7 +211,8 @@ modalInicio:boolean;
     if (skus.length===0) {
      let idDefaultSku=this.infoProducto.defaultSku.id;
      this.productoService.getSku(this.infoProducto.id, idDefaultSku).subscribe( response => {
-      this.skuAEnviar=response;   
+      this.skuAEnviar=response;
+      this.cantidad(); 
     })
 
     }

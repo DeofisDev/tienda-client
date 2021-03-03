@@ -96,6 +96,7 @@ import { ConvertRolPipe } from './pipes/convert-rol.pipe';
 import { AdminClientsComponent } from './admin-options/admin-clients/admin-clients.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { LoadingComponent } from './shared/components/loading/loading/loading.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -197,6 +198,7 @@ import { LoadingComponent } from './shared/components/loading/loading/loading.co
     MatSnackBarModule,
     MatSlideToggleModule,
     MatMenuModule,
+    MatExpansionModule,
     NgxLoadingModule.forRoot({})
   ],
   providers: [{
