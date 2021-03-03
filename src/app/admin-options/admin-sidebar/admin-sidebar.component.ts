@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/log-in/services/auth.service';
 import Swal from 'sweetalert2';
+
+import {MatAccordion} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-admin-sidebar',
@@ -9,6 +11,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./admin-sidebar.component.scss']
 })
 export class AdminSidebarComponent implements OnInit {
+
+  @ViewChild(MatAccordion) accordion: MatAccordion;
 
   constructor(private authService: AuthService, private router: Router) { }
 

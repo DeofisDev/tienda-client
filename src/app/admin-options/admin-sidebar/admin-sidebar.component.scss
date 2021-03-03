@@ -45,7 +45,7 @@ section {
             bottom: 80vh;
             .userOptions {
                 list-style: none;
-                cursor: pointer;
+                /* cursor: pointer; */
                 li {
                     outline: none;
                     font-size: 16px;
@@ -62,7 +62,7 @@ section {
                     }
                     &:hover {
                         background-color: $color-ppal;
-                        cursor: pointer;
+                        /* cursor: pointer; */
                         color: $color-sec;
                     }
                     &:hover>i {
@@ -145,3 +145,138 @@ section {
         }
     }
 }
+
+
+
+.example-action-buttons {
+    padding-bottom: 20px;
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-title,
+  .example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .example-headers-align .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+  
+
+/*   ::ng-deep .mat-expansion-indicator::after, .mat-expansion-panel-header-description { color: white;}
+
+
+  .borderAndShadow {
+      border-radius: 0px;
+      box-shadow: none !important;
+  }
+
+  .colorFondo {
+    background-color: #223e66;
+}
+
+.colorFondo:hover {
+    background-color: white;
+}
+  
+  .colorTitle {
+      color: white;
+  }
+
+  .colorTitle:hover{
+      color: black;
+  }
+  
+
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0px !important;
+    padding-left: 10px !important;
+  } */
+
+
+  .borderAndShadow {
+    border-radius: 0px;
+    box-shadow: none !important;
+}
+
+.colorFondo {
+    background-color: $color-wf1;
+    color: $color-ppal;
+    font-size: 16px;
+    font-family: $fte-ppal;
+}
+
+.colorFondo:hover{
+    background-color: $color-ppal;
+    color: $color-sec;
+}
+
+
+
+/* .colorTitle {
+    color: white;
+} */
+
+
+
+
+.mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header.mat-expanded:hover,
+.mat-expansion-panel-header.mat-expanded:focus {
+    background-color: $color-wf1;
+}
+
+/* .mat-expansion-panel-header,
+.mat-expansion-panel-header-title:hover{
+    color: $color-sec;
+
+} */
+
+/* .mat-expansion-panel-header-title{
+    color: white;
+} */
+
+
+::ng-deep .mat-expansion-indicator::after, .mat-expansion-panel-header-description { color: white;}
+
+
+::ng-deep .mat-expansion-panel-body {
+    padding: 0px !important;
+    padding-left: 10px !important;
+  }
+
+
+.titulo{
+    color: white;
+}
+
+.titulo:hover{
+    color: $color-ter;
+}
+
+
+.subTitulos{
+    /* padding: 10px 10px 10px 30px; */
+    font-size: 14px;
+    color: $color-sec;
+    font-family: $fte-ppal;
+    cursor: pointer;
+    padding-left: 30px; padding-bottom: 10px; padding-top: 10px;
+}
+
+.subTitulos:hover{
+    font-size: 15px;
+    text-anchor: $color-wf1;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.paddingDiv:focus {
+    outline: 0;
+  }

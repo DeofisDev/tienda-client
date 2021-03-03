@@ -80,7 +80,8 @@ import { ResumenCarritoComponent } from './cart/components/checkout/resumen-carr
 import { FmEfectivoComponent } from './cart/components/checkout/checkout-redirect/efectivo/fm-efectivo.component';
 import { CheckoutCancelComponent } from './cart/components/checkout/checkout-redirect/otros/cancel/checkout-cancel.component';
 import { ProductEditComponent } from './admin-options/products-list/product-edit/product-edit.component';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatMenuModule } from '@angular/material/menu';
 import { SkuEditComponent } from './admin-options/products-list/product-edit/sku-edit/sku-edit.component';
 import { Step3Component } from './admin-options/add-product/step3/step3.component';
 import { WebConfigurationComponent } from './admin-options/web-configuration/web-configuration/web-configuration.component';
@@ -90,6 +91,12 @@ import { ImgSecundariasComponent } from './admin-options/products-list/product-e
 import { NuevaImgSecundariaComponent } from './admin-options/products-list/product-edit/nueva-img-secundaria/nueva-img-secundaria.component';
 import { CardFavoriteComponent } from './user-options/favorites/card-favorite/card-favorite.component';
 import { BuyNowComponent } from './buy-now/buy-now.component';
+import { AdminUsersComponent } from './admin-options/admin-users/admin-users.component';
+import { ConvertRolPipe } from './pipes/convert-rol.pipe';
+import { AdminClientsComponent } from './admin-options/admin-clients/admin-clients.component';
+import { NgxLoadingModule } from 'ngx-loading';
+import { LoadingComponent } from './shared/components/loading/loading/loading.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -160,6 +167,10 @@ import { BuyNowComponent } from './buy-now/buy-now.component';
     NuevaImgSecundariaComponent,
     CardFavoriteComponent,
     BuyNowComponent,
+    AdminUsersComponent,
+    ConvertRolPipe,
+    AdminClientsComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -185,7 +196,10 @@ import { BuyNowComponent } from './buy-now/buy-now.component';
     MatIconModule,
     MatRippleModule,
     MatSnackBarModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatMenuModule,
+    MatExpansionModule,
+    NgxLoadingModule.forRoot({})
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true

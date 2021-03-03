@@ -6,16 +6,82 @@
         </div>
         <div class="lateral-container" id="lateral-container">
             <ul class="userOptions">
-                <li [routerLink]="['/admin-profile']">Mis Datos</li>
-                <li [routerLink]="['/sales']">Ventas<i class="fas fa-angle-down "></i> </li>
-                <!-- <li [routerLink]="['/add-product']">Añadir Producto<i class="fas fa-angle-down "></i> </li> -->
+                <li class="pointer" [routerLink]="['/admin-profile']">Mis Datos</li>
+                <!-- <li [routerLink]="['/sales']">Ventas<i class="fas fa-angle-down "></i> </li>
                 <li [routerLink]="['/products-list']">Productos<i class="fas fa-angle-down "></i> </li>
                 <li [routerLink]="['/admin-promo']">Promociones<i class="fas fa-angle-down "></i> </li>
                 <li [routerLink]="['/brands-panel']">Marcas<i class="fas fa-angle-down "></i> </li>
                 <li [routerLink]="['/admin-propiedades']">Propiedades<i class="fas fa-angle-down "></i> </li>
-                <li [routerLink]="['/web-configuration']">Personalización<i class="fas fa-angle-down "></i> </li>
-                <li (click)="logout()"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</li>
+                <li [routerLink]="['/users-admin']">Usuarios<i class="fas fa-angle-down "></i> </li>
+                <li [routerLink]="['/adminClients']">Clientes<i class="fas fa-angle-down "></i> </li> -->
+                <li class="pointer" [routerLink]="['/sales']">Ventas</li>
+                <div class="accordion" id="accordionExample">
+                    <div class="card" style="border: none; border-radius: 0px;">
+                        <div class="card-header colorFondo paddingDiv pointer" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                            aria-controls="collapseOne" >
+                            <div class="row" style="cursor: pointer; ">
+                                <div class="col-9 paddingDiv" >
+                                    Productos 
+                                </div>
+                                <div class="col">
+                                    <i class="fas fa-angle-down "></i>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" style="background-color: #fff; border-radius: 100px;">
+                            <!-- <div class="card-body">
+                                <div style="width: 100%; background-color: red;">Listado</div>
+                            </div> -->
+                            <hr color="#fff" style="margin: 0px 0 0px 0;">
+                            <div class="subTitulos paddingDiv" [routerLink]="['/products-list']">Listado</div>
+                            <div class="subTitulos paddingDiv" [routerLink]="['/brands-panel']">Marcas</div>
+                            <div class="subTitulos paddingDiv" [routerLink]="['/admin-propiedades']">Propiedades</div>
+                            <div class="subTitulos paddingDiv" [routerLink]="['/admin-promo']">Promociones</div>
+                            <hr color="#fff" style="margin: 0px 0 0px 0;">
+                        </div>
+                    </div>
+                
+                
+                </div>
+                <li class="pointer" [routerLink]="['/users-admin']">Usuarios</li>
+                <li class="pointer" [routerLink]="['/adminClients']">Clientes</li>
+                <div class="accordion" id="accordionExample2">
+                    <div class="card" style="border: none; border-radius: 0px;">
+                        <div class="card-header colorFondo" id="headingOne" data-toggle="collapse" data-target="#collapse2" aria-expanded="true"
+                            aria-controls="collapseOne">
+                            <div class="row" style="cursor: pointer; ">
+                                <div class="col-9">
+                                    Reportes
+                                </div>
+                                <div class="col">
+                                    <i class="fas fa-angle-down "></i>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div id="collapse2" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample2" style="background-color: #fff;">
+                            <!-- <div class="card-body">
+                                <div style="width: 100%; background-color: red;">Listado</div>
+                            </div> -->
+                            <hr color="#fff" style="margin: 0px 0 0px 0;">
+                            <div class="subTitulos" >Reporte 1</div>
+                            <div class="subTitulos">Reporte 2</div>
+                            <div class="subTitulos">Reporte 3</div>
+                            <div class="subTitulos">Reporte 4</div>
+                            <hr color="#fff" style="margin: 0px 0 0px 0;">
+                        </div>
+                    </div>
+                
+                
+                </div>
+                <li class="pointer" [routerLink]="['/web-configuration']">Personalización</li>
+                <li class="pointer" (click)="logout()"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</li>
             </ul>
+
+            
         </div>
     </div>
 </section>
