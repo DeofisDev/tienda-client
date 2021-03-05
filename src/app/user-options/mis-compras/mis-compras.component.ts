@@ -35,8 +35,8 @@ export class MisComprasComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
  constructor( private comprasServices: ComprasService ) {
-
-   }
+   console.log("commit test");
+ }
 
   ngOnInit(): void {
 
