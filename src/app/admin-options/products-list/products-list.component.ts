@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/log-in/services/auth.service';
 import { Producto } from 'src/app/products/clases/producto';
 import { EnviarProductoService } from '../enviar-producto.service';
 import { ProductoService } from '../producto.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-products-list',
@@ -51,6 +52,19 @@ export class ProductsListComponent implements OnInit {
 
   productoAEditar: Producto;
 
+  myGroup = new FormGroup({
+    nameFilter: new FormControl(),
+    stateFilter: new FormControl(),
+    destacadoFilter: new FormControl(),
+    marcaFilter: new FormControl(),
+    idFilter: new FormControl(),
+    subcatFilter: new FormControl()
+  })
+
+  
+
+  filteredValues = { nombre: '', activo: '', destacado: '', marca: "", id: "", subcategoria: "" };
+
 
   constructor( private router:Router,
                private authService: AuthService,
@@ -67,44 +81,13 @@ export class ProductsListComponent implements OnInit {
     });
 
     this.getProductos();
+    this.myGroup.patchValue({
+      stateFilter: "",
+      destacadoFilter: ""
+    })
 
 
   }
-  showDetail1(){
-
-    ///// *** **** MOSTRAR DETALLE COMPRA *** *** /////
-  let detail = document.getElementById("compra1") ;
-    detail.style.display="block";
- 
-  ///// *** **** SUBRAYADO *** *** /////
-  let border = document.getElementById("cont-compra1") ;
-  border.style.borderBottom="1px solid rgb(221, 213, 213)";
- 
-    ///// *** **** FLECHAS *** *** /////
-  let arrowDown1=document.getElementById("down1")
-   arrowDown1.style.display="none"
-  
-  let arrowUp1=document.getElementById("up1");
-   arrowUp1.style.display="block";
-
-  };
-
-hideDetail1() {
-  ///// *** **** MOSTRAR DETALLE COMPRA *** *** /////
-  let detail = document.getElementById("compra1") ;
-  detail.style.display="none";
-     
-  ///// *** **** SUBRAYADO *** *** /////
-  let border = document.getElementById("cont-compra1") ;
-  border.style.borderBottom="none";
-     
-  ///// *** **** FLECHAS *** *** /////
-  let arrowDown1=document.getElementById("down1");
-  arrowDown1.style.display="block";
-  let arrowUp1=document.getElementById("up1");
-  arrowUp1.style.display="none";
-  
-  };
 
 
   open(contenido){
@@ -119,20 +102,90 @@ hideDetail1() {
 
       this.data = new MatTableDataSource(this.productos)
 
-      this.data.filterPredicate = (data: any, filter) => {
+      /* this.data.filterPredicate = (data: any, filter) => {
         const dataStr = JSON.stringify(data).toLocaleLowerCase();
         return dataStr.indexOf(filter) != -1
-      }
+      } */
+
+      this.myGroup.controls.nameFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['nombre'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+
+
+      this.myGroup.controls.stateFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['activo'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.myGroup.controls.destacadoFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['destacado'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues)
+        }
+      );
+
+      this.myGroup.controls.marcaFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['marca'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues)
+        }
+      );
+
+      this.myGroup.controls.idFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['id'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues)
+        }
+      );
+
+      this.myGroup.controls.subcatFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['subcategoria'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues)
+        }
+      );
+
+      this.data.filterPredicate = this.customPredicate();
       
       this.data.paginator = this.paginator;
       
-      this.data.sortingDataAccessor = (obj, property) => this.getProperty(obj, property);
+      
 
       this.data.sort = this.sort;
 
       console.log(this.productos);
       
     })
+  };
+
+  customPredicate(){
+
+    const myFilterPredicate = function(data:Producto, filter:any) :boolean{
+
+      let searchString = JSON.parse(filter);
+      let nameFound = data.nombre.toString().trim().toLowerCase().indexOf(searchString.nombre.toLowerCase()) !== -1
+      let stateFound = data.activo.toString().trim().toLowerCase().indexOf(searchString.activo.toLowerCase()) !== -1
+      let destacadoFound = data.destacado.toString().trim().toLowerCase().indexOf(searchString.destacado.toLowerCase()) !== -1
+      let marcaFound = data.marca.nombre.toString().trim().toLowerCase().indexOf(searchString.marca.toLowerCase()) !== -1
+      let idFound = data.id.toString().trim().toLowerCase().indexOf(searchString.id.toLowerCase()) !== -1
+      let subcatFound = data.subcategoria.nombre.toString().trim().toLowerCase().indexOf(searchString.subcategoria.toLowerCase()) !== -1
+      
+      if (searchString.topFilter) {
+        return nameFound || stateFound || destacadoFound || marcaFound || idFound || subcatFound
+      } else {
+        return nameFound && stateFound && destacadoFound && marcaFound && idFound && subcatFound
+      }
+
+    }
+
+    return myFilterPredicate;
+
   }
 
 
@@ -146,7 +199,15 @@ hideDetail1() {
   );
 
 
-  //Logica edición de producto ---->>>>>
+  resetFilters(){
+
+    this.myGroup.setValue({
+      nameFilter: "",
+      stateFilter: "",
+      destacadoFilter: ""
+    })
+
+  }
 
   
 

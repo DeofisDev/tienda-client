@@ -3,180 +3,119 @@
     <div class="container-products">
         <div class="frame">
             
-            <!-- <article class="detalleCompras">
-
-                <div class="col-md col-xs-12 text-right d-none d-sm-block">
-                    <button class="btn btn-primary" style="background-color: #1f4e84; border: none;" (click)="flag = true; open(contenido)">
-                        Nuevo producto
-                    </button>
-                </div>
-
-                <div class="row-product mt-3">
-                    <div class="row1" id="cont-compra1">
-                        <div class="arrow">
-                            <i class="fas fa-angle-down" id="down1" (click)="showDetail1()"></i>
-                            <i class="fas fa-angle-up" id="up1" (click)="hideDetail1()"></i>
-                        </div>
-                        <div class="img-prod">
-                            <img src="../../../assets/imagenes/pumaEjemplo.png" alt="">
-                        </div>
-                        <div class=" campo name">
-                            <span id="name"> Puma Flyer Runner </span>
-                        </div>
-                        <div class="campo id">
-                            <span>ID: 5a4569b</span>
-                        </div>
-                        <div class=" campo state">
-                            <span>Estado: Activo</span>
-                        </div>
-                        <div class="menu">
-                            <i class="fas fa-ellipsis-v"></i>
-                            <ul>
-                                <li class="opciones-menu">Desactivar</li>
-                                <li class="opciones-menu">Editar </li>
-                                <li class="opciones-menu">opcion 3 </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row2" id="compra1">
-                        <div class="conceptos">
-                            <p>Color:</p>
-                            <p>Talle:</p>
-                            
-                            <p>Disponibilidad:</p>
-                            <p>Precio de Lista:</p>
-                        </div>
-                        <div class="lista-combinaciones">
-                            <div class="combinacion">
-                                <p> Negro</p>
-                                <p>38EU</p>
-                                
-                                <p class="disponibilidad">4u</p>
-                                <p class="pcio"> €80</p>
-                                <i class="far fa-edit"></i>
-                            </div>
-                            <div class="combinacion">
-                                <p> Negro</p>
-                                <p>40EU</p>
-                                
-                                <p class="disponibilidad">1u</p>
-                                <p class="pcio"> €88</p>
-                                <i class="far fa-edit"></i>
-                            </div>
-                            <div class="combinacion">
-                                <p>Blanco</p>
-                                <p>37EU</p>
-                                
-                                <p class="disponibilidad">7u</p>
-                                <p class="pcio"> €88</p>
-                                <i class="far fa-edit"></i>
-                            </div>
-                            <div class="combinacion">
-                                <p>Gris</p>
-                                <p>42EU</p>
-                                
-                                <p class="disponibilidad">4u</p>
-                                <p class="pcio"> €88</p>
-                                <i class="far fa-edit"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </article> -->
+            
             
 
             <div class="container">
 
                 <div >
-                    <h2 class="titulo">Productos</h2>
+                    <div class="row">
+                        <div class="col">
+                            <h2 class="titulo">Productos</h2>
+                        </div>
+                        <div class="col-md col-xs-12 text-right d-none d-sm-block">
+                            <button class="btn btn-primary" style="background-color: #1f4e84; border: none;" (click)="open(contenido)">
+                                Nuevo producto
+                            </button>
+                        </div>
+                    </div>
+                    
                 </div>
 
-                <div class="row mb-3">
-                    <div class="col-12 col-md-2">
-                        <small id="emailHelp" class="form-text text-muted">&nbsp;Palabra clave</small>
-                        <input class="form-control form-control-sm" (keyup)="applyFilter($event)"
-                             name="key" [(ngModel)]="key" placeholder="Search" #input>
+                <div class="row mb-3" [formGroup]="myGroup">
+                    <div class="col-12 col-md-1">
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;Id</small>
+                        <input class="form-control form-control-sm" formControlName="idFilter"
+                        name="key" placeholder="Id">
+                    </div>
+                    <div class="col-12 col-md-2" >
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;Nombre</small>
+                        <input class="form-control form-control-sm" formControlName="nameFilter"
+                             name="key" placeholder="Nombre del producto" #input>
                     </div>
                     <div class="col-12 col-md-2">
-                        <small id="emailHelp" class="form-text text-muted">&nbsp;Estados</small>
-                        <select class="form-control form-control-sm" (change)="applyFilter($event)" #select name = "state" [(ngModel)]="state">
-                          <option value="">Todos</option>
-                          <option  value = true>
-                            Activo
-                          </option>
-                          <option value=false>
-                              Inactivo
-                          </option>
-                        </select>
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;Marca</small>
+                        <input class="form-control form-control-sm" formControlName="marcaFilter"
+                             name="key" placeholder="Ej: Adidas" #input>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;Subcategoría</small>
+                        <input class="form-control form-control-sm" formControlName="subcatFilter"
+                        name="key" placeholder="Ej: Deportivo">
                     </div>
                     <div class="col-12 col-md-2">
                         <small id="emailHelp" class="form-text text-muted">&nbsp;Destacados</small>
-                        <select class="form-control form-control-sm" (change)="applyFilter($event)"  #select name = "destacado" [(ngModel)]="destacado">
-                          <option value="">Todos</option>
-                          <option  value = true>
+                        <select class="form-control form-control-sm" #select name = "destacado" formControlName="destacadoFilter">
+                          <option value = "" selected = true>Todos</option>
+                          <option  value = "true">
                             Si
                           </option>
-                          <option value = false>
+                          <option value = "false">
                             No
                           </option>
                         </select>
                     </div>
+                    <div class="col-12 col-md-2">
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;Estados</small>
+                        <select class="form-control form-control-sm"  #select name = "state" formControlName="stateFilter">
+                          <option value="">Todos</option>
+                          <option  value = "true">
+                            Activo
+                          </option>
+                          <option value = "false">
+                              Inactivo
+                          </option>
+                        </select>
+                    </div>
                     <div class="col-1 mt-4">
-                        <button type="button" class="btn btn-primary btn-sm reset"><i class="fas fa-sync"></i></button>
+                        <button type="button" class="btn btn-primary btn-sm btn-block reset" (click)="resetFilters()"><i class="fas fa-sync"></i></button>
                     </div>
 
-                    <div class="col-md col-xs-12 text-right d-none d-sm-block mt-4">
-                        <button class="btn btn-primary" style="background-color: #1f4e84; border: none;" (click)="open(contenido)">
-                            Nuevo producto
-                        </button>
-                    </div>
                 </div>
 
                 <div class="table-responsive">
                     <table mat-table matTableResponsive [dataSource]="data" matSort  class="mat-elevation-z8" multiTemplateDataRows>
 
                       <ng-container  matColumnDef="id">
-                        <th  mat-header-cell *matHeaderCellDef class="headerTable text-center" mat-sort-header> ID </th>
+                        <th  mat-header-cell *matHeaderCellDef class="headerTable text-center" mat-sort-header>ID</th>
                         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
                       </ng-container>
                     
                       <!-- Name Column -->
                       <ng-container matColumnDef="nombre">
-                        <th mat-header-cell *matHeaderCellDef class="headerTable text-center" mat-sort-header> Nombre </th>
+                        <th mat-header-cell *matHeaderCellDef class="headerTable text-center" mat-sort-header>Nombre </th>
                         <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
                       </ng-container>
     
                       <ng-container matColumnDef="precio">
-                          <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Precio </th>
+                          <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header>Precio </th>
                           <td mat-cell *matCellDef="let element"> {{element.precio | currency:'EUR':'symbol'}} </td>
                         </ng-container>
                     
                       <!-- Weight Column -->
                       <ng-container matColumnDef="subcategoria.nombre">
-                        <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Subcategoría</th>
+                        <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header>Subcategoría</th>
                         <td mat-cell *matCellDef="let element"> {{element.subcategoria.nombre}} </td>
                       </ng-container>
     
     
                       <ng-container matColumnDef="marca.nombre">
-                          <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Marca</th>
+                          <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header>Marca</th>
                           <td  mat-cell *matCellDef="let element">{{element.marca.nombre}}</td> 
                       </ng-container>
     
                       <ng-container matColumnDef="disponibilidadGeneral">
-                          <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Stock</th>
+                          <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header>Disponibilidad</th>
                           <td mat-cell *matCellDef="let element">{{element.disponibilidadGeneral}}</td>
                       </ng-container>
                     
                       <ng-container matColumnDef="activo">
-                        <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Estado </th>
+                        <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header>Estado </th>
                         <td mat-cell *matCellDef="let element"> {{element.activo ? 'Activo' : 'Inactivo'}}</td>
                       </ng-container>
       
                       <ng-container matColumnDef="destacado">
-                          <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Destacado </th>
+                          <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header>Destacado </th>
                           <td mat-cell *matCellDef="let element"> {{element.destacado ? 'Si' : 'No'}} </td>
                       </ng-container>
     
@@ -297,3 +236,6 @@
 
 </ng-template>
 
+<div>
+    {{myGroup.controls.stateFilter.value}}
+</div>
