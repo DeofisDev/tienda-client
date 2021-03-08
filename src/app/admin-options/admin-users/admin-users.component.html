@@ -16,8 +16,56 @@
                     <h2 class="titulo">Usuarios</h2>
                 </div>
 
-                <div class="row">
-                    <div class="col text-right">
+                <div class="row" [formGroup] = "myGroup">
+                    <div class="col-12 col-md-1">
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;Id</small>
+                        <input class="form-control form-control-sm" formControlName="idFilter"
+                               placeholder="Id">
+                    </div>
+                    <div class="col-12 col-md-2" >
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;E-mail</small>
+                        <input class="form-control form-control-sm" formControlName="mailFilter"
+                               placeholder="Ej: user@gmail.com">
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;Rol</small>
+                        <select class="form-control form-control-sm" formControlName="rolFilter">
+                          <option value = "" selected = true>Todos</option>
+                          <option  value = {{rol.nombre}} *ngFor="let rol of roles">
+                            {{rol.nombre | convertRol}}
+                          </option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;Estado</small>
+                        <select class="form-control form-control-sm" formControlName="stateFilter">
+                          <option value = "" selected = true>Todos</option>
+                          <option  value = "true">
+                            Activo
+                          </option>
+                          <option value = "false">
+                            Inactivo
+                          </option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;Tipo de registro</small>
+                        <select class="form-control form-control-sm" formControlName="registroFilter">
+                          <option value = "" selected = true>Todos</option>
+                          <option  value = "local">
+                            Local
+                          </option>
+                          <option value = "false">
+                            Externo
+                          </option>
+                        </select>
+                    </div>
+
+                    <div class="col-1 mt-4">
+                        <button type="button" class="btn btn-primary btn-sm reset" (click)="resetFilters()"><i class="fas fa-sync"></i></button>
+                    </div>
+
+                    <div class="col text-right mt-4">
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" style="background-color: #1f4e84; border: none;"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,6 +78,7 @@
                           </div>
                     </div>
                 </div>
+
 
 
                 <div class="table-responsive mt-3">
@@ -63,7 +112,7 @@
                 
                      
                         <ng-container matColumnDef="authProvider">
-                            <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Tipo registro </th>
+                            <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Tipo de registro </th>
                             <td mat-cell *matCellDef="let element"> {{element.authProvider | titlecase}} </td>
                         </ng-container>
                         

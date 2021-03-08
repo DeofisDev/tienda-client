@@ -52,6 +52,7 @@ export class ProductsListComponent implements OnInit {
 
   productoAEditar: Producto;
 
+  //Formulario reactivo para filtrado
   myGroup = new FormGroup({
     nameFilter: new FormControl(),
     stateFilter: new FormControl(),
@@ -59,9 +60,7 @@ export class ProductsListComponent implements OnInit {
     marcaFilter: new FormControl(),
     idFilter: new FormControl(),
     subcatFilter: new FormControl()
-  })
-
-  
+  });
 
   filteredValues = { nombre: '', activo: '', destacado: '', marca: "", id: "", subcategoria: "" };
 
@@ -96,16 +95,15 @@ export class ProductsListComponent implements OnInit {
 
   };
 
+
+  //Llamada a la API para obtener el listado de productos
   getProductos(){
+
     this.productoService.getProdcutos().subscribe((resp: any) => {
       this.productos = resp;
 
       this.data = new MatTableDataSource(this.productos)
 
-      /* this.data.filterPredicate = (data: any, filter) => {
-        const dataStr = JSON.stringify(data).toLocaleLowerCase();
-        return dataStr.indexOf(filter) != -1
-      } */
 
       this.myGroup.controls.nameFilter.valueChanges.subscribe (
         (positionFilterValue) => {
@@ -113,7 +111,6 @@ export class ProductsListComponent implements OnInit {
           this.data.filter = JSON.stringify(this.filteredValues);
         }
       );
-
 
 
       this.myGroup.controls.stateFilter.valueChanges.subscribe (
@@ -164,6 +161,8 @@ export class ProductsListComponent implements OnInit {
     })
   };
 
+
+  //Filtro personalizado, modificando el FilterPredicate de Angular Material
   customPredicate(){
 
     const myFilterPredicate = function(data:Producto, filter:any) :boolean{
@@ -189,25 +188,26 @@ export class ProductsListComponent implements OnInit {
   }
 
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.data.filter = filterValue.trim().toLowerCase();
-  };
 
   getProperty = (obj, path) => (
     path.split('.').reduce((o, p) => o && o[p], obj).toLocaleLowerCase()
   );
 
+  
 
+  //Funcion para resetear todo los filtros.
   resetFilters(){
 
     this.myGroup.setValue({
       nameFilter: "",
       stateFilter: "",
-      destacadoFilter: ""
+      destacadoFilter: "",
+      marcaFilter: "",
+      idFilter: "",
+      subcatFilter: ""
     })
 
-  }
+  };
 
   
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { UsersService } from '../users.service';
 
@@ -52,6 +52,18 @@ export class AdminUsersComponent implements OnInit {
   loading: boolean = false;
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
 
+  //Formulario reactivo para filtrado
+  myGroup = new FormGroup({
+    idFilter: new FormControl(),
+    mailFilter: new FormControl(),
+    rolFilter: new FormControl(),
+    stateFilter: new FormControl(),
+    registroFilter: new FormControl()
+  });
+
+  filteredValues = {id: '', mail: '', rol: '', state: '', registro: ''}
+
+
   constructor( private usuariosServices: UsersService,
                private modalService: NgbModal,
                private fb: FormBuilder,
@@ -60,6 +72,13 @@ export class AdminUsersComponent implements OnInit {
   ngOnInit(): void {
 
     this.obtenerListadoUsuarios();
+
+    this.myGroup.patchValue({
+      rolFilter: "",
+      stateFilter: "",
+      registroFilter: ""
+    })
+
     this.obtenerListadoRoles();
     this.usuarioAEditar = new Usuario();
 
@@ -74,7 +93,46 @@ export class AdminUsersComponent implements OnInit {
     this.usuariosServices.getUsuarios().subscribe(resp => {
       
       this.usuarios = resp;
-      this.data.data = this.usuarios;
+      
+      this.data = new MatTableDataSource(this.usuarios);
+      
+      this.myGroup.controls.idFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['id'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.myGroup.controls.mailFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['mail'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.myGroup.controls.rolFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['rol'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.myGroup.controls.stateFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['state'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.myGroup.controls.registroFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['registro'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.data.filterPredicate = this.customPredicate();
+      
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;
       console.log(this.usuarios);
@@ -239,6 +297,42 @@ export class AdminUsersComponent implements OnInit {
 
   openSnackBar(message: string, action:string){
     this.snackBar.open(message, action, {duration: 2500, panelClass: ['snackPerfil']})
+  };
+
+
+  //Filtro personalizado, modificando el FilterPredicate de Angular Material
+  customPredicate(){
+
+    const myFilterPredicate = function(data:Usuario, filter:any) :boolean {
+
+      let searchString = JSON.parse(filter);
+      let idFound = data.id.toString().trim().toLowerCase().indexOf(searchString.id.toLowerCase()) !== -1
+      let mailFound = data.email.toString().trim().toLowerCase().indexOf(searchString.mail.toLowerCase()) !== -1
+      let stateFound = data.enabled.toString().trim().toLowerCase().indexOf(searchString.state.toLowerCase()) !== -1
+      let registroFound = data.authProvider.toString().trim().toLowerCase().indexOf(searchString.registro.toLowerCase()) !== -1
+      let rolFound = data.rol.toString().trim().toLowerCase().indexOf(searchString.rol.toLowerCase()) !== -1
+
+      if (searchString.topFilter) {
+        return idFound || mailFound || stateFound || registroFound || rolFound
+      }else {
+        return idFound && mailFound && stateFound && registroFound && rolFound
+      }
+
+    };
+
+    return myFilterPredicate;
+
+  };
+
+  //Funcion que limpia el formulario reactivo. Reseteo de filtros
+  resetFilters(){
+    this.myGroup.setValue({
+      idFilter: "",
+      mailFilter: "",
+      rolFilter: "",
+      stateFilter: "",
+      registroFilter: ""
+    })
   };
 
 }

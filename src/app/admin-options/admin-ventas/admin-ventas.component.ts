@@ -16,6 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from "sweetalert2";
 
 import { ConvertFechaPipe } from '../../pipes/convert-fecha.pipe';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -51,7 +52,19 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  parametroCliente: string; //Parametro que viene desde el componentes de Administracion de Clientes.
+  parametroCliente: string; //Parametro que viene desde el componente de Administracion de Clientes.
+
+  //Formulario reactivo para filtros personalizados
+
+  myGroup = new FormGroup({
+    idFilter: new FormControl(),
+    nombreFilter: new FormControl(),
+    apellidoFilter: new FormControl(),
+    fechaFilter: new FormControl(),
+    stateFilter: new FormControl()
+  });
+
+  filteredValues = {id: '', nombre: '', apellido: '', fecha: '', state: ''}
   
   constructor( private router:Router,
                private authService: AuthService,
@@ -64,6 +77,10 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
     
     
     this.obtenerVentas();
+    this.myGroup.patchValue({
+      stateFilter: ""
+    });
+
     this.updateStateVenta = new Operacion();
     
     
@@ -85,10 +102,47 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
       this.ventas = resp;
       /* this.data.data = this.ventas */
       this.data = new MatTableDataSource(this.ventas)
-      this.data.filterPredicate = (data: any, filter) => {
-        const dataStr = JSON.stringify(data).toLocaleLowerCase();
-        return dataStr.indexOf(filter) != -1
-      }
+      
+      this.myGroup.controls.idFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['id'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.myGroup.controls.nombreFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['nombre'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.myGroup.controls.apellidoFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['apellido'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.myGroup.controls.fechaFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['fecha'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.myGroup.controls.stateFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['state'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.data.filterPredicate = this.customPredicate();
+
+      
+
+
       this.data.paginator = this.paginator;
 
       this.data.sortingDataAccessor = (obj, property) => this.getProperty(obj, property); 
@@ -99,7 +153,7 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
       this.route.paramMap.subscribe((params: ParamMap) => {
         this.key = params.get('cliente')
         const filterValue = params.get('cliente')
-        this.data.filter = filterValue.trim().toLowerCase();
+        this.data.filter = filterValue?.trim().toLowerCase();
         
       });
 
@@ -112,17 +166,6 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
     this.data.filter = filterValue.trim().toLowerCase();
   };
 
-  /* applyFilter(event) {
-    const filterValue = event.target.value.trim().toLowerCase();
-    this.data.filter = filterValue;
-  }; */
-
-  reset(){
-    this.key = "";
-    this.state = "";
-    this.filter = "";
-    this.data.filter = "";
-  };
 
   prueba(){
     
@@ -250,7 +293,31 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
 
   getProperty = (obj, path) => (
     path.split('.').reduce((o, p) => o && o[p], obj)
-  )
+  );
+
+
+  customPredicate(){
+
+    const myFilterPredicate = function(data:Operacion, filter:any) :boolean{
+
+      let searchString = JSON.parse(filter);
+      let idFound = data.nroOperacion.toString().trim().toLowerCase().indexOf(searchString.id.toLowerCase()) !== -1
+      let nombreFound = data.cliente.nombre.toString().trim().toLowerCase().indexOf(searchString.nombre.toLowerCase()) !== -1
+      let apellidoFound = data.cliente.apellido.toString().trim().toLowerCase().indexOf(searchString.apellido.toLowerCase()) !== -1
+      let fechaFound = data.fechaOperacion.toString().trim().toLowerCase().indexOf(searchString.fecha.toLowerCase()) !== -1
+      let stateFound = data.estado.toString().trim().toLowerCase().indexOf(searchString.state.toLowerCase()) !== -1
+      
+      if (searchString.topFilter) {
+        return idFound || nombreFound || apellidoFound || fechaFound || stateFound 
+      } else {
+        return idFound && nombreFound && apellidoFound && fechaFound && stateFound 
+      }
+
+    }
+
+    return myFilterPredicate;
+
+  }
 
   
 

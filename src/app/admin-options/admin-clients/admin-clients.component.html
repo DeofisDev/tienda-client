@@ -16,6 +16,44 @@
                     <h2 class="titulo">Clientes</h2>
                 </div>
 
+                <div class="row" [formGroup]="myGroup">
+                    <div class="col-12 col-md-1">
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;ID</small>
+                        <input class="form-control form-control-sm" formControlName="idFilter"
+                                placeholder="ID">
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;DNI</small>
+                        <input class="form-control form-control-sm" formControlName="dniFilter"
+                                placeholder="DNI">
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;Nombre</small>
+                        <input class="form-control form-control-sm" formControlName="nombreFilter"
+                                placeholder="Ej: Gastón">
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;Apellido</small>
+                        <input class="form-control form-control-sm" formControlName="apellidoFilter"
+                                placeholder="Ej: García">
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;Email</small>
+                        <input class="form-control form-control-sm" formControlName="emailFilter"
+                                placeholder="Ej: user@gmail.com">
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <small id="emailHelp" class="form-text text-muted">&nbsp;Dirección</small>
+                        <input class="form-control form-control-sm" formControlName="direccionFilter"
+                                placeholder="5ta Avenida">
+                    </div>
+
+                    <div class="col-1 mt-4">
+                        <button type="button" class="btn btn-primary btn-sm reset" (click)="resetFilters()"><i class="fas fa-sync"></i></button>
+                    </div>
+                    
+                </div>
+
                 <div class="table-responsive mt-3">
                     <table mat-table matTableResponsive [dataSource]="data" matSort class="mat-elevation-z8" multiTemplateDataRows>
                 

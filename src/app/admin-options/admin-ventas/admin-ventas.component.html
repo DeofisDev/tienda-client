@@ -8,53 +8,51 @@
 
             <div class="container">
 
-              <div class="row mb-3">
-                <div class="col-12 col-md-3">
-                  <small id="emailHelp" class="form-text text-muted">&nbsp;Palabra clave.</small>
-                  <input class="form-control form-control-sm" (keyup)="applyFilter($event)"
-                    [(ngModel)]="key" name="key" placeholder="Search" #input>
+              <div class="row mb-3" [formGroup]="myGroup">
+                <div class="col-12 col-md-1">
+                  <small id="emailHelp" class="form-text text-muted">&nbsp;ID</small>
+                  <input class="form-control form-control-sm" placeholder="ID" formControlName="idFilter">
+                </div>
+                <div class="col-12 col-md-2">
+                  <small id="emailHelp" class="form-text text-muted">&nbsp;Nombre</small>
+                  <input class="form-control form-control-sm" placeholder="Ej: Gastón" formControlName="nombreFilter">
+                </div>
+                <div class="col-12 col-md-2">
+                  <small id="emailHelp" class="form-text text-muted">&nbsp;Apellido</small>
+                  <input class="form-control form-control-sm" placeholder="Ej: García" formControlName="apellidoFilter">
                 </div>
                 <div class="col-12 col-md-3">
-                  <small id="emailHelp" class="form-text text-muted">&nbsp;Desde</small>
-                  <input type="date" class="form-control form-control-sm">
-                </div>
-                <div class="col-12 col-md-3">
-                  <small id="emailHelp" class="form-text text-muted">&nbsp;Hasta</small>
-                  <input type="date" class="form-control form-control-sm">
+                  <small id="emailHelp" class="form-text text-muted">&nbsp;Fecha de venta</small>
+                  <input type="date" class="form-control form-control-sm" formControlName="fechaFilter">
                 </div>
                 <div class="col-12 col-md-3">
                   <div class="row">
                     <div class="col-9">
                       <small id="emailHelp" class="form-text text-muted">&nbsp;Estados.</small>
-                      <select class="form-control form-control-sm" (change)="applyFilter($event)" #select name = "state" [(ngModel)]="state">
+                      <select class="form-control form-control-sm" formControlName="stateFilter">
                         <option value="">Todos</option>
-                        <option *ngFor="let estado of estadosOperacion" [value] = "estado | convertEstadoOp">
+                        <option *ngFor="let estado of estadosOperacion" [value]="estado">
                           {{estado | convertEstadoOp}}
                         </option>
                       </select>
                     </div>
                     <div class="col-1 mt-4">
-                      <button type="button" class="btn btn-primary btn-sm reset" (click)="reset();"><i class="fas fa-sync"></i></button>
+                      <button type="button" class="btn btn-primary btn-sm reset"><i class="fas fa-sync"></i></button>
                     </div>
                   </div>
-                  
-                  
+              
+              
                 </div>
               </div>
 
               <div class="table-responsive">
                 <table mat-table matTableResponsive [dataSource]="data" matSort  class="mat-elevation-z8" multiTemplateDataRows>
 
-                  <!--- Note that these columns can be defined in any order.
-                        The actual rendered columns are set as a property on the row definition" -->
-                
-                  <!-- Position Column -->
                   <ng-container  matColumnDef="nroOperacion">
                     <th  mat-header-cell *matHeaderCellDef class="headerTable text-center" mat-sort-header> ID </th>
                     <td mat-cell *matCellDef="let element"> {{element.nroOperacion}} </td>
                   </ng-container>
                 
-                  <!-- Name Column -->
                   <ng-container matColumnDef="cliente.nombre">
                     <th mat-header-cell *matHeaderCellDef class="headerTable text-center" mat-sort-header> Cliente </th>
                     <td mat-cell *matCellDef="let element"> {{element.cliente.nombre}} {{element.cliente.apellido}} </td>
@@ -65,7 +63,6 @@
                       <td mat-cell *matCellDef="let element"> {{element.direccionEnvio.calle}} {{element.direccionEnvio.numeroCalle}} </td>
                     </ng-container>
                 
-                  <!-- Weight Column -->
                   <ng-container matColumnDef="fechaOperacion">
                     <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Fecha de venta</th>
                     <td mat-cell *matCellDef="let element"> {{element.fechaOperacion | convertFecha | slice:0:8}} </td>
@@ -83,16 +80,10 @@
                       <td mat-cell *matCellDef="let element">{{tieneFechaEntrega(element.fechaRecibida)}}</td> <!-- {{element.fechaRecibida}} -->
                   </ng-container>
                 
-                  <!-- Symbol Column -->
                   <ng-container matColumnDef="estado">
                     <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Estado </th>
                     <td mat-cell *matCellDef="let element"> {{element.estado | convertEstadoOp}}</td>
                   </ng-container>
-
-                  <!-- <ng-container matColumnDef="actualizar">
-                    <th mat-header-cell *matHeaderCellDef class="headerTable text-center" mat-sort-header> Actualizar </th>
-                    <td mat-cell *matCellDef="let element"><i class="far fa-edit"></i> </td>
-                  </ng-container> -->
   
                   <ng-container matColumnDef="total">
                       <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Total </th>
@@ -126,7 +117,6 @@
                       (click)="expandedElement = expandedElement === element ? null : element">
                   </tr>
                   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-                  <!--  -->
   
                 </table>
                 
@@ -224,3 +214,5 @@
     <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
   </div> -->
 </ng-template>
+
+{{myGroup.controls.fechaFilter.value}}
