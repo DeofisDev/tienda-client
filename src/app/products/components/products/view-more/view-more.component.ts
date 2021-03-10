@@ -47,7 +47,7 @@ export class ViewMoreComponent implements OnInit {
   skusCombobox:Sku[];
   categoria:Categoria;
   /// cantidad seleccionada para enviar al carrito
-  cantidadSeleccionada:number
+  cantidadSeleccionada:number;
 
   /// sku que voy a enviar al carrito
   idSkuAEnviar:number;
@@ -90,6 +90,7 @@ modalInicio:boolean;
     this.skusCarritoLS= new Array();
     this.skusCombobox = new Array();
     this.totalItemsCarrito = 0;
+    this.cantidadSeleccionada = 1;
   }
 
   ngOnInit(): void {
