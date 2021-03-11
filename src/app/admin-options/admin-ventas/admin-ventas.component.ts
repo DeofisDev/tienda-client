@@ -295,12 +295,15 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
     path.split('.').reduce((o, p) => o && o[p], obj)
   );
 
-
+  
+  //Funcion para modificar el FilterPredicate por defecto que viene con Angular Material, con la finalidad de hacer los filtros personalizados
   customPredicate(){
 
     const myFilterPredicate = function(data:Operacion, filter:any) :boolean{
 
       let searchString = JSON.parse(filter);
+      console.log(searchString);
+      
       let idFound = data.nroOperacion.toString().trim().toLowerCase().indexOf(searchString.id.toLowerCase()) !== -1
       let nombreFound = data.cliente.nombre.toString().trim().toLowerCase().indexOf(searchString.nombre.toLowerCase()) !== -1
       let apellidoFound = data.cliente.apellido.toString().trim().toLowerCase().indexOf(searchString.apellido.toLowerCase()) !== -1
@@ -316,6 +319,27 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
     }
 
     return myFilterPredicate;
+
+  };
+
+  //Funcion para resetear el formulario reactivo (filtros)
+
+  resetFilters(){
+    this.myGroup.setValue({
+      idFilter: "",
+      nombreFilter: "",
+      apellidoFilter: "",
+      fechaFilter: "",
+      stateFilter: ""
+    })
+  };
+
+  parseFechaTime(date: any) {
+
+    let myDate = date.split("-");
+    let newDate = new Date(myDate[2], myDate[1] - 1, myDate[0])
+
+    return newDate
 
   }
 

@@ -4,147 +4,29 @@
         <div class="frame">
             <div class="title">
                 <h2>Mis Compras</h2>
-                <!-- <div class="filtros-miscompras">
-                    <ul>
-                        <li class="ordenar">
-                            <div> Ordenar<i class="fas fa-caret-down"></i></div>
-                            <ul>
-                                <li class="opciones">Más recientes</li>
-                                <li class="opciones">Más antiguos</li>
-                            </ul>
-                        </li>
-                        <li class="ordenar">
-                            <div> Mostrar <i class="fas fa-caret-down"></i></div>
-                            <ul>
-                                <li class="opciones">Pendientes</li>
-                                <li class="opciones"> Recibidos</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div> -->
             </div>
-            <!-- <article class="detalleCompras">
-                <div class="row-information">
-                    <div class="row1" id="cont-compra1">
-                        <div class="arrow">
-                            <i class="fas fa-angle-down" id="down1" (click)="showDetail1()"></i>
-                            <i class="fas fa-angle-up" id="up1" (click)="hideDetail1()"></i>
-                        </div>
-                        <div class=" campo date">
-                            <span id="date"> 02/11/19 </span>
-                        </div>
-                        <div class="campo id-compra">
-                            <span>ID: 5a4569bg832--2</span>
-                        </div>
-                        <div class=" campo total">
-                            <span class="total-price">$560000</span>
-                        </div>
-                        <div class="menu">
-                            <i class="fas fa-ellipsis-v"></i>
-                            <ul>
-                                <li class="opciones-menu">opcion 1</li>
-                                <li class="opciones-menu">opcion 2 </li>
-                                <li class="opciones-menu">opcion 3 </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row2" id="compra1">
-                        <div class="conceptos">
-                            <p>Producto:</p>
-                            <p>Descripción:</p>
-                            <p>Pcio Unitario:</p>
-                            <p>Cantidad:</p>
-                            <p>Total:</p>
-                        </div>
-                        <div class="lista-productos">
-                            <div class="producto">
-                                <p> <span class="ver-mobile">Producto: </span>Samsung Galaxy J2</p>
-                                <p> <span class="ver-mobile">Descripción: </span>Negro</p>
-                                <p><span class="ver-mobile">Pcio Unitario: </span>$22000</p>
-                                <p> <span class="ver-mobile">Cantidad: </span>1</p>
-                                <p><span class="ver-mobile">Total: </span> $22000</p>
-                            </div>
-                            <div class="producto">
-                                <p> <span class="ver-mobile">Producto: </span>Iphone 11</p>
-                                <p> <span class="ver-mobile">Descripción: </span>Plateado</p>
-                                <p><span class="ver-mobile">Pcio Unitario: </span>$170000</p>
-                                <p> <span class="ver-mobile">Cantidad: </span>2</p>
-                                <p><span class="ver-mobile">Total: </span> $340000</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row-information">
-                    <div class="row1" id="cont-compra2">
-                        <div class="arrow">
-                            <i class="fas fa-angle-down" id="down2" (click)="showDetail2()"></i>
-                            <i class="fas fa-angle-up" id="up2" (click)="hideDetail2()"></i>
-                        </div>
-                        <div class=" campo date">
-                            <span id="date"> 04/02/18 </span>
-                        </div>
-                        <div class="campo id-compra">
-                            <span>ID: 5a456s7h5gf--3</span>
-                        </div>
-                        <div class=" campo total">
-                            <span class="total-price">$15000</span>
-                        </div>
-                        <div class="menu">
-                            <i class="fas fa-ellipsis-v"></i>
-                            <ul>
-                                <li class="opciones-menu">opcion 1</li>
-                                <li class="opciones-menu">opcion 2 </li>
-                                <li class="opciones-menu">opcion 3 </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row2" id="compra2">
-                        <div class="conceptos">
-                            <p>Producto:</p>
-                            <p>Descripción:</p>
-                            <p>Pcio Unitario:</p>
-                            <p>Cantidad:</p>
-                            <p>Total:</p>
-                        </div>
-                        <div class="lista-productos">
-                            <div class="producto">
-                                <p> <span class="ver-mobile">Producto: </span>Samsung Galaxy J7</p>
-                                <p> <span class="ver-mobile">Descripción: </span>Dorado</p>
-                                <p><span class="ver-mobile">Pcio Unitario: </span>$15000</p>
-                                <p> <span class="ver-mobile">Cantidad: </span>1</p>
-                                <p><span class="ver-mobile">Total: </span> $15000</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-            </article> -->
+         
             <div class="container">
 
 
-                <div class="row mb-3">
-                    <div class="col-12 col-md-3">
-                      <small id="emailHelp" class="form-text text-muted">&nbsp;Palabra clave.</small>
-                      <input class="form-control form-control-sm"  placeholder="Search" #input> <!-- (keyup)="applyFilter($event)" -->
+                <div class="row mb-3" [formGroup]="myGroup">
+                    <div class="col-12 col-md-1">
+                      <small id="emailHelp" class="form-text text-muted">&nbsp;ID.</small>
+                      <input class="form-control form-control-sm"  placeholder="Id" formControlName="idFilter">
                     </div>
-                    <div class="col-12 col-md-3">
-                      <small id="emailHelp" class="form-text text-muted">&nbsp;Desde</small>
-                      <input type="date" class="form-control form-control-sm">
+                    <div class="col-12 col-md-2">
+                      <small id="emailHelp" class="form-text text-muted">&nbsp;Dirección</small>
+                      <input class="form-control form-control-sm" placeholder="5ta Avenida" formControlName="direccionFilter">
                     </div>
-                    <div class="col-12 col-md-3">
-                      <small id="emailHelp" class="form-text text-muted">&nbsp;Hasta</small>
-                      <input type="date" class="form-control form-control-sm">
+                    <div class="col-12 col-md-2">
+                      <small id="emailHelp" class="form-text text-muted">&nbsp;Fecha de compra</small>
+                      <input type="date" class="form-control form-control-sm" formControlName="fechaFilter" disabled>
                     </div>
                     <div class="col-12 col-md-3">
                       <div class="row">
                         <div class="col-9">
-                          <small id="emailHelp" class="form-text text-muted">&nbsp;Estados.</small>
-                          <select class="form-control form-control-sm"  #select> <!-- (change)="applyFilter($event)" -->
+                          <small id="emailHelp" class="form-text text-muted">&nbsp;Estados de la compra</small>
+                          <select class="form-control form-control-sm" formControlName="stateFilter">
                             <option value="">Todos</option>
                             <option *ngFor="let estado of estadosOperacion" [value] = "estado">
                               {{estado | convertEstadoOp}}

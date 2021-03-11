@@ -9,6 +9,7 @@ import { Operacion } from 'src/app/admin-options/admin-ventas/clases/Operacion';
 import { MatSort } from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-mis-compras',
@@ -34,6 +35,17 @@ export class MisComprasComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  //Formulario reactivo para filtros personalizados
+
+  myGroup = new FormGroup({
+    idFilter: new FormControl(),
+    direccionFilter: new FormControl(),
+    fechaFilter: new FormControl(),
+    stateFilter: new FormControl()
+  });
+
+  filteredValues = {id: '', direccion: '', fecha: '', state: ''};
+
  constructor( private comprasServices: ComprasService ) {
 
    }
@@ -41,79 +53,50 @@ export class MisComprasComponent implements OnInit {
   ngOnInit(): void {
 
     this.obtenerCompras();
+    this.myGroup.patchValue({
+      stateFilter: ""
+    })
 
   }
 
-  showDetail1(){
-    ///// *** **** MOSTRAR DETALLE COMPRA *** *** /////
-    let detail = document.getElementById("compra1") ;
-    detail.style.display="block";
-   
-    ///// *** **** SUBRAYADO *** *** /////
-    let border = document.getElementById("cont-compra1") ;
-    border.style.borderBottom="1px solid rgb(221, 213, 213)";
-    
-    ///// *** **** FLECHAS *** *** /////
-    let arrowDown1=document.getElementById("down1");
-    arrowDown1.style.display="none";
-    
-    let arrowUp1=document.getElementById("up1");
-    arrowUp1.style.display="block";
-  }
 
-  hideDetail1(){
-    ///// *** **** MOSTRAR DETALLE COMPRA *** *** /////
-    let detail = document.getElementById("compra1") ;
-    detail.style.display="none";
-    
-    ///// *** **** SUBRAYADO *** *** /////
-    let border = document.getElementById("cont-compra1") ;
-    border.style.borderBottom="none";
-    
-    ///// *** **** FLECHAS *** *** /////
-    let arrowDown1=document.getElementById("down1")
-    arrowDown1.style.display="block";
-
-    let arrowUp1=document.getElementById("up1");
-    arrowUp1.style.display="none";
-}
-  showDetail2(){
-    ///// *** **** MOSTRAR DETALLE COMPRA *** *** /////
-    let detail = document.getElementById("compra2") ;
-    detail.style.display="block";
-    
-    ///// *** **** SUBRAYADO *** *** /////
-    let border = document.getElementById("cont-compra2") ;
-    border.style.borderBottom="1px solid rgb(221, 213, 213)";
-    
-    ///// *** **** FLECHAS *** *** /////
-    let arrowDown2=document.getElementById("down2")
-    arrowDown2.style.display="none"
-    
-    let arrowUp2=document.getElementById("up2")
-    arrowUp2.style.display="block"
-  }
-
-  hideDetail2(){
-    ///// *** **** MOSTRAR DETALLE COMPRA *** *** /////
-    let detail = document.getElementById("compra2") ;
-    detail.style.display="none";
-    ///// *** **** SUBRAYADO *** *** /////
-    let border = document.getElementById("cont-compra2") ;
-    border.style.borderBottom="none";
-    
-    ///// *** **** FLECHAS *** *** /////
-    let arrowDown1=document.getElementById("down2")
-    arrowDown1.style.display="block"
-    
-    let arrowUp1=document.getElementById("up2");
-    arrowUp1.style.display="none"
-  }
 
   obtenerCompras(){
     this.comprasServices.getVentasUser().subscribe((resp:any) => {
       this.misCompras = resp;
-      this.data.data = this.misCompras;
+
+      this.data = new MatTableDataSource(this.misCompras);
+
+      this.myGroup.controls.idFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['id'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.myGroup.controls.direccionFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['direccion'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.myGroup.controls.fechaFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['fecha'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.myGroup.controls.stateFilter.valueChanges.subscribe (
+        (positionFilterValue) => {
+          this.filteredValues['state'] = positionFilterValue;
+          this.data.filter = JSON.stringify(this.filteredValues);
+        }
+      );
+
+      this.data.filterPredicate = this.customPredicate()
+
       this.data.sort = this.sort;
       this.data.paginator = this.paginator;
 
@@ -121,5 +104,30 @@ export class MisComprasComponent implements OnInit {
       
     })
   }
+
+    //Funcion para modificar el FilterPredicate por defecto que viene con Angular Material, con la finalidad de hacer los filtros personalizados
+    customPredicate(){
+
+      const myFilterPredicate = function(data:Operacion, filter:any) :boolean{
+  
+        let searchString = JSON.parse(filter);
+        console.log(searchString);
+        
+        let idFound = data.nroOperacion.toString().trim().toLowerCase().indexOf(searchString.id.toLowerCase()) !== -1
+        let direccionFound = data.direccionEnvio.calle.toString().trim().toLowerCase().indexOf(searchString.direccion.toLowerCase()) !== -1
+        let fechaFound = data.fechaOperacion.toString().trim().toLowerCase().indexOf(searchString.fecha.toLowerCase()) !== -1
+        let stateFound = data.estado.toString().trim().toLowerCase().indexOf(searchString.state.toLowerCase()) !== -1
+        
+        if (searchString.topFilter) {
+          return idFound || direccionFound || fechaFound || stateFound 
+        } else {
+          return idFound && direccionFound && fechaFound && stateFound 
+        }
+  
+      }
+  
+      return myFilterPredicate;
+  
+    };
 
 }
