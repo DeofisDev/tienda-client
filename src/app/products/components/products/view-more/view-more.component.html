@@ -18,22 +18,15 @@
         <article class="contenedor-uno container" >
             <div class="row">
                 <div id="izquierda" class="izquierda col-sm-7">
-                    <div id="img-sec" class="img-sec">
-                        <div id="img-uno">
-                            <img *ngIf="!infoProducto?.foto" src="assets/imagenes/noimage.png" alt="">
-                            <img *ngIf="infoProducto?.foto" src="{{infoProducto?.foto.imageUrl}}" alt="">
+                    <div id="img-sec" class="img-sec" *ngIf= "imagenes_todas!==null">
+                        <div class="img-sec-prod" *ngFor="let imagen of imagenes_todas;let i=index ">
+                            <img  src="{{imagen}}" alt=""  (click)="mostrarEnPrincipal(i)">
                         </div>
-                        <!-- <div id="img-dos">
-    
-                        </div>
-                        <div id="img-tres"></div>
-                        <div id="img-cuatro"></div>
-                        <div id="img-cinco"></div>
-                        <div id="img-seis"></div> -->
                     </div>
                     <div id="img-ppal" class="img-ppal">
-                        <img *ngIf="infoProducto?.foto" src="{{infoProducto?.foto.imageUrl}}" alt="">
-                        <img *ngIf="!infoProducto?.foto" src="assets/imagenes/noimage.png"
+                        <img *ngIf="skuAEnviar?.foto== null && infoProducto?.foto  " src="{{infoProducto?.foto.imageUrl}}" alt="" id="img-principal">
+                        <img *ngIf="skuAEnviar?.foto" src="{{skuAEnviar?.foto.imageUrl}}" alt="" id="img-principal">
+                        <img *ngIf="skuAEnviar?.foto ==null && infoProducto?.foto == null " src="assets/imagenes/noimage.png"
                             style="width: 350px; height: auto;" alt="">
                     </div>
                 </div>

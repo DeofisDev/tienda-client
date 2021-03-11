@@ -5,6 +5,7 @@ import { PropiedadProducto } from './propiedad-producto';
 import { Sku } from './sku';
 import { Promocion } from 'src/app/admin-options/admin-promos/clases/promocion';
 import { Foto } from './foto';
+import { ImagenSecundaria } from './imagen-secundaria';
 
 export class Producto {
     id: number;
@@ -15,7 +16,7 @@ export class Producto {
     disponibilidadGeneral: number;
     fechaCreacion: number;
     foto: Foto;
-    imagenes: string[];
+    imagenes: ImagenSecundaria[];
     activo: boolean;
     destacado: boolean;
     subcategoria: Subcategoria;

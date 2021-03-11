@@ -23,6 +23,7 @@ import { Favorito } from 'src/app/products/clases/favorito';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/admin-options/admin-promos/data.service';
+import { ImagenSecundaria } from 'src/app/products/clases/imagen-secundaria';
 
 @Component({
   selector: 'app-view-more',
@@ -46,6 +47,10 @@ export class ViewMoreComponent implements OnInit {
   totalItemsCarrito:number;
   skusCombobox:Sku[];
   categoria:Categoria;
+  imagenesSecundariasProducto:ImagenSecundaria[];
+  imagenes_prod: any[] =[];
+  imagenes_sec_skus : any [] = [];
+  imagenes_todas : any [] = [];
   /// cantidad seleccionada para enviar al carrito
   cantidadSeleccionada:number
 
@@ -89,6 +94,7 @@ modalInicio:boolean;
     this.infoProducto=new Producto();
     this.skusCarritoLS= new Array();
     this.skusCombobox = new Array();
+    this.imagenes_prod = new Array();
     this.totalItemsCarrito = 0;
   }
 
@@ -138,6 +144,52 @@ modalInicio:boolean;
     
   }
   /**
+   * IMAGENES
+   */
+  //////// obtengo las imagenes del producto y por otro lado las imagenes de los skus
+  getImagenesSecundariasProducto(){
+       this.imagenesSecundariasProducto =this.infoProducto.imagenes;
+       this.imagenes_prod.push(this.infoProducto?.foto.imageUrl);
+       for (let i = 0; i < this.imagenesSecundariasProducto.length; i++) {
+         this.imagenes_prod.push(this.imagenesSecundariasProducto[i].imageUrl);
+       }
+  }
+  getImagenesSkus(){
+
+
+    for (let i = 0; i < this.skusDelProducto.length; i++) {
+      if (this.skusDelProducto[i].foto !==null) {
+        this.imagenes_sec_skus.push(this.skusDelProducto[i].foto.imageUrl);
+      }
+    }
+    this.geImagenesTodas();
+  }
+////// formo un solo array con todas las imagenes
+    geImagenesTodas(){
+      if (this.imagenes_prod.length !== 0) {
+        for (let i = 0; i <this.imagenes_prod.length; i++) {
+          this.imagenes_todas.push(this.imagenes_prod[i]);
+        }
+      };
+      if (this.imagenes_sec_skus.length !== 0) {
+        for (let x = 0; x <this.imagenes_sec_skus.length; x++) {
+          this.imagenes_todas.push(this.imagenes_sec_skus[x]);
+        }
+      }
+      
+    }
+  ///////// muestro en principal la que haya clickeado el usuario
+  mostrarEnPrincipal(i:number){
+    document.getElementById('img-principal').setAttribute("src" , this.imagenes_todas[i]);
+    console.log("click imagen " + i)
+  }
+ /**
+   * FIN IMAGENES
+   */
+
+
+
+  /**
    * Valida que el usuario posea el rol para poder visualizar el recurso solicitado.
    * @param role string rol requerido para mostrar el recurso.
    */
@@ -157,6 +209,9 @@ modalInicio:boolean;
       let id= param.id;
       this.catalogoservice.getInfoProducto(id).subscribe(response => {
         this.infoProducto=response;
+        if (this.infoProducto.foto !== null) {
+          this.getImagenesSecundariasProducto();
+        }
         setTimeout(() => {
           this.getSkusDelProducto();
           this.obtenerValoresSkus();
@@ -175,6 +230,7 @@ modalInicio:boolean;
   getSkusDelProducto(){
     this.productoService.getAllTheSkus(this.infoProducto?.id).subscribe(response => {
       this.skusDelProducto=response;
+      this.getImagenesSkus();
       this.identificarSkuSeleccionado()
     });
   }
