@@ -545,5 +545,40 @@ $color-ppal:#fff;
     }         
        
 }
+@media  screen and (min-width: 768px) and (max-width: 1199px) {
+
+    .contenedor{
+        width: 98%;
+        .form1{
+           .container-white{
+            .fila{      
+                .text-rojo{               
+                    font-size: 12px !important;  
+                }
+                .elegir-props{
+                    .contenido{
+                        .leyenda{
+                            margin-top: 40px !important;
+                        }
+                    }
+                }
+           }
+        }
+        }
+    } 
+    #btn-end{
+        margin-left:auto;
+        margin-right: auto;
+        margin-top: 5px;
+    }   
+    .leyenda{
+        margin-top: 40px !important;
+    }
+    .fila{      
+        .text-rojo{               
+            font-size: 12px !important;  
+        }
+    }
+}
 
 

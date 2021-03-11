@@ -1,6 +1,6 @@
-<form class="form-img" id="form-img" autocomplete="off">
+<form class="form-img container" id="form-img" autocomplete="off">
     <div class="row box-img">
-        <div class="col izq">
+        <div class="col-12 col-lg-6 izq">
             <div class=" row images">
                 <i class="fas fa-medal" *ngIf="newProduct?.destacado"></i>
                 <img id="img-ppal" [src]="url">
@@ -31,14 +31,14 @@
                 <p class="items">Subcategoria: <span>{{newProduct?.subcategoria.nombre}}</span></p>
                 <p class="items" *ngIf="listaDePropiedades!== null">Propiedades: <span>{{listaDePropiedades}}</span></p>
                 <p class="items" *ngIf="listaDePropiedades ==null ">Propiedades: <span>-</span></p>
-                <p class="items" *ngIf="newProduct?.descripcion">Descripción: <span>{{
+                <p class="items" *ngIf="newProduct?.descripcion" >Descripción: <span id="descripcion">{{
                         (newProduct?.descripcion.length>240) ? (newProduct?.descripcion | slice:0:240)+'...' :
                         (newProduct?.descripcion)}}</span></p>
                 <p class="items" *ngIf="!newProduct?.descripcion">Descripción: <span>-</span></p>
             </div>
         </div>
 
-        <div class="col der">
+        <div class="col-12 col-lg-6 der">
             <div class="row add-img">
                 <h2>Imágen:</h2>
                 <p>Añada una fotografía principal de su producto.

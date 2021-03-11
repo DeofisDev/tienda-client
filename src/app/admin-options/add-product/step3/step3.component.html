@@ -1,6 +1,6 @@
 <form #myForm="ngForm" class="form form2 " autocomplete="off" [formGroup]="formSkus"
     (ngSubmit)="crearSku(); myForm.reset();  getPropertiesOfNewProduct()">
-    <div class="container-white">
+    <div class="container-white container">
         <div class="col-10 offset-1">
             <div class="row fila">
                 <p class="texto">Combina las  propiedades anteriormente elegidas para crear combinaciones de tu producto de manera manual o automáticamente. </p>
@@ -8,7 +8,7 @@
 
 
             <div class="row fila properties">
-                <select [attr.id]="i" class="property" *ngFor="let property of properties ; let i=index" (change)="mostrarBotonGuardar()">
+                <select [attr.id]="i" class="col-12 property" *ngFor="let property of properties ; let i=index" (change)="mostrarBotonGuardar()">
                     <option hidden selected [ngValue]="property.nombre">-{{property.nombre}} -</option>
 
                     <option [ngValue]="value" *ngFor="let value of property?.valores">
@@ -17,12 +17,12 @@
 
             </div>
             <div class="row fila campos">
-                <div class="availability-container">
+                <div class="col-12 col-lg-6 availability-container">
                     <label for="availabilitySku"> Disponibles:</label>
                     <input type="number" min="0"  pattern="^[0-9]+"  [class.is-invalid]="disponibilidadInvalida" id="availabilitySku"
                         formControlName="disponibilidad">
                 </div>
-                <div class="price-container">
+                <div class="col-12 col-lg-6 price-container">
                     <label for="precio"> Precio:</label>
                     <p id="euro-signo">€</p>
                     <input type="number" min="0" pattern="^[0-9]+" id="precio"  [class.is-invalid]="precioInvalido" formControlName="precio" placeholder="{{newProduct.precio}}" >
@@ -42,7 +42,7 @@
              
 
                 <div class="new-products">
-                    <div class="product">
+                    <div class="product texto1">
                         <p *ngIf="!skus" style="text-align: center; color: grey; font-size: 14px;">No hay combinaciones creadas.</p>
                     </div>
                     <div class="product" *ngFor= "let sku of skus">
