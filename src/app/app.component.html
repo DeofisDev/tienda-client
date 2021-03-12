@@ -1,7 +1,8 @@
 <app-normal-header *ngIf="router.url !== '/login'
                         && router.url !== '/user-sign-up'
                         && router.url !== '/new-password'
-                        && router.url !== '/verify/redirect'">
+                        && router.url !== '/verify/redirect'
+                        && router.url !== '/notfound'">
 </app-normal-header>
 
 <router-outlet (activate)="onActivate($event)"></router-outlet>
@@ -17,6 +18,6 @@
     && router.url !== '/products-list'
     && router.url !== '/brands-panel'
     && router.url !== '/web-configuration'
-
+    && router.url !== '/notfound'
     ">
 </app-footer>

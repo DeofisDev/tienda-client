@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
+body{
+
+    background: rgb(34,62,102);
+    background: linear-gradient(0deg, rgba(34,62,102,0.7458333675266982) 0%, rgba(76,112,163,0.6561975131849616) 33%, rgba(255,255,255,0.5301470930168943) 100%);
+
+}
+
+
+/* font-family: 'Anton', sans-serif; */
+
+.notFound{
+    font-family: 'Comfortaa', cursive;
+    font-size: 80px;
+    color: #2e4b74;
+}
+
+.texto{
+    font-family: 'Comfortaa', cursive;
+    
+}
+
+.jumbo{
+    background-color: rgba(255, 255, 255, 0.63);
+    box-shadow: black;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.575);
+}

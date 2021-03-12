@@ -30,6 +30,8 @@ import { AdminPropiedadesComponent } from './admin-options/admin-propiedades/adm
 import { WebConfigurationComponent } from './admin-options/web-configuration/web-configuration/web-configuration.component';
 import { AdminUsersComponent } from './admin-options/admin-users/admin-users.component';
 import { AdminClientsComponent } from "./admin-options/admin-clients/admin-clients.component";
+import { DetalleComponent } from './user-options/mis-compras/detalle/detalle.component';
+import { NotfoundComponent } from './shared/components/notfound/notfound.component';
 
 const admin = 'ROLE_ADMIN';
 const user  = 'ROLE_USER';
@@ -42,6 +44,7 @@ const routes: Routes = [
   { path:"search/:termino", component:BuscadorComponent },
   { path:"user-profile",component:UserProfileComponent, canActivate: [AuthGuard, RoleGuard], data: {role: user} },
   { path:"user-my-purchases",component:MisComprasComponent, canActivate: [AuthGuard, RoleGuard], data: {role: user} },
+  { path:"detalle/:nroOperacion", component: DetalleComponent, canActivate: [AuthGuard, RoleGuard], data: {role: user} },
   { path:"user-favorites", component:FavoritesComponent, canActivate: [AuthGuard, RoleGuard], data: {role: user} },
   { path:"admin-profile", component:AdminProfileComponent, canActivate: [AuthGuard, RoleGuard], data: {role: admin} },
   { path:"brands-panel" , component:BrandsPanelComponent, canActivate: [AuthGuard, RoleGuard], data: {role: admin} },
@@ -67,8 +70,10 @@ const routes: Routes = [
   { path:"paypal/redirect/cancel" , component: CheckoutCancelComponent }, 
   { path:"mercado-pago/redirect/approved" , component:CheckoutRedirectComponent }, 
   { path:"mercado-pago/redirect/cancel" , component: CheckoutCancelComponent }, 
-  {path:"cash/approved" , component: FmEfectivoComponent},
-  { path:"**", pathMatch:"full", redirectTo:"home" }
+  { path:"cash/approved" , component: FmEfectivoComponent },
+  { path:"notfound", component: NotfoundComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path:"**", redirectTo:"notfound" }
 ];
 
 @NgModule({

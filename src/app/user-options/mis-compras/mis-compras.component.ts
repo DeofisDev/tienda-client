@@ -29,7 +29,7 @@ export class MisComprasComponent implements OnInit {
   misCompras: Operacion[] = [];
 
   estadosOperacion = ["PAYMENT_PENDING", "PAYMENT_DONE", "SENT", "RECEIVED", "CANCELLED"];
-  columnsToDisplay = ['nroOperacion', 'direccion.calle', 'fechaOperacion', 'fechaEnvio', 'fechaEntrega', 'estado', 'medioPago.nombre', 'total'];
+  columnsToDisplay = ['nroOperacion', 'direccion.calle', 'fechaOperacion', 'fechaEnvio', 'fechaEntrega', 'estado', 'medioPago.nombre', 'total', 'tools'];
   data = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -120,6 +120,17 @@ export class MisComprasComponent implements OnInit {
       console.log(this.misCompras);
       
     })
+  };
+
+  completarPago(operacion: Operacion): void {
+    const nroOperacion = operacion.nroOperacion;
+    
+    this.comprasServices.completarPago(nroOperacion).subscribe(payment => {
+      console.log(payment);
+      window.open(payment.approveUrl, "_self")
+    }, err => {
+      console.log(err);
+    });
   }
 
 }

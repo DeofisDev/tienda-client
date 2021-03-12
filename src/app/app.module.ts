@@ -97,6 +97,9 @@ import { AdminClientsComponent } from './admin-options/admin-clients/admin-clien
 import { NgxLoadingModule } from 'ngx-loading';
 import { LoadingComponent } from './shared/components/loading/loading/loading.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { DetalleComponent } from './user-options/mis-compras/detalle/detalle.component';
+import { NotfoundComponent } from './shared/components/notfound/notfound.component';
+
 
 
 
@@ -171,6 +174,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ConvertRolPipe,
     AdminClientsComponent,
     LoadingComponent,
+    DetalleComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

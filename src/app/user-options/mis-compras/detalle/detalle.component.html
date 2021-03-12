@@ -1,0 +1,133 @@
+<section>
+    <app-user-sidebar></app-user-sidebar>
+    <div class="container-miscompras">
+        <div class="frame">
+            
+            
+            <div class="container">
+
+                <div class="title">
+                    <h2>Detalle de compra</h2>
+                </div>
+
+                <div *ngIf="operacion.estado === 'PAYMENT_PENDING'" class="alert alert-warning mt-3" role="alert">
+                    <i class="fas fa-exclamation-circle"></i>
+                   Sr/Sra. {{operacion.cliente}}, su compra aún está pendiente de pago. Si desea completarla, haga click <a type="button" (click)="completarPago()" class="alert-link">AQUÍ</a>.
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12 col-md-6"  >
+                        <div class="jumbotron pt-3 pb-3 pl-3" style="background-color: #EBEDEF">
+                            
+                            <div class="row">
+                                <div class="col">
+                                    <p style="font-size: larger;">Resumen de compra #{{operacion.nroOperacion}}</p>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row mb-2 ml-1">
+                                <div class="col-1">
+                                    <i class="far fa-calendar"></i>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size: medium;">Fecha de compra: </p>
+                                </div>
+                                <div class="col text-md-right">
+                                    <p>{{operacion.fechaOperacion | convertFecha}} hs</p>
+                                </div>
+                            </div>
+                            <div class="row mb-2 ml-1">
+                                <div class="col-1">
+                                    <i class="far fa-credit-card"></i>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size: medium;">Método de pago: </p>
+                                </div>
+                                <div class="col text-md-right">
+                                    {{operacion.medioPago?.nombre | lowercase | titlecase}}
+                                </div>
+                            </div>
+                            <div class="row mb-2 ml-1">
+                                <div class="col-1">
+                                    <i class="far fa-money-bill-alt"></i>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size: medium;">Total:</p>
+                                </div>
+                                <div class="col text-md-right">
+                                    {{operacion.total | currency}}
+                                </div>
+                            </div>
+                            <div class="row mb-2 ml-1">
+                                <div class="col-1">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size: medium;">Estado actual: </p>
+                                </div>
+                                <div class="col text-md-right">
+                                    {{operacion.estado | convertEstadoOp}}
+                                </div>
+                            </div>
+                            <div class="row mb-2 ml-1">
+                                <div class="col-1">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="col">
+                                    <p style="font-size: medium;">Direccón de envío: </p>
+                                </div>
+                                <div class="col text-md-right">
+                                    {{operacion.direccionEnvio?.calle}} {{operacion.direccionEnvio?.numeroCalle}}, {{operacion.direccionEnvio?.ciudad.nombre}} ({{operacion.direccionEnvio?.codigoPostal}})
+                                </div>
+                            </div>
+                            <!-- <div class="row mb-2 ml-1">
+                                <div class="col-5">
+                                    <p style="font-size: medium;"><i class="fas fa-clipboard-list"></i> &nbsp;&nbsp;Factura: </p>
+                                </div>
+                                <div class="col text-md-right">
+                                    <a href="">Ver factura</a>
+                                </div>
+                            </div> -->
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 scroll">
+                        <div class="card mb-3" style="max-width: 540px;" *ngFor="let item of operacion.items">
+                            <div class="row no-gutters">
+                              <div class=" col-md-4 text-center mt-2">
+                                <img *ngIf="item.sku.foto" src= "{{item.sku.foto.imageUrl}}" class="card-img" style="width: 100px; height: auto;" alt="...">
+                                <img *ngIf="!item.sku.foto" src= "../../../../assets/imagenes/noimage.png" class="card-img" style="width: 100px; height: auto;" alt="...">
+
+                              </div>
+                              <div class="col-10 col-md-7">
+                                <div class="card-body">
+                                  <p class="card-text"><a [routerLink]="['/viewmore', item.sku.producto.id]">{{item.sku.nombre}}</a></p>
+                                  <p class="card-text">{{item.precioVenta | currency}} x {{item.cantidad}} unidad/es</p>
+                                  <p class="card-text">Subtotal: {{item.subtotal | currency}}</p>
+                                </div>
+                              </div>
+                              <div class="col-2 col-md-1">
+                                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                  </button>
+                                  <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>
+                                      <mat-icon>shopping_cart</mat-icon>
+                                      <span>Volver a comprar</span>
+                                    </button>
+                                  </mat-menu>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+        <br>
+    </div>
+
+
+</section>

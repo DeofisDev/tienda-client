@@ -434,95 +434,16 @@ section {
     }
 }
 
-table {
-    width: 100%;
-  }
-  
-  tr.example-detail-row {
-    height: 0;
-  }
-  
-  tr.example-element-row:not(.example-expanded-row):hover {
-    background: whitesmoke;
-  }
-  
-  tr.example-element-row:not(.example-expanded-row):active {
-    background: #efefef;
-  }
-  
-  .example-element-row td {
-    border-bottom-width: 0;
-  }
-  
-  .example-element-detail {
-    overflow: hidden;
-    display: flex;
-  }
-  
-  .example-element-diagram {
-    min-width: 80px;
-    border: 2px solid black;
-    padding: 8px;
-    font-weight: lighter;
-    margin: 8px 0;
-    height: 104px;
-  }
-  
-  .example-element-symbol {
-    font-weight: bold;
-    font-size: 40px;
-    line-height: normal;
-  }
-  
-  .example-element-description {
-    padding: 16px;
-  }
-  
-  .example-element-description-attribution {
-    opacity: 0.5;
-  }
 
-.headerTable{
-    background-color:  #1f4e84;
-    font-size: small;
-    color: white;
-    z-index: unset !important;
-}
-
-.reset {
-    background-color: #1f4e84;
-    border: none;
-}
-
-.rowCursor{
-    :hover{
-        cursor: pointer;
-    }
-}
-
-.img-prod {
-    width: 60px;
-    height: 50px;
-}
-
-
-thead tr th{ 
-    position: sticky;
-    top: 0;
-    z-index: 10 !important;
-    /* background-color: #1f4e84; */
-    }
-    
-    .table-responsive { 
-    height: 400px;
-    width: auto;
-    overflow:scroll;
+.scroll { 
+    height: 425px;
+    overflow-y:scroll;
     overflow-x: hidden;
-    }
+  }
 
-.table-responsive::-webkit-scrollbar {
+.scroll::-webkit-scrollbar {
     width: 7px;
-    }
+  }
 .table-responsive::-webkit-scrollbar-track {
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.4);
@@ -531,6 +452,9 @@ thead tr th{
     background-color: #30384291;
     border-radius: 5px;
 }
+
+
+
 
 button {
     outline: none;
