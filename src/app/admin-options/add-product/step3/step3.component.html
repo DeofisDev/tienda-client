@@ -1,5 +1,5 @@
 <form #myForm="ngForm" class="form form2 " autocomplete="off" [formGroup]="formSkus"
-    (ngSubmit)="crearSku(); myForm.reset();  getPropertiesOfNewProduct()">
+    (ngSubmit)="crearSku();   getPropertiesOfNewProduct()">
     <div class="container-white container">
         <div class="col-10 offset-1">
             <div class="row fila">
@@ -49,6 +49,7 @@
                         <p *ngIf="skus"  class="description" style="text-transform: capitalize;"> {{newProduct.nombre}} -
                             {{sku.valoresData}} - {{sku.disponibilidad}}u. <span id="preciosku" *ngIf="sku?.promocion==null"> - €{{sku.precio}} </span><span class="oferta" style="color: #2779cd;font-weight: bold;" *ngIf="sku?.promocion!==null">-€{{sku.promocion?.precioOferta}} </span></p>
                         <div *ngIf="skus"  class="iconos-editar">
+                            <i class="fas fa-image" (click)="openCentrado(imgsku);skuElegido(sku)"></i>
                             <i class="fas fa-tags" (click)="openCentrado(promosku); promoSku(sku)"></i>
                             <i class="far fa-edit" (click)="openCentrado(editar);skuSeleccionado(sku.id)"></i>
                             <i class="fas fa-times" (click)="deleteSku(sku.id)"></i>
@@ -104,7 +105,46 @@
 
                     </ng-template>
 
+                    <ng-template  class="modal-imgsku" #imgsku let-modal>
+                        <div class="modal-header">
+                            <h4 class="modalTitle">
+                                Agregar Imagen</h4>
+                            <button class="close" aria-label="close" type="button" (click)="modal.dismiss();getskus()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card mt-2" style="max-width: 540px; margin-left: auto; margin-right: auto;">
+                                <div class="row no-gutters">
+                                  <div class="col-md-4 mt-4" >
+                                    <img  id="img-ppal" src="{{url}}" class="card-img" alt="..." style="width: 150px; height: auto;">
 
+                                    <img  id="no-img" src="../../../../assets/imagenes/noimage.png" class="card-img" alt="..." style="width: 150px; height: auto;">
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="card-body">
+                                      <h3 class="card-title">Imagen del producto</h3>
+                                      <p class="card-text">Los formatos admitidos son .PNG, .JPG. El tamaño máximo de la imagen del producto es de 1MB.</p>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                                <div class="row mt-2 mb-2 mr-2">
+                                    <div class="col-md-8 offset-4">
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                              <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" 
+                                              (change)="readUrl($event)" accept=".png, .jpg, .jpeg">
+                                              <label class="custom-file-label" >Elige una imagen</label>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ng-template>
                 </div>
             </div>
         </div>

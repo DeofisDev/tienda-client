@@ -9,6 +9,8 @@ $color-ppal:#fff;
  $color-wf2:#1f4e84;
  $color-wf3:#2779cd;
  $color-wf4:#70b8f3;
+
+ 
 /* estilos combobox*/
 #cont-props{
     display: flex;
@@ -183,6 +185,7 @@ $color-ppal:#fff;
                     grid-template-columns: 1fr;
                     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
                     align-items: center;
+                    width: 50px;
                     div{
                         width: 50px;
                         height: 50px;
@@ -564,27 +567,8 @@ $color-ppal:#fff;
                         justify-content: space-between;
                         align-items: center;
                         width: 100%;
-                        max-width: 480px;
-                        #img-uno{
-                            background-image: url(https://www.mgmstore.com.ar/339-large_default/Samsung-Galaxy-S10-Plus-128GB.jpg);
-                        
-                        }
-                        #img-dos{
-                            background-image: url(https://img.global.news.samsung.com/cl/wp-content/uploads/2020/01/lite.jpeg);
-                        }
-                        #img-tres{
-                            background-image: url(https://doto.vteximg.com.br/arquivos/ids/156984-1200-1200/samsung-galaxy-s20-rosa-1-doto-bothview.jpg?v=637236891053970000);
-                        }
-                        #img-cinco{
-                            background-image: url(https://www.muycomputer.com/wp-content/uploads/2019/01/Samsung-Galaxy-S10.jpg);
-                            
-                        }
-                        #img-cuatro{
-                            background-image: url(https://www.maxmovil.com/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/_/0/_0002_samsung-galaxy-s20-plus-8-128gb-cosmic-black-libre.jpg);
-                        }
-                        #img-seis{
-                            background-image: url(https://as01.epimg.net/meristation/imagenes/2020/02/11/betech/1581450045_842534_1581450104_noticia_normal_recorte1.jpg);
-                        }
+                        max-width: 480px
+                 
                     }
                     #img-ppal{
                         width: 95vw;
@@ -592,11 +576,7 @@ $color-ppal:#fff;
                         height:87.5vw; 
                         max-height: 460px;
                         margin-top: -20px;
-                        background-image: url(https://doto.vteximg.com.br/arquivos/ids/156984-1200-1200/samsung-galaxy-s20-rosa-1-doto-bothview.jpg?v=637236891053970000);
-                        background-size: contain;
-                        background-repeat: no-repeat;
-                        background-position: center;
-                     
+                        margin-left: 0%;
                         
                     }
                 }

@@ -116,7 +116,8 @@ export class Step2Component implements OnInit, OnDestroy {
   readUrl(event: any) {
     // console.log(event);
     this.selectedFile = event.target.files[0];
-    // console.log(this.selectedFile)
+    let nombreArchivo= this.selectedFile.name;
+    document.getElementById('buscador').innerText= "imagne ";
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
 

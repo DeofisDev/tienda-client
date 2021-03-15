@@ -17,9 +17,14 @@
        
         <article class="contenedor-uno container" >
             <div class="row">
-                <div id="izquierda" class="izquierda col-sm-7">
-                    <div id="img-sec" class="img-sec" *ngIf= "imagenes_todas!==null">
+                <div id="izquierda" class="izquierda col-md-7">
+                    <!-- <div id="img-sec" class="img-sec" *ngIf= "imagenes_todas!==null">
                         <div class="img-sec-prod" *ngFor="let imagen of imagenes_todas;let i=index ">
+                            <img  src="{{imagen}}" alt=""  (click)="mostrarEnPrincipal(i)">
+                        </div>
+                    </div> -->
+                    <div id="img-sec" class="owl-carousel owl-theme img-sec"  *ngIf= "imagenes_todas!==null">
+                        <div class="item img-sec-prod" *ngFor="let imagen of imagenes_todas;let i=index ">
                             <img  src="{{imagen}}" alt=""  (click)="mostrarEnPrincipal(i)">
                         </div>
                     </div>
@@ -27,12 +32,13 @@
                         <img *ngIf="skuAEnviar?.foto== null && infoProducto?.foto  " src="{{infoProducto?.foto.imageUrl}}" alt="" id="img-principal">
                         <img *ngIf="skuAEnviar?.foto" src="{{skuAEnviar?.foto.imageUrl}}" alt="" id="img-principal">
                         <img *ngIf="skuAEnviar?.foto ==null && infoProducto?.foto == null " src="assets/imagenes/noimage.png"
-                            style="width: 350px; height: auto;" alt="">
+                             alt="">
                     </div>
                 </div>
-                <div id="derecha" class="col-sm-5">
+                <div id="derecha" class="col-md-5">
                     <div id="caja-titulo">
-                        <h2>{{infoProducto?.nombre}}</h2>
+                        <h2 title="{{infoProducto?.nombre}}">{{ (infoProducto.nombre?.length>35) ? (infoProducto?.nombre | slice:0:35)+'...' :
+                            (infoProducto?.nombre)}}</h2>
     
     
                     </div>
@@ -83,9 +89,9 @@
                         <hr>
                         <p>Costo de envío se informará al realizar la operación.</p>
                         <button mat-button (click)="agregarCarrito(skuAEnviar); openSnackBar();  resetSeleccion()"
-                            class="btn" [disabled]="!skuAEnviar || skuAEnviar?.disponibilidad==0" id="btn-carrito">Agregar al
+                            class="btn" [disabled]="!skuAEnviar || skuAEnviar?.disponibilidad==0 || hasRole('ROLE_ADMIN')" id="btn-carrito">Agregar al
                             Carrito</button>
-                        <button mat-button (click)="openModal(comprarAhora)" class="btn"  [disabled]="!skuAEnviar || skuAEnviar?.disponibilidad==0" 
+                        <button mat-button (click)="openModal(comprarAhora)" class="btn"  [disabled]="!skuAEnviar || skuAEnviar?.disponibilidad==0 || hasRole('ROLE_ADMIN')" 
                             id="btn-comprar">Comprar
                             ahora</button>
                     </div>
@@ -117,7 +123,7 @@
             </div>
             <div id="descripcion-producto">
                 <h3>Descripción </h3>
-                <p>{{infoProducto.descripcion}}</p>
+                <p>{{skuAEnviar?.descripcion}}</p>
 
             </div>
         </article>

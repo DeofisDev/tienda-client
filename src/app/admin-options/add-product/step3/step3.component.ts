@@ -44,6 +44,13 @@ export class Step3Component implements OnInit, OnDestroy {
 
   modalProp = true;
 
+
+  skuEditar: Sku; //Sku a editar
+
+
+
+  url: string;
+  selectedFile: File = null;
   constructor(private productoService:ProductoService,
               private fb:FormBuilder,
               private Router:Router,
@@ -78,6 +85,7 @@ export class Step3Component implements OnInit, OnDestroy {
       this.getPropertiesOfNewProduct()
 
     })
+   
   }
   ngOnDestroy():void{
     this.cerrarModalPromo.unsubscribe();
@@ -206,7 +214,7 @@ export class Step3Component implements OnInit, OnDestroy {
        id:[""],
        nombre:[""],
        descripcion:[""],
-       precio:[this.newProduct.precio, Validators.required],
+       precio:["", Validators.required],
        disponibilidad:["", Validators.required],
        valoresData:[""],
       //  valores:this.fb.array([]),
@@ -239,7 +247,7 @@ export class Step3Component implements OnInit, OnDestroy {
   mostrarBotonGuardar(){
     this.mostrarBoton=true;
   }
-  guardarValores(){   
+  guardarValores(){  
     /// formo un array de valores 
     let valores:ValorPropiedadProducto[] = [];
       for (let i = 0; i < this.properties.length; i++) {
@@ -259,7 +267,43 @@ export class Step3Component implements OnInit, OnDestroy {
         this.seleccionados.push(objetoValorSeleccionado)  
        
       }
+   
+
     }
+     //// Upload imgs///////
+  readUrl(event: any) {
+    // console.log(event);
+    this.selectedFile = event.target.files[0];
+    let nombreArchivo= this.selectedFile.name;
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = (event: any) => {
+        this.url = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    
+    }
+   this.subirImagenSku()
+  }
+  subirImagenSku(){
+    if (this.selectedFile !== null) {
+   this.productoService.uploadFotoSku(this.selectedFile, this.skuEditar.id).subscribe(resp => {
+      console.log(resp);
+      setTimeout(() => {
+        console.log("mostrandos")
+        document.getElementById("img-ppal").style.display="block !important";
+        document.getElementById("no-img").style.display="none !important"
+      }, 3000);
+
+    })
+    }
+  }
+    skuElegido(sku:Sku){
+      this.skuEditar = sku;
+      console.log(this.skuEditar)
+    }
+
 
   /**Botones finales  */
  

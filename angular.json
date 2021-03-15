@@ -32,11 +32,15 @@
                             "src/styles.scss",
                             "./node_modules/primeicons/primeicons.css",
                             "./node_modules/primeng/resources/themes/saga-blue/theme.css",
-                            "./node_modules/primeng/resources/primeng.min.css"
+                            "./node_modules/primeng/resources/primeng.min.css",
+                            "./node_modules/owl.carousel/dist/assets/owl.carousel.min.css",  
+                            "./node_modules/owl.carousel/dist/assets/owl.theme.default.min.css"  
                         ],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.min.js",
-                            "src/assets/js/magicBell.js"
+                            "src/assets/js/magicBell.js",
+                            "./node_modules/jquery/dist/jquery.min.js",  
+                            "./node_modules/owl.carousel/dist/owl.carousel.min.js"
                         ]
                     },
                     "configurations": {

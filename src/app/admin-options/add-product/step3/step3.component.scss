@@ -13,7 +13,9 @@ $color-ppal:#fff;
     appearance: none;
     margin: 0;
 }
-
+#img-ppal{
+    display: none;
+}
 #nombre-producto{
     text-transform: capitalize;
 } 
@@ -221,7 +223,7 @@ $color-ppal:#fff;
                             .iconos-editar{
                              display: flex;
                              justify-content: space-between;   
-                             width: 80px;
+                             width: 100px;
                                 i{
                                  text-align: right;
                                 color: $color-wf2;
@@ -609,7 +611,7 @@ outline: none;
                     .iconos-editar{
                      display: flex;
                      justify-content: space-between;   
-                     width: 80px;
+                     width: 130px;
                         i{
                          text-align: right;
                         color: $color-wf2;
@@ -829,7 +831,7 @@ outline: none;
                     .iconos-editar{
                      display: flex;
                      justify-content: space-between;   
-                     width: 80px;
+                     width: 120px;
                         i{
                          text-align: right;
                         color: $color-wf2;

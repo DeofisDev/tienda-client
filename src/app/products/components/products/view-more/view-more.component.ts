@@ -127,8 +127,6 @@ modalInicio:boolean;
   }
 
   cantidad(){
-    console.log("calculado cantidas")
-    console.log(this.skuAEnviar)
     if (this.skuAEnviar!== null) {
       if (this.skuAEnviar.disponibilidad==0) {
         this.cantidadSeleccionada=0;
@@ -148,24 +146,27 @@ modalInicio:boolean;
    */
   //////// obtengo las imagenes del producto y por otro lado las imagenes de los skus
   getImagenesSecundariasProducto(){
-       this.imagenesSecundariasProducto =this.infoProducto.imagenes;
-       this.imagenes_prod.push(this.infoProducto?.foto.imageUrl);
-       for (let i = 0; i < this.imagenesSecundariasProducto.length; i++) {
-         this.imagenes_prod.push(this.imagenesSecundariasProducto[i].imageUrl);
-       }
+    this.imagenes_prod.push(this.infoProducto?.foto.imageUrl);
+    if (this.infoProducto.imagenes.length !== 0) {
+      this.imagenesSecundariasProducto =this.infoProducto.imagenes;
+      
+      for (let i = 0; i < this.imagenesSecundariasProducto.length; i++) {
+        this.imagenes_prod.push(this.imagenesSecundariasProducto[i].imageUrl);
+      }
+    }
+      
   }
   getImagenesSkus(){
-
 
     for (let i = 0; i < this.skusDelProducto.length; i++) {
       if (this.skusDelProducto[i].foto !==null) {
         this.imagenes_sec_skus.push(this.skusDelProducto[i].foto.imageUrl);
       }
     }
-    this.geImagenesTodas();
+    this.getImagenesTodas();
   }
 ////// formo un solo array con todas las imagenes
-    geImagenesTodas(){
+    getImagenesTodas(){
       if (this.imagenes_prod.length !== 0) {
         for (let i = 0; i <this.imagenes_prod.length; i++) {
           this.imagenes_todas.push(this.imagenes_prod[i]);
@@ -267,7 +268,7 @@ modalInicio:boolean;
     if (skus.length===0) {
      let idDefaultSku=this.infoProducto.defaultSku.id;
      this.productoService.getSku(this.infoProducto.id, idDefaultSku).subscribe( response => {
-      this.skuAEnviar=response;   
+      this.skuAEnviar=response; 
       this.cantidad();
     })
 

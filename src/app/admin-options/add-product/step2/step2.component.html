@@ -45,8 +45,15 @@
                     <br>
                     <span>- Recomentamos utilizar un tamaño cuadrado , sin fondo o con fondo blanco. -</span>
                 </p>
-                <input type="file" id="add-files" (change)="readUrl($event)" accept=".png, .jpg, .jpeg">
-
+                
+                <div class="input-group"  style="width: 70%; min-width: 280px; max-width: 500px;">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile04"
+                            (change)="readUrl($event)" accept=".png, .jpg, .jpeg">
+                        <label class="custom-file-label">Buscar</label>
+                    </div>
+                   
+                </div>
             </div>
             <div class="fila row" [formGroup]="formEdicionProducto">
                 <h2>General:</h2>
