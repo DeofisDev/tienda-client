@@ -34,8 +34,10 @@
                                         <div class="col-9 col-lg-9  info">
                                             <div class="row">
                                                 <!--  carrito local api -->
-                                                <span class="item-name" *ngIf="!item.sku.defaultProducto" [routerLink]="['/viewmore',item.sku.producto.id]">{{item?.sku.nombre}}</span>
-                                                <span class="item-name" *ngIf="item.sku.defaultProducto"  [routerLink]="['/viewmore',item.sku.defaultProducto.id]">{{item?.sku.nombre}}</span>
+                                                <span class="item-name" title="{{item.sku.nombre}}"  *ngIf="!item.sku.defaultProducto" [routerLink]="['/viewmore',item.sku.producto.id]">{{ (item.sku.nombre.length>30) ? (item.sku.nombre | slice:0:30)+'...' :
+                                                    (item.sku.nombre)}}</span>
+                                                <span class="item-name" title="{{item.sku.nombre}}" *ngIf="item.sku.defaultProducto"  [routerLink]="['/viewmore',item.sku.defaultProducto.id]">{{ (item.sku.nombre.length>30) ? (item.sku.nombre | slice:0:30)+'...' :
+                                                    (item.sku.nombre)}}</span>
                                                 <!-- fin carrito api -->
 
                   

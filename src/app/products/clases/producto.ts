@@ -6,6 +6,7 @@ import { Sku } from './sku';
 import { Promocion } from 'src/app/admin-options/admin-promos/clases/promocion';
 import { Foto } from './foto';
 import { ImagenSecundaria } from './imagen-secundaria';
+import { Caracteristica } from './caracteristica';
 
 export class Producto {
     id: number;
@@ -26,4 +27,5 @@ export class Producto {
     defaultSku:Sku;
     skus:Sku[];
     vendibleSinPropiedades:boolean;
+    caracteristicas: Caracteristica[];
 }

@@ -49,7 +49,7 @@ export class Step3Component implements OnInit, OnDestroy {
 
 
 
-  url: string;
+  url: string= null;
   selectedFile: File = null;
   constructor(private productoService:ProductoService,
               private fb:FormBuilder,
@@ -290,11 +290,6 @@ export class Step3Component implements OnInit, OnDestroy {
     if (this.selectedFile !== null) {
    this.productoService.uploadFotoSku(this.selectedFile, this.skuEditar.id).subscribe(resp => {
       console.log(resp);
-      setTimeout(() => {
-        console.log("mostrandos")
-        document.getElementById("img-ppal").style.display="block !important";
-        document.getElementById("no-img").style.display="none !important"
-      }, 3000);
 
     })
     }

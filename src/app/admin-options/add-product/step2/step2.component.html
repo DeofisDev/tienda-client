@@ -7,13 +7,10 @@
                 <img id="no-img" src="../../../../assets/imagenes/noimage.png">
 
                 <div class="row mt-2 imageResalt" style="margin-left: 3px;">
-                    <app-img-secundarias *ngFor="let imagen of newProduct.imagenes" 
-                        [imagen]="imagen" 
-                        [producto]="newProduct" 
-                        (propagar)="actualizarImagenesSecundariasProducto()">
+                    <app-img-secundarias *ngFor="let imagen of newProduct.imagenes" [imagen]="imagen"
+                        [producto]="newProduct" (propagar)="actualizarImagenesSecundariasProducto()">
                     </app-img-secundarias>
-                    <app-nueva-img-secundaria 
-                        [producto]="newProduct" 
+                    <app-nueva-img-secundaria [producto]="newProduct"
                         (propagar)="actualizarImagenesSecundariasProducto()"
                         *ngFor='let in of counter(numeroDeRepeticionesPlus)'>
                     </app-nueva-img-secundaria>
@@ -24,14 +21,16 @@
                 <p class="nombre-prod">{{newProduct?.nombre}}</p>
                 <p class="items">Precio: <span>{{newProduct?.precio | currency:'EUR':'symbol'}}</span></p>
                 <p class="items oferta" *ngIf="newProduct?.promocion">Precio de Oferta:
-                    <span>{{newProduct?.promocion.precioOferta | currency:'EUR':'symbol'}}</span></p>
-                <p *ngIf="newProduct?.disponibilidadGeneral!==0" class="items">Disponibilidad Gral.: <span>{{newProduct?.disponibilidadGeneral}}
+                    <span>{{newProduct?.promocion.precioOferta | currency:'EUR':'symbol'}}</span>
+                </p>
+                <p *ngIf="newProduct?.disponibilidadGeneral!==0" class="items">Disponibilidad Gral.:
+                    <span>{{newProduct?.disponibilidadGeneral}}
                         {{newProduct.unidadMedida?.codigo}}.</span></p>
                 <p class="items">Marca: <span>{{newProduct?.marca.nombre}}</span></p>
                 <p class="items">Subcategoria: <span>{{newProduct?.subcategoria.nombre}}</span></p>
                 <p class="items" *ngIf="listaDePropiedades!== null">Propiedades: <span>{{listaDePropiedades}}</span></p>
                 <p class="items" *ngIf="listaDePropiedades ==null ">Propiedades: <span>-</span></p>
-                <p class="items" *ngIf="newProduct?.descripcion" >Descripción: <span id="descripcion">{{
+                <p class="items" *ngIf="newProduct?.descripcion">Descripción: <span id="descripcion">{{
                         (newProduct?.descripcion.length>240) ? (newProduct?.descripcion | slice:0:240)+'...' :
                         (newProduct?.descripcion)}}</span></p>
                 <p class="items" *ngIf="!newProduct?.descripcion">Descripción: <span>-</span></p>
@@ -45,14 +44,14 @@
                     <br>
                     <span>- Recomentamos utilizar un tamaño cuadrado , sin fondo o con fondo blanco. -</span>
                 </p>
-                
-                <div class="input-group"  style="width: 70%; min-width: 280px; max-width: 500px;">
+
+                <div class="input-group" style="width: 70%; min-width: 280px; max-width: 500px;">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile04"
-                            (change)="readUrl($event)" accept=".png, .jpg, .jpeg">
+                        <input type="file" class="custom-file-input" id="inputGroupFile04" (change)="readUrl($event)"
+                            accept=".png, .jpg, .jpeg">
                         <label class="custom-file-label">Buscar</label>
                     </div>
-                   
+
                 </div>
             </div>
             <div class="fila row" [formGroup]="formEdicionProducto">
@@ -64,10 +63,29 @@
                         [class.is-invalid]="disponibilidadGeneralInvalida" formControlName="disponibilidadGeneral">
                     <span id="unidadElegida">{{newProduct.unidadMedida?.codigo}}</span>
                 </div>
-                
+
                 <div class="producto-destacado">
                     <p class="destacado">Producto Destacado</p>
-                    <mat-slide-toggle  (click)="editarDestacadoDisponibilidad()" formControlName="destacado">{{formEdicionProducto.get('destacado').value ? 'Si' : 'No'}}</mat-slide-toggle>
+                    <mat-slide-toggle (click)="editarDestacadoDisponibilidad()" formControlName="destacado">
+                        {{formEdicionProducto.get('destacado').value ? 'Si' : 'No'}}</mat-slide-toggle>
+                </div>
+                <div class="caracteristicas">
+                    <button class="btn agregar" (click)="mostrarCaracteristica()"> Agregar Característica <i class="far fa-plus-square"></i> </button>
+                    <div class="contenedor-ca" id="cara">
+                        <form action="">
+                            <div class="mb-1">
+                                <label for="name" class="form-label">Nombre</label>
+                                <input type="text" class="form-control form-control-sm" id="name"
+                                    >
+                            </div>
+                            <div class="mb-1">
+                                <label for="text" class="form-label">Valor</label>
+                                <input type="text" class="form-control form-control-sm" id="text"
+                                    >
+                            </div>
+                            <button class="btn"> Guardar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="row add-promo" *ngIf="listaDePropiedades==null">
@@ -91,8 +109,8 @@
             </div>
             <button matStepperNext id="btn-guardar" *ngIf="listaDePropiedades!==null" (click)="guardarCambios()">
                 Guardar y Continuar</button>
-            <button matStepperNext *ngIf="listaDePropiedades ==null" id="btn-guardar"
-                (click)="guardarCambios()"> Guardar y Finalizar</button>
+            <button matStepperNext *ngIf="listaDePropiedades ==null" id="btn-guardar" (click)="guardarCambios()">
+                Guardar y Finalizar</button>
 
         </div>
 

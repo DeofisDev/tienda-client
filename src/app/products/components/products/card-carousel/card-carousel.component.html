@@ -6,7 +6,7 @@
         <img *ngIf="tieneFotoPpal" class="producto" src="{{producto.foto.imageUrl}}" alt="foto-producto">
         <img *ngIf="!tieneFotoPpal" class="mt-0 mt-md-5" src="assets/imagenes/noimage.png" alt="" style="width: 60px; height: auto;">
     </div>
-    <h3 [routerLink]="['/viewmore',producto.id]">{{ (producto.nombre.length>40) ? (producto.nombre | slice:0:40)+'...' : (producto.nombre)}}</h3>
+    <h3 [routerLink]="['/viewmore',producto.id]"  title="{{producto.nombre}}">{{ (producto.nombre.length>40) ? (producto.nombre | slice:0:40)+'...' : (producto.nombre)}}</h3>
     <div class="cont-precios" [routerLink]="['/viewmore',producto.id]">
        <div *ngIf="mostrarPrecioOferta(producto)" class="row-oferta">
            <span  > {{producto.precio | currency:'EUR':'symbol'}}</span>

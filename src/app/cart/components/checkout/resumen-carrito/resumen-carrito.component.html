@@ -14,7 +14,7 @@
                     <img *ngIf="item.sku.defaultProducto ==null && item?.sku.producto.foto" src="{{item?.sku.producto.foto.imageUrl}}" alt=""
                         style="width: 30px; height: 30px;">
 
-                    <span>{{ (item?.sku.nombre.length>25) ? (item?.sku.nombre | slice:0:25)+'...' :
+                    <span title="{{item.sku.nombre}}">{{ (item?.sku.nombre.length>25) ? (item?.sku.nombre | slice:0:25)+'...' :
                         (item?.sku.nombre)}}</span>
                 </div>
                 <div class="info">

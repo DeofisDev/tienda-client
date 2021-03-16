@@ -9,7 +9,7 @@
     <img *ngIf="!tieneFotoPpal" class="" src="assets/imagenes/noimage.png" alt="" style="width: 60px; height: auto;">
   </div>
   <div class="title-pcio">
-    <h3 [routerLink]="['/viewmore',producto.id]">{{ (producto.nombre.length>40) ? (producto.nombre | slice:0:40)+'...' :
+    <h3 [routerLink]="['/viewmore',producto.id]" title="{{producto.nombre}}">{{ (producto.nombre.length>40) ? (producto.nombre | slice:0:40)+'...' :
       (producto.nombre)}}</h3>
 
     <div class="cont-precios">

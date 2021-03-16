@@ -96,6 +96,7 @@ modalInicio:boolean;
     this.skusCombobox = new Array();
     this.imagenes_prod = new Array();
     this.totalItemsCarrito = 0;
+    this.skusDelProducto = new Array<Sku>();
   }
 
   ngOnInit(): void {
@@ -125,7 +126,7 @@ modalInicio:boolean;
      })
     
   }
-
+  
   cantidad(){
     if (this.skuAEnviar!== null) {
       if (this.skuAEnviar.disponibilidad==0) {
@@ -147,6 +148,7 @@ modalInicio:boolean;
   //////// obtengo las imagenes del producto y por otro lado las imagenes de los skus
   getImagenesSecundariasProducto(){
     this.imagenes_prod.push(this.infoProducto?.foto.imageUrl);
+    console.log(this.imagenes_prod);
     if (this.infoProducto.imagenes.length !== 0) {
       this.imagenesSecundariasProducto =this.infoProducto.imagenes;
       
@@ -164,6 +166,7 @@ modalInicio:boolean;
       }
     }
     this.getImagenesTodas();
+    console.log(this.imagenes_sec_skus);
   }
 ////// formo un solo array con todas las imagenes
     getImagenesTodas(){
@@ -173,9 +176,12 @@ modalInicio:boolean;
         }
       };
       if (this.imagenes_sec_skus.length !== 0) {
-        for (let x = 0; x <this.imagenes_sec_skus.length; x++) {
-          this.imagenes_todas.push(this.imagenes_sec_skus[x]);
-        }
+          for (let x = 0; x <this.imagenes_sec_skus.length; x++) {
+            if (this.imagenes_todas.length <8) {
+            this.imagenes_todas.push(this.imagenes_sec_skus[x]);
+            }
+          }
+      
       }
       
     }
@@ -230,7 +236,13 @@ modalInicio:boolean;
   }
   getSkusDelProducto(){
     this.productoService.getAllTheSkus(this.infoProducto?.id).subscribe(response => {
-      this.skusDelProducto=response;
+      let skus =response;
+      for (let i = 0; i < skus.length; i++) {
+        if (skus[i].activo) {
+          this.skusDelProducto.push(skus[i])
+        }
+      }
+      console.log(this.skusDelProducto)
       this.getImagenesSkus();
       this.identificarSkuSeleccionado()
     });

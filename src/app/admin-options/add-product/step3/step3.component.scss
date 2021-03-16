@@ -13,8 +13,25 @@ $color-ppal:#fff;
     appearance: none;
     margin: 0;
 }
-#img-ppal{
+#foto-sku{
     display: none;
+}
+.btn-modal{
+    background-color: $color-wf1;
+    color: white;
+    font-family: $fte-ppal;
+    text-transform: uppercase;
+    font-size: 16px;
+    border: 0px ;
+    margin-left: -12px;
+    margin-top:-25px;
+    padding: 4px 8px;
+    box-sizing: border-box;
+    width: 120px;                       
+    &:hover{
+        transform: scale(1.03);
+        background-color: $color-wf2;
+    }
 }
 #nombre-producto{
     text-transform: capitalize;

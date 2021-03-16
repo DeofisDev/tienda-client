@@ -71,7 +71,10 @@ $color-ppal:#fff;
                     align-items: center;
                     text-transform: capitalize;
                     img{
-                        margin-right: 10px;
+                       margin-right: 10px;
+                    } 
+                    &:hover{
+                        cursor: default;
                     }
                 }
                 .info{

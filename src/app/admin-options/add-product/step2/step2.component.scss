@@ -188,6 +188,54 @@ input[type=number] {
                             margin-right: 15px;
                         }
                     } 
+                    .caracteristicas{
+                        font-family: $fte-sec;
+                        font-size: 17px;
+                        margin-top: 5px;
+                        margin-bottom: 10px;
+                        margin-left: 30px;
+                        .agregar{
+                            font-size: 14px;
+                            padding-left: 0;
+                            .far{
+                                margin-left: 5px;
+                                color: $color-wf2;
+                            }
+                        }
+                        .contenedor-ca{
+                            display: none;
+                            padding-bottom: 5px;
+                            flex-direction: column;
+                            justify-content: start;
+                            .form-label{
+                                transform: translate(10px , 30px);
+                                font-size: 13px;
+                                font-family: $fte-sec;
+                            }
+                            button{
+                                background-color: $color-wf1;
+                                font-family: $fte-sec;
+                                border: none;
+                                color: white;
+                                font-size: 15px;
+                                padding-top: 1px;
+                                padding-bottom: 1px;
+                                padding-right: 7px;
+                                padding-left: 7px;
+                                display: block;
+                                width: 25%;
+                                margin-left: 75%;
+                                margin-top: 15px;
+                                &:hover{
+                                    background-color: $color-wf2;
+                                    cursor: pointer;
+                                }
+                                &:focus{
+                                    outline: none;
+                                }
+                            }
+                        }
+                    }
             }
             #btn-guardar{
                 background-color: $color-wf1;

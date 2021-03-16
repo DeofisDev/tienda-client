@@ -46,8 +46,11 @@
                         <p *ngIf="!skus" style="text-align: center; color: grey; font-size: 14px;">No hay combinaciones creadas.</p>
                     </div>
                     <div class="product" *ngFor= "let sku of skus">
-                        <p *ngIf="skus"  class="description" style="text-transform: capitalize;"> {{newProduct.nombre}} -
-                            {{sku.valoresData}} - {{sku.disponibilidad}}u. <span id="preciosku" *ngIf="sku?.promocion==null"> - €{{sku.precio}} </span><span class="oferta" style="color: #2779cd;font-weight: bold;" *ngIf="sku?.promocion!==null">-€{{sku.promocion?.precioOferta}} </span></p>
+                        <div class="nombreyfoto d-flex justify-content-start ">
+                            <p *ngIf="skus"  class="description ml-1" style="text-transform: capitalize;"> {{newProduct.nombre}} -
+                                {{sku.valoresData}} - {{sku.disponibilidad}}u. <span id="preciosku" *ngIf="sku?.promocion==null"> - €{{sku.precio}} </span><span class="oferta" style="color: #2779cd;font-weight: bold;" *ngIf="sku?.promocion!==null">-€{{sku.promocion?.precioOferta}} </span></p>
+                        </div>
+                       
                         <div *ngIf="skus"  class="iconos-editar">
                             <i class="fas fa-image" (click)="openCentrado(imgsku);skuElegido(sku)"></i>
                             <i class="fas fa-tags" (click)="openCentrado(promosku); promoSku(sku)"></i>
@@ -117,9 +120,9 @@
                             <div class="card mt-2" style="max-width: 540px; margin-left: auto; margin-right: auto;">
                                 <div class="row no-gutters">
                                   <div class="col-md-4 mt-4" >
-                                    <img  id="img-ppal" src="{{url}}" class="card-img" alt="..." style="width: 150px; height: auto;">
+                                    <img  *ngIf="url!== null " [src]="url" class="card-img" alt="..." style="width: 150px; height: auto;">
 
-                                    <img  id="no-img" src="../../../../assets/imagenes/noimage.png" class="card-img" alt="..." style="width: 150px; height: auto;">
+                                    <img  *ngIf="url== null "  id="no-img" src="../../../../assets/imagenes/noimage.png" class="card-img" alt="..." style="width: 150px; height: auto;">
                                   </div>
                                   <div class="col-md-8">
                                     <div class="card-body">
@@ -141,6 +144,11 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row d-flex justify-content-end" style="width: 90%; padding-bottom: 35px;">
+                                <button class="btn btn-modal" style="margin-top: 30px;" (click)="modal.close()">
+                                    Guardar
+                                </button>
                             </div>
                         </div>
 

@@ -18,16 +18,14 @@
         <article class="contenedor-uno container" >
             <div class="row">
                 <div id="izquierda" class="izquierda col-md-7">
-                    <!-- <div id="img-sec" class="img-sec" *ngIf= "imagenes_todas!==null">
+                    <div id="img-sec" class="img-sec" *ngIf= "imagenes_todas!==null">
                         <div class="img-sec-prod" *ngFor="let imagen of imagenes_todas;let i=index ">
                             <img  src="{{imagen}}" alt=""  (click)="mostrarEnPrincipal(i)">
-                        </div>
-                    </div> -->
-                    <div id="img-sec" class="owl-carousel owl-theme img-sec"  *ngIf= "imagenes_todas!==null">
-                        <div class="item img-sec-prod" *ngFor="let imagen of imagenes_todas;let i=index ">
-                            <img  src="{{imagen}}" alt=""  (click)="mostrarEnPrincipal(i)">
+                        
                         </div>
                     </div>
+           
+             
                     <div id="img-ppal" class="img-ppal">
                         <img *ngIf="skuAEnviar?.foto== null && infoProducto?.foto  " src="{{infoProducto?.foto.imageUrl}}" alt="" id="img-principal">
                         <img *ngIf="skuAEnviar?.foto" src="{{skuAEnviar?.foto.imageUrl}}" alt="" id="img-principal">
@@ -91,12 +89,15 @@
                         <button mat-button (click)="agregarCarrito(skuAEnviar); openSnackBar();  resetSeleccion()"
                             class="btn" [disabled]="!skuAEnviar || skuAEnviar?.disponibilidad==0 || hasRole('ROLE_ADMIN')" id="btn-carrito">Agregar al
                             Carrito</button>
-                        <button mat-button (click)="openModal(comprarAhora)" class="btn"  [disabled]="!skuAEnviar || skuAEnviar?.disponibilidad==0 || hasRole('ROLE_ADMIN')" 
+                        <button mat-button *ngIf="!hasRole('ROLE_USER')" (click)=" abrirInicioDeSesion()" class="btn"  [disabled]="!skuAEnviar || skuAEnviar?.disponibilidad==0 || hasRole('ROLE_ADMIN')" 
+                            id="btn-comprar">Comprar
+                            ahora</button>
+                        <button mat-button *ngIf="hasRole('ROLE_USER')" (click)="openModal(comprarAhora)" class="btn"  [disabled]="!skuAEnviar || skuAEnviar?.disponibilidad==0 || hasRole('ROLE_ADMIN')" 
                             id="btn-comprar">Comprar
                             ahora</button>
                     </div>
                     <!--COMPRAR AHORA MODAL  -->
-                    <ng-template #comprarAhora let-modal  >   
+                    <ng-template #comprarAhora let-modal class="modal" >   
                         <div class="modal-header ">
                             <h4 class="modalTitle" >
                                 Comprar Ahora</h4>

@@ -218,4 +218,8 @@ export class Step2Component implements OnInit, OnDestroy {
 
   }
 
+  mostrarCaracteristica(){
+    document.getElementById("cara").style.display="flex"
+  }
+
 }

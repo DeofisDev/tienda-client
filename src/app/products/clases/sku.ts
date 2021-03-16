@@ -16,5 +16,6 @@ export class Sku{
     valores:ValorPropiedadProducto [];
     defaultProducto:Producto;
     producto:Producto;
-    
+    activo:boolean;
+
 }
