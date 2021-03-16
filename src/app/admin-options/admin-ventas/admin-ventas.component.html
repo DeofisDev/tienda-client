@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-12 col-md-3">
                   <small id="emailHelp" class="form-text text-muted">&nbsp;Fecha de venta</small>
-                  <input type="date" class="form-control form-control-sm" disabled formControlName="fechaFilter">
+                  <input type="date" class="form-control form-control-sm" formControlName="fechaFilter" (onchange)="transformDate()" on>
                 </div>
                 <div class="col-12 col-md-3">
                   <div class="row">
@@ -65,7 +65,7 @@
                 
                   <ng-container matColumnDef="fechaOperacion">
                     <th mat-header-cell *matHeaderCellDef class="headerTable" mat-sort-header> Fecha de venta</th>
-                    <td mat-cell *matCellDef="let element"> {{element.fechaOperacion | convertFecha | slice:0:8}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.fechaOperacion | slice:0:8 }} </td>   <!-- | convertFecha | slice:0:8 -->
                   </ng-container>
 
 
@@ -214,4 +214,6 @@
     <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
   </div> -->
 </ng-template>
+
+{{myGroup.controls.fechaFilter.value}}
 
