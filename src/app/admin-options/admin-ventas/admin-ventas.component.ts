@@ -17,6 +17,7 @@ import Swal from "sweetalert2";
 
 import { ConvertFechaPipe } from '../../pipes/convert-fecha.pipe';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -71,7 +72,8 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
                private ventasServices:  VentasService,
                private modalService: NgbModal,
                private convertFecha: ConvertFechaPipe,
-               private route: ActivatedRoute ) { }
+               private route: ActivatedRoute,
+               private datePipe: DatePipe ) { }
 
   ngOnInit(): void {
     
@@ -100,6 +102,11 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
   obtenerVentas(){
     this.ventasServices.getVentas().subscribe((resp:any) => {
       this.ventas = resp;
+
+      this.ventas.forEach(element => {
+        element.fechaOperacion = this.convertFecha.transform(element.fechaOperacion)
+
+      });
       /* this.data.data = this.ventas */
       this.data = new MatTableDataSource(this.ventas)
       
@@ -341,6 +348,12 @@ export class AdminVentasComponent implements OnInit, AfterViewInit {
 
     return newDate
 
+  };
+
+  transformDate(){
+    console.log("entra");
+    
+    this.myGroup.controls.fechaFilter.setValue(this.datePipe.transform(this.myGroup.controls.fechaFilter.value))
   }
 
   

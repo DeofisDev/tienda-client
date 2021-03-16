@@ -97,6 +97,7 @@ import { AdminClientsComponent } from './admin-options/admin-clients/admin-clien
 import { NgxLoadingModule } from 'ngx-loading';
 import { LoadingComponent } from './shared/components/loading/loading/loading.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -201,7 +202,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatExpansionModule,
     NgxLoadingModule.forRoot({})
   ],
-  providers: [{
+  providers: [DatePipe, {
     provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true
   
   }],

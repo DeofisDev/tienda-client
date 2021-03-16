@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import { API_BASE_URL } from '../config/config';
 
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,8 +19,11 @@ export class VentasService {
 
   getVentas(){
     let arrayAux = [];
+    let fechaAux: string;
     return this.http.get(`${this.url}/ventas`).pipe(map((resp:any) => {
       for (let i = 0; i < resp.ventas.length; i++) {
+        /* fechaAux = this.converFecha.transform(resp.ventas[i].fechaOperacion);
+        resp.ventas[i].fechaOperacion = fechaAux; */
         if (resp.ventas[i].estado !== "PAYMENT_PENDING") {
           arrayAux.push(resp.ventas[i])
         }
